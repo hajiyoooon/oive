@@ -1,1 +1,9 @@
-
+target/
+src/test/
+src/main/resources/
+src/main/webapp/WEB-INF/classes
+src/main/webapp/WEB-INF/spring
+.settings/
+.project
+.classpath
+.springBeans
