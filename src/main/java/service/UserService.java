@@ -19,6 +19,7 @@ public class UserService {
 
 	  String encodedPassword = encoder.encode(vo.getPassword());
 	  vo.setPassword(encodedPassword);
+	  System.out.println(encodedPassword);
 
 	  return dao.insert(vo); // 회원가입 DAO
 	}

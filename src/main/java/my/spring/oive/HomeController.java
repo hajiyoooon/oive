@@ -30,7 +30,7 @@ public class HomeController {
 	//TODO : 나중에 POST 방식으로 바꿔주기
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String register(UserVO vo) {
-		
+
 		System.out.println(service.create(vo));
 		
 		return "example";
