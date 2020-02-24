@@ -25,12 +25,12 @@ COMMENT ON COLUMN oive.user.email IS '이메일'
 CREATE TABLE oive.file
 (
     file_id            INT             NOT NULL, 
-    file_con           BLOB            NULL, 
-    up_date            DATE            NULL, 
-    profil_category    VARCHAR2(20)    NULL, 
-    id                 INT             NULL, 
-    user_id            VARCHAR2(20)    NULL, 
-    file_name          VARCHAR2(50)    NULL, 
+    file_con           BLOB            NOT NULL, 
+    up_date            DATE            NOT NULL, 
+    profil_category    VARCHAR2(20)    NOT NULL, 
+    id                 INT             NOT NULL, 
+    user_id            VARCHAR2(20)    NOT NULL, 
+    file_name          VARCHAR2(50)    NOT NULL, 
     CONSTRAINT FILE_PK PRIMARY KEY (file_id)
 )
 /
@@ -87,13 +87,13 @@ ALTER TABLE oive.file
 CREATE TABLE oive.self_introduce
 (
     id                 INT              NOT NULL, 
-    user_id            VARCHAR2(20)     NULL, 
-    question           VARCHAR2(200)    NULL, 
-    answer             CLOB             NULL, 
-    apply_date         DATE             NULL, 
+    user_id            VARCHAR2(20)     NOT NULL, 
+    question           VARCHAR2(200)    NOT NULL, 
+    answer             CLOB             NOT NULL, 
+    apply_date         DATE             NOT NULL, 
     applied_company    VARCHAR2(50)     NULL, 
-    write_date         DATE             NULL, 
-    edit_date          DATE             NULL, 
+    write_date         DATE             NOT NULL, 
+    edit_date          DATE             NOT NULL, 
     CONSTRAINT SELF_INTRODUCE_PK PRIMARY KEY (id)
 )
 /
@@ -153,11 +153,11 @@ ALTER TABLE oive.self_introduce
 CREATE TABLE oive.highschool
 (
     id             INT             NOT NULL, 
-    user_id        VARCHAR2(20)    NULL, 
-    name           VARCHAR2(50)    NULL, 
-    enroll_date    DATE            NULL, 
-    grad_date      DATE            NULL, 
-    type           VARCHAR2(20)    NULL, 
+    user_id        VARCHAR2(20)    NOT NULL, 
+    name           VARCHAR2(50)    NOT NULL, 
+    enroll_date    DATE            NOT NULL, 
+    grad_date      DATE            NOT NULL, 
+    type           VARCHAR2(20)    NOT NULL, 
     CONSTRAINT HIGHSCHOOL_PK PRIMARY KEY (id)
 )
 /
@@ -211,20 +211,20 @@ ALTER TABLE oive.highschool
 CREATE TABLE oive.university
 (
     id             INT              NOT NULL, 
-    user_id        VARCHAR2(20)     NULL, 
-    enroll_date    DATE             NULL, 
+    user_id        VARCHAR2(20)     NOT NULL, 
+    enroll_date    DATE             NOT NULL, 
     grad_date      DATE             NULL, 
-    status         VARCHAR2(20)     NULL, 
-    degree         VARCHAR2(20)     NULL, 
-    major_type     VARCHAR2(20)     NULL, 
-    major_name     VARCHAR2(100)    NULL, 
-    total_grade    NUMBER(3, 2)     NULL, 
-    major_grade    NUMBER(3, 2)     NULL, 
-    max_grade      NUMBER(3, 2)     NULL, 
-    is_transfer    NUMBER(1,0)      NULL, 
-    u_name         VARCHAR2(50)     NULL, 
-    file_id1       INT              NULL, 
-    file_id2       INT              NULL, 
+    status         VARCHAR2(20)     NOT NULL, 
+    degree         VARCHAR2(20)     NOT NULL, 
+    major_type     VARCHAR2(20)     NOT NULL, 
+    major_name     VARCHAR2(100)    NOT NULL, 
+    total_grade    NUMBER(3, 2)     NOT NULL, 
+    major_grade    NUMBER(3, 2)     NOT NULL, 
+    max_grade      NUMBER(3, 2)     NOT NULL, 
+    is_transfer    NUMBER(1,0)      NOT NULL, 
+    u_name         VARCHAR2(50)     NOT NULL, 
+    file_id1       INT              NOT NULL, 
+    file_id2       INT              NOT NULL, 
     CONSTRAINT UNIVERSITY_PK PRIMARY KEY (id)
 )
 /
@@ -305,13 +305,13 @@ ALTER TABLE oive.university
 CREATE TABLE oive.education
 (
     id               INT              NOT NULL, 
-    user_id          VARCHAR2(20)     NULL, 
-    hour             INT              NULL, 
-    comment          VARCHAR2(200)    NULL, 
-    grade            VARCHAR2(10)     NULL, 
-    classfication    VARCHAR2(20)     NULL, 
-    org_name         VARCHAR2(50)     NULL, 
-    start_date       DATE             NULL, 
+    user_id          VARCHAR2(20)     NOT NULL, 
+    hour             INT              NOT NULL, 
+    comment          VARCHAR2(200)    NOT NULL, 
+    grade            VARCHAR2(10)     NOT NULL, 
+    classfication    VARCHAR2(20)     NOT NULL, 
+    org_name         VARCHAR2(50)     NOT NULL, 
+    start_date       DATE             NOT NULL, 
     end_date         DATE             NULL, 
     CONSTRAINT EDUCATION_PK PRIMARY KEY (id)
 )
@@ -378,14 +378,14 @@ ALTER TABLE oive.education
 CREATE TABLE oive.certifications
 (
     id              INT              NOT NULL, 
-    user_id         VARCHAR2(20)     NULL, 
-    name            VARCHAR2(100)    NULL, 
-    number          VARCHAR2(50)     NULL, 
-    aquired_date    DATE             NULL, 
-    exp_date        DATE             NULL, 
-    type            VARCHAR2(20)     NULL, 
+    user_id         VARCHAR2(20)     NOT NULL, 
+    name            VARCHAR2(100)    NOT NULL, 
+    number          VARCHAR2(50)     NOT NULL, 
+    aquired_date    DATE             NOT NULL, 
+    exp_date        DATE             NOT NULL, 
+    type            VARCHAR2(20)     NOT NULL, 
     file_id         INT              NULL, 
-    org_name        VARCHAR2(100)    NULL, 
+    org_name        VARCHAR2(100)    NOT NULL, 
     CONSTRAINT CERTIFICATIONS_PK PRIMARY KEY (id)
 )
 /
@@ -456,12 +456,12 @@ ALTER TABLE oive.certifications
 CREATE TABLE oive.award
 (
     id              INT              NOT NULL, 
-    user_id         VARCHAR2(20)     NULL, 
+    user_id         VARCHAR2(20)     NOT NULL, 
     name            VARCHAR2(100)    NULL, 
     aquired_date    DATE             NULL, 
-    org_name        VARCHAR2(50)     NULL, 
-    file_id         INT              NULL, 
-    type            VARCHAR2(20)     NULL, 
+    org_name        VARCHAR2(50)     NOT NULL, 
+    file_id         INT              NOT NULL, 
+    type            VARCHAR2(20)     NOT NULL, 
     CONSTRAINT AWARD_PK PRIMARY KEY (id)
 )
 /
@@ -523,9 +523,9 @@ ALTER TABLE oive.award
 CREATE TABLE oive.skills_and_knowledge
 (
     id         INT              NOT NULL, 
-    user_id    VARCHAR2(20)     NULL, 
-    name       VARCHAR2(50)     NULL, 
-    fluency    VARCHAR2(20)     NULL, 
+    user_id    VARCHAR2(20)     NOT NULL, 
+    name       VARCHAR2(50)     NOT NULL, 
+    fluency    VARCHAR2(20)     NOT NULL, 
     comment    VARCHAR2(100)    NULL, 
     file_id    INT              NULL, 
     CONSTRAINT SKILLS_AND_KNOWLEDGE_PK PRIMARY KEY (id)
@@ -581,16 +581,16 @@ ALTER TABLE oive.skills_and_knowledge
 CREATE TABLE oive.work_experience
 (
     id              INT              NOT NULL, 
-    user_id         VARCHAR2(20)     NULL, 
-    company_name    VARCHAR2(50)     NULL, 
-    emp_type        VARCHAR2(20)     NULL, 
-    start_date      DATE             NULL, 
+    user_id         VARCHAR2(20)     NOT NULL, 
+    company_name    VARCHAR2(50)     NOT NULL, 
+    emp_type        VARCHAR2(20)     NOT NULL, 
+    start_date      DATE             NOT NULL, 
     end_date        DATE             NULL, 
-    duty            VARCHAR2(20)     NULL, 
-    location        VARCHAR2(100)    NULL, 
+    duty            VARCHAR2(20)     NOT NULL, 
+    location        VARCHAR2(100)    NOT NULL, 
     comment         VARCHAR2(200)    NULL, 
     file_id         INT              NULL, 
-    position        VARCHAR2(20)     NULL, 
+    position        VARCHAR2(20)     NOT NULL, 
     CONSTRAINT WORK_EXPERIENCE_PK PRIMARY KEY (id)
 )
 /
@@ -664,12 +664,12 @@ ALTER TABLE oive.work_experience
 CREATE TABLE oive.pulications
 (
     id           INT              NOT NULL, 
-    user_id      VARCHAR2(20)     NULL, 
-    pub_date     DATE             NULL, 
-    authors      VARCHAR2(100)    NULL, 
-    file_id      INT              NULL, 
-    name         VARCHAR2(100)    NULL, 
-    publisher    VARCHAR2(50)     NULL, 
+    user_id      VARCHAR2(20)     NOT NULL, 
+    pub_date     DATE             NOT NULL, 
+    authors      VARCHAR2(100)    NOT NULL, 
+    file_id      INT              NOT NULL, 
+    name         VARCHAR2(100)    NOT NULL, 
+    publisher    VARCHAR2(50)     NOT NULL, 
     CONSTRAINT PULICATIONS_PK PRIMARY KEY (id)
 )
 /
@@ -731,11 +731,11 @@ ALTER TABLE oive.pulications
 CREATE TABLE oive.patent
 (
     id            INT             NOT NULL, 
-    user_id       VARCHAR2(20)    NULL, 
-    name          VARCHAR2(50)    NULL, 
-    country       VARCHAR2(50)    NULL, 
-    pub_number    VARCHAR2(20)    NULL, 
-    pub_date      DATE            NULL, 
+    user_id       VARCHAR2(20)    NOT NULL, 
+    name          VARCHAR2(50)    NOT NULL, 
+    country       VARCHAR2(50)    NOT NULL, 
+    pub_number    VARCHAR2(20)    NOT NULL, 
+    pub_date      DATE            NOT NULL, 
     fild_id       INT             NULL, 
     CONSTRAINT PATENT_PK PRIMARY KEY (id)
 )
@@ -798,9 +798,9 @@ ALTER TABLE oive.patent
 CREATE TABLE oive.keyword_selfintroduce
 (
     id         INT             NOT NULL, 
-    user_id    VARCHAR2(20)    NULL, 
-    keyword    VARCHAR2(50)    NULL, 
-    s_id       INT             NULL, 
+    user_id    VARCHAR2(20)    NOT NULL, 
+    keyword    VARCHAR2(50)    NOT NULL, 
+    s_id       INT             NOT NULL, 
     CONSTRAINT KEYWORD_SELFINTRODUCE_PK PRIMARY KEY (id)
 )
 /
