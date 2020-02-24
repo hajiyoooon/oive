@@ -1,851 +1,343 @@
-﻿-- 테이블 순서는 관계를 고려하여 한 번에 실행해도 에러가 발생하지 않게 정렬되었습니다.
-
--- user Table Create SQL
-CREATE TABLE oive.user
+CREATE TABLE users
 (
     user_id     VARCHAR2(20)     NOT NULL, 
     password    VARCHAR2(20)     NOT NULL, 
     birthday    DATE             NOT NULL, 
     email       VARCHAR2(100)    NOT NULL, 
     CONSTRAINT USER_PK PRIMARY KEY (user_id)
-)
-/
+);
 
-COMMENT ON COLUMN oive.user.password IS '패스워드'
-/
-
-COMMENT ON COLUMN oive.user.birthday IS '생년월일'
-/
-
-COMMENT ON COLUMN oive.user.email IS '이메일'
-/
-
-
--- user Table Create SQL
-CREATE TABLE oive.file
+CREATE TABLE files
 (
     file_id            INT             NOT NULL, 
     file_con           BLOB            NOT NULL, 
-    up_date            DATE            NOT NULL, 
-    profil_category    VARCHAR2(20)    NOT NULL, 
-    id                 INT             NOT NULL, 
+    upload_date        DATE            NOT NULL, 
+    profil_category    VARCHAR2(20)    NULL, 
+    id                 INT             NULL, 
     user_id            VARCHAR2(20)    NOT NULL, 
     file_name          VARCHAR2(50)    NOT NULL, 
     CONSTRAINT FILE_PK PRIMARY KEY (file_id)
-)
-/
+);
 
-CREATE SEQUENCE oive.file_SEQ
-START WITH 1
-INCREMENT BY 1;
-/
+ALTER TABLE files
+    ADD CONSTRAINT FK_file_user_id_users_user_id FOREIGN KEY (user_id)
+        REFERENCES users (user_id);
 
-CREATE OR REPLACE TRIGGER oive.file_AI_TRG
-BEFORE INSERT ON oive.file 
-REFERENCING NEW AS NEW FOR EACH ROW 
-BEGIN 
-    SELECT oive.file_SEQ.NEXTVAL
-    INTO :NEW.file_id
-    FROM DUAL;
-END;
-/
-
---DROP TRIGGER oive.file_AI_TRG;
-/
-
---DROP SEQUENCE oive.file_SEQ;
-/
-
-COMMENT ON COLUMN oive.file.file_id IS '파일 아이디'
-/
-
-COMMENT ON COLUMN oive.file.file_con IS '파일 내용'
-/
-
-COMMENT ON COLUMN oive.file.up_date IS '업로드 날짜'
-/
-
-COMMENT ON COLUMN oive.file.profil_category IS '프로필 목록'
-/
-
-COMMENT ON COLUMN oive.file.id IS '다른 테이블 아이디'
-/
-
-COMMENT ON COLUMN oive.file.user_id IS '유저 아이디'
-/
-
-COMMENT ON COLUMN oive.file.file_name IS '파일명'
-/
-
-ALTER TABLE oive.file
-    ADD CONSTRAINT FK_file_user_id_user_user_id FOREIGN KEY (user_id)
-        REFERENCES oive.user (user_id)
-/
-
-
--- user Table Create SQL
-CREATE TABLE oive.self_introduce
+CREATE TABLE self_introduce
 (
     id                 INT              NOT NULL, 
     user_id            VARCHAR2(20)     NOT NULL, 
     question           VARCHAR2(200)    NOT NULL, 
-    answer             CLOB             NOT NULL, 
-    apply_date         DATE             NOT NULL, 
-    applied_company    VARCHAR2(50)     NULL, 
+    answer             CLOB             NULL, 
+    apply_date         DATE             NULL, 
+    applied_company    VARCHAR2(50)     NOT NULL, 
     write_date         DATE             NOT NULL, 
-    edit_date          DATE             NOT NULL, 
+    edit_date          DATE             NULL, 
     CONSTRAINT SELF_INTRODUCE_PK PRIMARY KEY (id)
-)
-/
+);
 
-CREATE SEQUENCE oive.self_introduce_SEQ
+
+CREATE SEQUENCE self_introduce_SEQ
 START WITH 1
 INCREMENT BY 1;
-/
 
-CREATE OR REPLACE TRIGGER oive.self_introduce_AI_TRG
-BEFORE INSERT ON oive.self_introduce 
-REFERENCING NEW AS NEW FOR EACH ROW 
-BEGIN 
-    SELECT oive.self_introduce_SEQ.NEXTVAL
-    INTO :NEW.id
-    FROM DUAL;
-END;
-/
-
---DROP TRIGGER oive.self_introduce_AI_TRG;
-/
-
---DROP SEQUENCE oive.self_introduce_SEQ;
-/
-
-COMMENT ON COLUMN oive.self_introduce.id IS '테이블 아이디'
-/
-
-COMMENT ON COLUMN oive.self_introduce.user_id IS '유저 아이디'
-/
-
-COMMENT ON COLUMN oive.self_introduce.question IS '질문'
-/
-
-COMMENT ON COLUMN oive.self_introduce.answer IS '답변'
-/
-
-COMMENT ON COLUMN oive.self_introduce.apply_date IS '지원일자'
-/
-
-COMMENT ON COLUMN oive.self_introduce.applied_company IS '지원회사'
-/
-
-COMMENT ON COLUMN oive.self_introduce.write_date IS '작성일자'
-/
-
-COMMENT ON COLUMN oive.self_introduce.edit_date IS '수정일자'
-/
-
-ALTER TABLE oive.self_introduce
+ALTER TABLE self_introduce
     ADD CONSTRAINT FK_self_introduce_user_id_user FOREIGN KEY (user_id)
-        REFERENCES oive.user (user_id)
-/
+        REFERENCES users (user_id);
 
-
--- user Table Create SQL
-CREATE TABLE oive.highschool
-(
-    id             INT             NOT NULL, 
-    user_id        VARCHAR2(20)    NOT NULL, 
-    name           VARCHAR2(50)    NOT NULL, 
-    enroll_date    DATE            NOT NULL, 
-    grad_date      DATE            NOT NULL, 
-    type           VARCHAR2(20)    NOT NULL, 
-    CONSTRAINT HIGHSCHOOL_PK PRIMARY KEY (id)
-)
-/
-
-CREATE SEQUENCE oive.highschool_SEQ
-START WITH 1
-INCREMENT BY 1;
-/
-
-CREATE OR REPLACE TRIGGER oive.highschool_AI_TRG
-BEFORE INSERT ON oive.highschool 
-REFERENCING NEW AS NEW FOR EACH ROW 
-BEGIN 
-    SELECT oive.highschool_SEQ.NEXTVAL
-    INTO :NEW.id
-    FROM DUAL;
-END;
-/
-
---DROP TRIGGER oive.highschool_AI_TRG;
-/
-
---DROP SEQUENCE oive.highschool_SEQ;
-/
-
-COMMENT ON COLUMN oive.highschool.id IS '테이블 아이디'
-/
-
-COMMENT ON COLUMN oive.highschool.user_id IS '유저 아이디'
-/
-
-COMMENT ON COLUMN oive.highschool.name IS '학교명'
-/
-
-COMMENT ON COLUMN oive.highschool.enroll_date IS '입학일'
-/
-
-COMMENT ON COLUMN oive.highschool.grad_date IS '졸업일'
-/
-
-COMMENT ON COLUMN oive.highschool.type IS '학교 분류'
-/
-
-ALTER TABLE oive.highschool
-    ADD CONSTRAINT FK_highschool_user_id_user_use FOREIGN KEY (user_id)
-        REFERENCES oive.user (user_id)
-/
 
 
 -- user Table Create SQL
-CREATE TABLE oive.university
+CREATE TABLE university
 (
     id             INT              NOT NULL, 
     user_id        VARCHAR2(20)     NOT NULL, 
-    enroll_date    DATE             NOT NULL, 
-    grad_date      DATE             NULL, 
-    status         VARCHAR2(20)     NOT NULL, 
-    degree         VARCHAR2(20)     NOT NULL, 
-    major_type     VARCHAR2(20)     NOT NULL, 
-    major_name     VARCHAR2(100)    NOT NULL, 
-    total_grade    NUMBER(3, 2)     NOT NULL, 
-    major_grade    NUMBER(3, 2)     NOT NULL, 
-    max_grade      NUMBER(3, 2)     NOT NULL, 
-    is_transfer    NUMBER(1,0)      NOT NULL, 
     u_name         VARCHAR2(50)     NOT NULL, 
-    file_id1       INT              NOT NULL, 
-    file_id2       INT              NOT NULL, 
+    enroll_date    DATE             NULL, 
+    grad_date      DATE             NULL, 
+    status         VARCHAR2(20)     NULL, 
+    degree         VARCHAR2(20)     NULL, 
+    major_type     VARCHAR2(20)     NULL, 
+    major_name     VARCHAR2(100)    NULL, 
+    total_grade    NUMBER(3, 2)     NULL, 
+    major_grade    NUMBER(3, 2)     NULL, 
+    max_grade      NUMBER(3, 2)     NULL, 
+    is_transfer    NUMBER(1,0)      NULL, 
+    file_id1       INT              NULL, 
+    file_id2       INT              NULL, 
     CONSTRAINT UNIVERSITY_PK PRIMARY KEY (id)
-)
-/
+);
 
-CREATE SEQUENCE oive.university_SEQ
+
+CREATE SEQUENCE university_SEQ
 START WITH 1
 INCREMENT BY 1;
-/
 
-CREATE OR REPLACE TRIGGER oive.university_AI_TRG
-BEFORE INSERT ON oive.university 
-REFERENCING NEW AS NEW FOR EACH ROW 
-BEGIN 
-    SELECT oive.university_SEQ.NEXTVAL
-    INTO :NEW.id
-    FROM DUAL;
-END;
-/
-
---DROP TRIGGER oive.university_AI_TRG;
-/
-
---DROP SEQUENCE oive.university_SEQ;
-/
-
-COMMENT ON COLUMN oive.university.id IS '테이블 아이디'
-/
-
-COMMENT ON COLUMN oive.university.user_id IS '유저 아이디'
-/
-
-COMMENT ON COLUMN oive.university.enroll_date IS '입학일'
-/
-
-COMMENT ON COLUMN oive.university.grad_date IS '졸업일'
-/
-
-COMMENT ON COLUMN oive.university.status IS '졸업여부'
-/
-
-COMMENT ON COLUMN oive.university.degree IS '학위 분류'
-/
-
-COMMENT ON COLUMN oive.university.major_type IS '전공 유형'
-/
-
-COMMENT ON COLUMN oive.university.major_name IS '전공명'
-/
-
-COMMENT ON COLUMN oive.university.total_grade IS '전체 학점'
-/
-
-COMMENT ON COLUMN oive.university.major_grade IS '전공학점'
-/
-
-COMMENT ON COLUMN oive.university.max_grade IS '최대학점'
-/
-
-COMMENT ON COLUMN oive.university.is_transfer IS '편입여부'
-/
-
-COMMENT ON COLUMN oive.university.u_name IS '학교명'
-/
-
-COMMENT ON COLUMN oive.university.file_id1 IS '파일 아이디(성적증명서)'
-/
-
-COMMENT ON COLUMN oive.university.file_id2 IS '파일 아이디(졸업증명서)'
-/
-
-ALTER TABLE oive.university
-    ADD CONSTRAINT FK_university_user_id_user_use FOREIGN KEY (user_id)
-        REFERENCES oive.user (user_id)
-/
+ALTER TABLE university
+    ADD CONSTRAINT FK_university_user_id_user FOREIGN KEY (user_id)
+        REFERENCES users (user_id);
+        
+ALTER TABLE university
+    ADD CONSTRAINT FK_university_file_id1_file FOREIGN KEY (file_id1)
+        REFERENCES files (file_id);
+        
+ALTER TABLE university
+    ADD CONSTRAINT FK_university_file_id2_file FOREIGN KEY (file_id2)
+        REFERENCES files (file_id);
 
 
 -- user Table Create SQL
-CREATE TABLE oive.education
+CREATE TABLE education
 (
     id               INT              NOT NULL, 
     user_id          VARCHAR2(20)     NOT NULL, 
-    hour             INT              NOT NULL, 
-    comment          VARCHAR2(200)    NOT NULL, 
-    grade            VARCHAR2(10)     NOT NULL, 
-    classfication    VARCHAR2(20)     NOT NULL, 
-    org_name         VARCHAR2(50)     NOT NULL, 
-    start_date       DATE             NOT NULL, 
+    edu_name             VARCHAR2(50)     NOT NULL, 
+    total_hour             INT              NULL, 
+    comments          VARCHAR2(200)    NULL, 
+    grade            VARCHAR2(10)     NULL, 
+    classfication    VARCHAR2(20)     NULL, 
+    org_name         VARCHAR2(50)     NULL, 
+    start_date       DATE             NULL, 
     end_date         DATE             NULL, 
     CONSTRAINT EDUCATION_PK PRIMARY KEY (id)
-)
-/
+);
 
-CREATE SEQUENCE oive.education_SEQ
+
+CREATE SEQUENCE education_SEQ
 START WITH 1
 INCREMENT BY 1;
-/
 
-CREATE OR REPLACE TRIGGER oive.education_AI_TRG
-BEFORE INSERT ON oive.education 
-REFERENCING NEW AS NEW FOR EACH ROW 
-BEGIN 
-    SELECT oive.education_SEQ.NEXTVAL
-    INTO :NEW.id
-    FROM DUAL;
-END;
-/
-
---DROP TRIGGER oive.education_AI_TRG;
-/
-
---DROP SEQUENCE oive.education_SEQ;
-/
-
-COMMENT ON TABLE oive.education IS '교육사항'
-/
-
-COMMENT ON COLUMN oive.education.id IS '테이블아이디'
-/
-
-COMMENT ON COLUMN oive.education.user_id IS '유저 아이디'
-/
-
-COMMENT ON COLUMN oive.education.hour IS '수업시수'
-/
-
-COMMENT ON COLUMN oive.education.comment IS '수업내용'
-/
-
-COMMENT ON COLUMN oive.education.grade IS '성적'
-/
-
-COMMENT ON COLUMN oive.education.classfication IS '수업 유형(전공, 비전공)'
-/
-
-COMMENT ON COLUMN oive.education.org_name IS '기관명'
-/
-
-COMMENT ON COLUMN oive.education.start_date IS '교육시작날짜'
-/
-
-COMMENT ON COLUMN oive.education.end_date IS '교육끝날짜'
-/
-
-ALTER TABLE oive.education
-    ADD CONSTRAINT FK_education_user_id_user_user FOREIGN KEY (user_id)
-        REFERENCES oive.user (user_id)
-/
-
+ALTER TABLE education
+    ADD CONSTRAINT FK_education_user_id_user FOREIGN KEY (user_id)
+        REFERENCES users (user_id);
 
 -- user Table Create SQL
-CREATE TABLE oive.certifications
+CREATE TABLE certifications
 (
     id              INT              NOT NULL, 
     user_id         VARCHAR2(20)     NOT NULL, 
-    name            VARCHAR2(100)    NOT NULL, 
-    number          VARCHAR2(50)     NOT NULL, 
-    aquired_date    DATE             NOT NULL, 
-    exp_date        DATE             NOT NULL, 
-    type            VARCHAR2(20)     NOT NULL, 
-    file_id         INT              NULL, 
-    org_name        VARCHAR2(100)    NOT NULL, 
-    CONSTRAINT CERTIFICATIONS_PK PRIMARY KEY (id)
-)
-/
-
-CREATE SEQUENCE oive.certifications_SEQ
-START WITH 1
-INCREMENT BY 1;
-/
-
-CREATE OR REPLACE TRIGGER oive.certifications_AI_TRG
-BEFORE INSERT ON oive.certifications 
-REFERENCING NEW AS NEW FOR EACH ROW 
-BEGIN 
-    SELECT oive.certifications_SEQ.NEXTVAL
-    INTO :NEW.id
-    FROM DUAL;
-END;
-/
-
---DROP TRIGGER oive.certifications_AI_TRG;
-/
-
---DROP SEQUENCE oive.certifications_SEQ;
-/
-
-COMMENT ON TABLE oive.certifications IS '자격사항'
-/
-
-COMMENT ON COLUMN oive.certifications.id IS '테이블아이디'
-/
-
-COMMENT ON COLUMN oive.certifications.user_id IS '유저 아이디'
-/
-
-COMMENT ON COLUMN oive.certifications.name IS '자격증명'
-/
-
-COMMENT ON COLUMN oive.certifications.number IS '자격증번호'
-/
-
-COMMENT ON COLUMN oive.certifications.aquired_date IS '취득일'
-/
-
-COMMENT ON COLUMN oive.certifications.exp_date IS '만료일'
-/
-
-COMMENT ON COLUMN oive.certifications.type IS '자격증분류'
-/
-
-COMMENT ON COLUMN oive.certifications.file_id IS '파일 아이디'
-/
-
-COMMENT ON COLUMN oive.certifications.org_name IS '기관명'
-/
-
-ALTER TABLE oive.certifications
-    ADD CONSTRAINT FK_certifications_user_id_user FOREIGN KEY (user_id)
-        REFERENCES oive.user (user_id)
-/
-
-ALTER TABLE oive.certifications
-    ADD CONSTRAINT FK_certifications_file_id_file FOREIGN KEY (file_id)
-        REFERENCES oive.file (file_id)
-/
-
-
--- user Table Create SQL
-CREATE TABLE oive.award
-(
-    id              INT              NOT NULL, 
-    user_id         VARCHAR2(20)     NOT NULL, 
-    name            VARCHAR2(100)    NULL, 
+    cert_name            VARCHAR2(100)    NOT NULL, 
+    cert_number          VARCHAR2(50)     NULL, 
+    grade           VARCHAR2(20)     NULL, 
     aquired_date    DATE             NULL, 
-    org_name        VARCHAR2(50)     NOT NULL, 
-    file_id         INT              NOT NULL, 
-    type            VARCHAR2(20)     NOT NULL, 
-    CONSTRAINT AWARD_PK PRIMARY KEY (id)
-)
-/
+    exp_date        DATE             NULL, 
+    cert_type            VARCHAR2(20)     NULL, 
+    file_id         INT              NULL, 
+    org_name        VARCHAR2(100)    NULL, 
+    comments         VARCHAR2(100)    NULL, 
+    CONSTRAINT CERTIFICATIONS_PK PRIMARY KEY (id)
+);
 
-CREATE SEQUENCE oive.award_SEQ
+
+CREATE SEQUENCE certifications_SEQ
 START WITH 1
 INCREMENT BY 1;
-/
 
-CREATE OR REPLACE TRIGGER oive.award_AI_TRG
-BEFORE INSERT ON oive.award 
-REFERENCING NEW AS NEW FOR EACH ROW 
-BEGIN 
-    SELECT oive.award_SEQ.NEXTVAL
-    INTO :NEW.id
-    FROM DUAL;
-END;
-/
 
---DROP TRIGGER oive.award_AI_TRG;
-/
+ALTER TABLE certifications
+    ADD CONSTRAINT FK_certifications_user_id_user FOREIGN KEY (user_id)
+        REFERENCES users (user_id);
 
---DROP SEQUENCE oive.award_SEQ;
-/
 
-COMMENT ON COLUMN oive.award.id IS '테이블아이디'
-/
+ALTER TABLE certifications
+    ADD CONSTRAINT FK_certifications_file_id_file FOREIGN KEY (file_id)
+        REFERENCES files (file_id);
 
-COMMENT ON COLUMN oive.award.user_id IS '유저 아이디'
-/
-
-COMMENT ON COLUMN oive.award.name IS '상이름'
-/
-
-COMMENT ON COLUMN oive.award.aquired_date IS '취득일'
-/
-
-COMMENT ON COLUMN oive.award.org_name IS '기관명'
-/
-
-COMMENT ON COLUMN oive.award.file_id IS '파일 아이디'
-/
-
-COMMENT ON COLUMN oive.award.type IS '타입'
-/
-
-ALTER TABLE oive.award
-    ADD CONSTRAINT FK_award_user_id_user_user_id FOREIGN KEY (user_id)
-        REFERENCES oive.user (user_id)
-/
-
-ALTER TABLE oive.award
-    ADD CONSTRAINT FK_award_file_id_file_file_id FOREIGN KEY (file_id)
-        REFERENCES oive.file (file_id)
-/
 
 
 -- user Table Create SQL
-CREATE TABLE oive.skills_and_knowledge
+CREATE TABLE award
+(
+    id              INT              NOT NULL, 
+    user_id         VARCHAR2(20)     NOT NULL, 
+    award_name            VARCHAR2(100)    NOT NULL, 
+    aquired_date    DATE             NULL, 
+    org_name        VARCHAR2(50)     NULL, 
+    file_id         INT              NULL, 
+    award_type            VARCHAR2(20)     NULL, 
+    award_comment         VARCHAR2(100)    NULL, 
+    CONSTRAINT AWARD_PK PRIMARY KEY (id)
+);
+
+
+CREATE SEQUENCE award_SEQ
+START WITH 1
+INCREMENT BY 1;
+
+
+
+ALTER TABLE award
+    ADD CONSTRAINT FK_award_user_id_user_user_id FOREIGN KEY (user_id)
+        REFERENCES users (user_id);
+
+
+ALTER TABLE award
+    ADD CONSTRAINT FK_award_file_id_file_file_id FOREIGN KEY (file_id)
+        REFERENCES files (file_id);
+
+
+
+-- user Table Create SQL
+CREATE TABLE skills
 (
     id         INT              NOT NULL, 
     user_id    VARCHAR2(20)     NOT NULL, 
-    name       VARCHAR2(50)     NOT NULL, 
-    fluency    VARCHAR2(20)     NOT NULL, 
-    comment    VARCHAR2(100)    NULL, 
-    file_id    INT              NULL, 
-    CONSTRAINT SKILLS_AND_KNOWLEDGE_PK PRIMARY KEY (id)
-)
-/
+    skills_name       VARCHAR2(50)     NOT NULL, 
+    fluency    VARCHAR2(6)      NULL, 
+    skills_comment    VARCHAR2(100)    NULL, 
+    CONSTRAINT SKILLS_PK PRIMARY KEY (id)
+);
 
-CREATE SEQUENCE oive.skills_and_knowledge_SEQ
+
+CREATE SEQUENCE skills_SEQ
 START WITH 1
 INCREMENT BY 1;
-/
 
-CREATE OR REPLACE TRIGGER oive.skills_and_knowled_AI_TRG
-BEFORE INSERT ON oive.skills_and_knowledge 
-REFERENCING NEW AS NEW FOR EACH ROW 
-BEGIN 
-    SELECT oive.skills_and_knowledge_SEQ.NEXTVAL
-    INTO :NEW.id
-    FROM DUAL;
-END;
-/
 
---DROP TRIGGER oive.skills_and_knowled_AI_TRG;
-/
-
---DROP SEQUENCE oive.skills_and_knowledge_SEQ;
-/
-
-COMMENT ON COLUMN oive.skills_and_knowledge.id IS '테이블 아이디'
-/
-
-COMMENT ON COLUMN oive.skills_and_knowledge.user_id IS '유저 아이디'
-/
-
-COMMENT ON COLUMN oive.skills_and_knowledge.name IS '기술명'
-/
-
-COMMENT ON COLUMN oive.skills_and_knowledge.fluency IS '능숙도'
-/
-
-COMMENT ON COLUMN oive.skills_and_knowledge.comment IS '설명'
-/
-
-COMMENT ON COLUMN oive.skills_and_knowledge.file_id IS '파일 아이디'
-/
-
-ALTER TABLE oive.skills_and_knowledge
-    ADD CONSTRAINT FK_skills_and_knowledge_user_i FOREIGN KEY (user_id)
-        REFERENCES oive.user (user_id)
-/
+ALTER TABLE skills
+    ADD CONSTRAINT FK_skills_user_id_user_user_id FOREIGN KEY (user_id)
+        REFERENCES users (user_id);
 
 
 -- user Table Create SQL
-CREATE TABLE oive.work_experience
+CREATE TABLE work_experience
 (
     id              INT              NOT NULL, 
     user_id         VARCHAR2(20)     NOT NULL, 
     company_name    VARCHAR2(50)     NOT NULL, 
-    emp_type        VARCHAR2(20)     NOT NULL, 
-    start_date      DATE             NOT NULL, 
+    emp_type        VARCHAR2(20)     NULL, 
+    start_date      DATE             NULL, 
     end_date        DATE             NULL, 
-    duty            VARCHAR2(20)     NOT NULL, 
-    location        VARCHAR2(100)    NOT NULL, 
-    comment         VARCHAR2(200)    NULL, 
+    duty            VARCHAR2(20)     NULL, 
+    work_comment         VARCHAR2(200)    NULL, 
     file_id         INT              NULL, 
-    position        VARCHAR2(20)     NOT NULL, 
+    work_position        VARCHAR2(20)     NULL, 
     CONSTRAINT WORK_EXPERIENCE_PK PRIMARY KEY (id)
-)
-/
+);
 
-CREATE SEQUENCE oive.work_experience_SEQ
+
+CREATE SEQUENCE work_experience_SEQ
 START WITH 1
 INCREMENT BY 1;
-/
 
-CREATE OR REPLACE TRIGGER oive.work_experience_AI_TRG
-BEFORE INSERT ON oive.work_experience 
-REFERENCING NEW AS NEW FOR EACH ROW 
-BEGIN 
-    SELECT oive.work_experience_SEQ.NEXTVAL
-    INTO :NEW.id
-    FROM DUAL;
-END;
-/
 
---DROP TRIGGER oive.work_experience_AI_TRG;
-/
 
---DROP SEQUENCE oive.work_experience_SEQ;
-/
-
-COMMENT ON COLUMN oive.work_experience.id IS '테이블 아이디'
-/
-
-COMMENT ON COLUMN oive.work_experience.user_id IS '유저 아이디'
-/
-
-COMMENT ON COLUMN oive.work_experience.company_name IS '회사명'
-/
-
-COMMENT ON COLUMN oive.work_experience.emp_type IS '고용형태'
-/
-
-COMMENT ON COLUMN oive.work_experience.start_date IS '입사일'
-/
-
-COMMENT ON COLUMN oive.work_experience.end_date IS '퇴사일'
-/
-
-COMMENT ON COLUMN oive.work_experience.duty IS '담당 업무'
-/
-
-COMMENT ON COLUMN oive.work_experience.location IS '회사위치'
-/
-
-COMMENT ON COLUMN oive.work_experience.comment IS '설명'
-/
-
-COMMENT ON COLUMN oive.work_experience.file_id IS '파일 아이디'
-/
-
-COMMENT ON COLUMN oive.work_experience.position IS '직위'
-/
-
-ALTER TABLE oive.work_experience
+ALTER TABLE work_experience
     ADD CONSTRAINT FK_work_experience_user_id_use FOREIGN KEY (user_id)
-        REFERENCES oive.user (user_id)
-/
+        REFERENCES users (user_id);
 
-ALTER TABLE oive.work_experience
+
+ALTER TABLE work_experience
     ADD CONSTRAINT FK_work_experience_file_id_fil FOREIGN KEY (file_id)
-        REFERENCES oive.file (file_id)
-/
+        REFERENCES files (file_id);
+
 
 
 -- user Table Create SQL
-CREATE TABLE oive.pulications
+CREATE TABLE pulications
 (
     id           INT              NOT NULL, 
     user_id      VARCHAR2(20)     NOT NULL, 
-    pub_date     DATE             NOT NULL, 
-    authors      VARCHAR2(100)    NOT NULL, 
-    file_id      INT              NOT NULL, 
-    name         VARCHAR2(100)    NOT NULL, 
-    publisher    VARCHAR2(50)     NOT NULL, 
+    pub_name         VARCHAR2(100)    NOT NULL, 
+    pub_date     DATE             NULL, 
+    authors      VARCHAR2(100)    NULL, 
+    pub_number       VARCHAR2(30)     NULL, 
+    file_id      INT              NULL, 
+    publisher    VARCHAR2(50)     NULL, 
     CONSTRAINT PULICATIONS_PK PRIMARY KEY (id)
-)
-/
+);
 
-CREATE SEQUENCE oive.pulications_SEQ
+
+CREATE SEQUENCE pulications_SEQ
 START WITH 1
 INCREMENT BY 1;
-/
 
-CREATE OR REPLACE TRIGGER oive.pulications_AI_TRG
-BEFORE INSERT ON oive.pulications 
-REFERENCING NEW AS NEW FOR EACH ROW 
-BEGIN 
-    SELECT oive.pulications_SEQ.NEXTVAL
-    INTO :NEW.id
-    FROM DUAL;
-END;
-/
 
---DROP TRIGGER oive.pulications_AI_TRG;
-/
-
---DROP SEQUENCE oive.pulications_SEQ;
-/
-
-COMMENT ON COLUMN oive.pulications.id IS '테이블 아이디'
-/
-
-COMMENT ON COLUMN oive.pulications.user_id IS '유저 아이디'
-/
-
-COMMENT ON COLUMN oive.pulications.pub_date IS '출판일'
-/
-
-COMMENT ON COLUMN oive.pulications.authors IS '저자'
-/
-
-COMMENT ON COLUMN oive.pulications.file_id IS '파일 아이디'
-/
-
-COMMENT ON COLUMN oive.pulications.name IS '출판물명'
-/
-
-COMMENT ON COLUMN oive.pulications.publisher IS '출판사'
-/
-
-ALTER TABLE oive.pulications
+ALTER TABLE pulications
     ADD CONSTRAINT FK_pulications_user_id_user_us FOREIGN KEY (user_id)
-        REFERENCES oive.user (user_id)
-/
+        REFERENCES users (user_id);
 
-ALTER TABLE oive.pulications
+
+ALTER TABLE pulications
     ADD CONSTRAINT FK_pulications_file_id_file_fi FOREIGN KEY (file_id)
-        REFERENCES oive.file (file_id)
-/
+        REFERENCES files (file_id);
+
 
 
 -- user Table Create SQL
-CREATE TABLE oive.patent
+CREATE TABLE patent
 (
-    id            INT             NOT NULL, 
-    user_id       VARCHAR2(20)    NOT NULL, 
-    name          VARCHAR2(50)    NOT NULL, 
-    country       VARCHAR2(50)    NOT NULL, 
-    pub_number    VARCHAR2(20)    NOT NULL, 
-    pub_date      DATE            NOT NULL, 
-    fild_id       INT             NULL, 
+    id            INT              NOT NULL, 
+    user_id       VARCHAR2(20)     NOT NULL, 
+    patent_name          VARCHAR2(50)     NOT NULL, 
+    country       VARCHAR2(50)     NULL, 
+    pub_number    VARCHAR2(20)     NULL, 
+    pub_date      DATE             NULL, 
+    fild_id       INT              NULL, 
+    patent_comment       VARCHAR2(100)    NULL, 
     CONSTRAINT PATENT_PK PRIMARY KEY (id)
-)
-/
+);
 
-CREATE SEQUENCE oive.patent_SEQ
+CREATE SEQUENCE patent_SEQ
 START WITH 1
 INCREMENT BY 1;
-/
 
-CREATE OR REPLACE TRIGGER oive.patent_AI_TRG
-BEFORE INSERT ON oive.patent 
-REFERENCING NEW AS NEW FOR EACH ROW 
-BEGIN 
-    SELECT oive.patent_SEQ.NEXTVAL
-    INTO :NEW.id
-    FROM DUAL;
-END;
-/
 
---DROP TRIGGER oive.patent_AI_TRG;
-/
-
---DROP SEQUENCE oive.patent_SEQ;
-/
-
-COMMENT ON COLUMN oive.patent.id IS '테이블 아이디'
-/
-
-COMMENT ON COLUMN oive.patent.user_id IS '유저 아이디'
-/
-
-COMMENT ON COLUMN oive.patent.name IS '특허명'
-/
-
-COMMENT ON COLUMN oive.patent.country IS '출원국가'
-/
-
-COMMENT ON COLUMN oive.patent.pub_number IS '출원번호'
-/
-
-COMMENT ON COLUMN oive.patent.pub_date IS '취득일'
-/
-
-COMMENT ON COLUMN oive.patent.fild_id IS '파일 아이디'
-/
-
-ALTER TABLE oive.patent
+ALTER TABLE patent
     ADD CONSTRAINT FK_patent_user_id_user_user_id FOREIGN KEY (user_id)
-        REFERENCES oive.user (user_id)
-/
+        REFERENCES users (user_id);
 
-ALTER TABLE oive.patent
+
+ALTER TABLE patent
     ADD CONSTRAINT FK_patent_fild_id_file_file_id FOREIGN KEY (fild_id)
-        REFERENCES oive.file (file_id)
-/
+        REFERENCES files (file_id);
+
 
 
 -- user Table Create SQL
-CREATE TABLE oive.keyword_selfintroduce
+CREATE TABLE keyword_selfintroduce
 (
     id         INT             NOT NULL, 
     user_id    VARCHAR2(20)    NOT NULL, 
     keyword    VARCHAR2(50)    NOT NULL, 
     s_id       INT             NOT NULL, 
     CONSTRAINT KEYWORD_SELFINTRODUCE_PK PRIMARY KEY (id)
-)
-/
+);
 
-CREATE SEQUENCE oive.keyword_selfintroduce_SEQ
+
+CREATE SEQUENCE keyword_selfintroduce_SEQ
 START WITH 1
 INCREMENT BY 1;
-/
 
-CREATE OR REPLACE TRIGGER oive.keyword_selfintrod_AI_TRG
-BEFORE INSERT ON oive.keyword_selfintroduce 
-REFERENCING NEW AS NEW FOR EACH ROW 
-BEGIN 
-    SELECT oive.keyword_selfintroduce_SEQ.NEXTVAL
-    INTO :NEW.id
-    FROM DUAL;
-END;
-/
 
---DROP TRIGGER oive.keyword_selfintrod_AI_TRG;
-/
-
---DROP SEQUENCE oive.keyword_selfintroduce_SEQ;
-/
-
-COMMENT ON COLUMN oive.keyword_selfintroduce.id IS '테이블 아이디'
-/
-
-COMMENT ON COLUMN oive.keyword_selfintroduce.user_id IS '유저 아이디'
-/
-
-COMMENT ON COLUMN oive.keyword_selfintroduce.keyword IS '키워드'
-/
-
-COMMENT ON COLUMN oive.keyword_selfintroduce.s_id IS '자기소개서 아이디'
-/
-
-ALTER TABLE oive.keyword_selfintroduce
+ALTER TABLE keyword_selfintroduce
     ADD CONSTRAINT FK_keyword_selfintroduce_user_ FOREIGN KEY (user_id)
-        REFERENCES oive.user (user_id)
-/
+        REFERENCES users (user_id);
 
-ALTER TABLE oive.keyword_selfintroduce
+
+ALTER TABLE keyword_selfintroduce
     ADD CONSTRAINT FK_keyword_selfintroduce_s_id_ FOREIGN KEY (s_id)
-        REFERENCES oive.self_introduce (id)
-/
+        REFERENCES self_introduce (id);
 
 
+
+-- user Table Create SQL
+CREATE TABLE languages
+(
+    id               INT              NOT NULL, 
+    user_id          VARCHAR2(20)     NOT NULL, 
+    language_name    VARCHAR2(20)     NOT NULL, 
+    fluency          VARCHAR2(20)     NULL, 
+    language_comment          VARCHAR2(100)    NULL, 
+    CONSTRAINT LANGUAGES_PK PRIMARY KEY (id)
+);
+
+
+CREATE SEQUENCE languages_SEQ
+START WITH 1
+INCREMENT BY 1;
+
+ALTER TABLE languages
+    ADD CONSTRAINT FK_languages_user_id_user FOREIGN KEY (user_id)
+        REFERENCES users (user_id);
+        
