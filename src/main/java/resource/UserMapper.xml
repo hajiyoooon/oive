@@ -7,6 +7,14 @@
     	select * from users
     	where user_id = #{userId} and password = #{password}
  	</select>
+ 	
+ 	<insert id="insertUser" parameterType="vo.UserVO">
+ 		<selectKey resultType="int" keyProperty="id" order="BEFORE">\
+ 			select users_seq.nextval from dual
+ 		</selectKey>
+    	insert into users(user_id, password, birthday, email)
+    	values(#{userId},#{password},#{birthday}, #{email})
+ 	</insert>
 
 </mapper>
 
