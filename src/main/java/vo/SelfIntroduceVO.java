@@ -1,14 +1,32 @@
-package test;
+package vo;
 
 public class SelfIntroduceVO {
     private int id;
     private int userId;
     private String question;
     private String answer;
-    private String writeDate;
+    private String applyDate;
     private String appliedCompany;
+    private String writeDate;
+    private String editDate;
 
-    public int getId() {
+    public String getApplyDate() {
+		return applyDate;
+	}
+
+	public void setApplyDate(String applyDate) {
+		this.applyDate = applyDate;
+	}
+
+	public String getEditDate() {
+		return editDate;
+	}
+
+	public void setEditDate(String editDate) {
+		this.editDate = editDate;
+	}
+
+	public int getId() {
         return id;
     }
 

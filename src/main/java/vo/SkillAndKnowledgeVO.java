@@ -1,4 +1,4 @@
-package test;
+package vo;
 
 public class SkillAndKnowledgeVO {
 	private int id;
@@ -6,7 +6,14 @@ public class SkillAndKnowledgeVO {
 	private String name;
 	private String fluency;
 	private String comment;
+	private int fileId;
 	
+	public int getFileId() {
+		return fileId;
+	}
+	public void setFileId(int fileId) {
+		this.fileId = fileId;
+	}
 	public int getId() {
 		return id;
 	}

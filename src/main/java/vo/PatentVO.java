@@ -1,4 +1,4 @@
-package test;
+package vo;
 
 public class PatentVO {
     private int id;
@@ -7,7 +7,7 @@ public class PatentVO {
     private String country; 
     private String pubNumber;
     private String pubDate;
-    private String fildId;
+    private int fileId;
 
     public int getId() {
         return id;
@@ -57,12 +57,12 @@ public class PatentVO {
         this.pubDate = pubDate;
     }
 
-    public String getFildId() {
-        return fildId;
+    public int getFildId() {
+        return fileId;
     }
 
-    public void setFildId(String fildId) {
-        this.fildId = fildId;
+    public void setFildId(int fildId) {
+        this.fileId = fildId;
     }
 	
 }

@@ -1,14 +1,12 @@
-package test;
+package vo;
 
-public class AwardVO {
+public class HighschoolVO {
 	private int id;
 	private int userId;
 	private String name;
-	private String aquiredDate;
-	private String orgName;
-	private String fileId;
+	private String enrollDate;
+	private String gradDate;
 	private String type;
-
 	public int getId() {
 		return id;
 	}
@@ -27,23 +25,17 @@ public class AwardVO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getAquiredDate() {
-		return aquiredDate;
+	public String getEnrollDate() {
+		return enrollDate;
 	}
-	public void setAquiredDate(String aquiredDate) {
-		this.aquiredDate = aquiredDate;
+	public void setEnrollDate(String enrollDate) {
+		this.enrollDate = enrollDate;
 	}
-	public String getOrgName() {
-		return orgName;
+	public String getGradDate() {
+		return gradDate;
 	}
-	public void setOrgName(String orgName) {
-		this.orgName = orgName;
-	}
-	public String getFileId() {
-		return fileId;
-	}
-	public void setFileId(String fileId) {
-		this.fileId = fileId;
+	public void setGradDate(String gradDate) {
+		this.gradDate = gradDate;
 	}
 	public String getType() {
 		return type;
@@ -51,7 +43,6 @@ public class AwardVO {
 	public void setType(String type) {
 		this.type = type;
 	}
-
 	
 	
 }

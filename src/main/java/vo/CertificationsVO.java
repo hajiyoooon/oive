@@ -1,4 +1,4 @@
-package test;
+package vo;
 
 public class CertificationsVO {
     private int id;

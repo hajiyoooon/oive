@@ -1,11 +1,11 @@
-package test;
+package vo;
 
 public class PublicationsVO {
 	private int id;
 	private int userId;
 	private String pubDate;
 	private String authors;
-	private String fileId;
+	private int fileId;
 	private String name;
 	private String publisher;
 	public int getId() {
@@ -32,10 +32,10 @@ public class PublicationsVO {
 	public void setAuthors(String authors) {
 		this.authors = authors;
 	}
-	public String getFileId() {
+	public int getFileId() {
 		return fileId;
 	}
-	public void setFileId(String fileId) {
+	public void setFileId(int fileId) {
 		this.fileId = fileId;
 	}
 	public String getName() {

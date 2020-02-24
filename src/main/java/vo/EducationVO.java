@@ -1,16 +1,33 @@
-package test;
+package vo;
 
 public class EducationVO {
     private int id;
     private int userId;
     private String hour;
     private String comment;
-    private double grade;
+    private String grade;
     private String classfication;
     private String type;
     private String orgName;
+    private String startDate;
+    private String endDate;
+    public String getStartDate() {
+		return startDate;
+	}
 
-    public int getId() {
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+
+	public String getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
+	}
+
+	public int getId() {
         return id;
     }
 
@@ -42,11 +59,11 @@ public class EducationVO {
         this.comment = comment;
     }
 
-    public double getGrade() {
+    public String getGrade() {
         return grade;
     }
 
-    public void setGrade(double grade) {
+    public void setGrade(String grade) {
         this.grade = grade;
     }
 

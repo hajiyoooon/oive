@@ -1,4 +1,4 @@
-package test;
+package vo;
 
 public class WorkExperienceVO {
 	private int id;
@@ -10,7 +10,7 @@ public class WorkExperienceVO {
 	private String duty;
 	private String location;
 	private String comment;
-	private String fileId;
+	private int fileId;
 	private String position;
 	public int getId() {
 		return id;
@@ -66,10 +66,10 @@ public class WorkExperienceVO {
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
-	public String getFileId() {
+	public int getFileId() {
 		return fileId;
 	}
-	public void setFileId(String fileId) {
+	public void setFileId(int fileId) {
 		this.fileId = fileId;
 	}
 	public String getPosition() {

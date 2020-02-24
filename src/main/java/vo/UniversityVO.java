@@ -1,4 +1,4 @@
-package test;
+package vo;
 
 public class UniversityVO {
 	private int id;
@@ -9,9 +9,46 @@ public class UniversityVO {
 	private String degree;
 	private String majorType;
 	private String majorName;
-	private String totalGrade;
-	private String maxGrade;
-	private String isTransfer;
+	private double totalGrade;
+	private double maxGrade;
+	private double majorGrade;
+	private int isTransfer;
+	private String uName;
+	private int fileId1;
+	public double getMajorGrade() {
+		return majorGrade;
+	}
+	public void setMajorGrade(double majorGrade) {
+		this.majorGrade = majorGrade;
+	}
+	public String getuName() {
+		return uName;
+	}
+	public void setuName(String uName) {
+		this.uName = uName;
+	}
+	public int getFileId1() {
+		return fileId1;
+	}
+	public void setFileId1(int fileId1) {
+		this.fileId1 = fileId1;
+	}
+	public int getFileId2() {
+		return fileId2;
+	}
+	public void setFileId2(int fileId2) {
+		this.fileId2 = fileId2;
+	}
+	public void setTotalGrade(double totalGrade) {
+		this.totalGrade = totalGrade;
+	}
+	public void setMaxGrade(double maxGrade) {
+		this.maxGrade = maxGrade;
+	}
+	public void setIsTransfer(int isTransfer) {
+		this.isTransfer = isTransfer;
+	}
+	private int fileId2;
 	public int getId() {
 		return id;
 	}
@@ -60,24 +97,7 @@ public class UniversityVO {
 	public void setMajorName(String majorName) {
 		this.majorName = majorName;
 	}
-	public String getTotalGrade() {
-		return totalGrade;
-	}
-	public void setTotalGrade(String totalGrade) {
-		this.totalGrade = totalGrade;
-	}
-	public String getMaxGrade() {
-		return maxGrade;
-	}
-	public void setMaxGrade(String maxGrade) {
-		this.maxGrade = maxGrade;
-	}
-	public String getIsTransfer() {
-		return isTransfer;
-	}
-	public void setIsTransfer(String isTransfer) {
-		this.isTransfer = isTransfer;
-	}
+
 	
 	
 }
