@@ -1,7 +1,7 @@
 CREATE TABLE users
 (
     user_id     VARCHAR2(20)     NOT NULL, 
-    password    VARCHAR2(20)     NOT NULL, 
+    password    VARCHAR2(200)     NOT NULL, 
     birthday    DATE             NOT NULL, 
     email       VARCHAR2(100)    NOT NULL, 
     CONSTRAINT USER_PK PRIMARY KEY (user_id)
