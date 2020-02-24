@@ -1,28 +1,13 @@
-﻿-- 테이블 순서는 관계를 고려하여 한 번에 실행해도 에러가 발생하지 않게 정렬되었습니다.
-
--- user Table Create SQL
-CREATE TABLE user
+CREATE TABLE users
 (
     user_id     VARCHAR2(20)     NOT NULL, 
     password    VARCHAR2(20)     NOT NULL, 
     birthday    DATE             NOT NULL, 
     email       VARCHAR2(100)    NOT NULL, 
     CONSTRAINT USER_PK PRIMARY KEY (user_id)
-)
-/
+);
 
-COMMENT ON COLUMN user.password IS '패스워드'
-/
-
-COMMENT ON COLUMN user.birthday IS '생년월일'
-/
-
-COMMENT ON COLUMN user.email IS '이메일'
-/
-
-
--- user Table Create SQL
-CREATE TABLE file
+CREATE TABLE files
 (
     file_id            INT             NOT NULL, 
     file_con           BLOB            NOT NULL, 
@@ -31,59 +16,13 @@ CREATE TABLE file
     id                 INT             NULL, 
     user_id            VARCHAR2(20)    NOT NULL, 
     file_name          VARCHAR2(50)    NOT NULL, 
-    CONSTRAINT FILE_PK PRIMARY KEY (file_id, file_name)
-)
-/
+    CONSTRAINT FILE_PK PRIMARY KEY (file_id)
+);
 
-CREATE SEQUENCE file_SEQ
-START WITH 1
-INCREMENT BY 1;
-/
+ALTER TABLE files
+    ADD CONSTRAINT FK_file_user_id_users_user_id FOREIGN KEY (user_id)
+        REFERENCES users (user_id);
 
-CREATE OR REPLACE TRIGGER file_AI_TRG
-BEFORE INSERT ON file 
-REFERENCING NEW AS NEW FOR EACH ROW 
-BEGIN 
-    SELECT file_SEQ.NEXTVAL
-    INTO :NEW.file_id
-    FROM DUAL;
-END;
-/
-
---DROP TRIGGER file_AI_TRG;
-/
-
---DROP SEQUENCE file_SEQ;
-/
-
-COMMENT ON COLUMN file.file_id IS '파일 아이디'
-/
-
-COMMENT ON COLUMN file.file_con IS '파일 내용'
-/
-
-COMMENT ON COLUMN file.upload_date IS '업로드 날짜'
-/
-
-COMMENT ON COLUMN file.profil_category IS '프로필 목록'
-/
-
-COMMENT ON COLUMN file.id IS '다른 테이블 아이디'
-/
-
-COMMENT ON COLUMN file.user_id IS '유저 아이디'
-/
-
-COMMENT ON COLUMN file.file_name IS '파일명'
-/
-
-ALTER TABLE file
-    ADD CONSTRAINT FK_file_user_id_user_user_id FOREIGN KEY (user_id)
-        REFERENCES user (user_id)
-/
-
-
--- user Table Create SQL
 CREATE TABLE self_introduce
 (
     id                 INT              NOT NULL, 
@@ -95,58 +34,17 @@ CREATE TABLE self_introduce
     write_date         DATE             NOT NULL, 
     edit_date          DATE             NULL, 
     CONSTRAINT SELF_INTRODUCE_PK PRIMARY KEY (id)
-)
-/
+);
+
 
 CREATE SEQUENCE self_introduce_SEQ
 START WITH 1
 INCREMENT BY 1;
-/
-
-CREATE OR REPLACE TRIGGER self_introduce_AI_TRG
-BEFORE INSERT ON self_introduce 
-REFERENCING NEW AS NEW FOR EACH ROW 
-BEGIN 
-    SELECT self_introduce_SEQ.NEXTVAL
-    INTO :NEW.id
-    FROM DUAL;
-END;
-/
-
---DROP TRIGGER self_introduce_AI_TRG;
-/
-
---DROP SEQUENCE self_introduce_SEQ;
-/
-
-COMMENT ON COLUMN self_introduce.id IS '테이블 아이디'
-/
-
-COMMENT ON COLUMN self_introduce.user_id IS '유저 아이디'
-/
-
-COMMENT ON COLUMN self_introduce.question IS '질문'
-/
-
-COMMENT ON COLUMN self_introduce.answer IS '답변'
-/
-
-COMMENT ON COLUMN self_introduce.apply_date IS '지원일자'
-/
-
-COMMENT ON COLUMN self_introduce.applied_company IS '지원회사'
-/
-
-COMMENT ON COLUMN self_introduce.write_date IS '작성일자'
-/
-
-COMMENT ON COLUMN self_introduce.edit_date IS '수정일자'
-/
 
 ALTER TABLE self_introduce
     ADD CONSTRAINT FK_self_introduce_user_id_user FOREIGN KEY (user_id)
-        REFERENCES user (user_id)
-/
+        REFERENCES users (user_id);
+
 
 
 -- user Table Create SQL
@@ -168,79 +66,24 @@ CREATE TABLE university
     file_id1       INT              NULL, 
     file_id2       INT              NULL, 
     CONSTRAINT UNIVERSITY_PK PRIMARY KEY (id)
-)
-/
+);
+
 
 CREATE SEQUENCE university_SEQ
 START WITH 1
 INCREMENT BY 1;
-/
-
-CREATE OR REPLACE TRIGGER university_AI_TRG
-BEFORE INSERT ON university 
-REFERENCING NEW AS NEW FOR EACH ROW 
-BEGIN 
-    SELECT university_SEQ.NEXTVAL
-    INTO :NEW.id
-    FROM DUAL;
-END;
-/
-
---DROP TRIGGER university_AI_TRG;
-/
-
---DROP SEQUENCE university_SEQ;
-/
-
-COMMENT ON COLUMN university.id IS '테이블 아이디'
-/
-
-COMMENT ON COLUMN university.user_id IS '유저 아이디'
-/
-
-COMMENT ON COLUMN university.u_name IS '학교명'
-/
-
-COMMENT ON COLUMN university.enroll_date IS '입학일'
-/
-
-COMMENT ON COLUMN university.grad_date IS '졸업일'
-/
-
-COMMENT ON COLUMN university.status IS '졸업여부'
-/
-
-COMMENT ON COLUMN university.degree IS '학위 분류(고등학교, 학,석,박)'
-/
-
-COMMENT ON COLUMN university.major_type IS '전공 유형'
-/
-
-COMMENT ON COLUMN university.major_name IS '전공명'
-/
-
-COMMENT ON COLUMN university.total_grade IS '전체 학점'
-/
-
-COMMENT ON COLUMN university.major_grade IS '전공학점'
-/
-
-COMMENT ON COLUMN university.max_grade IS '최대학점'
-/
-
-COMMENT ON COLUMN university.is_transfer IS '편입여부'
-/
-
-COMMENT ON COLUMN university.file_id1 IS '파일 아이디(성적증명서)'
-/
-
-COMMENT ON COLUMN university.file_id2 IS '파일 아이디(졸업증명서)'
-/
 
 ALTER TABLE university
-    ADD CONSTRAINT FK_university_user_id_user_use FOREIGN KEY (user_id)
-        REFERENCES user (user_id)
-/
+    ADD CONSTRAINT FK_university_user_id_user FOREIGN KEY (user_id)
+        REFERENCES users (user_id);
+        
+ALTER TABLE university
+    ADD CONSTRAINT FK_university_file_id1_file FOREIGN KEY (file_id1)
+        REFERENCES files (file_id);
+        
+ALTER TABLE university
+    ADD CONSTRAINT FK_university_file_id2_file FOREIGN KEY (file_id2)
+        REFERENCES files (file_id);
 
 
 -- user Table Create SQL
@@ -248,162 +91,58 @@ CREATE TABLE education
 (
     id               INT              NOT NULL, 
     user_id          VARCHAR2(20)     NOT NULL, 
-    name             VARCHAR2(50)     NOT NULL, 
-    hour             INT              NULL, 
-    comment          VARCHAR2(200)    NULL, 
+    edu_name             VARCHAR2(50)     NOT NULL, 
+    total_hour             INT              NULL, 
+    comments          VARCHAR2(200)    NULL, 
     grade            VARCHAR2(10)     NULL, 
     classfication    VARCHAR2(20)     NULL, 
     org_name         VARCHAR2(50)     NULL, 
     start_date       DATE             NULL, 
     end_date         DATE             NULL, 
     CONSTRAINT EDUCATION_PK PRIMARY KEY (id)
-)
-/
+);
+
 
 CREATE SEQUENCE education_SEQ
 START WITH 1
 INCREMENT BY 1;
-/
-
-CREATE OR REPLACE TRIGGER education_AI_TRG
-BEFORE INSERT ON education 
-REFERENCING NEW AS NEW FOR EACH ROW 
-BEGIN 
-    SELECT education_SEQ.NEXTVAL
-    INTO :NEW.id
-    FROM DUAL;
-END;
-/
-
---DROP TRIGGER education_AI_TRG;
-/
-
---DROP SEQUENCE education_SEQ;
-/
-
-COMMENT ON TABLE education IS '교육사항'
-/
-
-COMMENT ON COLUMN education.id IS '테이블아이디'
-/
-
-COMMENT ON COLUMN education.user_id IS '유저 아이디'
-/
-
-COMMENT ON COLUMN education.name IS '수업명'
-/
-
-COMMENT ON COLUMN education.hour IS '수업시수'
-/
-
-COMMENT ON COLUMN education.comment IS '수업내용'
-/
-
-COMMENT ON COLUMN education.grade IS '성적'
-/
-
-COMMENT ON COLUMN education.classfication IS '수업 유형(전공, 비전공)'
-/
-
-COMMENT ON COLUMN education.org_name IS '기관명'
-/
-
-COMMENT ON COLUMN education.start_date IS '교육시작날짜'
-/
-
-COMMENT ON COLUMN education.end_date IS '교육끝날짜'
-/
 
 ALTER TABLE education
-    ADD CONSTRAINT FK_education_user_id_user_user FOREIGN KEY (user_id)
-        REFERENCES user (user_id)
-/
-
+    ADD CONSTRAINT FK_education_user_id_user FOREIGN KEY (user_id)
+        REFERENCES users (user_id);
 
 -- user Table Create SQL
 CREATE TABLE certifications
 (
     id              INT              NOT NULL, 
     user_id         VARCHAR2(20)     NOT NULL, 
-    name            VARCHAR2(100)    NOT NULL, 
-    number          VARCHAR2(50)     NULL, 
+    cert_name            VARCHAR2(100)    NOT NULL, 
+    cert_number          VARCHAR2(50)     NULL, 
     grade           VARCHAR2(20)     NULL, 
     aquired_date    DATE             NULL, 
     exp_date        DATE             NULL, 
-    type            VARCHAR2(20)     NULL, 
+    cert_type            VARCHAR2(20)     NULL, 
     file_id         INT              NULL, 
     org_name        VARCHAR2(100)    NULL, 
-    comment         VARCHAR2(100)    NULL, 
+    comments         VARCHAR2(100)    NULL, 
     CONSTRAINT CERTIFICATIONS_PK PRIMARY KEY (id)
-)
-/
+);
+
 
 CREATE SEQUENCE certifications_SEQ
 START WITH 1
 INCREMENT BY 1;
-/
 
-CREATE OR REPLACE TRIGGER certifications_AI_TRG
-BEFORE INSERT ON certifications 
-REFERENCING NEW AS NEW FOR EACH ROW 
-BEGIN 
-    SELECT certifications_SEQ.NEXTVAL
-    INTO :NEW.id
-    FROM DUAL;
-END;
-/
-
---DROP TRIGGER certifications_AI_TRG;
-/
-
---DROP SEQUENCE certifications_SEQ;
-/
-
-COMMENT ON TABLE certifications IS '자격사항'
-/
-
-COMMENT ON COLUMN certifications.id IS '테이블아이디'
-/
-
-COMMENT ON COLUMN certifications.user_id IS '유저 아이디'
-/
-
-COMMENT ON COLUMN certifications.name IS '자격증명'
-/
-
-COMMENT ON COLUMN certifications.number IS '자격증번호'
-/
-
-COMMENT ON COLUMN certifications.grade IS '시험성적'
-/
-
-COMMENT ON COLUMN certifications.aquired_date IS '취득일'
-/
-
-COMMENT ON COLUMN certifications.exp_date IS '만료일'
-/
-
-COMMENT ON COLUMN certifications.type IS '자격증분류'
-/
-
-COMMENT ON COLUMN certifications.file_id IS '파일 아이디'
-/
-
-COMMENT ON COLUMN certifications.org_name IS '기관명'
-/
-
-COMMENT ON COLUMN certifications.comment IS '내용'
-/
 
 ALTER TABLE certifications
     ADD CONSTRAINT FK_certifications_user_id_user FOREIGN KEY (user_id)
-        REFERENCES user (user_id)
-/
+        REFERENCES users (user_id);
+
 
 ALTER TABLE certifications
     ADD CONSTRAINT FK_certifications_file_id_file FOREIGN KEY (file_id)
-        REFERENCES file (file_id)
-/
+        REFERENCES files (file_id);
+
 
 
 -- user Table Create SQL
@@ -411,70 +150,31 @@ CREATE TABLE award
 (
     id              INT              NOT NULL, 
     user_id         VARCHAR2(20)     NOT NULL, 
-    name            VARCHAR2(100)    NOT NULL, 
+    award_name            VARCHAR2(100)    NOT NULL, 
     aquired_date    DATE             NULL, 
     org_name        VARCHAR2(50)     NULL, 
     file_id         INT              NULL, 
-    type            VARCHAR2(20)     NULL, 
-    comment         VARCHAR2(100)    NULL, 
+    award_type            VARCHAR2(20)     NULL, 
+    award_comment         VARCHAR2(100)    NULL, 
     CONSTRAINT AWARD_PK PRIMARY KEY (id)
-)
-/
+);
+
 
 CREATE SEQUENCE award_SEQ
 START WITH 1
 INCREMENT BY 1;
-/
 
-CREATE OR REPLACE TRIGGER award_AI_TRG
-BEFORE INSERT ON award 
-REFERENCING NEW AS NEW FOR EACH ROW 
-BEGIN 
-    SELECT award_SEQ.NEXTVAL
-    INTO :NEW.id
-    FROM DUAL;
-END;
-/
 
---DROP TRIGGER award_AI_TRG;
-/
-
---DROP SEQUENCE award_SEQ;
-/
-
-COMMENT ON COLUMN award.id IS '테이블아이디'
-/
-
-COMMENT ON COLUMN award.user_id IS '유저 아이디'
-/
-
-COMMENT ON COLUMN award.name IS '상이름'
-/
-
-COMMENT ON COLUMN award.aquired_date IS '취득일'
-/
-
-COMMENT ON COLUMN award.org_name IS '기관명'
-/
-
-COMMENT ON COLUMN award.file_id IS '파일 아이디'
-/
-
-COMMENT ON COLUMN award.type IS '타입'
-/
-
-COMMENT ON COLUMN award.comment IS '수상내용'
-/
 
 ALTER TABLE award
     ADD CONSTRAINT FK_award_user_id_user_user_id FOREIGN KEY (user_id)
-        REFERENCES user (user_id)
-/
+        REFERENCES users (user_id);
+
 
 ALTER TABLE award
     ADD CONSTRAINT FK_award_file_id_file_file_id FOREIGN KEY (file_id)
-        REFERENCES file (file_id)
-/
+        REFERENCES files (file_id);
+
 
 
 -- user Table Create SQL
@@ -482,53 +182,21 @@ CREATE TABLE skills
 (
     id         INT              NOT NULL, 
     user_id    VARCHAR2(20)     NOT NULL, 
-    name       VARCHAR2(50)     NOT NULL, 
+    skills_name       VARCHAR2(50)     NOT NULL, 
     fluency    VARCHAR2(6)      NULL, 
-    comment    VARCHAR2(100)    NULL, 
+    skills_comment    VARCHAR2(100)    NULL, 
     CONSTRAINT SKILLS_PK PRIMARY KEY (id)
-)
-/
+);
+
 
 CREATE SEQUENCE skills_SEQ
 START WITH 1
 INCREMENT BY 1;
-/
 
-CREATE OR REPLACE TRIGGER skills_AI_TRG
-BEFORE INSERT ON skills 
-REFERENCING NEW AS NEW FOR EACH ROW 
-BEGIN 
-    SELECT skills_SEQ.NEXTVAL
-    INTO :NEW.id
-    FROM DUAL;
-END;
-/
-
---DROP TRIGGER skills_AI_TRG;
-/
-
---DROP SEQUENCE skills_SEQ;
-/
-
-COMMENT ON COLUMN skills.id IS '테이블 아이디'
-/
-
-COMMENT ON COLUMN skills.user_id IS '유저 아이디'
-/
-
-COMMENT ON COLUMN skills.name IS '기술명'
-/
-
-COMMENT ON COLUMN skills.fluency IS '능숙도'
-/
-
-COMMENT ON COLUMN skills.comment IS '설명'
-/
 
 ALTER TABLE skills
     ADD CONSTRAINT FK_skills_user_id_user_user_id FOREIGN KEY (user_id)
-        REFERENCES user (user_id)
-/
+        REFERENCES users (user_id);
 
 
 -- user Table Create SQL
@@ -541,73 +209,28 @@ CREATE TABLE work_experience
     start_date      DATE             NULL, 
     end_date        DATE             NULL, 
     duty            VARCHAR2(20)     NULL, 
-    comment         VARCHAR2(200)    NULL, 
+    work_comment         VARCHAR2(200)    NULL, 
     file_id         INT              NULL, 
-    position        VARCHAR2(20)     NULL, 
+    work_position        VARCHAR2(20)     NULL, 
     CONSTRAINT WORK_EXPERIENCE_PK PRIMARY KEY (id)
-)
-/
+);
+
 
 CREATE SEQUENCE work_experience_SEQ
 START WITH 1
 INCREMENT BY 1;
-/
 
-CREATE OR REPLACE TRIGGER work_experience_AI_TRG
-BEFORE INSERT ON work_experience 
-REFERENCING NEW AS NEW FOR EACH ROW 
-BEGIN 
-    SELECT work_experience_SEQ.NEXTVAL
-    INTO :NEW.id
-    FROM DUAL;
-END;
-/
 
---DROP TRIGGER work_experience_AI_TRG;
-/
-
---DROP SEQUENCE work_experience_SEQ;
-/
-
-COMMENT ON COLUMN work_experience.id IS '테이블 아이디'
-/
-
-COMMENT ON COLUMN work_experience.user_id IS '유저 아이디'
-/
-
-COMMENT ON COLUMN work_experience.company_name IS '회사명'
-/
-
-COMMENT ON COLUMN work_experience.emp_type IS '고용형태'
-/
-
-COMMENT ON COLUMN work_experience.start_date IS '입사일'
-/
-
-COMMENT ON COLUMN work_experience.end_date IS '퇴사일'
-/
-
-COMMENT ON COLUMN work_experience.duty IS '담당 업무'
-/
-
-COMMENT ON COLUMN work_experience.comment IS '설명'
-/
-
-COMMENT ON COLUMN work_experience.file_id IS '파일 아이디'
-/
-
-COMMENT ON COLUMN work_experience.position IS '직위'
-/
 
 ALTER TABLE work_experience
     ADD CONSTRAINT FK_work_experience_user_id_use FOREIGN KEY (user_id)
-        REFERENCES user (user_id)
-/
+        REFERENCES users (user_id);
+
 
 ALTER TABLE work_experience
     ADD CONSTRAINT FK_work_experience_file_id_fil FOREIGN KEY (file_id)
-        REFERENCES file (file_id)
-/
+        REFERENCES files (file_id);
+
 
 
 -- user Table Create SQL
@@ -615,70 +238,30 @@ CREATE TABLE pulications
 (
     id           INT              NOT NULL, 
     user_id      VARCHAR2(20)     NOT NULL, 
-    name         VARCHAR2(100)    NOT NULL, 
+    pub_name         VARCHAR2(100)    NOT NULL, 
     pub_date     DATE             NULL, 
     authors      VARCHAR2(100)    NULL, 
-    number       VARCHAR2(30)     NULL, 
+    pub_number       VARCHAR2(30)     NULL, 
     file_id      INT              NULL, 
     publisher    VARCHAR2(50)     NULL, 
     CONSTRAINT PULICATIONS_PK PRIMARY KEY (id)
-)
-/
+);
+
 
 CREATE SEQUENCE pulications_SEQ
 START WITH 1
 INCREMENT BY 1;
-/
 
-CREATE OR REPLACE TRIGGER pulications_AI_TRG
-BEFORE INSERT ON pulications 
-REFERENCING NEW AS NEW FOR EACH ROW 
-BEGIN 
-    SELECT pulications_SEQ.NEXTVAL
-    INTO :NEW.id
-    FROM DUAL;
-END;
-/
-
---DROP TRIGGER pulications_AI_TRG;
-/
-
---DROP SEQUENCE pulications_SEQ;
-/
-
-COMMENT ON COLUMN pulications.id IS '테이블 아이디'
-/
-
-COMMENT ON COLUMN pulications.user_id IS '유저 아이디'
-/
-
-COMMENT ON COLUMN pulications.name IS '출판물명'
-/
-
-COMMENT ON COLUMN pulications.pub_date IS '출판일'
-/
-
-COMMENT ON COLUMN pulications.authors IS '저자'
-/
-
-COMMENT ON COLUMN pulications.number IS '고유번호'
-/
-
-COMMENT ON COLUMN pulications.file_id IS '파일 아이디'
-/
-
-COMMENT ON COLUMN pulications.publisher IS '출판사'
-/
 
 ALTER TABLE pulications
     ADD CONSTRAINT FK_pulications_user_id_user_us FOREIGN KEY (user_id)
-        REFERENCES user (user_id)
-/
+        REFERENCES users (user_id);
+
 
 ALTER TABLE pulications
     ADD CONSTRAINT FK_pulications_file_id_file_fi FOREIGN KEY (file_id)
-        REFERENCES file (file_id)
-/
+        REFERENCES files (file_id);
+
 
 
 -- user Table Create SQL
@@ -686,70 +269,29 @@ CREATE TABLE patent
 (
     id            INT              NOT NULL, 
     user_id       VARCHAR2(20)     NOT NULL, 
-    name          VARCHAR2(50)     NOT NULL, 
+    patent_name          VARCHAR2(50)     NOT NULL, 
     country       VARCHAR2(50)     NULL, 
     pub_number    VARCHAR2(20)     NULL, 
     pub_date      DATE             NULL, 
     fild_id       INT              NULL, 
-    comment       VARCHAR2(100)    NULL, 
+    patent_comment       VARCHAR2(100)    NULL, 
     CONSTRAINT PATENT_PK PRIMARY KEY (id)
-)
-/
+);
 
 CREATE SEQUENCE patent_SEQ
 START WITH 1
 INCREMENT BY 1;
-/
 
-CREATE OR REPLACE TRIGGER patent_AI_TRG
-BEFORE INSERT ON patent 
-REFERENCING NEW AS NEW FOR EACH ROW 
-BEGIN 
-    SELECT patent_SEQ.NEXTVAL
-    INTO :NEW.id
-    FROM DUAL;
-END;
-/
-
---DROP TRIGGER patent_AI_TRG;
-/
-
---DROP SEQUENCE patent_SEQ;
-/
-
-COMMENT ON COLUMN patent.id IS '테이블 아이디'
-/
-
-COMMENT ON COLUMN patent.user_id IS '유저 아이디'
-/
-
-COMMENT ON COLUMN patent.name IS '특허명'
-/
-
-COMMENT ON COLUMN patent.country IS '출원국가'
-/
-
-COMMENT ON COLUMN patent.pub_number IS '출원번호'
-/
-
-COMMENT ON COLUMN patent.pub_date IS '취득일'
-/
-
-COMMENT ON COLUMN patent.fild_id IS '파일 아이디'
-/
-
-COMMENT ON COLUMN patent.comment IS '특허내용'
-/
 
 ALTER TABLE patent
     ADD CONSTRAINT FK_patent_user_id_user_user_id FOREIGN KEY (user_id)
-        REFERENCES user (user_id)
-/
+        REFERENCES users (user_id);
+
 
 ALTER TABLE patent
     ADD CONSTRAINT FK_patent_fild_id_file_file_id FOREIGN KEY (fild_id)
-        REFERENCES file (file_id)
-/
+        REFERENCES files (file_id);
+
 
 
 -- user Table Create SQL
@@ -760,51 +302,23 @@ CREATE TABLE keyword_selfintroduce
     keyword    VARCHAR2(50)    NOT NULL, 
     s_id       INT             NOT NULL, 
     CONSTRAINT KEYWORD_SELFINTRODUCE_PK PRIMARY KEY (id)
-)
-/
+);
+
 
 CREATE SEQUENCE keyword_selfintroduce_SEQ
 START WITH 1
 INCREMENT BY 1;
-/
 
-CREATE OR REPLACE TRIGGER keyword_selfintroduce_AI_TRG
-BEFORE INSERT ON keyword_selfintroduce 
-REFERENCING NEW AS NEW FOR EACH ROW 
-BEGIN 
-    SELECT keyword_selfintroduce_SEQ.NEXTVAL
-    INTO :NEW.id
-    FROM DUAL;
-END;
-/
-
---DROP TRIGGER keyword_selfintroduce_AI_TRG;
-/
-
---DROP SEQUENCE keyword_selfintroduce_SEQ;
-/
-
-COMMENT ON COLUMN keyword_selfintroduce.id IS '테이블 아이디'
-/
-
-COMMENT ON COLUMN keyword_selfintroduce.user_id IS '유저 아이디'
-/
-
-COMMENT ON COLUMN keyword_selfintroduce.keyword IS '키워드'
-/
-
-COMMENT ON COLUMN keyword_selfintroduce.s_id IS '자기소개서 아이디'
-/
 
 ALTER TABLE keyword_selfintroduce
     ADD CONSTRAINT FK_keyword_selfintroduce_user_ FOREIGN KEY (user_id)
-        REFERENCES user (user_id)
-/
+        REFERENCES users (user_id);
+
 
 ALTER TABLE keyword_selfintroduce
     ADD CONSTRAINT FK_keyword_selfintroduce_s_id_ FOREIGN KEY (s_id)
-        REFERENCES self_introduce (id)
-/
+        REFERENCES self_introduce (id);
+
 
 
 -- user Table Create SQL
@@ -814,45 +328,16 @@ CREATE TABLE languages
     user_id          VARCHAR2(20)     NOT NULL, 
     language_name    VARCHAR2(20)     NOT NULL, 
     fluency          VARCHAR2(20)     NULL, 
-    comment          VARCHAR2(100)    NULL, 
+    language_comment          VARCHAR2(100)    NULL, 
     CONSTRAINT LANGUAGES_PK PRIMARY KEY (id)
-)
-/
+);
+
 
 CREATE SEQUENCE languages_SEQ
 START WITH 1
 INCREMENT BY 1;
-/
 
-CREATE OR REPLACE TRIGGER languages_AI_TRG
-BEFORE INSERT ON languages 
-REFERENCING NEW AS NEW FOR EACH ROW 
-BEGIN 
-    SELECT languages_SEQ.NEXTVAL
-    INTO :NEW.id
-    FROM DUAL;
-END;
-/
-
---DROP TRIGGER languages_AI_TRG;
-/
-
---DROP SEQUENCE languages_SEQ;
-/
-
-COMMENT ON COLUMN languages.id IS '테이블 아이디'
-/
-
-COMMENT ON COLUMN languages.user_id IS '유저 아이디'
-/
-
-COMMENT ON COLUMN languages.language_name IS '기술명'
-/
-
-COMMENT ON COLUMN languages.fluency IS '능숙도'
-/
-
-COMMENT ON COLUMN languages.comment IS '설명'
-/
-
-
+ALTER TABLE languages
+    ADD CONSTRAINT FK_languages_user_id_user FOREIGN KEY (user_id)
+        REFERENCES users (user_id);
+        
