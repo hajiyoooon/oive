@@ -1,5 +1,7 @@
 package vo;
 
+import org.omg.CosNaming._BindingIteratorImplBase;
+
 public class UserVO {
 	private int userId;
 	private String password;
@@ -29,6 +31,11 @@ public class UserVO {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	@Override
+	public String toString() {
+		return "UserVO : " + String.format("%d %s %s", userId, birthday, email);
 	}
 
 	
