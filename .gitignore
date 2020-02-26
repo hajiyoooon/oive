@@ -1,12 +1,1 @@
-target/
-src/test/
-src/main/resources/*
 !src/main/resources/css/
-!src/main/resources/js/
-src/main/webapp/WEB-INF/classes
-
-!src/main/webapp/WEB-INF/spring/appServlet/
-.settings/
-.project
-.classpath
-.springBeans

@@ -42,7 +42,7 @@
   </div>
   <hr>
 <div id="body">
-  <img src="../paik.jpg">
+  <img src="resources/images/cat.jpg">
   <div id="main">
     <input class="btn btn-primary" type="button" name="" value="회원가입" style="width:200px;"><br>
     <form method="" name="" action="">
