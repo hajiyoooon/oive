@@ -11,7 +11,16 @@ public class EducationVO {
     private String orgName;
     private String startDate;
     private String endDate;
-    public String getStartDate() {
+    private String eduName;// 필드 추가하고, setter & getter 자동생성시킴
+    public String getEduName() {
+		return eduName;
+	}
+
+	public void setEduName(String eduName) {
+		this.eduName = eduName;
+	}
+
+	public String getStartDate() {
 		return startDate;
 	}
 
