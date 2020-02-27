@@ -1,6 +1,6 @@
 CREATE TABLE users
 (
-    user_id     VARCHAR2(20)     NOT NULL, 
+    userId     VARCHAR2(20)     NOT NULL, 
     password    VARCHAR2(200)     NOT NULL, 
     birthday    DATE             NOT NULL, 
     email       VARCHAR2(100)    NOT NULL, 
@@ -13,13 +13,13 @@ INCREMENT BY 1;
 
 CREATE TABLE files
 (
-    file_id            INT             NOT NULL, 
-    file_con           BLOB            NOT NULL, 
-    upload_date        DATE            NOT NULL, 
-    profil_category    VARCHAR2(20)    NULL, 
+    fileId            INT             NOT NULL, 
+    fileContents           BLOB            NOT NULL, 
+    uploadDate        DATE            NOT NULL, 
+    profileCategory    VARCHAR2(20)    NULL, 
     id                 INT             NULL, 
-    user_id            VARCHAR2(20)    NOT NULL, 
-    file_name          VARCHAR2(50)    NOT NULL, 
+    userId            VARCHAR2(20)    NOT NULL, 
+    fileName          VARCHAR2(50)    NOT NULL, 
     CONSTRAINT FILE_PK PRIMARY KEY (file_id)
 );
 
@@ -30,13 +30,13 @@ ALTER TABLE files
 CREATE TABLE self_introduce
 (
     id                 INT              NOT NULL, 
-    user_id            VARCHAR2(20)     NOT NULL, 
+    userId            VARCHAR2(20)     NOT NULL, 
     question           VARCHAR2(200)    NOT NULL, 
     answer             CLOB             NULL, 
-    apply_date         DATE             NULL, 
-    applied_company    VARCHAR2(50)     NOT NULL, 
-    write_date         DATE             NOT NULL, 
-    edit_date          DATE             NULL, 
+    applyDate         DATE             NULL, 
+    appliedCompany    VARCHAR2(50)     NOT NULL, 
+    writeDate         DATE             NOT NULL, 
+    editDate          DATE             NULL, 
     CONSTRAINT SELF_INTRODUCE_PK PRIMARY KEY (id)
 );
 
@@ -55,20 +55,20 @@ ALTER TABLE self_introduce
 CREATE TABLE university
 (
     id             INT              NOT NULL, 
-    user_id        VARCHAR2(20)     NOT NULL, 
-    u_name         VARCHAR2(50)     NOT NULL, 
-    enroll_date    DATE             NULL, 
-    grad_date      DATE             NULL, 
+    userId        VARCHAR2(20)     NOT NULL, 
+    uName         VARCHAR2(50)     NOT NULL, 
+    enrollDate    DATE             NULL, 
+    gradDate      DATE             NULL, 
     status         VARCHAR2(20)     NULL, 
     degree         VARCHAR2(20)     NULL, 
-    major_type     VARCHAR2(20)     NULL, 
-    major_name     VARCHAR2(100)    NULL, 
-    total_grade    NUMBER(3, 2)     NULL, 
-    major_grade    NUMBER(3, 2)     NULL, 
-    max_grade      NUMBER(3, 2)     NULL, 
-    is_transfer    NUMBER(1,0)      NULL, 
-    file_id1       INT              NULL, 
-    file_id2       INT              NULL, 
+    majorType     VARCHAR2(20)     NULL, 
+    majorName     VARCHAR2(100)    NULL, 
+    totalGrade    NUMBER(3, 2)     NULL, 
+    majorGrade    NUMBER(3, 2)     NULL, 
+    maxGrade      NUMBER(3, 2)     NULL, 
+    isTransfer    NUMBER(1,0)      NULL, 
+    fileId1       INT              NULL, 
+    fileId2       INT              NULL, 
     CONSTRAINT UNIVERSITY_PK PRIMARY KEY (id)
 );
 
@@ -94,15 +94,15 @@ ALTER TABLE university
 CREATE TABLE education
 (
     id               INT              NOT NULL, 
-    user_id          VARCHAR2(20)     NOT NULL, 
-    edu_name             VARCHAR2(50)     NOT NULL, 
-    total_hour             INT              NULL, 
-    comments          VARCHAR2(200)    NULL, 
+    userId          VARCHAR2(20)     NOT NULL, 
+    eduName             VARCHAR2(50)     NOT NULL, 
+    totalHour             INT              NULL, 
+    eduComments          VARCHAR2(200)    NULL, 
     grade            VARCHAR2(10)     NULL, 
-    classfication    VARCHAR2(20)     NULL, 
-    org_name         VARCHAR2(50)     NULL, 
-    start_date       DATE             NULL, 
-    end_date         DATE             NULL, 
+    classification    VARCHAR2(20)     NULL, 
+    orgName         VARCHAR2(50)     NULL, 
+    startDate       DATE             NULL, 
+    endDate         DATE             NULL, 
     CONSTRAINT EDUCATION_PK PRIMARY KEY (id)
 );
 
@@ -119,16 +119,16 @@ ALTER TABLE education
 CREATE TABLE certifications
 (
     id              INT              NOT NULL, 
-    user_id         VARCHAR2(20)     NOT NULL, 
-    cert_name            VARCHAR2(100)    NOT NULL, 
-    cert_number          VARCHAR2(50)     NULL, 
+    userId         VARCHAR2(20)     NOT NULL, 
+    certName            VARCHAR2(100)    NOT NULL, 
+    certNumber          VARCHAR2(50)     NULL, 
     grade           VARCHAR2(20)     NULL, 
-    aquired_date    DATE             NULL, 
-    exp_date        DATE             NULL, 
-    cert_type            VARCHAR2(20)     NULL, 
-    file_id         INT              NULL, 
-    org_name        VARCHAR2(100)    NULL, 
-    comments         VARCHAR2(100)    NULL, 
+    aquiredDate    DATE             NULL, 
+    expDate        DATE             NULL, 
+    certType            VARCHAR2(20)     NULL, 
+    fileId         INT              NULL, 
+    orgName        VARCHAR2(100)    NULL, 
+    certComments         VARCHAR2(100)    NULL, 
     CONSTRAINT CERTIFICATIONS_PK PRIMARY KEY (id)
 );
 
@@ -153,13 +153,13 @@ ALTER TABLE certifications
 CREATE TABLE award
 (
     id              INT              NOT NULL, 
-    user_id         VARCHAR2(20)     NOT NULL, 
-    award_name            VARCHAR2(100)    NOT NULL, 
-    aquired_date    DATE             NULL, 
-    org_name        VARCHAR2(50)     NULL, 
-    file_id         INT              NULL, 
-    award_type            VARCHAR2(20)     NULL, 
-    award_comment         VARCHAR2(100)    NULL, 
+    userId         VARCHAR2(20)     NOT NULL, 
+    awardName            VARCHAR2(100)    NOT NULL, 
+    aquiredDate    DATE             NULL, 
+    orgName        VARCHAR2(50)     NULL, 
+    fileId         INT              NULL, 
+    awardType            VARCHAR2(20)     NULL, 
+    awardComments        VARCHAR2(100)    NULL, 
     CONSTRAINT AWARD_PK PRIMARY KEY (id)
 );
 
@@ -185,10 +185,10 @@ ALTER TABLE award
 CREATE TABLE skills
 (
     id         INT              NOT NULL, 
-    user_id    VARCHAR2(20)     NOT NULL, 
-    skills_name       VARCHAR2(50)     NOT NULL, 
-    fluency    VARCHAR2(6)      NULL, 
-    skills_comment    VARCHAR2(100)    NULL, 
+    userId    VARCHAR2(20)     NOT NULL, 
+    skillsName       VARCHAR2(50)     NOT NULL, 
+    level    VARCHAR2(6)      NULL, 
+    skiilsComments    VARCHAR2(100)    NULL, 
     CONSTRAINT SKILLS_PK PRIMARY KEY (id)
 );
 
@@ -207,15 +207,15 @@ ALTER TABLE skills
 CREATE TABLE work_experience
 (
     id              INT              NOT NULL, 
-    user_id         VARCHAR2(20)     NOT NULL, 
-    company_name    VARCHAR2(50)     NOT NULL, 
-    emp_type        VARCHAR2(20)     NULL, 
-    start_date      DATE             NULL, 
-    end_date        DATE             NULL, 
+    userId         VARCHAR2(20)     NOT NULL, 
+    companyName    VARCHAR2(50)     NOT NULL, 
+    empType        VARCHAR2(20)     NULL, 
+    startDate      DATE             NULL, 
+    endDate        DATE             NULL, 
     duty            VARCHAR2(20)     NULL, 
-    work_comment         VARCHAR2(200)    NULL, 
-    file_id         INT              NULL, 
-    work_position        VARCHAR2(20)     NULL, 
+    workComments         VARCHAR2(200)    NULL, 
+    fileId         INT              NULL, 
+    workPosition        VARCHAR2(20)     NULL, 
     CONSTRAINT WORK_EXPERIENCE_PK PRIMARY KEY (id)
 );
 
@@ -238,15 +238,15 @@ ALTER TABLE work_experience
 
 
 -- user Table Create SQL
-CREATE TABLE pulications
+CREATE TABLE publications
 (
     id           INT              NOT NULL, 
-    user_id      VARCHAR2(20)     NOT NULL, 
-    pub_name         VARCHAR2(100)    NOT NULL, 
-    pub_date     DATE             NULL, 
+    userId      VARCHAR2(20)     NOT NULL, 
+    pubName         VARCHAR2(100)    NOT NULL, 
+    pubDate     DATE             NULL, 
     authors      VARCHAR2(100)    NULL, 
-    pub_number       VARCHAR2(30)     NULL, 
-    file_id      INT              NULL, 
+    pubNumber       VARCHAR2(30)     NULL, 
+    fileId      INT              NULL, 
     publisher    VARCHAR2(50)     NULL, 
     CONSTRAINT PULICATIONS_PK PRIMARY KEY (id)
 );
@@ -257,12 +257,12 @@ START WITH 1
 INCREMENT BY 1;
 
 
-ALTER TABLE pulications
+ALTER TABLE publications
     ADD CONSTRAINT FK_pulications_user_id_user_us FOREIGN KEY (user_id)
         REFERENCES users (user_id);
 
 
-ALTER TABLE pulications
+ALTER TABLE publications
     ADD CONSTRAINT FK_pulications_file_id_file_fi FOREIGN KEY (file_id)
         REFERENCES files (file_id);
 
@@ -272,13 +272,13 @@ ALTER TABLE pulications
 CREATE TABLE patent
 (
     id            INT              NOT NULL, 
-    user_id       VARCHAR2(20)     NOT NULL, 
-    patent_name          VARCHAR2(50)     NOT NULL, 
+    userId       VARCHAR2(20)     NOT NULL, 
+    patentName          VARCHAR2(50)     NOT NULL, 
     country       VARCHAR2(50)     NULL, 
-    pub_number    VARCHAR2(20)     NULL, 
-    pub_date      DATE             NULL, 
-    fild_id       INT              NULL, 
-    patent_comment       VARCHAR2(100)    NULL, 
+    patNumber    VARCHAR2(20)     NULL, 
+    patDate      DATE             NULL, 
+    fildId       INT              NULL, 
+    patentComments       VARCHAR2(100)    NULL, 
     CONSTRAINT PATENT_PK PRIMARY KEY (id)
 );
 
@@ -302,9 +302,9 @@ ALTER TABLE patent
 CREATE TABLE keyword_selfintroduce
 (
     id         INT             NOT NULL, 
-    user_id    VARCHAR2(20)    NOT NULL, 
+    userId    VARCHAR2(20)    NOT NULL, 
     keyword    VARCHAR2(50)    NOT NULL, 
-    s_id       INT             NOT NULL, 
+    sId       INT             NOT NULL, 
     CONSTRAINT KEYWORD_SELFINTRODUCE_PK PRIMARY KEY (id)
 );
 
@@ -329,10 +329,10 @@ ALTER TABLE keyword_selfintroduce
 CREATE TABLE languages
 (
     id               INT              NOT NULL, 
-    user_id          VARCHAR2(20)     NOT NULL, 
-    language_name    VARCHAR2(20)     NOT NULL, 
+    userId          VARCHAR2(20)     NOT NULL, 
+    languageName    VARCHAR2(20)     NOT NULL, 
     fluency          VARCHAR2(20)     NULL, 
-    language_comment          VARCHAR2(100)    NULL, 
+    languageComments         VARCHAR2(100)    NULL, 
     CONSTRAINT LANGUAGES_PK PRIMARY KEY (id)
 );
 
