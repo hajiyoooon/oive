@@ -45,15 +45,20 @@
     }
   #body{
     display: grid;
-    grid-template-columns: 3fr 1fr;
+    grid-template-columns: 4fr 1fr;
   }
   #main{
-      text-align: left;
       width: 50px;
   }
   img{
     margin:auto auto;
   }
+  body{
+  	background-image : url('resources/images/aaa.jpg');
+	background-repeat : no-repeat;
+	background-size : cover;
+	background: linear-gradient(to bottom,rgba(94, 112, 34, 0.1) 0,rgba(65, 45, 30, 0.3) 100%),url("resources/images/aaa.jpg");
+	}
   </style>
 
   <body>
@@ -63,7 +68,7 @@
   </header>
   <hr>
 <div id="body">
-  <img src="../MVC/images/logo1.svg" style="width:400px" class="img-fluid" alt="Responsive image">
+  <img id="images">
   <div id="main">
     <input class="btn btn-primary" type="button" name="" value="회원가입" style="width:200px;"><br>
     <form method="" name="" action="">
