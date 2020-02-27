@@ -3,10 +3,11 @@ package vo;
 public class PublicationsVO {
 	private int id;
 	private int userId;
+	private String pubName;
 	private String pubDate;
 	private String authors;
+	private String pubNumber;
 	private int fileId;
-	private String name;
 	private String publisher;
 	public int getId() {
 		return id;
@@ -20,6 +21,12 @@ public class PublicationsVO {
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
+	public String getPubName() {
+		return pubName;
+	}
+	public void setPubName(String pubName) {
+		this.pubName = pubName;
+	}
 	public String getPubDate() {
 		return pubDate;
 	}
@@ -32,17 +39,17 @@ public class PublicationsVO {
 	public void setAuthors(String authors) {
 		this.authors = authors;
 	}
+	public String getPubNumber() {
+		return pubNumber;
+	}
+	public void setPubNumber(String pubNumber) {
+		this.pubNumber = pubNumber;
+	}
 	public int getFileId() {
 		return fileId;
 	}
 	public void setFileId(int fileId) {
 		this.fileId = fileId;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
 	}
 	public String getPublisher() {
 		return publisher;
@@ -50,6 +57,6 @@ public class PublicationsVO {
 	public void setPublisher(String publisher) {
 		this.publisher = publisher;
 	}
-	
+
 	
 }
