@@ -1,0 +1,347 @@
+CREATE TABLE users
+(
+    user_id     VARCHAR2(20)     NOT NULL, 
+    password    VARCHAR2(200)     NOT NULL, 
+    birthday    DATE             NOT NULL, 
+    email       VARCHAR2(100)    NOT NULL, 
+    CONSTRAINT USER_PK PRIMARY KEY (user_id)
+);
+
+CREATE SEQUENCE users_SEQ
+START WITH 1
+INCREMENT BY 1;
+
+CREATE TABLE files
+(
+    file_id            INT             NOT NULL, 
+    file_con           BLOB            NOT NULL, 
+    upload_date        DATE            NOT NULL, 
+    profil_category    VARCHAR2(20)    NULL, 
+    id                 INT             NULL, 
+    user_id            VARCHAR2(20)    NOT NULL, 
+    file_name          VARCHAR2(50)    NOT NULL, 
+    CONSTRAINT FILE_PK PRIMARY KEY (file_id)
+);
+
+ALTER TABLE files
+    ADD CONSTRAINT FK_file_user_id_users_user_id FOREIGN KEY (user_id)
+        REFERENCES users (user_id);
+
+CREATE TABLE self_introduce
+(
+    id                 INT              NOT NULL, 
+    user_id            VARCHAR2(20)     NOT NULL, 
+    question           VARCHAR2(200)    NOT NULL, 
+    answer             CLOB             NULL, 
+    apply_date         DATE             NULL, 
+    applied_company    VARCHAR2(50)     NOT NULL, 
+    write_date         DATE             NOT NULL, 
+    edit_date          DATE             NULL, 
+    CONSTRAINT SELF_INTRODUCE_PK PRIMARY KEY (id)
+);
+
+
+CREATE SEQUENCE self_introduce_SEQ
+START WITH 1
+INCREMENT BY 1;
+
+ALTER TABLE self_introduce
+    ADD CONSTRAINT FK_self_introduce_user_id_user FOREIGN KEY (user_id)
+        REFERENCES users (user_id);
+
+
+
+-- user Table Create SQL
+CREATE TABLE university
+(
+    id             INT              NOT NULL, 
+    user_id        VARCHAR2(20)     NOT NULL, 
+    u_name         VARCHAR2(50)     NOT NULL, 
+    enroll_date    DATE             NULL, 
+    grad_date      DATE             NULL, 
+    status         VARCHAR2(20)     NULL, 
+    degree         VARCHAR2(20)     NULL, 
+    major_type     VARCHAR2(20)     NULL, 
+    major_name     VARCHAR2(100)    NULL, 
+    total_grade    NUMBER(3, 2)     NULL, 
+    major_grade    NUMBER(3, 2)     NULL, 
+    max_grade      NUMBER(3, 2)     NULL, 
+    is_transfer    NUMBER(1,0)      NULL, 
+    file_id1       INT              NULL, 
+    file_id2       INT              NULL, 
+    CONSTRAINT UNIVERSITY_PK PRIMARY KEY (id)
+);
+
+
+CREATE SEQUENCE university_SEQ
+START WITH 1
+INCREMENT BY 1;
+
+ALTER TABLE university
+    ADD CONSTRAINT FK_university_user_id_user FOREIGN KEY (user_id)
+        REFERENCES users (user_id);
+        
+ALTER TABLE university
+    ADD CONSTRAINT FK_university_file_id1_file FOREIGN KEY (file_id1)
+        REFERENCES files (file_id);
+        
+ALTER TABLE university
+    ADD CONSTRAINT FK_university_file_id2_file FOREIGN KEY (file_id2)
+        REFERENCES files (file_id);
+
+
+-- user Table Create SQL
+CREATE TABLE education
+(
+    id               INT              NOT NULL, 
+    user_id          VARCHAR2(20)     NOT NULL, 
+    edu_name             VARCHAR2(50)     NOT NULL, 
+    total_hour             INT              NULL, 
+    comments          VARCHAR2(200)    NULL, 
+    grade            VARCHAR2(10)     NULL, 
+    classfication    VARCHAR2(20)     NULL, 
+    org_name         VARCHAR2(50)     NULL, 
+    start_date       DATE             NULL, 
+    end_date         DATE             NULL, 
+    CONSTRAINT EDUCATION_PK PRIMARY KEY (id)
+);
+
+
+CREATE SEQUENCE education_SEQ
+START WITH 1
+INCREMENT BY 1;
+
+ALTER TABLE education
+    ADD CONSTRAINT FK_education_user_id_user FOREIGN KEY (user_id)
+        REFERENCES users (user_id);
+
+-- user Table Create SQL
+CREATE TABLE certifications
+(
+    id              INT              NOT NULL, 
+    user_id         VARCHAR2(20)     NOT NULL, 
+    cert_name            VARCHAR2(100)    NOT NULL, 
+    cert_number          VARCHAR2(50)     NULL, 
+    grade           VARCHAR2(20)     NULL, 
+    aquired_date    DATE             NULL, 
+    exp_date        DATE             NULL, 
+    cert_type            VARCHAR2(20)     NULL, 
+    file_id         INT              NULL, 
+    org_name        VARCHAR2(100)    NULL, 
+    comments         VARCHAR2(100)    NULL, 
+    CONSTRAINT CERTIFICATIONS_PK PRIMARY KEY (id)
+);
+
+
+CREATE SEQUENCE certifications_SEQ
+START WITH 1
+INCREMENT BY 1;
+
+
+ALTER TABLE certifications
+    ADD CONSTRAINT FK_certifications_user_id_user FOREIGN KEY (user_id)
+        REFERENCES users (user_id);
+
+
+ALTER TABLE certifications
+    ADD CONSTRAINT FK_certifications_file_id_file FOREIGN KEY (file_id)
+        REFERENCES files (file_id);
+
+
+
+-- user Table Create SQL
+CREATE TABLE award
+(
+    id              INT              NOT NULL, 
+    user_id         VARCHAR2(20)     NOT NULL, 
+    award_name            VARCHAR2(100)    NOT NULL, 
+    aquired_date    DATE             NULL, 
+    org_name        VARCHAR2(50)     NULL, 
+    file_id         INT              NULL, 
+    award_type            VARCHAR2(20)     NULL, 
+    award_comment         VARCHAR2(100)    NULL, 
+    CONSTRAINT AWARD_PK PRIMARY KEY (id)
+);
+
+
+CREATE SEQUENCE award_SEQ
+START WITH 1
+INCREMENT BY 1;
+
+
+
+ALTER TABLE award
+    ADD CONSTRAINT FK_award_user_id_user_user_id FOREIGN KEY (user_id)
+        REFERENCES users (user_id);
+
+
+ALTER TABLE award
+    ADD CONSTRAINT FK_award_file_id_file_file_id FOREIGN KEY (file_id)
+        REFERENCES files (file_id);
+
+
+
+-- user Table Create SQL
+CREATE TABLE skills
+(
+    id         INT              NOT NULL, 
+    user_id    VARCHAR2(20)     NOT NULL, 
+    skills_name       VARCHAR2(50)     NOT NULL, 
+    fluency    VARCHAR2(6)      NULL, 
+    skills_comment    VARCHAR2(100)    NULL, 
+    CONSTRAINT SKILLS_PK PRIMARY KEY (id)
+);
+
+
+CREATE SEQUENCE skills_SEQ
+START WITH 1
+INCREMENT BY 1;
+
+
+ALTER TABLE skills
+    ADD CONSTRAINT FK_skills_user_id_user_user_id FOREIGN KEY (user_id)
+        REFERENCES users (user_id);
+
+
+-- user Table Create SQL
+CREATE TABLE work_experience
+(
+    id              INT              NOT NULL, 
+    user_id         VARCHAR2(20)     NOT NULL, 
+    company_name    VARCHAR2(50)     NOT NULL, 
+    emp_type        VARCHAR2(20)     NULL, 
+    start_date      DATE             NULL, 
+    end_date        DATE             NULL, 
+    duty            VARCHAR2(20)     NULL, 
+    work_comment         VARCHAR2(200)    NULL, 
+    file_id         INT              NULL, 
+    work_position        VARCHAR2(20)     NULL, 
+    CONSTRAINT WORK_EXPERIENCE_PK PRIMARY KEY (id)
+);
+
+
+CREATE SEQUENCE work_experience_SEQ
+START WITH 1
+INCREMENT BY 1;
+
+
+
+ALTER TABLE work_experience
+    ADD CONSTRAINT FK_work_experience_user_id_use FOREIGN KEY (user_id)
+        REFERENCES users (user_id);
+
+
+ALTER TABLE work_experience
+    ADD CONSTRAINT FK_work_experience_file_id_fil FOREIGN KEY (file_id)
+        REFERENCES files (file_id);
+
+
+
+-- user Table Create SQL
+CREATE TABLE pulications
+(
+    id           INT              NOT NULL, 
+    user_id      VARCHAR2(20)     NOT NULL, 
+    pub_name         VARCHAR2(100)    NOT NULL, 
+    pub_date     DATE             NULL, 
+    authors      VARCHAR2(100)    NULL, 
+    pub_number       VARCHAR2(30)     NULL, 
+    file_id      INT              NULL, 
+    publisher    VARCHAR2(50)     NULL, 
+    CONSTRAINT PULICATIONS_PK PRIMARY KEY (id)
+);
+
+
+CREATE SEQUENCE pulications_SEQ
+START WITH 1
+INCREMENT BY 1;
+
+
+ALTER TABLE pulications
+    ADD CONSTRAINT FK_pulications_user_id_user_us FOREIGN KEY (user_id)
+        REFERENCES users (user_id);
+
+
+ALTER TABLE pulications
+    ADD CONSTRAINT FK_pulications_file_id_file_fi FOREIGN KEY (file_id)
+        REFERENCES files (file_id);
+
+
+
+-- user Table Create SQL
+CREATE TABLE patent
+(
+    id            INT              NOT NULL, 
+    user_id       VARCHAR2(20)     NOT NULL, 
+    patent_name          VARCHAR2(50)     NOT NULL, 
+    country       VARCHAR2(50)     NULL, 
+    pub_number    VARCHAR2(20)     NULL, 
+    pub_date      DATE             NULL, 
+    fild_id       INT              NULL, 
+    patent_comment       VARCHAR2(100)    NULL, 
+    CONSTRAINT PATENT_PK PRIMARY KEY (id)
+);
+
+CREATE SEQUENCE patent_SEQ
+START WITH 1
+INCREMENT BY 1;
+
+
+ALTER TABLE patent
+    ADD CONSTRAINT FK_patent_user_id_user_user_id FOREIGN KEY (user_id)
+        REFERENCES users (user_id);
+
+
+ALTER TABLE patent
+    ADD CONSTRAINT FK_patent_fild_id_file_file_id FOREIGN KEY (fild_id)
+        REFERENCES files (file_id);
+
+
+
+-- user Table Create SQL
+CREATE TABLE keyword_selfintroduce
+(
+    id         INT             NOT NULL, 
+    user_id    VARCHAR2(20)    NOT NULL, 
+    keyword    VARCHAR2(50)    NOT NULL, 
+    s_id       INT             NOT NULL, 
+    CONSTRAINT KEYWORD_SELFINTRODUCE_PK PRIMARY KEY (id)
+);
+
+
+CREATE SEQUENCE keyword_selfintroduce_SEQ
+START WITH 1
+INCREMENT BY 1;
+
+
+ALTER TABLE keyword_selfintroduce
+    ADD CONSTRAINT FK_keyword_selfintroduce_user_ FOREIGN KEY (user_id)
+        REFERENCES users (user_id);
+
+
+ALTER TABLE keyword_selfintroduce
+    ADD CONSTRAINT FK_keyword_selfintroduce_s_id_ FOREIGN KEY (s_id)
+        REFERENCES self_introduce (id);
+
+
+
+-- user Table Create SQL
+CREATE TABLE languages
+(
+    id               INT              NOT NULL, 
+    user_id          VARCHAR2(20)     NOT NULL, 
+    language_name    VARCHAR2(20)     NOT NULL, 
+    fluency          VARCHAR2(20)     NULL, 
+    language_comment          VARCHAR2(100)    NULL, 
+    CONSTRAINT LANGUAGES_PK PRIMARY KEY (id)
+);
+
+
+CREATE SEQUENCE languages_SEQ
+START WITH 1
+INCREMENT BY 1;
+
+ALTER TABLE languages
+    ADD CONSTRAINT FK_languages_user_id_user FOREIGN KEY (user_id)
+        REFERENCES users (user_id);
+        
