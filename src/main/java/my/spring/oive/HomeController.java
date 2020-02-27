@@ -24,7 +24,7 @@ public class HomeController {
 	public String home() {
 		dao.selectOne("admin", "1234");
 		
-		return "login";
+		return "example";
 	}
 	
 	//TODO : 나중에 POST 방식으로 바꿔주기
