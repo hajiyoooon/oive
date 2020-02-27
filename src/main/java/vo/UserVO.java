@@ -1,17 +1,19 @@
 package vo;
 
-import org.omg.CosNaming._BindingIteratorImplBase;
-
 public class UserVO {
-	private int userId;
+	private String userId;
 	private String password;
 	private String birthday;
 	private String email;
 	
-	public int getUserId() {
+	public UserVO() {
+		
+	}
+	
+	public String getUserId() {
 		return userId;
 	}
-	public void setUserId(int userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 	public String getPassword() {
@@ -35,7 +37,7 @@ public class UserVO {
 	
 	@Override
 	public String toString() {
-		return "UserVO : " + String.format("%d %s %s", userId, birthday, email);
+		return "UserVO : " + String.format("%s %s %s", userId, birthday, email);
 	}
 
 	
