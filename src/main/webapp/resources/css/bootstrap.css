@@ -2180,7 +2180,7 @@ textarea.form-control {
 }
 
 .form-text {
-  display: block;
+  display: block-inline;
   margin-top: 0.25rem;
 }
 
