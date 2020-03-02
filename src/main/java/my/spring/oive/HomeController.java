@@ -24,10 +24,10 @@ public class HomeController {
 	public String home() {
 		dao.selectOne("admin", "1234");
 		
-		return "example";
+		return "list";
 	}
 	
-	//TODO : 나중에 POST 방식으로 바꿔주기
+	//TODO : �굹以묒뿉 POST 諛⑹떇�쑝濡� 諛붽퓭二쇨린
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String register(UserVO vo) {
 
