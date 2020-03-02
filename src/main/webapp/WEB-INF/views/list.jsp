@@ -1,130 +1,125 @@
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@page import="org.springframework.web.context.annotation.RequestScope"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" %>
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-
-  <title>Clean Blog - Start Bootstrap Theme</title>
-
-  <!-- Bootstrap core CSS -->
-  <link href="resources/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
- 
-
-
-<style>
-ul.list-header {
-    font-weight: bold;
-    border-bottom: #adb5bd solid 1px;
-}
-.header-right {
-    position:relative;
-
-}
-.header-left{
-    float:left;
-}
-.post-list li{
-     display: inline-block;
-     text-overflow: ellipsis;
-     overflow: hidden;
-     height: 30px;
-     white-space: nowrap;
-}
-
-.post-list .keyword{
-    width: 30%
-}
-
-.post-list .company{
-    width : 20%;
-}
-
-.post-list .applied-date{
-    width:15%;
-}
-.post-list .last-modified {
-    width: 15%;
-}
-
-ul.pagination li{
-	height: 50px;
-}
-a {
-  color: #212529;
-  transition: all 0.2s;
-}
-
-a:focus, a:hover {
-  color: #0085A1;
-}
-span.bd-content-title {
-    font-size: 2rem;
-    font-weight: bold;
-
-}
-.fas fa-search:before {
-    content: "\f002";
-}
-.search {
-    margin-top: 2%;
-    height: 60px;
-    background-color: #ffffff;
-    border-radius: 10px;
-    padding: 10px;
-    border: 1px solid #dee2e6;
-    margin-bottom: 5%;
-    width:300px;
-}
-    
-    .search-dropdown{
-    	width:20%;
-    	border: none;
-    }
-
-    .search-input{
-    color: white;
-    border: 0;
-	padding: 0 10px;
-    outline: 0;
-    background: none;
-    width: 80%;
-    transition: width 0.4s linear;
-    }
-
-    .search-icon{
-    height: 40px;
-    width: 40px;
-    float: right;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    color:white;
-    }
-</style>
-</head>
-
-<body>
-
-  <!-- Navigation -->
+	<title>Home</title>
+	<!-- 링크 넣어주기  -->
+	<!-- <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/starter-template/"> -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css" >
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/oive.css" >
+	<link href="https://fonts.googleapis.com/css?family=Song+Myung:400" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Gamja+Flower:400" rel="stylesheet">
+	<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+  </head>
   
-
-  <!-- Main Content -->
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-md-10 mx-auto post-list">
-		<div class="header">
-			<div class="header-left">
+<style>
+	ul.list-header2 {
+	    font-weight: bold;
+	    border-bottom: #adb5bd solid 1px;
+	}
+	.header2-right {
+	    position:relative;
+	
+	}
+	.header2-left{
+	    float:left;
+	}
+	.post-list li{
+	     display: inline-block;
+	     text-overflow: ellipsis;
+	     overflow: hidden;
+	     height: 30px;
+	     white-space: nowrap;
+	}
+	
+	.post-list .keyword{
+	    width: 30%
+	}
+	
+	.post-list .company{
+	    width : 20%;
+	}
+	
+	.post-list .applied-date{
+	    width:15%;
+	}
+	.post-list .last-modified {
+	    width: 15%;
+	}
+	
+	ul.pagination li{
+		height: 50px;
+	}
+	a {
+	  color: #212529;
+	  transition: all 0.2s;
+	}
+	
+	a:focus, a:hover {
+	  color: #0085A1;
+	}
+	span.bd-content-title {
+	    font-size: 2rem;
+	    font-weight: bold;
+	
+	}
+	.fas fa-search:before {
+	    content: "\f002";
+	}
+	.search {
+	    margin-top: 2%;
+	    height: 60px;
+	    background-color: #ffffff;
+	    border-radius: 10px;
+	    padding: 10px;
+	    border: 1px solid #dee2e6;
+	    margin-bottom: 5%;
+	    width:300px;
+	}
+	    
+	    .search-dropdown{
+	    	width:20%;
+	    	border: none;
+	    }
+	
+	    .search-input{
+	    color: white;
+	    border: 0;
+		padding: 0 10px;
+	    outline: 0;
+	    background: none;
+	    width: 80%;
+	    transition: width 0.4s linear;
+	    }
+	
+	    .search-icon{
+	    height: 40px;
+	    width: 40px;
+	    float: right;
+	    display: flex;
+	    justify-content: center;
+	    align-items: center;
+	    border-radius: 50%;
+	    color:white;
+	    }
+</style>
+  <body>
+	<%@ include file="header.jsp" %>
+  
+  	<div id="body">
+    <nav></nav>
+    <div class="row temp">
+    	<!-- 여기에 메인 컨텐츠를 넣어주세요! -->
+    	  <div class="post-list">
+		<div class="header2">
+			<div class="header2-left">
 				<span class="bd-content-title">나의 자기소개서(2)</span>
 			</div>
-			<div class="header-right">
+			<div class="header2-right">
 				<div class="search row">
 				    <select class="form-control search-dropdown col-sm-3" id="exampleFormControlSelect1">
 				      <option>1</option>
@@ -141,7 +136,7 @@ span.bd-content-title {
 			</div>
 		</div>
 
-		<ul class="list-header">
+		<ul class="list-header2">
         	<li class="keyword">키워드</li>
         	<li class="company">지원 회사</li>
         	<li class ="applied-date">지원일자</li>
@@ -169,73 +164,31 @@ span.bd-content-title {
 
         <!-- Pager -->
 		<div class="d-flex justify-content-center">
-<nav aria-label="Page navigation example" class="justify-content-center">
-  <ul class="pagination">
-    <li class="page-item">
-      <a class="page-link" href="#" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item">
-      <a class="page-link" href="#" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-  </ul>
-</nav>		
+			<div aria-label="Page navigation example" class="justify-content-center">
+			  <ul class="pagination">
+			    <li class="page-item">
+			      <a class="page-link" href="#" aria-label="Previous">
+			        <span aria-hidden="true">&laquo;</span>
+			      </a>
+			    </li>
+			    <li class="page-item"><a class="page-link" href="#">1</a></li>
+			    <li class="page-item"><a class="page-link" href="#">2</a></li>
+			    <li class="page-item"><a class="page-link" href="#">3</a></li>
+			    <li class="page-item">
+			      <a class="page-link" href="#" aria-label="Next">
+			        <span aria-hidden="true">&raquo;</span>
+			      </a>
+			    </li>
+			  </ul>
+			</div>		
 		
 		</div>
 
 
       </div>
     </div>
-  </div>
+    <aside></aside>
+ 	</div>
 
-  <hr>
-
-  <!-- Footer -->
-  <footer>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-          <ul class="list-inline text-center">
-            <li class="list-inline-item">
-              <a href="#">
-                <span class="fa-stack fa-lg">
-                  <i class="fas fa-circle fa-stack-2x"></i>
-                  <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
-                </span>
-              </a>
-            </li>
-            <li class="list-inline-item">
-              <a href="#">
-                <span class="fa-stack fa-lg">
-                  <i class="fas fa-circle fa-stack-2x"></i>
-                  <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
-                </span>
-              </a>
-            </li>
-            <li class="list-inline-item">
-              <a href="#">
-                <span class="fa-stack fa-lg">
-                  <i class="fas fa-circle fa-stack-2x"></i>
-                  <i class="fab fa-github fa-stack-1x fa-inverse"></i>
-                </span>
-              </a>
-            </li>
-          </ul>
-          <p class="copyright text-muted">Copyright &copy; Your Website 2019</p>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Custom scripts for this template -->
-  <script src="resources/js/list.js"></script>
-  <script src="resources/js/jquery.min.js"></script>
-</body>
-
+  </body>
 </html>

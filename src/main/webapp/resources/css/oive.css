@@ -1,0 +1,94 @@
+  @font-face {
+	  font-family: 'Noto Sans';
+	  font-style: normal;
+	  font-weight: 400;
+	  src: local('Noto Sans'), local('NotoSans'), url(https://fonts.gstatic.com/s/notosans/v9/o-0IIpQlx3QUlC5A4PNr6DRAW_0.woff2) format('woff2');
+	  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+	}
+
+   nav{
+   	background-color: #24b4a0;
+   	height: 700px;
+   	width:15%;
+   	float:left;
+   	display:flex;
+   }
+
+
+ 	aside{
+	background-color: #ccea53;
+   	height: 700px;
+   	   	width:15%;
+   	float:right;
+   	display:flex;
+   }
+ 	footer{
+   	background-color: #a7d54f;
+   	height: 100px;
+	position:fixed; 
+  	left:0px; 
+  	bottom:0px; 
+  	width:100%; 
+  	color: white; 
+  	}
+   
+   
+   div.temp{
+
+    display: -ms-flexbox;
+    display: inline-flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+    position: relative;
+    width: 70%;
+	padding: 3%;
+   }
+
+  .header{
+   padding-top: 30px;
+	background-color:#009999;  
+	font-color:white;
+	color:white;
+	 }
+	a.navbar-brand {
+	    color:white;
+	    font-family:Noto Sans;
+	    font-size:xx-large;
+	
+	}
+	.header h4{
+   	text-align:right;
+   	padding-right: 20px;
+   	font-family:Gamja Flower;
+   }
+   
+   .header ul{
+ 		list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+ 	}
+ 	.header li{
+ 		display: inline-block;
+	color: white;
+	text-align: center;
+	padding: 16px 16px;
+	text-decoration: none;
+	margin-top: 10px;
+ 	}
+ 	
+    #title{
+    	text-align: left;
+    	font-weight: bold;
+    	padding-top: 20px;
+    	padding-left:30px;
+    	
+    }
+
+
+  	form span{
+    	color:red;
+  	}
+ 	
