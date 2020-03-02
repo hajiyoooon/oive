@@ -28,5 +28,9 @@ public class HomeController {
 		
 		return "profile";
 	}
+	@RequestMapping(value = "/form", method = RequestMethod.GET)
+	public String form() { 
+		return "university_form";
+	}
 	
 }
