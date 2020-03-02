@@ -77,6 +77,14 @@
   <body>
     <header>
       <h2><em>spec overflow:</em> <span>회원 가입</span ></h2>
+       <ul>
+      	<li>프로필작성</li>
+      	<li>자기소개서</li>
+      	<li>이력서만들기</li>
+      	<li>파일업로드</li>
+      	<li>내 정보</li>
+      	<li>로그아웃</li>
+      </ul>
       <h4> presented by oive </h4>
     </header>
   <div id="body">

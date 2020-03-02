@@ -26,7 +26,7 @@ public class HomeController {
 	public String home() {
 		dao.selectOne("admin", "1234");
 		
-		return "login";
+		return "self";
 	}
 	
 }
