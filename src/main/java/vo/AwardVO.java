@@ -2,30 +2,31 @@ package vo;
 
 public class AwardVO {
 	private int id;
-	private int userId;
-	private String name;
+	private String userId;
+	private String awardName;
 	private String aquiredDate;
 	private String orgName;
 	private String fileId;
+	private String awardType;
+	private String awardComments;
 	private String type;
-
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getUserId() {
+	public String getUserId() {
 		return userId;
 	}
-	public void setUserId(int userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-	public String getName() {
-		return name;
+	public String getAwardName() {
+		return awardName;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setAwardName(String awardName) {
+		this.awardName = awardName;
 	}
 	public String getAquiredDate() {
 		return aquiredDate;
@@ -44,6 +45,18 @@ public class AwardVO {
 	}
 	public void setFileId(String fileId) {
 		this.fileId = fileId;
+	}
+	public String getAwardType() {
+		return awardType;
+	}
+	public void setAwardType(String awardType) {
+		this.awardType = awardType;
+	}
+	public String getAwardComments() {
+		return awardComments;
+	}
+	public void setAwardComments(String awardComments) {
+		this.awardComments = awardComments;
 	}
 	public String getType() {
 		return type;

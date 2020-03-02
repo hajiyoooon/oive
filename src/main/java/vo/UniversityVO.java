@@ -3,6 +3,7 @@ package vo;
 public class UniversityVO {
 	private int id;
 	private int userId;
+	private String uName;
 	private String enrollDate;
 	private String gradDate;
 	private String status;
@@ -13,41 +14,7 @@ public class UniversityVO {
 	private double maxGrade;
 	private double majorGrade;
 	private int isTransfer;
-	private String uName;
 	private int fileId1;
-	public double getMajorGrade() {
-		return majorGrade;
-	}
-	public void setMajorGrade(double majorGrade) {
-		this.majorGrade = majorGrade;
-	}
-	public String getuName() {
-		return uName;
-	}
-	public void setuName(String uName) {
-		this.uName = uName;
-	}
-	public int getFileId1() {
-		return fileId1;
-	}
-	public void setFileId1(int fileId1) {
-		this.fileId1 = fileId1;
-	}
-	public int getFileId2() {
-		return fileId2;
-	}
-	public void setFileId2(int fileId2) {
-		this.fileId2 = fileId2;
-	}
-	public void setTotalGrade(double totalGrade) {
-		this.totalGrade = totalGrade;
-	}
-	public void setMaxGrade(double maxGrade) {
-		this.maxGrade = maxGrade;
-	}
-	public void setIsTransfer(int isTransfer) {
-		this.isTransfer = isTransfer;
-	}
 	private int fileId2;
 	public int getId() {
 		return id;
@@ -60,6 +27,12 @@ public class UniversityVO {
 	}
 	public void setUserId(int userId) {
 		this.userId = userId;
+	}
+	public String getuName() {
+		return uName;
+	}
+	public void setuName(String uName) {
+		this.uName = uName;
 	}
 	public String getEnrollDate() {
 		return enrollDate;
@@ -97,6 +70,43 @@ public class UniversityVO {
 	public void setMajorName(String majorName) {
 		this.majorName = majorName;
 	}
+	public double getTotalGrade() {
+		return totalGrade;
+	}
+	public void setTotalGrade(double totalGrade) {
+		this.totalGrade = totalGrade;
+	}
+	public double getMaxGrade() {
+		return maxGrade;
+	}
+	public void setMaxGrade(double maxGrade) {
+		this.maxGrade = maxGrade;
+	}
+	public double getMajorGrade() {
+		return majorGrade;
+	}
+	public void setMajorGrade(double majorGrade) {
+		this.majorGrade = majorGrade;
+	}
+	public int getIsTransfer() {
+		return isTransfer;
+	}
+	public void setIsTransfer(int isTransfer) {
+		this.isTransfer = isTransfer;
+	}
+	public int getFileId1() {
+		return fileId1;
+	}
+	public void setFileId1(int fileId1) {
+		this.fileId1 = fileId1;
+	}
+	public int getFileId2() {
+		return fileId2;
+	}
+	public void setFileId2(int fileId2) {
+		this.fileId2 = fileId2;
+	}
+	
 
 	
 	

@@ -8,10 +8,9 @@ public class WorkExperienceVO {
 	private String startDate;
 	private String endDate;
 	private String duty;
-	private String location;
-	private String comment;
+	private String workComments;
 	private int fileId;
-	private String position;
+	private String workPosition;
 	public int getId() {
 		return id;
 	}
@@ -54,17 +53,11 @@ public class WorkExperienceVO {
 	public void setDuty(String duty) {
 		this.duty = duty;
 	}
-	public String getLocation() {
-		return location;
+	public String getWorkComment() {
+		return workComments;
 	}
-	public void setLocation(String location) {
-		this.location = location;
-	}
-	public String getComment() {
-		return comment;
-	}
-	public void setComment(String comment) {
-		this.comment = comment;
+	public void setWorkComment(String workComment) {
+		this.workComments = workComment;
 	}
 	public int getFileId() {
 		return fileId;
@@ -72,12 +65,13 @@ public class WorkExperienceVO {
 	public void setFileId(int fileId) {
 		this.fileId = fileId;
 	}
-	public String getPosition() {
-		return position;
+	public String getWorkPosition() {
+		return workPosition;
 	}
-	public void setPosition(String position) {
-		this.position = position;
+	public void setWorkPosition(String workPosition) {
+		this.workPosition = workPosition;
 	}
+	
 	
 	
 }
