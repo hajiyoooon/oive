@@ -7,6 +7,11 @@
     	select * from users
     	where user_id = #{userId} and password = #{password}
  	</select>
+ 	
+ 	<insert id="insertUser" parameterType="vo.UserVO">
+    	insert into users(user_id, password, birthday, email)
+    	values(#{userId},#{password},sysdate, #{email})
+ 	</insert>
 
 </mapper>
 
