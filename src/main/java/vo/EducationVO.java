@@ -35,7 +35,6 @@ public class EducationVO {
 	public void setTotalHour(String totalHour) {
 		this.totalHour = totalHour;
 	}
-
 	public String getEduComments() {
 		return eduComments;
 	}
@@ -72,5 +71,7 @@ public class EducationVO {
 	public void setEndDate(String endDate) {
 		this.endDate = endDate;
 	}
+
+
    
 }
