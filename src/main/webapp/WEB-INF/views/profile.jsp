@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -110,6 +111,7 @@
 
 		</div>
 		<div class="form-group col-md-6">
+
 			<label>관련 파일 : {이미 업로드된 파일이 있으면 표시됩니다.}</label><!-- 파일업로드와 파일명 표시 기능 2단계에서 구현함. -->
 			<button>업로드</button><button>삭제하기</button>
 		</div>
@@ -234,6 +236,7 @@
 </fieldset>
 
 <!-- 여기까지 bootsnipp.com 사용하여 붙여넣음 -->
+
 
 
 <hr>
