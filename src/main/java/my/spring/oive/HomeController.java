@@ -22,18 +22,32 @@ public class HomeController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home() {
-		dao.selectOne("admin", "1234");
+		return "example";
+	}
+	
+	//TODO : �굹以묒뿉 POST 諛⑹떇�쑝濡� 諛붽퓭二쇨린
+	@RequestMapping(value = "/join", method = RequestMethod.GET)
+	public String register() {
+		
+		return "join";
+	}
+	
+	@RequestMapping(value = "/self_introduce/list", method = RequestMethod.GET)
+	public String list() {
+
 		
 		return "list";
 	}
 	
-	//TODO : �굹以묒뿉 POST 諛⑹떇�쑝濡� 諛붽퓭二쇨린
-	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public String register(UserVO vo) {
-
-		System.out.println(service.create(vo));
+	@RequestMapping(value = "/profile", method = RequestMethod.GET)
+	public String profile() {
 		
 		return "profile";
+	}
+	
+	@RequestMapping(value = "/self_introduce/write/{self_introduce_id}", method = RequestMethod.GET)
+	public String write(UserVO vo) {
+		return "write";
 	}
 	
 }
