@@ -10,8 +10,8 @@
 	<link href="https://fonts.googleapis.com/css?family=Gamja+Flower:400" rel="stylesheet">
 	<script src="resources/js/bootstrap.min.js"></script>
 	<style> * {font-family:Song Myung}</style>
-	<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> -->
-	<!-- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> --> --%>
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script> --%>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script><!DOCTYPE html> -->
 <title>프로필 입력</title>
@@ -31,7 +31,7 @@
 	<!-- 아래는 Bootstrap 공식사이트 form example 활용/했다가 수정함 -->
 
 		<input type="hidden" name="category" value="university"> <input
-			type="hidden" name="id" value="${UniversityVO.id}">
+			type="hidden" name="id" value="{UniversityVO.id}">
 		<div class="form-group col-md-4">
 			<label for="uName">학교명<span class="text-muted">(필수입력)</span></label>
 			<input type="text" class="form-control" id="uName" name="uName" required maxlength=16 placeholder="학교명을 입력하세요.">
@@ -55,7 +55,7 @@
 			<div class="form-group col-md-3">
 				<label for="degree">학위 유형</label>
 				<select name="degree" class="custom-select" id="degree">
-						<option value>선택하세요.</option>
+						<option value="0">선택하세요.</option>
 						<option>학사</option>
 						<option>전문학사</option>
 						<option>석사</option>
@@ -115,11 +115,29 @@
 		</div>
 		<div class="form-group">
 		<button class="btn-success" type="submit">수정</button>
-		<button class="btn-danger">삭제</button><!-- 내용을 삭제하는 onclick event 구현 필요함 -->
-		<button class="btn-primary">추가</button><!-- 새로운 항목을 추가작성하는 onclick event 구현필요함 -->
-		</div>
+		<a href="/oive/delete?id={vo.id}&category='university'">
+    <button class="btn-danger">삭제</button></a><!-- GET 형식으로 구현함 -->
+  	</div>
 		</fieldset>
-	</form>
+    </form>
+    <button class="btn-primary" onclick="add()">추가</button><!-- 새로운 항목을 추가작성하는 onclick event 구현필요함 -->
+    <script>
+    function add(){
+      var target = document.getElementById("university-add");
+      console.log(target);
+      var xhr = new XMLHttpRequest();
+      xhr.onload=function(){
+        if(xhr.status==200){
+          target.innerHTML = this.responseText;
+          <!-- Ajax 전송시 form 폴더의 university_form.jsp 이 회신되어야함 -->
+        }
+      }
+      xhr.open("GET", "/oive/form", true);
+      xhr.send();
+    }
+    </script>
+    <div class="" id="university-add">추가버튼 클릭시 여기에 폼이 붙게됨.</div>
+
 	<hr>
 	<!-- 고등학교 사항 삭제함 -->
 	<!-- 아래는 bootsnipp.com 사용하여 붙여넣음/수정함. -->
@@ -127,7 +145,7 @@
 		<fieldset>
 			<legend>교육사항</legend>
 			<input type="hidden" name="category" value="education"> <input
-					type="hidden" name="id" value="${EducationVO.id}">
+					type="hidden" name="id" value="{EducationVO.id}">
 			<!-- 기관명 -->
 				<div class="form-group">
 				  <label class="col-md-4" for="orgName">기관명</label>
@@ -225,7 +243,7 @@
 			<legend>#CertificationsVO.id-1</legend>
 	<!-- userId         VARCHAR2(20)     NOT NULL -->
 		<input type="hidden" name="category" value="certifications"> <input
-			type="hidden" name="id" value="${CertificationsVO.id}">
+			type="hidden" name="id" value="{CertificationsVO.id}">
 			<!-- orgName        VARCHAR2(100)    NULL -->
 			<div class="form-group">
 				<label for="orgName">인증기관</label>
@@ -298,7 +316,7 @@
 			<legend>#AwardVO.id</legend>
 		</fieldset>
 		<input type="hidden" name="category" value="award"> <input
-			type="hidden" name="id" value="${AwardVO.id}">
+			type="hidden" name="id" value="{AwardVO.id}">
 			<!-- orgName        VARCHAR2(50)     NULL -->
 			<div class="form-group">
 				<div class="col-3">
@@ -373,7 +391,7 @@
 		<fieldset>
 	   <legend>#Skills.id</legend>
 			 <input type="hidden" name="category" value="skills">
-			 <input type="hidden" name="id" value="${SkillsVO.id}">
+			 <input type="hidden" name="id" value="{SkillsVO.id}">
 			 <!-- skillsName       VARCHAR2(50)     NOT NULL,  -->
 		   <div class="form-group">
 				 <div class="col-3">
@@ -419,7 +437,7 @@
 	<fieldset>
 	 <legend>#languagesVO.id</legend>
 		 <input type="hidden" name="category" value="languages">
-		 <input type="hidden" name="id" value="${LanguagesVO.id}">
+		 <input type="hidden" name="id" value="{LanguagesVO.id}">
 		 <!-- languageName    VARCHAR2(20)     NOT NULL  -->
 		 <div class="form-group">
 			 <div class="col-3">
@@ -464,7 +482,7 @@
 	<h1>직장경력</h1>
 	<form>
 		<input type="hidden" name="category" value="work_experience">
-		<input type="hidden" name="id" value="${}">
+		<input type="hidden" name="id" value="{}">
 		<ul>
 			<li>직장명 : <input type="text" name="company_name"></li>
 			<li>취업형태 : <select name="emp_type">
@@ -489,7 +507,7 @@
 	<h1>저서/논문</h1>
 	<form>
 		<input type="hidden" name="category" value="publication"> <input
-			type="hidden" name="id" value="${}">
+			type="hidden" name="id" value="{}">
 		<ul>
 			<li>출판기관 : <input type="text" name="publisher"></li>
 			<li>저서/논문명 : <input type="text" name="name"></li>
@@ -509,7 +527,7 @@
 	<h1>특허</h1>
 	<form>
 		<input type="hidden" name="category" value="patent"> <input
-			type="hidden" name="id" value="${}">
+			type="hidden" name="id" value="{}">
 		<ul>
 			<li>특허명 : <input type="text" name="name"></li>
 			<li>출원국가 : <input type="text" name="country"></li>
@@ -524,7 +542,7 @@
 		<button>삭제</button>
 		<button>추가</button>
 	</form>
-	 --%>
+
 <button class="btn btn-success" type="submit">수정</button>
 </div>
 </body>
