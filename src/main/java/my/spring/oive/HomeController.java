@@ -33,7 +33,7 @@ public class HomeController {
 
 		System.out.println(service.create(vo));
 		
-		return "example";
+		return "profile";
 	}
 	
 }
