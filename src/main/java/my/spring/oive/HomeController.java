@@ -2,6 +2,7 @@ package my.spring.oive;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -44,9 +45,9 @@ public class HomeController {
 		
 		return "profile";
 	}
-	@RequestMapping(value = "/form", method = RequestMethod.GET)
-	public String form() { 
-		return "university_form";
+	@RequestMapping(value = "/form/{category}", method = RequestMethod.GET)
+	public String form(@PathVariable String category) { 
+		return "form/"+ category +"_form";
 	}
 	
 	@RequestMapping(value = "/self_introduce/write/{self_introduce_id}", method = RequestMethod.GET)
