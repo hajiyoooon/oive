@@ -29,16 +29,22 @@
     </nav>
     <div class="row temp">
     	<!-- 여기에 메인 컨텐츠를 넣어주세요! -->
+    	<div class="container">
     	<h1 id="university">학력 사항</h1>
 		<%@ include file="./form/university_form.jsp" %>
 		<%@ include file="./form/education_form.jsp" %>						
 		<h1 id="certification">자격사항(자격증/시험성적)</h1>
 		<%@ include file="./form/certification_form.jsp" %>
-		<hr>
+		
+    	</div>
+    	
 		<!-- award -->
+		<div>
 		<h1 id="award">수상이력</h1>
 		<%@ include file="./form/award_form.jsp" %>
-    </div>
+		
+		</div>
+		    </div>
     <aside></aside>
  	</div>
 
