@@ -10,7 +10,7 @@
       	<li>이력서만들기</li>
       	<li>파일업로드</li>
       	<li>내 정보</li>
-      	<li>로그아웃</li>
+      	<li><a href="/oive/logout">로그아웃</a></li>
       </ul>
       <h4> presented by oive </h4>
     </header>

@@ -47,5 +47,24 @@
 		<beans:constructor-arg index="0"  ref="sqlSessionFactory" />
 	</beans:bean>
 	
+	<!-- user authentications -->
+    <beans:bean id="authenticationInterceptor" class="service.AuthInterceptor">
+    </beans:bean>
+    <!-- Interceptor 설정 -->
+   
+    <interceptors>
+        <interceptor>
+        <!-- TODO :: 유저 권한에 따라서 다른 인터셉터 적용이 필요함 -->
+            <mapping path="/**"></mapping>
+            <exclude-mapping path="/"></exclude-mapping>
+            <exclude-mapping path="/join"></exclude-mapping>
+            <exclude-mapping path="/resources/**"></exclude-mapping>
+            
+            <beans:ref bean="authenticationInterceptor"/>
+        </interceptor>
+    </interceptors>
+      
+
+
 	
 </beans:beans>

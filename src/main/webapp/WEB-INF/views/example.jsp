@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Home</title>
+	<title>main</title>
 	<!-- 링크 넣어주기  -->
 <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/starter-template/">
 <link rel="stylesheet" href="resources/css/example.css" >
@@ -91,16 +91,22 @@
 <div id="body">
   <img id="images">
   <div id="main">
-    <form method="" name="" action="">
+    <form method="POST" name="loginform" action="/oive/">
 	    <input type="hidden" name="" value="">
-	    <input class="form-control login" type="text" name="" style="width:200px;" placeholder="아이디를 입력하세요"><br>
-   <input class="form-control login" type="password" name="" style="width:200px;" placeholder="비밀번호를 입력하세요"><br>
-</form>
-  <input class="btn btn-primary" type="button" name="" value="회원가입" style="width:200px;"><br>
-    <input class="btn btn-primary" type="submit" name="" value="로그인" style="width:200px;"><br>
+	    <input class="form-control login" type="text" name="userId" style="width:200px;" placeholder="아이디를 입력하세요" required><br>
+   		<input class="form-control login" type="password" name="password" style="width:200px;" placeholder="비밀번호를 입력하세요" required><br>
+   		<input class="btn btn-primary" type="submit" name="" value="로그인" style="width:200px;"><br>
+	</form>
+	<button class="btn btn-primary" style="width:200px;" onclick="location.href='join'">회원가입</button><br>
 
-	  </div>
-	</div>
-  </body>
+
+  </div>
+ </div>
+<script>
+	console.log(${msg});
+	
+</script>
+
+</body>
 </html>
 
