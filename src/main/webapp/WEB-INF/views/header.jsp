@@ -2,7 +2,7 @@
 <%@page import="org.springframework.web.context.annotation.RequestScope"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" %>
-    <header class="header navbar">
+    <header class="header navbar sticky-top">
       <a class="navbar-brand" href="#"><em>spec overflow:</em> <span>자기소개서 작성</span ></a>
         <ul>
       	<li>프로필작성</li>
