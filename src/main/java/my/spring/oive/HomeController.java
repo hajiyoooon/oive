@@ -55,4 +55,9 @@ public class HomeController {
 		return "write";
 	}
 	
+	@RequestMapping(value = "/base", method = RequestMethod.GET)
+	public String base() {
+		return "base";
+	}
+	
 }

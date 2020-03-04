@@ -18,13 +18,12 @@
   </head>
   <body>
 	<%@ include file="header.jsp" %>
-  
   	<div id="body">
-    <nav>
-    	<ul>
-    	<a href="#university"><li>학력 사항</li></a>
-    	<a href="#certification"><li>자격 사항</li></a>
-    	<a href="#award"><li>수상이력</li></a>
+    <nav class="navbar">
+    	<ul class="navbar-nav">
+	    	<li class="nav-item"><a href="#university" class="nav-link">학력 사항</li></a>
+	    	<li class="nav-item"><a href="#certification" class="nav-link">자격 사항</li></a>
+	    	<li class="nav-item"><a href="#award" class="nav-link">수상이력</li></a>
     	</ul>
     </nav>
     <div class="row temp">
