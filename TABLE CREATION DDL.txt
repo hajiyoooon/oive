@@ -4,7 +4,7 @@ CREATE TABLE users
     password    VARCHAR2(200)     NOT NULL, 
     birthday    DATE             NOT NULL, 
     email       VARCHAR2(100)    NOT NULL, 
-    CONSTRAINT USER_PK PRIMARY KEY (user_id)
+    CONSTRAINT USER_PK PRIMARY KEY (userId)
 );
 
 CREATE SEQUENCE users_SEQ
@@ -20,12 +20,12 @@ CREATE TABLE files
     id                 INT             NULL, 
     userId            VARCHAR2(20)    NOT NULL, 
     fileName          VARCHAR2(50)    NOT NULL, 
-    CONSTRAINT FILE_PK PRIMARY KEY (file_id)
+    CONSTRAINT FILE_PK PRIMARY KEY (fileId)
 );
 
 ALTER TABLE files
-    ADD CONSTRAINT FK_file_user_id_users_user_id FOREIGN KEY (user_id)
-        REFERENCES users (user_id);
+    ADD CONSTRAINT FK_file_userId_users_userId FOREIGN KEY (userId)
+        REFERENCES users (userId);
 
 CREATE TABLE self_introduce
 (
@@ -46,8 +46,8 @@ START WITH 1
 INCREMENT BY 1;
 
 ALTER TABLE self_introduce
-    ADD CONSTRAINT FK_self_introduce_user_id_user FOREIGN KEY (user_id)
-        REFERENCES users (user_id);
+    ADD CONSTRAINT FK_self_introduce_userId_user FOREIGN KEY (userId)
+        REFERENCES users (userId);
 
 
 
@@ -78,16 +78,16 @@ START WITH 1
 INCREMENT BY 1;
 
 ALTER TABLE university
-    ADD CONSTRAINT FK_university_user_id_user FOREIGN KEY (user_id)
-        REFERENCES users (user_id);
+    ADD CONSTRAINT FK_university_userId_user FOREIGN KEY (userId)
+        REFERENCES users (userId);
         
 ALTER TABLE university
-    ADD CONSTRAINT FK_university_file_id1_file FOREIGN KEY (file_id1)
-        REFERENCES files (file_id);
+    ADD CONSTRAINT FK_university_fileId1_file FOREIGN KEY (fileId1)
+        REFERENCES files (fileId);
         
 ALTER TABLE university
-    ADD CONSTRAINT FK_university_file_id2_file FOREIGN KEY (file_id2)
-        REFERENCES files (file_id);
+    ADD CONSTRAINT FK_university_fileId2_file FOREIGN KEY (fileId2)
+        REFERENCES files (fileId);
 
 
 -- user Table Create SQL
@@ -112,8 +112,8 @@ START WITH 1
 INCREMENT BY 1;
 
 ALTER TABLE education
-    ADD CONSTRAINT FK_education_user_id_user FOREIGN KEY (user_id)
-        REFERENCES users (user_id);
+    ADD CONSTRAINT FK_education_userId_user FOREIGN KEY (userId)
+        REFERENCES users (userId);
 
 -- user Table Create SQL
 CREATE TABLE certifications
@@ -139,13 +139,13 @@ INCREMENT BY 1;
 
 
 ALTER TABLE certifications
-    ADD CONSTRAINT FK_certifications_user_id_user FOREIGN KEY (user_id)
-        REFERENCES users (user_id);
+    ADD CONSTRAINT FK_certifications_userId_user FOREIGN KEY (userId)
+        REFERENCES users (userId);
 
 
 ALTER TABLE certifications
-    ADD CONSTRAINT FK_certifications_file_id_file FOREIGN KEY (file_id)
-        REFERENCES files (file_id);
+    ADD CONSTRAINT FK_certifications_fileId_file FOREIGN KEY (fileId)
+        REFERENCES files (fileId);
 
 
 
@@ -171,13 +171,13 @@ INCREMENT BY 1;
 
 
 ALTER TABLE award
-    ADD CONSTRAINT FK_award_user_id_user_user_id FOREIGN KEY (user_id)
-        REFERENCES users (user_id);
+    ADD CONSTRAINT FK_award_userId_user_userId FOREIGN KEY (userId)
+        REFERENCES users (userId);
 
 
 ALTER TABLE award
-    ADD CONSTRAINT FK_award_file_id_file_file_id FOREIGN KEY (file_id)
-        REFERENCES files (file_id);
+    ADD CONSTRAINT FK_award_fileId_file_fileId FOREIGN KEY (fileId)
+        REFERENCES files (fileId);
 
 
 
@@ -187,7 +187,7 @@ CREATE TABLE skills
     id         INT              NOT NULL, 
     userId    VARCHAR2(20)     NOT NULL, 
     skillsName       VARCHAR2(50)     NOT NULL, 
-    level    VARCHAR2(6)      NULL, 
+    skillslevel    VARCHAR2(6)      NULL, 
     skiilsComments    VARCHAR2(100)    NULL, 
     CONSTRAINT SKILLS_PK PRIMARY KEY (id)
 );
@@ -199,8 +199,8 @@ INCREMENT BY 1;
 
 
 ALTER TABLE skills
-    ADD CONSTRAINT FK_skills_user_id_user_user_id FOREIGN KEY (user_id)
-        REFERENCES users (user_id);
+    ADD CONSTRAINT FK_skills_userId_user_userId FOREIGN KEY (userId)
+        REFERENCES users (userId);
 
 
 -- user Table Create SQL
@@ -227,13 +227,13 @@ INCREMENT BY 1;
 
 
 ALTER TABLE work_experience
-    ADD CONSTRAINT FK_work_experience_user_id_use FOREIGN KEY (user_id)
-        REFERENCES users (user_id);
+    ADD CONSTRAINT FK_work_experience_userId_use FOREIGN KEY (userId)
+        REFERENCES users (userId);
 
 
 ALTER TABLE work_experience
-    ADD CONSTRAINT FK_work_experience_file_id_fil FOREIGN KEY (file_id)
-        REFERENCES files (file_id);
+    ADD CONSTRAINT FK_work_experience_fileId_fil FOREIGN KEY (fileId)
+        REFERENCES files (fileId);
 
 
 
@@ -258,13 +258,13 @@ INCREMENT BY 1;
 
 
 ALTER TABLE publications
-    ADD CONSTRAINT FK_pulications_user_id_user_us FOREIGN KEY (user_id)
-        REFERENCES users (user_id);
+    ADD CONSTRAINT FK_pulications_userId_user_us FOREIGN KEY (userId)
+        REFERENCES users (userId);
 
 
 ALTER TABLE publications
-    ADD CONSTRAINT FK_pulications_file_id_file_fi FOREIGN KEY (file_id)
-        REFERENCES files (file_id);
+    ADD CONSTRAINT FK_pulications_fileId_file_fi FOREIGN KEY (fileId)
+        REFERENCES files (fileId);
 
 
 
@@ -277,7 +277,7 @@ CREATE TABLE patent
     country       VARCHAR2(50)     NULL, 
     patNumber    VARCHAR2(20)     NULL, 
     patDate      DATE             NULL, 
-    fildId       INT              NULL, 
+    fileId       INT              NULL, 
     patentComments       VARCHAR2(100)    NULL, 
     CONSTRAINT PATENT_PK PRIMARY KEY (id)
 );
@@ -288,13 +288,13 @@ INCREMENT BY 1;
 
 
 ALTER TABLE patent
-    ADD CONSTRAINT FK_patent_user_id_user_user_id FOREIGN KEY (user_id)
-        REFERENCES users (user_id);
+    ADD CONSTRAINT FK_patent_userId_user_userId FOREIGN KEY (userId)
+        REFERENCES users (userId);
 
 
 ALTER TABLE patent
-    ADD CONSTRAINT FK_patent_fild_id_file_file_id FOREIGN KEY (fild_id)
-        REFERENCES files (file_id);
+    ADD CONSTRAINT FK_patent_fileId_file_fileId FOREIGN KEY (fileId)
+        REFERENCES files (fileId);
 
 
 
@@ -315,12 +315,12 @@ INCREMENT BY 1;
 
 
 ALTER TABLE keyword_selfintroduce
-    ADD CONSTRAINT FK_keyword_selfintroduce_user_ FOREIGN KEY (user_id)
-        REFERENCES users (user_id);
+    ADD CONSTRAINT FK_keyword_selfintroduce_user_ FOREIGN KEY (userId)
+        REFERENCES users (userId);
 
 
 ALTER TABLE keyword_selfintroduce
-    ADD CONSTRAINT FK_keyword_selfintroduce_s_id_ FOREIGN KEY (s_id)
+    ADD CONSTRAINT FK_keyword_selfintroduce_sId_ FOREIGN KEY (sId)
         REFERENCES self_introduce (id);
 
 
@@ -342,6 +342,6 @@ START WITH 1
 INCREMENT BY 1;
 
 ALTER TABLE languages
-    ADD CONSTRAINT FK_languages_user_id_user FOREIGN KEY (user_id)
-        REFERENCES users (user_id);
+    ADD CONSTRAINT FK_languages_userId_user FOREIGN KEY (userId)
+        REFERENCES users (userId);
         
