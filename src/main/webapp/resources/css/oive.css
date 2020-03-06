@@ -36,7 +36,7 @@
    div.temp{
 
     display: -ms-flexbox;
-    display: inline-flex;
+    display: flex;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
     margin-right: -15px;

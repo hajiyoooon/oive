@@ -31,13 +31,16 @@ public class UserService {
 		boolean possible = false;
 		UserVO vo = dao.selectOne(userId);
 		
-		if(encoder.matches(rawPassword, vo.getPassword())) {
-			possible = true;
-			if(possible && session != null) {
-				session.setAttribute("user", vo);
+		if(vo != null) {
+			if(encoder.matches(rawPassword, vo.getPassword())) {
+				possible = true;
+				if(possible && session != null) {
+					session.setAttribute("user", vo);
+				}
+		
 			}
-	
 		}
+
 		return possible;
 	}
 	
@@ -45,7 +48,6 @@ public class UserService {
 		boolean result = false;
 		if(session != null) {
 			if(session.getAttribute("user") != null) {
-				System.out.println("로그아웃 성공");
 				session.removeAttribute("user");
 				result = true;
 			}
