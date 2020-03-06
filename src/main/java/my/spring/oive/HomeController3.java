@@ -14,7 +14,7 @@ import vo.UserVO;
  * Handles requests for the application home page.
  */
 @Controller
-public class HomeController {
+public class HomeController3 {
 	@Autowired
 	UserDAO dao;
 	
