@@ -21,7 +21,6 @@
   	<div id="body">
     <nav></nav>
     <div class="row temp">
-    메인컨텐츠 01234567890123456789
     	<!-- 여기에 메인 컨텐츠를 넣어주세요! -->
     </div>
     <aside></aside>

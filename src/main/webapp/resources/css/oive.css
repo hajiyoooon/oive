@@ -91,3 +91,11 @@
   	form span{
     	color:red;
   	}
+ 
+  	form.profile {	/** 프로필 작성 페이지를 위한 여백 **/
+  		margin-top:15px;
+  		margin-bottom:15px;
+  	}
+  	.profile-btn-group {
+  		float:right;
+  	}
