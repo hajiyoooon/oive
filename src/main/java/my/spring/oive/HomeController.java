@@ -5,9 +5,12 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import dao.UserDAO;
 import service.UserService;
@@ -28,15 +31,19 @@ public class HomeController {
 	HttpSession session;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home() {
-		if(session.getAttribute("user") != null) return "list";
-		return "example";
+	public ModelAndView home() {
+		ModelAndView mav = new ModelAndView();
+
+		//TODO : 인터셉터 내에서 처리할 수는 없을까?
+		if(session.getAttribute("user") != null) mav.setViewName("list");
+		else mav.setViewName("example");
+		
+		return mav;
 	}
 	
 	
 	@RequestMapping(value = "/", method = RequestMethod.POST)
-	public ModelAndView login(String userId, String password) {
-		System.out.println("로그인 시도");
+	public ModelAndView login(String userId, String password, RedirectAttributes redirectAttr) {
 		ModelAndView mav = new ModelAndView();
 		
 		if(service.login(userId, password)) {
@@ -46,12 +53,11 @@ public class HomeController {
 		else {
 			System.out.println("로그인 실패");
 			mav.setViewName("redirect:/");
-			mav.addObject("msg","아이디 또는 비밀번호를 확인해주세요.");
+			redirectAttr.addFlashAttribute("msg", "아이디 또는 비밀번호를 확인해주세요.");
 		}
 		return mav;
 	}
 	
-	//TODO : �굹以묒뿉 POST 諛⑹떇�쑝濡� 諛붽퓭二쇨린
 	@RequestMapping(value = "/join", method = RequestMethod.GET)
 	public String register() {
 		return "join";
@@ -68,6 +74,7 @@ public class HomeController {
 		else {
 			mav.setViewName("join");
 			mav.addObject("msg", "회원가입에 실패했습니다.");
+			
 		}
 		return mav;
 	}
@@ -106,4 +113,8 @@ public class HomeController {
 		return "base";
 	}
 	
+	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
+	public String mypage() {
+		return "mypage";
+	}
 }
