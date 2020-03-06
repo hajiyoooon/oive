@@ -5,12 +5,12 @@
 <mapper namespace="resource.UserMapper">
    	<select id="selectUser" parameterType="hashmap" resultType="vo.UserVO">
     	select * from users
-    	where user_id = #{userId} and password = #{password}
+    	where userId = #{userId}
  	</select>
  	
  	<insert id="insertUser" parameterType="vo.UserVO">
-    	insert into users(user_id, password, birthday, email)
-    	values(#{userId},#{password},sysdate, #{email})
+    	insert into users(userId, password, birthday, email)
+    	values(#{userId},#{password},to_date(#{birthday} ,'yyyy-mm-dd' ), #{email})
  	</insert>
 
 </mapper>

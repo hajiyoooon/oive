@@ -1,39 +1,120 @@
 package my.spring.oive;
 
-import java.text.DateFormat;
-import java.util.Date;
-import java.util.Locale;
+import javax.servlet.http.HttpSession;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import dao.UserDAO;
+import service.UserService;
+import vo.UserVO;
 
 /**
  * Handles requests for the application home page.
  */
 @Controller
 public class HomeController {
+	@Autowired
+	UserDAO dao;
 	
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	@Autowired
+	UserService service;
 	
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
+	@Autowired
+	HttpSession session;
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
+	public ModelAndView home() {
+		ModelAndView mav = new ModelAndView();
+
+		//TODO : 인터셉터 내에서 처리할 수는 없을까?
+		if(session.getAttribute("user") != null) mav.setViewName("list");
+		else mav.setViewName("example");
 		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
-		
-		return "home";
+		return mav;
 	}
 	
+	
+	@RequestMapping(value = "/", method = RequestMethod.POST)
+	public ModelAndView login(String userId, String password, RedirectAttributes redirectAttr) {
+		ModelAndView mav = new ModelAndView();
+		
+		if(service.login(userId, password)) {
+			System.out.println("로그인 성공");
+			mav.setViewName("redirect:/self_introduce/list");
+		}
+		else {
+			System.out.println("로그인 실패");
+			mav.setViewName("redirect:/");
+			redirectAttr.addFlashAttribute("msg", "아이디 또는 비밀번호를 확인해주세요.");
+		}
+		return mav;
+	}
+	
+	@RequestMapping(value = "/join", method = RequestMethod.GET)
+	public String register() {
+		return "join";
+	}
+	
+	@RequestMapping(value = "/join", method = RequestMethod.POST)
+	public ModelAndView register(UserVO vo) {
+		ModelAndView mav = new ModelAndView();
+		
+		if(service.join(vo)) {
+			mav.addObject("msg", "회원가입에 성공했습니다. 로그인 후 서비스를 이용해 주세요.");
+			mav.setViewName("example");
+		}
+		else {
+			mav.setViewName("join");
+			mav.addObject("msg", "회원가입에 실패했습니다.");
+			
+		}
+		return mav;
+	}
+	
+	@RequestMapping(value = "/self_introduce/list", method = RequestMethod.GET)
+	public String list() {
+
+		
+		return "list";
+	}
+	
+	@RequestMapping(value = "/profile", method = RequestMethod.GET)
+	public String profile() {
+		
+		return "profile";
+	}
+	@RequestMapping(value = "/form/{category}", method = RequestMethod.GET)
+	public String form(@PathVariable String category) { 
+		return "form/"+ category +"_form";
+	}
+	
+	@RequestMapping(value = "/self_introduce/write/{self_introduce_id}", method = RequestMethod.GET)
+	public String write(UserVO vo) {
+		return "write";
+	}
+	
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logout(UserVO vo) {
+		boolean result = service.logout();
+		System.out.println(result);
+		if(result)	return "redirect:/";
+		else return "redirect:/";
+	}
+	@RequestMapping(value = "/base", method = RequestMethod.GET)
+	public String base() {
+		return "base";
+	}
+	
+	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
+	public String mypage() {
+		return "mypage";
+	}
 }

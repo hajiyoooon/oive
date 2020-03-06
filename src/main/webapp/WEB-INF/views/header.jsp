@@ -2,7 +2,7 @@
 <%@page import="org.springframework.web.context.annotation.RequestScope"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" %>
-    <header class="header navbar">
+    <header class="header navbar sticky-top">
       <a class="navbar-brand" href="#"><em>spec overflow:</em> <span>자기소개서 작성</span ></a>
         <ul>
       	<li>프로필작성</li>
@@ -10,7 +10,7 @@
       	<li>이력서만들기</li>
       	<li>파일업로드</li>
       	<li>내 정보</li>
-      	<li>로그아웃</li>
+      	<li><a href="/oive/logout">로그아웃</a></li>
       </ul>
       <h4> presented by oive </h4>
     </header>

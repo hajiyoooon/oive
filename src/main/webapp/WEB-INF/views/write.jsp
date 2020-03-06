@@ -10,7 +10,7 @@
 	<!-- 링크 넣어주기  -->
 	<!-- <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/starter-template/"> -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css" >
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/oive.css" >
+<%-- 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/oive.css" > --%>
 	<link href="https://fonts.googleapis.com/css?family=Song+Myung:400" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Gamja+Flower:400" rel="stylesheet">
 	<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
