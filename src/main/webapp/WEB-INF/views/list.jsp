@@ -21,90 +21,9 @@
   </head>
   
 <style>
-@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css); .jejugothic * { font-family: 'Jeju Gothic', sans-serif; }
+	
 
 
-	ul.list-header2 {
-	    font-weight: bold;
-	    border-bottom: #adb5bd solid 1px;
-	}
-
-	.post-list li{
-	     display: inline-block;
-	     text-overflow: ellipsis;
-	     overflow: hidden;
-	     height: 30px;
-	     white-space: nowrap;
-	}
-	
-	.post-list .keyword{
-	    width: 30%
-	}
-	
-	.post-list .company{
-	    width : 20%;
-	}
-	
-	.post-list .applied-date{
-	    width:15%;
-	}
-	.post-list .last-modified {
-	    width: 15%;
-	}
-	
-	ul.pagination li{
-		height: 50px;
-	}
-	a {
-	  color: #212529;
-	  transition: all 0.2s;
-	}
-	
-	a:focus, a:hover {
-	  color: #0085A1;
-	}
-	span.bd-content-title {
-	    font-size: 2rem;
-	    font-weight: bold;
-	
-	}
-	.fas fa-search:before {
-	    content: "\f002";
-	}
-	.search {
-		height: 60px;
-		background-color: #ffffff;
-		border-radius: 30px;
-		padding: 10px;
-		border: 1px solid #dee2e6;
-		margin-bottom: 5%;
-	}
-	    
-	.search-dropdown{
-		width:20%;
-		border: none;
-	}
-	
-	.search-input{
-	    color: black;
-	    border: 0;
-		padding: 0 10px;
-	    outline: 0;
-	    background: none;
-	    width: 80%;
-	    transition: width 0.4s linear;
-	    }
-	
-	    .search-icon{
-	    height: 40px;
-	    width: 40px;
-	    float: right;
-	    display: flex;
-	    justify-content: center;
-	    align-items: center;
-	    border-radius: 50%;
-	    color:white;
-	}
 </style>
   <body>
 	<%@ include file="header.jsp" %>
@@ -178,9 +97,5 @@
 
 
       </div>
-    </div>
-    <aside></aside>
- 	</div>
-
   </body>
 </html>

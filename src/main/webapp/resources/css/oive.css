@@ -1,11 +1,29 @@
-  @font-face {
-	  font-family: 'Noto Sans';
-	  font-style: normal;
-	  font-weight: 400;
-	  src: local('Noto Sans'), local('NotoSans'), url(https://fonts.gstatic.com/s/notosans/v9/o-0IIpQlx3QUlC5A4PNr6DRAW_0.woff2) format('woff2');
-	  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
-	}
+@font-face {
+	font-family: 'Noto Sans';
+	font-style: normal;
+	font-weight: 400;
+	src: local('Noto Sans'), local('NotoSans'), url(https://fonts.gstatic.com/s/notosans/v9/o-0IIpQlx3QUlC5A4PNr6DRAW_0.woff2) format('woff2');
+	unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+
 @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css); .jejugothic * { font-family: 'Jeju Gothic', sans-serif; }
+
+	a {
+		color: #212529;
+		transition: all 0.2s;
+		font-family: 'Jeju Gothic', sans-serif;
+	}
+	a:focus, a:hover {
+		color: #0085A1;
+	}
+
+	aside{
+		background-color: #ccea53;
+		height: 700px;
+		width:15%;
+		float:right;
+		display:flex;
+	}
 
 	nav{
    	background-color: #24b4a0;
@@ -16,13 +34,7 @@
    }
 
 
- 	aside{
-	background-color: #ccea53;
-   	height: 700px;
-   	   	width:15%;
-   	float:right;
-   	display:flex;
-   }
+
  	footer{
    	background-color: #a7d54f;
    	height: 100px;
@@ -101,4 +113,80 @@
   	}
   	.profile-btn-group {
   		float:right;
-  	}
+	  }
+	  
+	.search {
+		height: 60px;
+		background-color: #ffffff;
+		border-radius: 30px;
+		padding: 10px;
+		border: 1px solid #dee2e6;
+		margin-bottom: 5%;
+	}
+	    
+	.search-dropdown{
+		width:20%;
+		border: none;
+	}
+	
+	.search-input{
+	    color: black;
+	    border: 0;
+		padding: 0 10px;
+	    outline: 0;
+	    background: none;
+	    width: 70%;
+	    transition: width 0.4s linear;
+	    }
+	
+	.search-icon{
+		height: 40px;
+		width: 40px;
+		float: right;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-radius: 50%;
+		color:white;
+	}
+
+	.fas fa-search:before {
+	    content: "\f002";
+	}
+	
+	ul.list-header2 {
+	    font-weight: bold;
+	    border-bottom: #adb5bd solid 1px;
+	}
+
+	.post-list li{
+	     display: inline-block;
+	     text-overflow: ellipsis;
+	     overflow: hidden;
+	     height: 30px;
+	     white-space: nowrap;
+	}
+	
+	.post-list .keyword{
+	    width: 30%
+	}
+	
+	.post-list .company{
+	    width : 20%;
+	}
+	
+	.post-list .applied-date{
+	    width:15%;
+	}
+	.post-list .last-modified {
+	    width: 15%;
+	}
+	
+	ul.pagination li{
+		height: 50px;
+	}
+
+	span.bd-content-title {
+	    font-size: 2rem;
+	    font-weight: bold;
+	}
