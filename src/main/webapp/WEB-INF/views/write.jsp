@@ -28,6 +28,8 @@
 			margin-left: 50px;
 			margin-top: -2%;
 			padding: 5px;
+			transition: height 3s;
+			height: 100px;
 		}
 
     </style>
