@@ -39,7 +39,8 @@ public class HomeController {
 		ModelAndView mav = new ModelAndView();
 
 		//TODO : 인터셉터 내에서 처리할 수는 없을까?
-		if(session.getAttribute("user") != null) mav.setViewName("list");
+		if(session.getAttribute("user") != null) 
+			mav.setViewName("redirect:/self_introduce/list");
 		else mav.setViewName("example");
 
 		return mav;
