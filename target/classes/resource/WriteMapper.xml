@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="resource.WriteMapper">
+	<select id="selectAll" parameterType="String" resultType="vo.SelfIntroduceVO">
+		select * from Self_Introduce 
+		where userid = #{userid}
+	</select>
+	
+	<select id="searchSelf" parameterType="java.util.HashMap" resultType="vo.SelfIntroduceVO">
+		select id, userId, question, answer, to_char(applyDate,'yyyy"년"mm"월"dd"일"') applyDate, appliedCompany, to_char(writeDate,'yyyy"년"mm"월"dd"일"') writeDate, , to_char(editDate,'yyyy"년"mm"월"dd"일"') editDate  
+		from SelfIntroduce where ${type} like '%'||#{window}||'%'
+	</select>
+	
+	<insert id="insertSelf" parameterType="vo.SelfIntroduceVO">
+		<selectKey resultType="int" keyProperty="id" order="BEFORE">
+		select SELF_INTRODUCE_SEQ.nextval from dual
+		</selectKey>
+		insert into Self_Introduce (id, userId, question, answer, applyDate, appliedCompany, writeDate, editDate) 
+		values (#{id}, 'test', #{question}, #{answer}, sysdate, #{appliedCompany},#{writeDate}, sysdate)
+	</insert>
+</mapper>
+
+
+
+
+
+
+	
+

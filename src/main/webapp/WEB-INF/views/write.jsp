@@ -3,6 +3,7 @@
 <%@page import="org.springframework.web.context.annotation.RequestScope"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" %>
+<%@ page import="vo.SelfIntroduceVO, java.util.List" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -89,22 +90,21 @@
     	<form>
     		<div class="row">
 	    		<div class="form-group col-sm">
-		    		<textarea class="form-control" id="exampleFormControlTextarea1" placeholder="질문" rows="3" style="width:500px;"></textarea>
+		    		<textarea class="form-control" name="question" id="exampleFormControlTextarea1" placeholder="질문" rows="3" style="width:500px;"></textarea>
 		    		<br>
-		    		<textarea class="form-control" id="exampleFormControlTextarea1" placeholder="답변" rows="3" style="width:500px;"></textarea>
+		    		<textarea class="form-control" name="answer" id="exampleFormControlTextarea1" placeholder="답변" rows="3" style="width:500px;"></textarea>
 	  			</div>
 	
 				<div class="form-group col-sm-3">
-			  			<input id="textinput" name="" type="text" placeholder="키워드" class="form-control input-md"><br><br>
-			  			<input id="textinput" name="" type="text" placeholder="지원회사" class="form-control input-md"><br><br>
-			  			<input id="textinput" name="" type="DATE" placeholder="지원일자" class="form-control input-md"><br><br>
-			  		
+			  			<input id="textinput" name="key" type="text" placeholder="키워드" class="form-control input-md"><br><br>
+			  			<input id="textinput" name="appliedCompany" type="text" placeholder="지원회사" class="form-control input-md"><br><br>
+			  			<input id="textinput" name="writeDate" type="DATE" placeholder="지원일자" class="form-control input-md"><br><br>	
 				</div>    		
     		</div>
 
 			<div class="from-group">
-				<input type="submit" name="" value="저장" class="btn btn-dark" style="width:100px">
-				<input type="reset" name="" value="취소" class="btn btn-dark" style="width:100px">	
+				<input type="submit" value="저장" class="btn btn-dark" style="width:100px">
+				<input type="reset" value="취소" class="btn btn-dark" style="width:100px">	
 			</div>		
     	</form>
     </div>
