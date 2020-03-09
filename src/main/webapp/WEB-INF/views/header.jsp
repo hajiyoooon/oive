@@ -3,7 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" %>
     <header class="header navbar sticky-top">
-      <a class="navbar-brand" href="#">spec overflow :</a>
+      <a class="navbar-brand" href="/oive/">spec overflow :</a>
         <ul>
           <li><a href="/oive/profile">프로필</a></li>
           <li><a href="/oive/self_introduce/list">자기소개서</a></li>

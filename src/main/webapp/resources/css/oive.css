@@ -17,33 +17,17 @@
 		color: #0085A1;
 	}
 
-	aside{
-		background-color: #ccea53;
-		height: 700px;
-		width:15%;
-		float:right;
-		display:flex;
-	}
-
-	nav{
-   	background-color: #24b4a0;
-   	height: 700px;
-   	width:15%;
-   	float:left;
-   	display:flex;
-   }
-
-
-
- 	footer{
-   	background-color: #a7d54f;
-   	height: 100px;
-	position:fixed; 
-  	left:0px; 
-  	bottom:0px; 
-  	width:100%; 
-  	color: white; 
-  	}
+footer {
+    background-color: #4fd5d2;
+    height: 60px;
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
+    width: 100%;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
    
    
    div.temp{

@@ -36,7 +36,6 @@
 	<%@ include file="header.jsp" %>
   <div id="body">
 
-
     <div class="container">
 		<div class="row">
 			<div class="search col-sm" action="" method="GET">
@@ -107,7 +106,9 @@
 			</div>		
     	</form>
     </div>
- </div>
+	<%@ include file="footer.jsp" %>
+
+</div>
 
 <script>
 	var event;
