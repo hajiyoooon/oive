@@ -1,12 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" %>
-<form class="profile">
-	<input type="hidden" name="category" value="university">
-	<input type="hidden" name="id" value="{UniversityVO.id}">
+
+<%   %>
+<form class="profile" action="edit" method="GET">
+<!-- 구현이 끝난 후 type을 "hidden"으로 바꿀 것  -->
+	<input type="text" name="userId" value="${sessionScope.user.userId}">
+	<input type="text" name="category" value="university">
+	<input type="text" name="id" value="${vo.id}">
+	
   <div class="form-row">
     <div class="col form-group">
       <label for="uName" class="">학교명<span class="text-muted">(필수입력)</span></label>
-      <input type="text" name="uName" value="" class="form-control"
+      <input type="text" name="uName" value="${university.name}" class="form-control"
       	required maxlength=16 placeholder="학교명을 입력하세요.">
     </div>
     <div class="col form-group">
@@ -60,7 +65,7 @@
     <div class="col form-group">
       <label for="totalGrade">총 학점</label>
       <input type="number" name="totalGrade" value="" min=0.00 max=4.99 class="form-control"
-      placeholder="평점평균 입력">
+      step="0.01" placeholder="평점평균 입력">
     </div>
     <div class="col form-group">
       <label for="majorGrade">전공 학점</label>
@@ -88,9 +93,9 @@
     </div>
   </div>
   <div class="form-group profile-btn-group">
-    <button class="btn btn-success" type="submit" name="button">수정</button>
-    <a href="/oive/delete?id={vo.id}&category='university'"><button class="btn btn-danger" type="button" name="button">삭제</button></a>
+    <button class="btn btn-success" type="submit">수정</button>
+    <a href="/oive/delete?id=${vo.id}&category='university'"><button class="btn btn-danger" type="button" name="button">삭제</button></a>
     <!-- GET 형식으로 삭제 구현함 -->
-    <button id="university" class="btn btn-primary" type="button" name="button" onclick="add(id);false;">추가</button>
+    <button id="university" class="btn btn-primary" type="button" onclick="add(id);false;">추가</button>
   </div>
  </form>
