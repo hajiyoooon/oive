@@ -5,8 +5,9 @@
 	  src: local('Noto Sans'), local('NotoSans'), url(https://fonts.gstatic.com/s/notosans/v9/o-0IIpQlx3QUlC5A4PNr6DRAW_0.woff2) format('woff2');
 	  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
 	}
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css); .jejugothic * { font-family: 'Jeju Gothic', sans-serif; }
 
-   nav{
+	nav{
    	background-color: #24b4a0;
    	height: 700px;
    	width:15%;
@@ -46,17 +47,17 @@
 	padding: 3%;
    }
 
-  .header{
-   padding-top: 30px;
-	background-color:#009999;  
-	font-color:white;
-	color:white;
-	 }
-	a.navbar-brand {
-	    color:white;
-	    font-family:Noto Sans;
-	    font-size:xx-large;
-	
+	header{
+		padding-top: 30px;
+		background-color:#ffffff;  
+		box-shadow: 0 0 2px rgba(0,0,0,0.2);
+		margin-bottom: 60px;
+		color: #333333;
+	}
+	.navbar-brand {
+	    font-family: Noto Sans;
+	    font-size: xx-large;
+	    font-weight: bolder;
 	}
 	.header h4{
    	text-align:right;
@@ -66,19 +67,21 @@
    
    .header ul{
  		list-style-type: none;
-	margin: 0;
-	padding: 0;
-	overflow: hidden;
+		margin: 0;
+		padding: 0;
+		overflow: hidden;
  	}
- 	.header li{
- 		display: inline-block;
-	color: white;
-	text-align: center;
-	padding: 16px 16px;
-	text-decoration: none;
-	margin-top: 10px;
- 	}
- 	
+	.header li {
+	    display: inline-block;
+	    text-align: center;
+	    padding: 16px 16px;
+	    text-decoration: none;
+	    margin-top: 10px;
+	    color: #333333;
+	    opacity: 0.7;
+	    font-family: Jeju Gothic;
+	}
+
     #title{
     	text-align: left;
     	font-weight: bold;
@@ -92,7 +95,7 @@
     	color:red;
   	}
  
-  	form.profile {	/** ÇÁ·ÎÇÊ ÀÛ¼º ÆäÀÌÁö¸¦ À§ÇÑ ¿©¹é **/
+  	form.profile {	/** ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ **/
   		margin-top:15px;
   		margin-bottom:15px;
   	}
