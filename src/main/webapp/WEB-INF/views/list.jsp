@@ -112,50 +112,6 @@
 			<div class="col-sm-4">
 				<span class="bd-content-title" style="font-family: Jeju Gothic;">나의 자기소개서</span>
 			</div>
-<<<<<<< Updated upstream
-			<div class="header2-right">
-				<div class="search row">
-				    <select class="form-control search-dropdown col-sm-3" id="exampleFormControlSelect1">
-				      <option>1</option>
-				      <option>2</option>
-				      <option>3</option>
-				      <option>4</option>
-				      <option>5</option>
-				    </select>
-					<input class="search-input col-sm">
-					<a class="search-icon">
-						<i class="fas fa-search"></i>
-					</a>			
-				</div>
-			</div>
-		</div>
-
-		<ul class="list-header2">
-        	<li class="keyword">키워드</li>
-        	<li class="company">지원 회사</li>
-        	<li class ="applied-date">지원일자</li>
-        	<li class="last-modified">최종수정일</li>
-        	<li></li>
-        </ul>
-        <ul>
-	        <li class="keyword"><a href="#" class="badge badge-primary">#도전정신</a> #책임감 #키워드 #키워드 #키워드</li>
-	        <li class="company">삼성전자</li>
-     	    <li class="applied-date">2020.01.01</li>
-     	    <li class="last-modified">2020.01.01</li>
-     	    <li class="view"><a href="#">조회</a></li>
-     	    <li class="edit"><a href="#">수정</a></li>	        
-     	    <li class="delete"><a href="#">삭제</a></li>	        
-	    </ul>	
-	    <ul>
-	        <li class="keyword">#도전정신 #책임감</li>
-	        <li class="company">삼성전자</li>
-     	    <li class="applied-date">2020.01.01</li>
-     	    <li class="last-modified">2020.01.01</li>
-     	    <li class="view"><a href="#">조회</a></li>
-     	    <li class="edit"><a href="#">수정</a></li>	        
-     	    <li class="delete"><a href="#">삭제</a></li>	       
-	    </ul>	
-=======
 			<form class="search col-sm" action="" method="GET">
 				<select class="form-control search-dropdown" id="search" name="boundary">
 					<option value="company">지원회사</option>
@@ -194,7 +150,6 @@
 
 		</div>
 
->>>>>>> Stashed changes
 
         <!-- Pager -->
 		<div class="d-flex justify-content-center">
