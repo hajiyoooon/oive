@@ -1,16 +1,27 @@
 package vo;
 
+import java.util.List;
+
 public class SelfIntroduceVO {
     private int id;
-    private int userId;
+    private String userId;
     private String question;
     private String answer;
     private String applyDate;
     private String appliedCompany;
     private String writeDate;
     private String editDate;
+    private String keywords;
 
-    public String getApplyDate() {
+    public String getKeywords() {
+		return keywords;
+	}
+
+	public void setKeywords(String keywords) {
+		this.keywords = keywords;
+	}
+
+	public String getApplyDate() {
 		return applyDate;
 	}
 
@@ -34,15 +45,17 @@ public class SelfIntroduceVO {
         this.id = id;
     }
 
-    public int getUserId() {
-        return userId;
-    }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
 
-    public String getQuestion() {
+    public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public String getQuestion() {
         return question;
     }
 

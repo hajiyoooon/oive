@@ -1,8 +1,6 @@
 
-<%@page import="vo.SelfIntroduceVO"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page import="org.springframework.web.context.annotation.RequestScope"%>
-<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" %>
 <!DOCTYPE html>
@@ -124,11 +122,11 @@
 			<div class="header2-right">
 				<div class="search row">
 				    <select class="form-control search-dropdown col-sm-3" id="exampleFormControlSelect1">
-				      <option>지원회사</option>
-				      <option>키워드</option>
-					  <option>질문</option>
-					  <option>답변</option>
-
+				      <option>1</option>
+				      <option>2</option>
+				      <option>3</option>
+				      <option>4</option>
+				      <option>5</option>
 				    </select>
 					<input class="search-input col-sm">
 					<a class="search-icon">
@@ -153,22 +151,16 @@
      	    <li class="view"><a href="#">조회</a></li>
      	    <li class="edit"><a href="#">수정</a></li>	        
      	    <li class="delete"><a href="#">삭제</a></li>	        
-		</ul>	
-		
-		<c:forEach var="item" items="${ list }" >
-			<ul>
-		        <li class="keyword">
-		        	<c:forTokens var="keyword" items="${ item.keywords }" delims=",">
-		        		<a href="#" class="badge badge-primary">${ keyword }</a>
-		        	</c:forTokens>
-		        </li>
-		        <li class="company">${item.appliedCompany}</li>
-	     	    <li class="applied-date">${item.applyDate}</li>
-	     	    <li class="last-modified">${item.editDate}</li>
-	     	    <li class="view"><a href="write/${ item.id }">조회/수정</a></li>        
-	     	    <li class="delete"><a href="#">삭제</a></li>	
-			</ul>
-		</c:forEach>
+	    </ul>	
+	    <ul>
+	        <li class="keyword">#도전정신 #책임감</li>
+	        <li class="company">삼성전자</li>
+     	    <li class="applied-date">2020.01.01</li>
+     	    <li class="last-modified">2020.01.01</li>
+     	    <li class="view"><a href="#">조회</a></li>
+     	    <li class="edit"><a href="#">수정</a></li>	        
+     	    <li class="delete"><a href="#">삭제</a></li>	       
+	    </ul>	
 
         <!-- Pager -->
 		<div class="d-flex justify-content-center">

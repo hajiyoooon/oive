@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import dao.SearchDAO;
 import dao.UserDAO;
 import service.UserService;
 import vo.UserVO;
@@ -23,6 +24,9 @@ import vo.UserVO;
 public class HomeController {
 	@Autowired
 	UserDAO dao;
+	
+	@Autowired
+	SearchDAO SearchDAO;
 	
 	@Autowired
 	UserService service;
@@ -79,12 +83,7 @@ public class HomeController {
 		return mav;
 	}
 	
-	@RequestMapping(value = "/self_introduce/list", method = RequestMethod.GET)
-	public String list() {
 
-		
-		return "list";
-	}
 	
 	@RequestMapping(value = "/profile", method = RequestMethod.GET)
 	public String profile() {
@@ -97,7 +96,7 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/self_introduce/write/{self_introduce_id}", method = RequestMethod.GET)
-	public String write(UserVO vo) {
+	public String write(UserVO vo, @PathVariable String self_introduce_id) {
 		return "write";
 	}
 	

@@ -9,9 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import vo.SelfIntroduceVO;
+import vo.UserVO;
 
 @Repository
-public class SearchDAO extends DAO {
+public class SearchDAO {
 	@Autowired
 	SqlSession sqlSession;
 	
@@ -19,8 +20,8 @@ public class SearchDAO extends DAO {
 	HttpSession httpSession;
 	
 	public List<SelfIntroduceVO> listAll(){
-		String userId = (String)httpSession.getAttribute("user");
-		return sqlSession.selectList("SearchMapper.selectAll", userId);
+		String userId = ((UserVO)httpSession.getAttribute("user")).getUserId();
+		return sqlSession.selectList("resource.SearchMapper.selectAll", userId);
 		
 	}
 }
