@@ -17,14 +17,36 @@ public class SearchController {
 	SearchDAO dao;
 	
 	@RequestMapping(value = "/self_introduce/list", method = RequestMethod.GET)
-	public ModelAndView list() {
-		List<SelfIntroduceVO> list = dao.listAll();
+	public ModelAndView list(String input, String boundary) {
+		List<SelfIntroduceVO> list = null;
+		if(boundary != null) {
+			switch (boundary) {
+			case "company":
+				list = dao.searchByCompany(input);
+				break;
+			case "keyword":
+				list = dao.searchByKeyword(input);
+				break;
+			case "question":
+				list = dao.searchByQuestion(input);
+				break;
+			case "answer":
+				list = dao.searchByAnswer(input);
+				break;
+
+			default:
+				break;
+			}
+		}
+		if(list == null) {
+			list = dao.listAll();	
+		}
+		
+		
+		 
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("list");
 		mav.addObject("list", list);
-		
-		System.out.println("검색 건수 : " + list.size());
-		System.out.println(list.get(0).getKeywords());
 		
 		return mav;
 	}
