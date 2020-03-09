@@ -84,12 +84,6 @@ public class HomeController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/profile", method = RequestMethod.GET)
-	public String profile() {
-
-		return "profile";
-	}
-
 	@RequestMapping(value = "/self_introduce/write/{self_introduce_id}", method = RequestMethod.GET)
 	public String write(UserVO vo, @PathVariable String self_introduce_id) {
 		return "write";

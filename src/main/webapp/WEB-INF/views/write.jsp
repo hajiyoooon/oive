@@ -99,6 +99,8 @@
 			  			<input id="textinput" name="key" type="text" placeholder="키워드" class="form-control input-md"><br><br>
 			  			<input id="textinput" name="appliedCompany" type="text" placeholder="지원회사" class="form-control input-md"><br><br>
 			  			<input id="textinput" name="writeDate" type="DATE" placeholder="지원일자" class="form-control input-md"><br><br>	
+						<input id="hidden" name="action" value="insert">	
+
 				</div>    		
     		</div>
 
