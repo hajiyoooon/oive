@@ -91,10 +91,11 @@
 		padding: 0 10px;
 	    outline: 0;
 	    background: none;
-	    width: 70%;
-	}
+	    width: 80%;
+	    transition: width 0.4s linear;
+	    }
 	
-	.search-icon{
+	    .search-icon{
 	    height: 40px;
 	    width: 40px;
 	    float: right;
@@ -178,5 +179,8 @@
 
       </div>
     </div>
+    <aside></aside>
+ 	</div>
+
   </body>
 </html>
