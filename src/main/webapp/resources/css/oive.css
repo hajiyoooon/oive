@@ -18,7 +18,7 @@
  	aside{
 	background-color: #ccea53;
    	height: 700px;
-   	   	width:15%;
+   	width:15%;
    	float:right;
    	display:flex;
    }
@@ -70,6 +70,7 @@
 	padding: 0;
 	overflow: hidden;
  	}
+ 	
  	.header li{
  		display: inline-block;
 	color: white;
