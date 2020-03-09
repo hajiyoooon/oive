@@ -50,8 +50,8 @@
 	<!-- user authentications -->
     <beans:bean id="authenticationInterceptor" class="service.AuthInterceptor">
     </beans:bean>
+    
     <!-- Interceptor 설정 -->
-   
     <interceptors>
         <interceptor>
         <!-- TODO :: 유저 권한에 따라서 다른 인터셉터 적용이 필요함 -->

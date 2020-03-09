@@ -3,14 +3,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" %>
     <header class="header navbar sticky-top">
-      <a class="navbar-brand" href="#"><em>spec overflow:</em> <span>자기소개서 작성</span ></a>
+      <a class="navbar-brand" href="/oive/">spec overflow :</a>
         <ul>
-      	<li>프로필작성</li>
-      	<li>자기소개서</li>
-      	<li>이력서만들기</li>
-      	<li>파일업로드</li>
-      	<li>내 정보</li>
+          <li><a href="/oive/profile">프로필</a></li>
+          <li><a href="/oive/self_introduce/list">자기소개서</a></li>
+          <li>이력서만들기</li>
+          <li>파일업로드</li>
+          <li><a href="/oive/mypage">내정보</a></li>
       	<li><a href="/oive/logout">로그아웃</a></li>
       </ul>
-      <h4> presented by oive </h4>
     </header>

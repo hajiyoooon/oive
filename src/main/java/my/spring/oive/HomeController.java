@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import dao.SearchDAO;
 import dao.UserDAO;
 import service.UserService;
 import vo.UserVO;
@@ -25,6 +26,9 @@ public class HomeController {
 	UserDAO dao;
 
 	@Autowired
+	SearchDAO SearchDAO;
+	
+	@Autowired
 	UserService service;
 
 	@Autowired
@@ -35,7 +39,8 @@ public class HomeController {
 		ModelAndView mav = new ModelAndView();
 
 		//TODO : 인터셉터 내에서 처리할 수는 없을까?
-		if(session.getAttribute("user") != null) mav.setViewName("list");
+		if(session.getAttribute("user") != null) 
+			mav.setViewName("redirect:/self_introduce/list");
 		else mav.setViewName("example");
 
 		return mav;
@@ -79,13 +84,6 @@ public class HomeController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/self_introduce/list", method = RequestMethod.GET)
-	public String list() {
-
-
-		return "list";
-	}
-
 	@RequestMapping(value = "/profile", method = RequestMethod.GET)
 	public String profile() {
 
@@ -93,7 +91,7 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/self_introduce/write/{self_introduce_id}", method = RequestMethod.GET)
-	public String write(UserVO vo) {
+	public String write(UserVO vo, @PathVariable String self_introduce_id) {
 		return "write";
 	}
 

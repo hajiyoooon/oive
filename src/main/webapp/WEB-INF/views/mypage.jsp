@@ -27,7 +27,7 @@
 					<div class="input-group">
 					  <label class="col-md-4 control-label" for="textinput">아이디:</label>  
 					  <div class="col-md">
-					  <input id="textinput" name="userId" type="text" placeholder="placeholder" class="form-control "> 
+					  <input id="textinput" name="userId" type="text" value="${user.userId}" class="form-control "> 
 					  </div>
 					</div>
 							
@@ -53,14 +53,14 @@
 					<div class="input-group">
 					  <label class="col-md-4 control-label" for="textinput">e-mail:</label>  
 					  <div class="col-md">
-					  <input id="textinput" name="email" type="text" placeholder="placeholder" class="form-control ">  
+					  <input id="textinput" name="email" type="text" value="${user.email}" class="form-control ">  
 					  </div>
 					</div>
 					
 					<div class="input-group">
 					  <label class="col-md-4 control-label" for="textinput">생일:</label>  
 					  <div class="col-md">
-					  <input id="textinput" name="birthday" type="date" placeholder="placeholder" class="form-control ">
+					  <input id="textinput" name="birthday" type="date" value="${user.birthday}" class="form-control ">
 					  </div>
 					</div>
 							
@@ -82,7 +82,7 @@
 	</div>
 	
     
-
+	<%@ include file="footer.jsp" %>
 
   </body>
 </html>
