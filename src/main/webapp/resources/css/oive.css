@@ -8,6 +8,11 @@
 
 @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css); .jejugothic * { font-family: 'Jeju Gothic', sans-serif; }
 
+	body{
+		font-family: "Noto Sans", "Arial", "Helvetica Neue", sans-serif;
+		font-weight: 400;
+		font-size: 14px;		
+	}
 	a {
 		color: #212529;
 		transition: all 0.2s;

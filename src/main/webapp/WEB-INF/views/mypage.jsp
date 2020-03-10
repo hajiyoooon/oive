@@ -20,6 +20,7 @@
   
 
 	<div class="container">
+<<<<<<< Updated upstream
 		<div class="row">
 	<div class="col-sm">
 		    	<form class="" action="join" method="POST">
@@ -30,49 +31,68 @@
 					  <input id="textinput" name="userId" type="text" value="${user.userId}" class="form-control "> 
 					  </div>
 					</div>
+=======
+		<div class="row justify-content-center">
+			<div class="col-lg-6 align-self-center">
+						<form class="" action="editUserInfo" method="POST">
+			
+							<div class="form-group">
+							  <label class="col-md-4 control-label" for="textinput">아이디</label>  
+							  <div class="col-md">
+							  <input id="textinput" name="userId" type="text" value="${user.userId}" class="form-control "> 
+							  </div>
+							</div>
+									
+							<!-- Password input-->
+							<div class="form-group">
+							  <label class="col-md-4 control-label" for="passwordinput">비밀번호:</label>
+							  <div class="col-md">
+								<input id="passwordinput" name="password" type="password" placeholder="placeholder" class="form-control ">
+							  </div>
+							</div>
+>>>>>>> Stashed changes
 							
-					<!-- Password input-->
-					<div class="input-group">
-					  <label class="col-md-4 control-label" for="passwordinput">비밀번호:</label>
-					  <div class="col-md">
-					    <input id="passwordinput" name="password" type="password" placeholder="placeholder" class="form-control ">
-					  </div>
-					</div>
-					
-					<!-- Password input-->
-					<div class="input-group">
-					  <label class="col-md-4 control-label" for="passwordinput">비밀번호 확인:</label>
-					  <div class="col-md">
-					  <!-- TODO : 이 부분은 js로 비교하는게 좋을 것 같음 -->
-					    <input id="passwordinput" type="password" placeholder="placeholder" class="form-control ">
-					  </div>
-					</div>
-						
+							<!-- Password input-->
+							<div class="form-group">
+							  <label class="col-md-4 control-label" for="passwordinput">비밀번호 확인:</label>
+							  <div class="col-md">
+							  <!-- TODO : 이 부분은 js로 비교하는게 좋을 것 같음 -->
+								<input id="passwordinput" type="password" placeholder="placeholder" class="form-control ">
+							  </div>
+							</div>
+								
+									
+							<!-- Text input-->
+							<div class="form-group">
+							  <label class="col-md-4 control-label" for="textinput">e-mail:</label>  
+							  <div class="col-md">
+							  <input id="textinput" name="email" type="text" value="${user.email}" class="form-control ">  
+							  </div>
+							</div>
 							
-					<!-- Text input-->
-					<div class="input-group">
-					  <label class="col-md-4 control-label" for="textinput">e-mail:</label>  
-					  <div class="col-md">
-					  <input id="textinput" name="email" type="text" value="${user.email}" class="form-control ">  
-					  </div>
-					</div>
-					
-					<div class="input-group">
-					  <label class="col-md-4 control-label" for="textinput">생일:</label>  
-					  <div class="col-md">
-					  <input id="textinput" name="birthday" type="date" value="${user.birthday}" class="form-control ">
-					  </div>
-					</div>
-							
-					 &nbsp;<input type="submit" value="회원정보수정">
-					 &nbsp;<input type="reset" value="취소">
-		
-			</form>
-    	</div>
+							<div class="form-group">
+							  <label class="col-md-4 control-label" for="textinput">생일:</label>  
+							  <div class="col-md">
+							  <input id="textinput" name="birthday" type="date" value="${user.birthday}" class="form-control ">
+							  </div>
+							</div>
+									
+							 &nbsp;<input type="submit" value="회원정보수정">
+							 &nbsp;<input type="reset" value="취소">
+				
+					</form>
+				</div>
+			
+			
+				</div>
 	
 	
+<<<<<<< Updated upstream
 		</div>
 <div class="row">
+=======
+		<div class="row">
+>>>>>>> Stashed changes
 			<div class="col-sm offset-sm-10">
 			<button class="btn btn-danger">회원탈퇴</button>
     
