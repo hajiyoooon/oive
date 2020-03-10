@@ -22,7 +22,7 @@
 	<div class="container">
 		<div class="row">
 	<div class="col-sm">
-		    	<form class="" action="join" method="POST">
+		    	<form class="" action="editUserInfo" method="POST">
 	
 					<div class="input-group">
 					  <label class="col-md-4 control-label" for="textinput">아이디:</label>  
@@ -72,9 +72,12 @@
 	
 	
 		</div>
-<div class="row">
+		<div class="row">
 			<div class="col-sm offset-sm-10">
-			<button class="btn btn-danger">회원탈퇴</button>
+				<form id="unregister" method="POST" action="unregister">
+					<input type="hidden" name="password"/>
+				</form>
+				<button class="btn btn-danger" onclick="unregister()">회원탈퇴</button>
     
 			</div>
 	    	
@@ -83,6 +86,17 @@
 	
     
 	<%@ include file="footer.jsp" %>
+
+	<script>
+		function unregister(){
+			var rawPassword = prompt("비밀번호를 입력해주세요.");
+			var dom = document.querySelector('#unregister');
+			console.log(rawPassword);
+			dom.querySelector('input').value = rawPassword;
+			dom.submit();
+		}
+
+	</script>
 
   </body>
 </html>
