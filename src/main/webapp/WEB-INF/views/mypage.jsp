@@ -22,7 +22,7 @@
 	<div class="container">
 		<div class="row">
 	<div class="col-sm">
-		    	<form class="" action="join" method="POST">
+		    	<form class="" action="editUserInfo" method="POST">
 	
 					<div class="input-group">
 					  <label class="col-md-4 control-label" for="textinput">아이디:</label>  

@@ -12,6 +12,12 @@
     	insert into users(userId, password, birthday, email)
     	values(#{userId},#{password},to_date(#{birthday} ,'yyyy-mm-dd' ), #{email})
  	</insert>
+ 	<insert id="updateUser" parameterType="vo.UserVO">
+		update users
+		set password = #{password}, email=#{email}, birthday = #{birthday}
+		where userid = #{userId}
+	
+ 	</insert>
 
 </mapper>
 

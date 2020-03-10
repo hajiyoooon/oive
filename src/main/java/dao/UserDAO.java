@@ -31,4 +31,13 @@ public class UserDAO {
 		}
 		return result;
 	}
+	
+	public boolean update(UserVO vo) {
+		boolean result = false;
+		String statement = "updateUser";
+		if(session.update(statement, vo) == 1) {
+			result = true;
+		}
+		return result;
+	}
 }
