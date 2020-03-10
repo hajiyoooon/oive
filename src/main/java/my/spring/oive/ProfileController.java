@@ -29,9 +29,10 @@ public class ProfileController {
 	@RequestMapping(value = "/profile", method = RequestMethod.GET)
 	public ModelAndView profile() {
 		ModelAndView mav = new ModelAndView();
-		String userId = ((UserVO)session.getAttribute("user")).getUserId();
+		String userId 
+			= ((UserVO)session.getAttribute("user")).getUserId();
 //		System.out.println(userId);
-		mav.addObject(uDao.listAll(userId));
+		mav.addObject("uvo", uDao.listAll(userId));
 		mav.setViewName("profile");
 		return mav;
 	}

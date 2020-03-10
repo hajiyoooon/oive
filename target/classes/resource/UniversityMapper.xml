@@ -4,7 +4,14 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="resource.UniversityMapper">
    	<select id="listAll" parameterType="string" resultType="vo.UniversityVO">
-    	select * from university
+    	select
+    		ID, USERID, UNAME, 
+    		TO_CHAR(ENROLLDATE,'YYYY-MM-DD') as ENROLLDATE, 
+    		TO_CHAR(GRADDATE,'YYYY-MM-DD') as GRADDATE, 
+    		STATUS, DEGREE,
+	 		MAJORTYPE,MAJORNAME,TOTALGRADE,MAJORGRADE,MAXGRADE,
+	 		ISTRANSFER,FILEID1,FILEID2
+    	 from university
     	where userId = #{userId}    	
  	</select>
  	<insert id="insertOne" parameterType="vo.UniversityVO">

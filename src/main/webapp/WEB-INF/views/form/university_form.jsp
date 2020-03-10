@@ -1,22 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<%   %>
+<c:forEach var="i" begin="0" end="${uvo.size()-1}">
 <form class="profile" action="edit" method="GET">
 <!-- 구현이 끝난 후 type을 "hidden"으로 바꿀 것  -->
 	<input type="text" name="userId" value="${sessionScope.user.userId}">
 	<input type="text" name="category" value="university">
-	<input type="text" name="id" value="${vo.id}">
+	<input type="text" name="id" value="${uvo[i].id}">
 	
   <div class="form-row">
     <div class="col form-group">
       <label for="uName" class="">학교명<span class="text-muted">(필수입력)</span></label>
-      <input type="text" name="uName" value="${university.name}" class="form-control"
+      <input type="text" name="uName" value="${uvo[i].uName}" class="form-control"
       	required maxlength=16 placeholder="학교명을 입력하세요.">
     </div>
     <div class="col form-group">
       <label for="majorName">학과명</label>
-      <input type="text" name="majorName" value="" class="form-control"
+      <input type="text" name="majorName" value="${uvo[i].majorName}" class="form-control"
       maxlength=33 placeholder="학과명을 입력하세요.">
     </div>
   </div>
@@ -44,32 +45,32 @@
     </div>
     <div class="col form-group">
       <label for="isTransfer" class="">편입</label>
-      <input type="checkbox" name="isTransfer" value="1" class="">
+      <input type="checkbox" name="isTransfer" value="${uvo[i].isTransfer}" class="">
     </div>
   </div>
   <div class="form-row">
     <div class="col form-group">
     	<label for="enrollDate">입학일</label>
-    	<input type="date" name="enrollDate" class="form-control">
+    	<input type="date" name="enrollDate" value="${uvo[i].enrollDate}" class="form-control">
     </div>
     <div class="col form-group">
     	<label for="gradeDate">졸업(예정)일</label>
-    	<input type="date" name="gradeDate" class="form-control">
+    	<input type="date" name="gradDate" value="${uvo[i].gradDate}" class="form-control">
     </div>
     <div class="col form-group">
       	<label for="status">졸업</label>
-      	<input type="checkbox" name="status" value="1" checked>
+      	<input type="checkbox" name="status" value="${uvo[i].status }" checked>
     </div>
   </div>
   <div class="form-row">
     <div class="col form-group">
       <label for="totalGrade">총 학점</label>
-      <input type="number" name="totalGrade" value="" min=0.00 max=4.99 class="form-control"
+      <input type="number" name="totalGrade" value="${uvo[i].totalGrade}" min=0.00 max=4.99 class="form-control"
       step="0.01" placeholder="평점평균 입력">
     </div>
     <div class="col form-group">
       <label for="majorGrade">전공 학점</label>
-      <input type="text" name="majorGrade" value="" class="form-control">
+      <input type="text" name="majorGrade" value="${uvo[i].majorGrade}" class="form-control">
     </div>
     <div class="col form-group">
       <label for="maxGrade" class="">최고학점</label>
@@ -99,3 +100,4 @@
     <button id="university" class="btn btn-primary" type="button" onclick="add(id);false;">추가</button>
   </div>
  </form>
+ </c:forEach>

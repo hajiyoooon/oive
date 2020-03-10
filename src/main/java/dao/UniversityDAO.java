@@ -15,7 +15,8 @@ public class UniversityDAO {
 	
 	public List<UniversityVO> listAll(String userId) {
 		List<UniversityVO> list =
-				session.selectList("resource.UniversityMapper.listAll");
+				session.selectList("resource.UniversityMapper.listAll", userId);
+//		System.out.println(list.get(0).getuName());
 		return list;
 	}
 	public int insertOne(int id) {
