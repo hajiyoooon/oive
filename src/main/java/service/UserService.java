@@ -69,4 +69,20 @@ public class UserService {
 		
 		return result;
 	}
+	public boolean unregister(String rawPassword) {
+		boolean possible = false;
+		UserVO vo = (UserVO) session.getAttribute("user");
+		
+		if(vo != null) {
+			if(encoder.matches(rawPassword, vo.getPassword())) {
+				if(dao.delete(vo)) {
+					possible = true;
+					session.removeAttribute("user");
+				}
+		
+			}
+		}
+		
+		return possible;
+	}
 }

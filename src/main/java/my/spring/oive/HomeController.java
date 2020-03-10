@@ -83,6 +83,21 @@ public class HomeController {
 		}
 		return mav;
 	}
+	@RequestMapping(value = "/unregister", method = RequestMethod.POST)
+	public ModelAndView unregister(String password, RedirectAttributes redirectAttr) {
+		ModelAndView mav = new ModelAndView();
+
+		if(service.unregister(password)) {
+			redirectAttr.addFlashAttribute("msg", "회원 정보가 안전하게 삭제되었습니다.");
+			mav.setViewName("redirect:/");
+		}
+		else {
+			mav.setViewName("mypage");
+			mav.addObject("msg", "회원 정보를 삭제할 수 없습니다.");
+		}
+		return mav;
+	}
+	
 	
 	@RequestMapping(value = "/editUserInfo", method = RequestMethod.POST)
 	public ModelAndView editUserInfo(UserVO vo, RedirectAttributes redirectAttr) {

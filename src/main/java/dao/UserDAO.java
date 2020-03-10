@@ -40,4 +40,13 @@ public class UserDAO {
 		}
 		return result;
 	}
+	
+	public boolean delete(UserVO vo) {
+		boolean result = false;
+		String statement = "deleteUser";
+		if(session.delete(statement, vo) == 1) {
+			result = true;
+		}
+		return result;
+	}
 }
