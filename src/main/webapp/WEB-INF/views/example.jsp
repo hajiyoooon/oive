@@ -18,9 +18,7 @@
     display: grid;
     grid-template-columns: 3fr 1fr;
     padding-top: 30px;
-	background-color:#009999;  
-	font-color:white;
-	color:white;
+  	color:white;
   }
   
   @font-face {
@@ -58,7 +56,7 @@
 
 
   body{
-	background: linear-gradient(to bottom,rgba(92,77,66,.8) 0,rgba(92,77,66,.8) 100%),url(resources/images/aaa.jpg);
+	  background: linear-gradient(to bottom,rgba(92, 77, 66, 0.4) 0,rgba(92,77,66,.8) 100%),url(resources/images/aaa.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: scroll;

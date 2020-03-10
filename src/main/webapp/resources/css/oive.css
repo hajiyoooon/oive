@@ -1,36 +1,33 @@
-  @font-face {
-	  font-family: 'Noto Sans';
-	  font-style: normal;
-	  font-weight: 400;
-	  src: local('Noto Sans'), local('NotoSans'), url(https://fonts.gstatic.com/s/notosans/v9/o-0IIpQlx3QUlC5A4PNr6DRAW_0.woff2) format('woff2');
-	  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+@font-face {
+	font-family: 'Noto Sans';
+	font-style: normal;
+	font-weight: 400;
+	src: local('Noto Sans'), local('NotoSans'), url(https://fonts.gstatic.com/s/notosans/v9/o-0IIpQlx3QUlC5A4PNr6DRAW_0.woff2) format('woff2');
+	unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css); .jejugothic * { font-family: 'Jeju Gothic', sans-serif; }
+
+	a {
+		color: #212529;
+		transition: all 0.2s;
+		font-family: 'Jeju Gothic', sans-serif;
+	}
+	a:focus, a:hover {
+		color: #0085A1;
 	}
 
-   nav{
-   	background-color: #24b4a0;
-   	height: 700px;
-   	width:15%;
-   	float:left;
-   	display:flex;
-   }
-
-
- 	aside{
-	background-color: #ccea53;
-   	height: 700px;
-   	   	width:15%;
-   	float:right;
-   	display:flex;
-   }
- 	footer{
-   	background-color: #a7d54f;
-   	height: 100px;
-	position:fixed; 
-  	left:0px; 
-  	bottom:0px; 
-  	width:100%; 
-  	color: white; 
-  	}
+footer {
+    background-color: #4fd5d2;
+    height: 60px;
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
+    width: 100%;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
    
    
    div.temp{
@@ -46,17 +43,17 @@
 	padding: 3%;
    }
 
-  .header{
-   padding-top: 30px;
-	background-color:#009999;  
-	font-color:white;
-	color:white;
-	 }
-	a.navbar-brand {
-	    color:white;
-	    font-family:Noto Sans;
-	    font-size:xx-large;
-	
+	header{
+		padding-top: 30px;
+		background-color:#ffffff;  
+		box-shadow: 0 0 2px rgba(0,0,0,0.2);
+		margin-bottom: 60px;
+		color: #333333;
+	}
+	.navbar-brand {
+	    font-family: Noto Sans;
+	    font-size: xx-large;
+	    font-weight: bolder;
 	}
 	.header h4{
    	text-align:right;
@@ -66,19 +63,21 @@
    
    .header ul{
  		list-style-type: none;
-	margin: 0;
-	padding: 0;
-	overflow: hidden;
+		margin: 0;
+		padding: 0;
+		overflow: hidden;
  	}
- 	.header li{
- 		display: inline-block;
-	color: white;
-	text-align: center;
-	padding: 16px 16px;
-	text-decoration: none;
-	margin-top: 10px;
- 	}
- 	
+	.header li {
+	    display: inline-block;
+	    text-align: center;
+	    padding: 16px 16px;
+	    text-decoration: none;
+	    margin-top: 10px;
+	    color: #333333;
+	    opacity: 0.7;
+	    font-family: Jeju Gothic;
+	}
+
     #title{
     	text-align: left;
     	font-weight: bold;
@@ -92,10 +91,86 @@
     	color:red;
   	}
  
-  	form.profile {	/** ÇÁ·ÎÇÊ ÀÛ¼º ÆäÀÌÁö¸¦ À§ÇÑ ¿©¹é **/
+  	form.profile {	/** ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ **/
   		margin-top:15px;
   		margin-bottom:15px;
   	}
   	.profile-btn-group {
   		float:right;
-  	}
+	  }
+	  
+	.search {
+		height: 60px;
+		background-color: #ffffff;
+		border-radius: 30px;
+		padding: 10px;
+		border: 1px solid #dee2e6;
+		margin-bottom: 5%;
+	}
+	    
+	.search-dropdown{
+		width:20%;
+		border: none;
+	}
+	
+	.search-input{
+	    color: black;
+	    border: 0;
+		padding: 0 10px;
+	    outline: 0;
+	    background: none;
+	    width: 70%;
+	    transition: width 0.4s linear;
+	    }
+	
+	.search-icon{
+		height: 40px;
+		width: 40px;
+		float: right;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-radius: 50%;
+		color:white;
+	}
+
+	.fas fa-search:before {
+	    content: "\f002";
+	}
+	
+	ul.list-header2 {
+	    font-weight: bold;
+	    border-bottom: #adb5bd solid 1px;
+	}
+
+	.post-list li{
+	     display: inline-block;
+	     text-overflow: ellipsis;
+	     overflow: hidden;
+	     height: 30px;
+	     white-space: nowrap;
+	}
+	
+	.post-list .keyword{
+	    width: 30%
+	}
+	
+	.post-list .company{
+	    width : 20%;
+	}
+	
+	.post-list .applied-date{
+	    width:15%;
+	}
+	.post-list .last-modified {
+	    width: 15%;
+	}
+	
+	ul.pagination li{
+		height: 50px;
+	}
+
+	span.bd-content-title {
+	    font-size: 2rem;
+	    font-weight: bold;
+	}
