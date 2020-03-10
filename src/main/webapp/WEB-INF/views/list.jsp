@@ -95,7 +95,7 @@
 		
 		</div>
 
-
+	<%@ include file="footer.jsp" %>
       </div>
   </body>
 </html>

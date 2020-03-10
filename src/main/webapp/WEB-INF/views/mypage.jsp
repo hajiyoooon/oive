@@ -20,18 +20,6 @@
   
 
 	<div class="container">
-<<<<<<< Updated upstream
-		<div class="row">
-	<div class="col-sm">
-		    	<form class="" action="join" method="POST">
-	
-					<div class="input-group">
-					  <label class="col-md-4 control-label" for="textinput">아이디:</label>  
-					  <div class="col-md">
-					  <input id="textinput" name="userId" type="text" value="${user.userId}" class="form-control "> 
-					  </div>
-					</div>
-=======
 		<div class="row justify-content-center">
 			<div class="col-lg-6 align-self-center">
 						<form class="" action="editUserInfo" method="POST">
@@ -50,7 +38,6 @@
 								<input id="passwordinput" name="password" type="password" placeholder="placeholder" class="form-control ">
 							  </div>
 							</div>
->>>>>>> Stashed changes
 							
 							<!-- Password input-->
 							<div class="form-group">
@@ -86,15 +73,13 @@
 			
 				</div>
 	
-	
-<<<<<<< Updated upstream
 		</div>
-<div class="row">
-=======
 		<div class="row">
->>>>>>> Stashed changes
 			<div class="col-sm offset-sm-10">
-			<button class="btn btn-danger">회원탈퇴</button>
+				<form id="unregister" method="POST" action="unregister">
+					<input type="hidden" name="password"/>
+				</form>
+				<button class="btn btn-danger" onclick="unregister()">회원탈퇴</button>
     
 			</div>
 	    	
@@ -102,7 +87,18 @@
 	</div>
 	
     
+	<%@ include file="footer.jsp" %>
 
+	<script>
+		function unregister(){
+			var rawPassword = prompt("비밀번호를 입력해주세요.");
+			var dom = document.querySelector('#unregister');
+			console.log(rawPassword);
+			dom.querySelector('input').value = rawPassword;
+			dom.submit();
+		}
+
+	</script>
 
   </body>
 </html>
