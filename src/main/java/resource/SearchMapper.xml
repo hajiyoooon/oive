@@ -6,46 +6,54 @@
    	<select id="selectAll" resultType="vo.SelfIntroduceVO">
 	select s.id, to_char(s.applydate,'yyyy-mm-dd') applydate,
 	    to_char(s.editdate,'yyyy-mm-dd') editdate, s.appliedcompany, k.keywords
-	from self_introduce s, (select listagg(k.keyword,',') within group(order by sid) as keywords
-	    from keyword_selfintroduce k, self_introduce s
-	    where sid = s.id and s.userid = #{userId}
-	    group by s.id) k
-
+	from self_introduce s left outer join (select s.id, listagg(k.keyword,',') within group(order by sid) as keywords
+	        from keyword_selfintroduce k, self_introduce s
+	        where sid = s.id and s.userid = #{userId}
+	        group by s.id) k
+	    on s.id = k.id
  	</select>
  	<select id="searchByCompany" parameterType="hashmap" resultType="vo.SelfIntroduceVO">
 	select s.id, to_char(s.applydate,'yyyy-mm-dd') applydate,
 	    to_char(s.editdate,'yyyy-mm-dd') editdate, s.appliedcompany, k.keywords
-	from self_introduce s, (select listagg(k.keyword,',') within group(order by sid) as keywords
+	from self_introduce s left outer join (select s.id, listagg(k.keyword,',') within group(order by sid) as keywords
 	    from keyword_selfintroduce k, self_introduce s
-	    where sid = s.id and s.userid = #{userId} and s.appliedcompany like '%'||#{input}||'%'
+	    where sid = s.id and s.userid = #{userId} 
 	    group by s.id) k
+	   on s.id = k.id
+	where s.appliedcompany like '%'||#{input}||'%'
  	</select>
  	
  	<select id="searchByKeyword" resultType="vo.SelfIntroduceVO">
 	select s.id, to_char(s.applydate,'yyyy-mm-dd') applydate,
 	    to_char(s.editdate,'yyyy-mm-dd') editdate, s.appliedcompany, k.keywords
-	from self_introduce s, (select listagg(k.keyword,',') within group(order by sid) as keywords
+	from self_introduce s left outer join (select s.id, listagg(k.keyword,',') within group(order by sid) as keywords
 	    from keyword_selfintroduce k, self_introduce s
 	    where sid = s.id and s.userid = #{userId}
 	    group by s.id) k
+	    on s.id = k.id
 	where k.keywords like '%'||#{input}||'%'
+	
  	</select>
  	
  	 	<select id="searchByQuestion" parameterType="hashmap" resultType="vo.SelfIntroduceVO">
 	select s.id, s.question, s.answer, to_char(s.applydate,'yyyy-mm-dd') applydate,
 	    to_char(s.editdate,'yyyy-mm-dd') editdate, s.appliedcompany, k.keywords
-	from self_introduce s, (select listagg(k.keyword,',') within group(order by sid) as keywords
+	from self_introduce s left outer join (select s.id, listagg(k.keyword,',') within group(order by sid) as keywords
 	    from keyword_selfintroduce k, self_introduce s
-	    where sid = s.id and s.userid = #{userId} and s.question like '%'||#{input}||'%'
+	    where sid = s.id and s.userid = #{userId}
 	    group by s.id) k
+	    on s.id = k.id
+	where s.question like '%'||#{input}||'%'
  	</select>
  	 	<select id="searchByAnswer" parameterType="hashmap" resultType="vo.SelfIntroduceVO">
 	select s.id, s.question, s.answer, to_char(s.applydate,'yyyy-mm-dd') applydate,
 	    to_char(s.editdate,'yyyy-mm-dd') editdate, s.appliedcompany, k.keywords
-	from self_introduce s, (select listagg(k.keyword,',') within group(order by sid) as keywords
+	from self_introduce s left outer join (select s.id, listagg(k.keyword,',') within group(order by sid) as keywords
 	    from keyword_selfintroduce k, self_introduce s
-	    where sid = s.id and s.userid = #{userId} and s.answer like '%'||#{input}||'%'
+	    where sid = s.id and s.userid = #{userId}
 	    group by s.id) k
+	    on s.id = k.id
+	where s.answer like '%'||#{input}||'%'
  	</select>
 </mapper>
 
