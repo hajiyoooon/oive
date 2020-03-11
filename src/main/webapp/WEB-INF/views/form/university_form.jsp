@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 
 <c:forEach var="i" begin="0" end="${uvo.size()-1}">
-<form class="profile" action="edit" method="GET">
+<form id="form_university_${uvo[i].id}" class="profile" 
+	action="edit" method="POST" enctype="multipart/form-data">
 <!-- 구현이 끝난 후 type을 "hidden"으로 바꿀 것  -->
 	<input type="text" name="userId" value="${sessionScope.user.userId}">
 	<input type="text" name="category" value="university">
@@ -25,27 +25,32 @@
     <div class="col form-group">
       <label for="majorType">전공 유형</label>
       <select name="majorType" class="custom-select">
-      	<option value="0">선택하세요.</option>
-		<option value="1">단일전공</option>
-		<option value="2">복수전공</option>
-		<option value="3">부전공</option>
-		<option value="9">기타</option>
+      	<option value="" >선택하세요.</option>
+		<option value="단일전공" 
+		${uvo[i].majorType=='단일전공'?'selected':''}>단일전공</option>
+		<option value="복수전공"
+		${uvo[i].majorType=='복수전공'?'selected':''}>복수전공</option>
+		<option value="부전공"
+		${uvo[i].majorType=='부전공'?'selected':''}>부전공</option>
+		<option value="기타"
+		${uvo[i].majorType=='기타'?'selected':''}>기타</option>
 	  </select>
     </div>
     <div class="col form-group">
       <label for="degree">학위 유형</label>
       <select name="degree" class="custom-select">
-        <option value="0">선택하세요.</option>
-        <option value="1">학사</option>
-        <option value="2">전문학사</option>
-        <option value="3">석사</option>
-        <option value="4">박사</option>
-      	<option value="5">기타</option>
+        <option value="">선택하세요.</option>
+        <option ${uvo[i].degree=='학사'?'selected':''}>학사</option>
+        <option ${uvo[i].degree=='전문학사'?'selected':''}>전문학사</option>
+        <option ${uvo[i].degree=='석사'?'selected':''}>석사</option>
+        <option ${uvo[i].degree=='박사'?'selected':''}>박사</option>
+      	<option ${uvo[i].degree=='기타'?'selected':''}>기타</option>
       </select>
     </div>
     <div class="col form-group">
       <label for="isTransfer" class="">편입</label>
-      <input type="checkbox" name="isTransfer" value="${uvo[i].isTransfer}" class="">
+      <input type="checkbox" name="isTransfer" value="편입" class=""
+      ${uvo[i].isTransfer=='1'?'checked':''}>
     </div>
   </div>
   <div class="form-row">
@@ -58,8 +63,13 @@
     	<input type="date" name="gradDate" value="${uvo[i].gradDate}" class="form-control">
     </div>
     <div class="col form-group">
-      	<label for="status">졸업</label>
-      	<input type="checkbox" name="status" value="${uvo[i].status }" checked>
+      	<label for="status">졸업여부</label>
+      	<select name="status" class="custom-select">
+      		<option ${uvo[i].status=='졸업'?'selected':''}>졸업</option>
+      		<option ${uvo[i].status=='수료'?'selected':''}>수료</option>
+      		<option ${uvo[i].status=='재학'?'selected':''}>재학</option>
+      		<option ${uvo[i].status=='기타'?'selected':''}>기타</option>
+      	</select>
     </div>
   </div>
   <div class="form-row">
@@ -75,12 +85,12 @@
     <div class="col form-group">
       <label for="maxGrade" class="">최고학점</label>
       <select name="maxGrade" class="custom-select">
-            <option value="0">선택하세요.</option>
-			<option>4.3</option>
-			<option>4.5</option>
-			<option>4.7</option>
-			<option>5</option>
-			<option>직접입력</option>
+            <option value="">선택하세요.</option>
+			<option ${uvo[i].maxGrade=='4.3'?'selected':''}>4.3</option>
+			<option ${uvo[i].maxGrade=='4.5'?'selected':''}>4.5</option>
+			<option ${uvo[i].maxGrade=='4.7'?'selected':''}>4.7</option>
+			<option ${uvo[i].maxGrade=='5'?'selected':''}>5</option>
+			<option ${uvo[i].maxGrade=='0'?'selected':''}>직접입력</option>
 			<!-- 직접입력할 수 있는 방법 확인하기. -->
       </select>
     </div>
@@ -93,11 +103,31 @@
       <button class="btn-sm btn-secondary">삭제하기</button>
     </div>
   </div>
+  </form>
   <div class="form-group profile-btn-group">
-    <button class="btn btn-success" type="submit">수정</button>
-    <a href="/oive/delete?id=${vo.id}&category='university'"><button class="btn btn-danger" type="button" name="button">삭제</button></a>
+    <button id="university_${uvo[i].id}" class="btn btn-success" onclick="edit(id);false;">수정</button>
+    <script type="text/javascript">
+    function edit(id){    	
+//     	window.alert("form_"+id);    	
+    	var formElement = document.getElementById("form_"+id);  
+//     	window.alert(formElement);
+    	window.alert(formElement.action);
+    	var formData = new FormData(formElement);
+    	window.alert(formData.get('id'));
+    	window.alert(formData.get('uName'));
+    	var xhr= new XMLHttpRequest();
+    	xhr.onload=function(){
+    		if(xhr.status==200){
+    			window.alert("수정이 성공하였습니다.")    			
+    		} else
+    			window.alert("수정에 실패하였습니다.")
+    	}
+    	xhr.open("POST", "/oive/edit", true);
+    	xhr.send(formData);    	
+    }
+    </script>
+    <a href="/oive/delete?id=${uvo[i].id}&category='university'"><button class="btn btn-danger" type="button" name="button">삭제</button></a>
     <!-- GET 형식으로 삭제 구현함 -->
     <button id="university" class="btn btn-primary" type="button" onclick="add(id);false;">추가</button>
   </div>
- </form>
  </c:forEach>

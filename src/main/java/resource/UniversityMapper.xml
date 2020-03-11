@@ -30,22 +30,24 @@
  		)
  		where userId = #{userID} and id = #{ID}
  	</insert>
+ 	
  	<update id="edit" parameterType="vo.UniversityVO">
  		update university set 			
-			UNAME = #{name},
-			ENROLLDATE = #{enrollDate},
-			GRADDATE = #{gradDate},
-			STATUS = #{status},
-			DEGREE = #{degree},
-			MAJORTYPE = #{majorType},
-			MAJORNAME = #{majorName},
-			TOTALGRADE = #{totalGrade},
-			MAJORGRADE = #{majorGrade},
-			MAXGRADE = #{maxGrade},
-			ISTRANSFER = #{isTransfer},
-			FILEID1 = #{"test"},
-			FILEID2 = #{"test"}
-		where userid = #{userId} and id = #{id}
+			UNAME = #{uName}
+<!-- 			ENROLLDATE = #{ENROLLDATE}, -->
+<!-- 			GRADDATE = #{GRADDATE}, -->
+<!-- 			STATUS = #{STATUS}, -->
+<!-- 			DEGREE = #{DEGREE}, -->
+<!-- 			MAJORTYPE = #{MAJORTYPE}, -->
+<!-- 			MAJORNAME = #{MAJORNAME}, -->
+<!-- 			TOTALGRADE = #{TOTALGRADE}, -->
+<!-- 			MAJORGRADE = #{MAJORGRADE}, -->
+<!-- 			MAXGRADE = #{MAXGRADE}, -->
+<!-- 			ISTRANSFER = #{ISTRANSFER}, -->
+<!-- 			FILEID1 = '', -->
+<!-- 			FILEID2 = '' -->
+<!-- 		where USERID = #{USERID} and id = #{ID} -->
+			where USERID = #{userId} and id = #{id}
  	</update>
 </mapper>
 

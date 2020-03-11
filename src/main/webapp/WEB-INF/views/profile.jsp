@@ -1,8 +1,7 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@page import="org.springframework.web.context.annotation.RequestScope"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" %>
+<%@ page import="org.springframework.web.context.annotation.RequestScope"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,7 +20,7 @@
 		<%@ include file="header.jsp" %>
 	  	<div id="body"> 
 		    <nav>
-		    	<ul class="nav flex-column" style="position:fixed;padding-top:40px;padding-left:30px;">
+		    	<ul class="nav flex-column" style="/* position:fixed */;padding-top:40px;padding-left:30px;">
 			    	<li class="nav-item"><a href="#university" class="nav-link">학력 사항</a></li>
 			    		<ul>
 			    			<li><a href="university">대학교</a></li>

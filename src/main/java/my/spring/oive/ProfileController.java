@@ -4,9 +4,10 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import dao.UniversityDAO;
@@ -26,7 +27,7 @@ public class ProfileController {
 	@Autowired
 	HttpSession session;	
 	
-	@RequestMapping(value = "/profile", method = RequestMethod.GET)
+	@RequestMapping(value = "/profile")
 	public ModelAndView profile() {
 		ModelAndView mav = new ModelAndView();
 		String userId 
@@ -37,20 +38,22 @@ public class ProfileController {
 		return mav;
 	}
 	
-	@RequestMapping(value = "/edit")
-	public ModelAndView edit(UniversityVO vo) {
-		ModelAndView mav = new ModelAndView();
-		System.out.println(vo.getId() + vo.getuName());
-//		if(uDao.edit()<0) {
-//			System.out.println("university 수정이 실패함.");
-//		}
-//		else {
+	@RequestMapping(value = "/edit", method=RequestMethod.POST)
+	@ResponseBody
+	public void edit(UniversityVO universityVO) {
+//		ModelAndView mav = new ModelAndView();
+		
+		System.out.println(universityVO.getuName());
+		if(uDao.edit(universityVO)<1) {
+			System.out.println("university 수정이 실패함.");
+		}
+		else {
 //			mav.addObject(vo);
-//			System.out.println(vo + "profileController: edit  handler");		
-//		}
-		mav.setViewName("profile");
-		return mav;
-//		return "profile";
+			System.out.println("profileController: edit handler");		
+		}
+//		mav.setViewName("profile");
+//		return mav;
+//		return "edit";
 	}
 	
 

@@ -24,9 +24,10 @@ public class UniversityDAO {
 				session.insert("resource.UniversityMapper.insertOne");
 		return result;
 	}
-	public int edit() {
+	public int edit(UniversityVO universityVO) {
 		int result =
-				session.update("resource.UniversityMapper.edit");
+				session.update("resource.UniversityMapper.edit", universityVO);
+		System.out.println("edit : "+result);
 		return result;
 	}
 }
