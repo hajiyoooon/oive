@@ -35,7 +35,7 @@ public class UserService {
 			if(encoder.matches(rawPassword, vo.getPassword())) {
 				possible = true;
 				if(possible && session != null) {
-					session.setAttribute("user", vo);
+					session.setAttribute("user", vo); // session에 user정보를 저장
 				}
 		
 			}

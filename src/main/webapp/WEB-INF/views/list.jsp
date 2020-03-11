@@ -69,8 +69,8 @@
 					 <li class="delete"><a href="#">삭제</a></li>	
 				</ul>
 			</c:forEach>
-
 		</div>
+		
 
 
         <!-- Pager -->
@@ -92,7 +92,6 @@
 			    </li>
 			  </ul>
 			</div>		
-		
 		</div>
 
 	<%@ include file="footer.jsp" %>

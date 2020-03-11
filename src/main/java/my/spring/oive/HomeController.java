@@ -26,7 +26,7 @@ public class HomeController {
 	UserDAO dao;
 
 	@Autowired
-	SearchDAO SearchDAO;
+	SearchDAO searchDAO;
 	
 	@Autowired
 	UserService service;
@@ -82,11 +82,6 @@ public class HomeController {
 
 		}
 		return mav;
-	}
-
-	@RequestMapping(value = "/self_introduce/write/{self_introduce_id}", method = RequestMethod.GET)
-	public String write(UserVO vo, @PathVariable String self_introduce_id) {
-		return "write";
 	}
 
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)

@@ -7,17 +7,25 @@
 		where userid = #{userid}
 	</select>
 	
-	<select id="searchSelf" parameterType="java.util.HashMap" resultType="vo.SelfIntroduceVO">
-		select id, userId, question, answer, to_char(applyDate,'yyyy"년"mm"월"dd"일"') applyDate, appliedCompany, to_char(writeDate,'yyyy"년"mm"월"dd"일"') writeDate, , to_char(editDate,'yyyy"년"mm"월"dd"일"') editDate  
-		from SelfIntroduce where ${type} like '%'||#{window}||'%'
+	<select id="searchSelf" parameterType="HashMap" resultType="vo.SelfIntroduceVO">
+		select id, userId, question, answer, to_char(applyDate,'yyyy"년"mm"월"dd"일"')applyDate, appliedCompany, to_char(writeDate,'yyyy"년"mm"월"dd"일"') writeDate, , to_char(editDate,'yyyy"년"mm"월"dd"일"') editDate  
+		from Self_Introduce where ${type} like '%'||#{window}||'%'
 	</select>
 	
-	<insert id="insertSelf" parameterType="vo.SelfIntroduceVO">
+	<insert id="insertSelf" parameterType="HashMap">
 		<selectKey resultType="int" keyProperty="id" order="BEFORE">
 		select SELF_INTRODUCE_SEQ.nextval from dual
 		</selectKey>
 		insert into Self_Introduce (id, userId, question, answer, applyDate, appliedCompany, writeDate, editDate) 
-		values (#{id}, 'test', #{question}, #{answer}, sysdate, #{appliedCompany},#{writeDate}, sysdate)
+		values (#{id}, #{userId}, #{question}, #{answer}, sysdate, #{appliedCompany},#{writeDate}, sysdate)
+	</insert>
+	
+	<insert id="insertKey" parameterType="String">
+		<selectKey resultType="int" keyProperty="id" order="BEFORE">
+		select KEYWORD_SELFINTRODUCE_SEQ.nextval from dual
+		</selectKey>
+	insert into keyword_selfintroduce (id, userid, keyword, sid) values 
+	#{id}, #{userId}, #{keyword}, #{sid});	
 	</insert>
 </mapper>
 

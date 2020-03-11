@@ -28,6 +28,7 @@
 					  <label class="col-md-4 control-label" for="textinput">아이디:</label>  
 					  <div class="col-md">
 					  <input id="textinput" name="userId" type="text" value="${user.userId}" class="form-control "> 
+					  <!-- &{user.userId}를 key값으로 불러와서 url에 받는다. -->
 					  </div>
 					</div>
 							

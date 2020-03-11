@@ -32,7 +32,7 @@ public class SearchDAO {
 	public List<SelfIntroduceVO> searchByCompany(String input){
 		userId = ((UserVO)httpSession.getAttribute("user")).getUserId();
 		HashMap<String, String> map = new HashMap<String, String>();
-		map.put("userId", userId);
+		map.put("userId", userId); // key값 userId이고 value값이 userId이다.
 		map.put("input", input);
 		return sqlSession.selectList("resource.SearchMapper.searchByCompany", map);
 		
