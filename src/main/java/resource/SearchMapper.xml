@@ -3,58 +3,67 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="resource.SearchMapper">
-   	<select id="selectAll" resultType="vo.SelfIntroduceVO">
-	select s.id, to_char(s.applydate,'yyyy-mm-dd') applydate,
-	    to_char(s.editdate,'yyyy-mm-dd') editdate, s.appliedcompany, k.keywords
-	from self_introduce s left outer join (select s.id, listagg(k.keyword,',') within group(order by sid) as keywords
-	        from keyword_selfintroduce k, self_introduce s
-	        where sid = s.id and s.userid = #{userId}
-	        group by s.id) k
-	    on s.id = k.id
+   	<select id="selectAll" parameterType="hashmap" resultType="vo.SelfIntroduceVO">
+		select *
+		    from(
+		    select rownum rnum, t.* from(
+		        select s.id, to_char(s.applydate,'yyyy-mm-dd') applydate,
+		            to_char(s.editdate,'yyyy-mm-dd') editdate, s.appliedcompany, k.keywords
+		        from self_introduce s left outer join (select s.id, listagg(k.keyword,',') within group(order by sid) as keywords
+		                from keyword_selfintroduce k, self_introduce s
+		                where sid = s.id and s.userid = #{userId}
+		                group by s.id) k
+		            on s.id = k.id
+		        order by s.id desc) t)
+		where rnum between #{start} and #{end}
  	</select>
  	<select id="searchByCompany" parameterType="hashmap" resultType="vo.SelfIntroduceVO">
-	select s.id, to_char(s.applydate,'yyyy-mm-dd') applydate,
-	    to_char(s.editdate,'yyyy-mm-dd') editdate, s.appliedcompany, k.keywords
-	from self_introduce s left outer join (select s.id, listagg(k.keyword,',') within group(order by sid) as keywords
-	    from keyword_selfintroduce k, self_introduce s
-	    where sid = s.id and s.userid = #{userId} 
-	    group by s.id) k
-	   on s.id = k.id
-	where s.appliedcompany like '%'||#{input}||'%'
+		select s.id, to_char(s.applydate,'yyyy-mm-dd') applydate,
+		    to_char(s.editdate,'yyyy-mm-dd') editdate, s.appliedcompany, k.keywords
+		from self_introduce s left outer join (select s.id, listagg(k.keyword,',') within group(order by sid) as keywords
+		    from keyword_selfintroduce k, self_introduce s
+		    where sid = s.id and s.userid = #{userId} 
+		    group by s.id) k
+		   on s.id = k.id
+		where s.appliedcompany like '%'||#{input}||'%'
  	</select>
  	
  	<select id="searchByKeyword" resultType="vo.SelfIntroduceVO">
-	select s.id, to_char(s.applydate,'yyyy-mm-dd') applydate,
-	    to_char(s.editdate,'yyyy-mm-dd') editdate, s.appliedcompany, k.keywords
-	from self_introduce s left outer join (select s.id, listagg(k.keyword,',') within group(order by sid) as keywords
-	    from keyword_selfintroduce k, self_introduce s
-	    where sid = s.id and s.userid = #{userId}
-	    group by s.id) k
-	    on s.id = k.id
-	where k.keywords like '%'||#{input}||'%'
-	
+		select s.id, to_char(s.applydate,'yyyy-mm-dd') applydate,
+		    to_char(s.editdate,'yyyy-mm-dd') editdate, s.appliedcompany, k.keywords
+		from self_introduce s left outer join (select s.id, listagg(k.keyword,',') within group(order by sid) as keywords
+		    from keyword_selfintroduce k, self_introduce s
+		    where sid = s.id and s.userid = #{userId}
+		    group by s.id) k
+		    on s.id = k.id
+		where k.keywords like '%'||#{input}||'%'
+		
  	</select>
  	
- 	 	<select id="searchByQuestion" parameterType="hashmap" resultType="vo.SelfIntroduceVO">
-	select s.id, s.question, s.answer, to_char(s.applydate,'yyyy-mm-dd') applydate,
-	    to_char(s.editdate,'yyyy-mm-dd') editdate, s.appliedcompany, k.keywords
-	from self_introduce s left outer join (select s.id, listagg(k.keyword,',') within group(order by sid) as keywords
-	    from keyword_selfintroduce k, self_introduce s
-	    where sid = s.id and s.userid = #{userId}
-	    group by s.id) k
-	    on s.id = k.id
-	where s.question like '%'||#{input}||'%'
+ 	<select id="searchByQuestion" parameterType="hashmap" resultType="vo.SelfIntroduceVO">
+		select s.id, s.question, s.answer, to_char(s.applydate,'yyyy-mm-dd') applydate,
+		    to_char(s.editdate,'yyyy-mm-dd') editdate, s.appliedcompany, k.keywords
+		from self_introduce s left outer join (select s.id, listagg(k.keyword,',') within group(order by sid) as keywords
+		    from keyword_selfintroduce k, self_introduce s
+		    where sid = s.id and s.userid = #{userId}
+		    group by s.id) k
+		    on s.id = k.id
+		where s.question like '%'||#{input}||'%'
  	</select>
  	 	<select id="searchByAnswer" parameterType="hashmap" resultType="vo.SelfIntroduceVO">
-	select s.id, s.question, s.answer, to_char(s.applydate,'yyyy-mm-dd') applydate,
-	    to_char(s.editdate,'yyyy-mm-dd') editdate, s.appliedcompany, k.keywords
-	from self_introduce s left outer join (select s.id, listagg(k.keyword,',') within group(order by sid) as keywords
-	    from keyword_selfintroduce k, self_introduce s
-	    where sid = s.id and s.userid = #{userId}
-	    group by s.id) k
-	    on s.id = k.id
-	where s.answer like '%'||#{input}||'%'
+		select s.id, s.question, s.answer, to_char(s.applydate,'yyyy-mm-dd') applydate,
+		    to_char(s.editdate,'yyyy-mm-dd') editdate, s.appliedcompany, k.keywords
+		from self_introduce s left outer join (select s.id, listagg(k.keyword,',') within group(order by sid) as keywords
+		    from keyword_selfintroduce k, self_introduce s
+		    where sid = s.id and s.userid = #{userId}
+		    group by s.id) k
+		    on s.id = k.id
+		where s.answer like '%'||#{input}||'%'
  	</select>
+ 	<delete id="delete">
+ 		delete from self_introduce
+ 		where id = #{sid}
+ 	</delete>
 </mapper>
 
 

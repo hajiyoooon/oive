@@ -21,7 +21,30 @@
   </head>
   
 <style>
+	.remove{
+		animation-name: remove;
+		animation-duration: 2s;
+		animation-fill-mode: forwards;
+	}
 	
+
+	@keyframes remove {
+		0% {}
+		50%{
+			line-height:0;
+			opacity:0;
+		}
+		95%{
+			line-height:0;
+			opacity:0;
+			height:0;
+		}
+		100%{
+			line-height:0;
+			margin-bottom:0;
+			height:0;
+		}
+	}
 
 
 </style>
@@ -47,7 +70,7 @@
 				</a>			
 			</form>
 		</div>
-		<div class="post-list">
+		<div class="post-list" id="post-list">
 			<ul class="list-header2">
 				<li class="keyword">키워드</li>
 				<li class="company">지원 회사</li>
@@ -56,7 +79,7 @@
 				<li></li>
 			</ul>
 			<c:forEach var="item" items="${ list }" >
-				<ul>
+				<ul data-sid="${item.id}">
 					<li class="keyword">
 						<c:forTokens var="keyword" items="${ item.keywords }" delims=",">
 							<a href="?boundary=keyword&input=${ keyword }" class="badge badge-primary">${ keyword }</a>
@@ -66,7 +89,7 @@
 					 <li class="applied-date">${item.applyDate}</li>
 					 <li class="last-modified">${item.editDate}</li>
 					 <li class="view"><a href="write/${ item.id }">조회/수정</a></li>        
-					 <li class="delete"><a href="#">삭제</a></li>	
+					 <li class="delete"><a href="javascript:deletepost(${item.id});">삭제</a></li>	
 				</ul>
 			</c:forEach>
 
@@ -75,27 +98,68 @@
 
         <!-- Pager -->
 		<div class="d-flex justify-content-center">
-			<div aria-label="Page navigation example" class="justify-content-center">
-			  <ul class="pagination">
-			    <li class="page-item">
-			      <a class="page-link" href="#" aria-label="Previous">
-			        <span aria-hidden="true">&laquo;</span>
-			      </a>
-			    </li>
-			    <li class="page-item"><a class="page-link" href="#">1</a></li>
-			    <li class="page-item"><a class="page-link" href="#">2</a></li>
-			    <li class="page-item"><a class="page-link" href="#">3</a></li>
-			    <li class="page-item">
-			      <a class="page-link" href="#" aria-label="Next">
-			        <span aria-hidden="true">&raquo;</span>
-			      </a>
-			    </li>
-			  </ul>
-			</div>		
+			<button id="getpost" onclick="getpost('','')">getpost테스트</button>	
 		
 		</div>
 
-	<%@ include file="footer.jsp" %>
+
       </div>
+      
+    <%@ include file="footer.jsp" %>
+    <script>
+		var startindex = 1;
+		var total = ${total};
+    	function deletepost(id){
+    		console.log("실행");
+			var req = new XMLHttpRequest();
+
+			req.onload = function(e){
+				if(this.status == 200){
+					var ret = JSON.parse(e.target.responseText);
+					
+					window.alert(ret.msg);
+					if(ret.status == "SUCCESS"){
+						var dom = document.querySelector('[data-sid="' + id + '"');
+						dom.className += 'remove';
+						var children = dom.getElementsByTagName('li');
+						for(var i in children){
+							children[i].className +=" removechild";
+						}
+					}
+
+				}
+			};
+			req.open('POST', 'delete/'+id, true);
+			req.send();
+			
+
+		}
+		
+		function getpost(category, input){
+			startindex += 10;
+			var req = new XMLHttpRequest();
+
+			req.onload = function(e){
+				if(this.status == 200){
+					var ret = e.target.responseText;
+					console.log(ret);
+					// 이 부분 작동시키는 방법?
+					if(ret == ""){
+						document.getElementById("getpost").style.display="none";
+					}
+					if(true){
+						var dom = document.querySelector('#post-list');
+						dom.innerHTML += ret;
+					}
+				}
+				else{
+					startindex -= 10;
+				}
+			};
+			req.open('GET', 'list/getpost?boundary='+category+'&input=' + input + '&startindex='+startindex, true);
+			req.send();
+		}
+    </script>
   </body>
+
 </html>

@@ -23,11 +23,13 @@ public class SearchDAO {
 	String userId;
 
 	
-	public List<SelfIntroduceVO> listAll(){
+	public List<SelfIntroduceVO> listAll(int startindex){
 		userId = ((UserVO)httpSession.getAttribute("user")).getUserId();
-		HashMap<String, String> map = new HashMap<String, String>();
-		return sqlSession.selectList("resource.SearchMapper.selectAll", userId);
-		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("userId", userId);
+		map.put("start", startindex);
+		map.put("end", (startindex+9));
+		return sqlSession.selectList("resource.SearchMapper.selectAll", map);	
 	}
 	public List<SelfIntroduceVO> searchByCompany(String input){
 		userId = ((UserVO)httpSession.getAttribute("user")).getUserId();
@@ -62,6 +64,15 @@ public class SearchDAO {
 		map.put("userId", userId);
 		map.put("input", input);
 		return sqlSession.selectList("resource.SearchMapper.searchByAnswer", map);
-		
 	}
+	
+	public boolean delete(int sid) {
+		userId = ((UserVO)httpSession.getAttribute("user")).getUserId();
+		boolean result = false;
+		if(sqlSession.delete("resource.SearchMapper.delete", sid) == 1) {
+			result = true;
+		}
+		return result;
+	}
+
 }
