@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 
 <c:forEach var="i" begin="0" end="${uvo.size()-1}">
+<div id="formGroup_university_${uvo[i].id}>
 <form id="form_university_${uvo[i].id}" class="profile" 
 	action="edit" method="POST" enctype="multipart/form-data">
 <!-- 구현이 끝난 후 type을 "hidden"으로 바꿀 것  -->
@@ -112,8 +113,12 @@
   </form>
   <div class="form-group profile-btn-group">
     <button id="university_${uvo[i].id}" class="btn btn-success" onclick="edit(id);false;">수정</button>
-    <a href="/oive/delete?id=${uvo[i].id}&category='university'"><button class="btn btn-danger" type="button" name="button">삭제</button></a>
+<%-- 	<a href="/oive/delete/university/${uvo[i].id}"> --%>
+<!-- 	<button class="btn btn-danger" type="button" name="button">삭제</button></a> -->
     <!-- GET 형식으로 삭제 구현함 -->
+    <!-- ajax 로 삭제 구현 -->
+    <button id="delete/university/${uvo[i].id}" class="btn btn-danger" type="button" name="button" onclick="del(id);false;">삭제</button>
     <button id="university-add_${uvo[i].id}" class="btn btn-primary" type="button" onclick="add(id);false;">추가</button>
   </div>
+</div>  
  </c:forEach>

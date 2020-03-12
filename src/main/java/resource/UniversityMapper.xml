@@ -52,6 +52,10 @@
 			FILEID2 = ''
 			where USERID = #{userId} and id = #{id}
  	</update>
+ 	
+ 	<delete id="delete" parameterType="int">
+ 		delete from university where id = #{id} 	
+ 	</delete>
 </mapper>
 
 

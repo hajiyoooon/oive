@@ -83,5 +83,15 @@ public class ProfileController {
 //		return "form/"+ category +"_form";
 		return mav;
 	}
+	
+	@RequestMapping(value = "/delete/{category}/{id}", method=RequestMethod.GET)
+	@ResponseBody
+	public void delete(@PathVariable String category, @PathVariable int id) {
+		if(uDao.delete(id)<1)
+			System.out.println(category +"삭제 실패함");
+		else
+			System.out.println(category +"삭제 성공함");		
+	}
+	
 		
 }

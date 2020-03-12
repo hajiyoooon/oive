@@ -112,6 +112,26 @@
     		xhr.open("POST", "/oive/edit", true);
     	xhr.send(formData);    	
     }
+    
+    	function del(btId){
+    		var category = btId.split("/")[1];
+    		var id = btId.split("/")[2];
+    		var target
+    			= document.getElementById("formGroup_"+category+"_"+id);
+    		var xhr = new XMLHttpRequest();
+    		xhr.onload=function(){
+    			if(xhr.status==200){
+    				window.alert("삭제가 성공하였습니다.");
+    				target.innerHTML = '';
+    			} 
+    			else{
+    				window.alert("삭제가 실패하였습니다.");
+    			}    				
+    		}
+    		xhr.open("GET", btId, true);
+    		xhr.send();    		
+    	}
+    	
     </script>
 	</body>
   </html>

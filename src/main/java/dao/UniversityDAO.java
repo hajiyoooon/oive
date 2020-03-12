@@ -38,5 +38,8 @@ public class UniversityDAO {
 	}
 	public int delete(int id) {
 		//TODO 삭제기능 구현
+		int result
+			= session.delete("resource.UniversityMapper.delete", id);
+		return result;
 	}
 }
