@@ -31,10 +31,7 @@ public class WriteDAO {
 		map.put("userId", userId); // key값 userId이고 value값이 userId이다.
 		return sqlSession.selectList("resource.SearchMapper.searchByCompany", map);
 	}
-	public List<SelfIntroduceVO> keySelect(){
-		userId = ((UserVO)httpSession.getAttribute("user")).getUserId();
-		HashMap<String, String> map = new HashMap<String, String>();
-	}
+
 
 	public List<SelfIntroduceVO> searchWrite(String window, String type) {
 		List<SelfIntroduceVO> list = new ArrayList<>();
@@ -44,6 +41,10 @@ public class WriteDAO {
 		String statement = "resource.WriteMapper.searchSelf";
 		list=sqlSession.selectList(statement, map);
 		return list;	
+	}
+	
+	public String selectSid() {
+		return sqlSession.selectOne("resource.WriteMapper.selectSid");
 	}
 	
 	public boolean insert(SelfIntroduceVO vo) {
@@ -58,7 +59,21 @@ public class WriteDAO {
 		}
 		return result;
 	}
-	
+	public boolean insertKeyword(int sid, List<String> keywords){
+		boolean result = true;
+		userId = ((UserVO)httpSession.getAttribute("user")).getUserId();
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("userId", userId);
+		map.put("sid", ""+sid);
+		for(String keyword : keywords) {
+			map.put("keyword", keyword);
+			if(sqlSession.insert("resource.WriteMapper.insertKey", map) < 1) {
+				result = false;
+			}
+		}
+
+		return result;
+	}
 	public List<SelfIntroduceVO> listAll(String userid){
 		System.out.println("Mybatis 를 사용 DB 연동-listAll-DAO2");
 		List<SelfIntroduceVO> list = null;

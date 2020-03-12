@@ -12,20 +12,19 @@
 		from Self_Introduce where ${type} like '%'||#{window}||'%'
 	</select>
 	
-	<insert id="insertSelf" parameterType="HashMap">
-		<selectKey resultType="int" keyProperty="id" order="BEFORE">
+	<select id="selectSid" resultType="string">
 		select SELF_INTRODUCE_SEQ.nextval from dual
-		</selectKey>
+	</select>
+	<insert id="insertSelf" parameterType="vo.SelfIntroduceVO">
 		insert into Self_Introduce (id, userId, question, answer, applyDate, appliedCompany, writeDate, editDate) 
 		values (#{id}, #{userId}, #{question}, #{answer}, sysdate, #{appliedCompany},#{writeDate}, sysdate)
 	</insert>
-	
-	<insert id="insertKey" parameterType="String">
+	<insert id="insertKey" parameterType="hashmap">
 		<selectKey resultType="int" keyProperty="id" order="BEFORE">
-		select KEYWORD_SELFINTRODUCE_SEQ.nextval from dual
+			select keyword_selfintroduce_seq.nextval from dual
 		</selectKey>
-	insert into keyword_selfintroduce (id, userid, keyword, sid) values 
-	#{id}, #{userId}, #{keyword}, #{sid});	
+		insert into keyword_selfintroduce (id, userid, keyword, sid) 
+		values(#{id}, #{userId}, #{keyword}, #{sid})
 	</insert>
 </mapper>
 
