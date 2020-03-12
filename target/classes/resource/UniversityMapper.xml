@@ -33,20 +33,19 @@
  	
  	<update id="edit" parameterType="vo.UniversityVO">
  		update university set 			
-			UNAME = #{uName}
-<!-- 			ENROLLDATE = #{ENROLLDATE}, -->
-<!-- 			GRADDATE = #{GRADDATE}, -->
-<!-- 			STATUS = #{STATUS}, -->
-<!-- 			DEGREE = #{DEGREE}, -->
-<!-- 			MAJORTYPE = #{MAJORTYPE}, -->
-<!-- 			MAJORNAME = #{MAJORNAME}, -->
-<!-- 			TOTALGRADE = #{TOTALGRADE}, -->
-<!-- 			MAJORGRADE = #{MAJORGRADE}, -->
-<!-- 			MAXGRADE = #{MAXGRADE}, -->
-<!-- 			ISTRANSFER = #{ISTRANSFER}, -->
-<!-- 			FILEID1 = '', -->
-<!-- 			FILEID2 = '' -->
-<!-- 		where USERID = #{USERID} and id = #{ID} -->
+			UNAME = #{uName},
+			ENROLLDATE = #{enrollDate},
+			GRADDATE = #{gradDate},
+			STATUS = #{status},
+			DEGREE = #{degree},
+			MAJORTYPE = #{majorType},
+			MAJORNAME = #{majorName},
+			TOTALGRADE = #{totalGrade},
+			MAJORGRADE = #{majorGrade},
+			MAXGRADE = #{maxGrade},
+			ISTRANSFER = #{isTransfer},
+			FILEID1 = '',
+			FILEID2 = ''
 			where USERID = #{userId} and id = #{id}
  	</update>
 </mapper>

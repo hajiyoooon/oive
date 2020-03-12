@@ -49,7 +49,7 @@
     </div>
     <div class="col form-group">
       <label for="isTransfer" class="">편입</label>
-      <input type="checkbox" name="isTransfer" value="편입" class=""
+      <input type="checkbox" name="isTransfer" value="1" class=""
       ${uvo[i].isTransfer=='1'?'checked':''}>
     </div>
   </div>
@@ -63,13 +63,16 @@
     	<input type="date" name="gradDate" value="${uvo[i].gradDate}" class="form-control">
     </div>
     <div class="col form-group">
-      	<label for="status">졸업여부</label>
-      	<select name="status" class="custom-select">
-      		<option ${uvo[i].status=='졸업'?'selected':''}>졸업</option>
-      		<option ${uvo[i].status=='수료'?'selected':''}>수료</option>
-      		<option ${uvo[i].status=='재학'?'selected':''}>재학</option>
-      		<option ${uvo[i].status=='기타'?'selected':''}>기타</option>
-      	</select>
+      	<label for="status">졸업</label>
+<!--       	<select name="status" class="custom-select"> -->
+<%--       		<option ${uvo[i].status=='졸업'?'selected':''}>졸업</option> --%>
+<%--       		<option ${uvo[i].status=='수료'?'selected':''}>수료</option> --%>
+<%--       		<option ${uvo[i].status=='재학'?'selected':''}>재학</option> --%>
+<%--       		<option ${uvo[i].status=='기타'?'selected':''}>기타</option> --%>
+<!--       	</select> -->
+      	<input type="checkbox" name="status" value="졸업" class=""
+      ${uvo[i].status=='졸업'?'checked':''}>
+      	
     </div>
   </div>
   <div class="form-row">
@@ -85,12 +88,12 @@
     <div class="col form-group">
       <label for="maxGrade" class="">최고학점</label>
       <select name="maxGrade" class="custom-select">
-            <option value="">선택하세요.</option>
-			<option ${uvo[i].maxGrade=='4.3'?'selected':''}>4.3</option>
-			<option ${uvo[i].maxGrade=='4.5'?'selected':''}>4.5</option>
-			<option ${uvo[i].maxGrade=='4.7'?'selected':''}>4.7</option>
-			<option ${uvo[i].maxGrade=='5'?'selected':''}>5</option>
-			<option ${uvo[i].maxGrade=='0'?'selected':''}>직접입력</option>
+            <option value="0">선택하세요.</option>
+			<option value="4.3" ${uvo[i].maxGrade=='4.3'?'selected':''}>4.3</option>
+			<option value="4.5" ${uvo[i].maxGrade=='4.5'?'selected':''}>4.5</option>
+			<option value="4.7" ${uvo[i].maxGrade=='4.7'?'selected':''}>4.7</option>
+			<option value="5.0" ${uvo[i].maxGrade=='5'?'selected':''}>5</option>
+			<option value="-1" ${uvo[i].maxGrade=='0'?'selected':''}>직접입력</option>
 			<!-- 직접입력할 수 있는 방법 확인하기. -->
       </select>
     </div>
@@ -101,6 +104,9 @@
       <!-- 파일업로드와 파일명 표시 기능 2단계에서 구현함. -->
       <button class="btn-sm btn-secondary">업로드</button>
       <button class="btn-sm btn-secondary">삭제하기</button>
+<%-- 		<input type="text" name="fileId1" value="${uvo[i].fileId1}"> --%>
+<!-- 		<label for="fileId2">관련파일2</label> -->
+<%-- 		<input type="text" name="fileId2" value="${uvo[i].fileId2}"> --%>
     </div>
   </div>
   </form>
@@ -111,11 +117,24 @@
 //     	window.alert("form_"+id);    	
     	var formElement = document.getElementById("form_"+id);  
 //     	window.alert(formElement);
-    	window.alert(formElement.action);
+//     	window.alert(formElement.action);
     	var formData = new FormData(formElement);
-    	window.alert(formData.get('id'));
-    	window.alert(formData.get('uName'));
-    	var xhr= new XMLHttpRequest();
+//     	window.alert(formData.get('id'));
+//     	window.alert(formData.get('uName'));
+		<!-- >>>>>> formData에 누락된 값이 있을 경우 default 값을 세팅해 준다.-->
+		if(!formData.has('fileId1'))
+			formData.append('fileId1', '0');
+		if(!formData.has('fileId1'))
+			formData.append('fileId2', '0');
+		if(!formData.has('isTransfer'))
+			formData.append('isTransfer', '0');
+		if(!formData.has('status'))
+			formData.append('status', '미졸업');
+// 		var tran = document.forms['form_university_${uvo[i].id}'].elements['isTransfer'].checked;
+// 		window.alert(tran);
+// 		console.log(tran);
+		<!-- <<<<<< formData에 누락된 값이 있을 경우 default 값을 세팅해 준다.-->
+		var xhr= new XMLHttpRequest();
     	xhr.onload=function(){
     		if(xhr.status==200){
     			window.alert("수정이 성공하였습니다.")    			
