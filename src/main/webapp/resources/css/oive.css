@@ -6,44 +6,44 @@
 	unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
 }
 
-@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css); .jejugothic * { font-family: 'Jeju Gothic', sans-serif; }
-
+@font-face {
+	font-family: 'Jeju Gothic';
+	font-style: normal;
+	font-weight: 400;
+	src: url(//fonts.gstatic.com/ea/jejugothic/v3/JejuGothic-Regular.eot);
+	src: url(//fonts.gstatic.com/ea/jejugothic/v3/JejuGothic-Regular.eot?#iefix) format('embedded-opentype'),
+		 url(//fonts.gstatic.com/ea/jejugothic/v3/JejuGothic-Regular.woff2) format('woff2'),
+		 url(//fonts.gstatic.com/ea/jejugothic/v3/JejuGothic-Regular.woff) format('woff'),
+		 url(//fonts.gstatic.com/ea/jejugothic/v3/JejuGothic-Regular.ttf) format('truetype');
+}
+	body{
+		font-family: "Noto Sans", "Arial", "Helvetica Neue", sans-serif;
+		font-weight: 400;
+		font-size: 14px;	
+	}
 	a {
 		color: #212529;
-		transition: all 0.2s;
-		font-family: 'Jeju Gothic', sans-serif;
+		transition: color 0.2s;
+	}
+	container{
+			min-height:100vh;	
 	}
 	a:focus, a:hover {
 		color: #0085A1;
 	}
 
-footer {
-    background-color: #4fd5d2;
-    height: 60px;
-    position: fixed;
-    left: 0px;
-    bottom: 0px;
-    width: 100%;
-    color: white;
-    padding: 20px;
-    text-align: center;
-}
-   
-   
-   div.temp{
-
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    margin-right: -15px;
-    margin-left: -15px;
-    position: relative;
-    width: 70%;
-	padding: 3%;
-   }
-
-	header{
+	footer {
+		background-color: #4fd5d2;
+		height: 60px;
+		left: 0px;
+		bottom: 0px;
+		width: 100%;
+		color: white;
+		padding: 20px;
+		text-align: center;
+	}
+	
+   	header{
 		padding-top: 30px;
 		background-color:#ffffff;  
 		box-shadow: 0 0 2px rgba(0,0,0,0.2);
@@ -56,10 +56,10 @@ footer {
 	    font-weight: bolder;
 	}
 	.header h4{
-   	text-align:right;
-   	padding-right: 20px;
-   	font-family:Gamja Flower;
-   }
+		text-align:right;
+		padding-right: 20px;
+		font-family:Gamja Flower;
+	}
    
    .header ul{
  		list-style-type: none;
@@ -77,21 +77,16 @@ footer {
 	    opacity: 0.7;
 	    font-family: Jeju Gothic;
 	}
-
-    #title{
-    	text-align: left;
-    	font-weight: bold;
-    	padding-top: 20px;
-    	padding-left:30px;
-    	
-    }
-
-
+	
+	li.view  a::after {
+    	content:' | '
+	}
+	
   	form span{
     	color:red;
   	}
  
-  	form.profile {	/** ������ �ۼ� �������� ���� ���� **/
+  	form.profile {
   		margin-top:15px;
   		margin-bottom:15px;
   	}
@@ -147,7 +142,12 @@ footer {
 	     display: inline-block;
 	     text-overflow: ellipsis;
 	     overflow: hidden;
-	     height: 30px;
+	     white-space: nowrap;
+	}
+	.post-list a{
+	     display: inline-block;
+	     text-overflow: ellipsis;
+	     overflow: hidden;
 	     white-space: nowrap;
 	}
 	
@@ -174,3 +174,10 @@ footer {
 	    font-size: 2rem;
 	    font-weight: bold;
 	}
+	
+	.input-group {
+		position: relative;
+		margin-bottom: 32px;
+		border-bottom: 1px solid #e5e5e5;
+	}
+	
