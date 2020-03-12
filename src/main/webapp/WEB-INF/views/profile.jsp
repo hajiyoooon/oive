@@ -42,17 +42,76 @@
 	
 	 	<script>
 		    function add(id){
-		      var target = document.getElementById(id+"-add");
+		      var target = document.getElementById(id.split("_")[0]);
+		      var category = id.split("-")[0];
 		      console.log(target);
 		      var xhr = new XMLHttpRequest();
 		      xhr.onload=function(){
 		        if(xhr.status==200){
 		          target.innerHTML += this.responseText;
 		        }
-		      }
-		      xhr.open("GET", "/oive/form/"+id, true);
+		      };
+		      xhr.open("GET", "/oive/form/"+category, true);
 		      xhr.send();
 		    }
-	 	</script>
+// 폼 수정하기		    
+    function edit(id){    	
+//     	window.alert("form_"+id);    	
+    	var formElement = document.getElementById("form_"+id);  
+//     	window.alert(formElement);
+//     	window.alert(formElement.action);
+    	var formData = new FormData(formElement);
+//     	window.alert(formData.get('id'));
+//     	window.alert(formData.get('uName'));
+		<!-- >>>>>> formData에 누락된 값이 있을 경우 default 값을 세팅해 준다.-->
+		if(!formData.has('fileId1'))
+			formData.append('fileId1', '0');
+		if(!formData.has('fileId1'))
+			formData.append('fileId2', '0');
+		if(!formData.has('isTransfer'))
+			formData.append('isTransfer', '0');
+		if(!formData.has('status'))
+			formData.append('status', '미졸업');
+// 		var tran = document.forms['form_university_${uvo[i].id}'].elements['isTransfer'].checked;
+// 		window.alert(tran);
+// 		console.log(tran);
+// 		window.alert(typeof formData.get('id'));
+		<!-- <<<<<< formData에 누락된 값이 있을 경우 default 값을 세팅해 준다.-->
+		var xhr= new XMLHttpRequest();
+    	xhr.onload=function(){
+    		if(xhr.status==200){
+    			window.alert("수정이 성공하였습니다.")    			
+    		} else
+    			window.alert("수정에 실패하였습니다.")
+    	}
+    	if(formData.get('id')==""){
+    		xhr.open("POST", "/oive/insert", true);
+    		formData.append('id', '0');
+    		if(!formData.has('uName'))
+    			formData.append('uName', '');
+    		if(!formData.has('enrollDate'))
+    			formData.append('enrollDate', '');
+    		if(!formData.has('gradDate'))
+    			formData.append('gradDate', '');
+    		if(!formData.has('status'))
+    			formData.append('status', '');
+    		if(!formData.has('degree'))
+    			formData.append('degree', '');
+    		if(!formData.has('majorType'))
+    			formData.append('majorType', '');
+    		if(!formData.has('majorName'))
+    			formData.append('majorName', '');
+    		if(!formData.has('totalGrade'))
+    			formData.append('totalGrade', '0');
+    		if(!formData.has('maxGrade'))
+    			formData.append('maxGrade', '0');
+    		if(!formData.has('majorGrade'))
+    			formData.append('majorGrade', '0');
+    	}
+    	else
+    		xhr.open("POST", "/oive/edit", true);
+    	xhr.send(formData);    	
+    }
+    </script>
 	</body>
   </html>

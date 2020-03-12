@@ -10,12 +10,12 @@ public class UniversityVO {
 	private String degree;
 	private String majorType;
 	private String majorName;
-	private double totalGrade;
-	private double maxGrade;
-	private double majorGrade;
-	private int isTransfer;
-	private int fileId1;
-	private int fileId2;
+	private String totalGrade;
+	private String maxGrade;
+	private String majorGrade;
+	private String isTransfer;
+	private String fileId1;
+	private String fileId2;
 	public int getId() {
 		return id;
 	}
@@ -70,45 +70,42 @@ public class UniversityVO {
 	public void setMajorName(String majorName) {
 		this.majorName = majorName;
 	}
-	public double getTotalGrade() {
+	public String getTotalGrade() {
 		return totalGrade;
 	}
-	public void setTotalGrade(double totalGrade) {
+	public void setTotalGrade(String totalGrade) {
 		this.totalGrade = totalGrade;
 	}
-	public double getMaxGrade() {
+	public String getMaxGrade() {
 		return maxGrade;
 	}
-	public void setMaxGrade(double maxGrade) {
+	public void setMaxGrade(String maxGrade) {
 		this.maxGrade = maxGrade;
 	}
-	public double getMajorGrade() {
+	public String getMajorGrade() {
 		return majorGrade;
 	}
-	public void setMajorGrade(double majorGrade) {
+	public void setMajorGrade(String majorGrade) {
 		this.majorGrade = majorGrade;
 	}
-	public int getIsTransfer() {
+	public String getIsTransfer() {
 		return isTransfer;
 	}
 	public void setIsTransfer(String isTransfer) {
-		if(isTransfer.equals("편입")) 
-			this.isTransfer = 1;
-		else this.isTransfer = 0;
+		this.isTransfer = isTransfer;
 	}
-	public int getFileId1() {
+	public String getFileId1() {
 		return fileId1;
 	}
-	public void setFileId1(int fileId1) {
+	public void setFileId1(String fileId1) {
 		this.fileId1 = fileId1;
 	}
-	public int getFileId2() {
+	public String getFileId2() {
 		return fileId2;
 	}
-	public void setFileId2(int fileId2) {
+	public void setFileId2(String fileId2) {
 		this.fileId2 = fileId2;
 	}
-	
 
 	
 	

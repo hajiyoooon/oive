@@ -112,41 +112,8 @@
   </form>
   <div class="form-group profile-btn-group">
     <button id="university_${uvo[i].id}" class="btn btn-success" onclick="edit(id);false;">수정</button>
-    <script type="text/javascript">
-    function edit(id){    	
-//     	window.alert("form_"+id);    	
-    	var formElement = document.getElementById("form_"+id);  
-//     	window.alert(formElement);
-//     	window.alert(formElement.action);
-    	var formData = new FormData(formElement);
-//     	window.alert(formData.get('id'));
-//     	window.alert(formData.get('uName'));
-		<!-- >>>>>> formData에 누락된 값이 있을 경우 default 값을 세팅해 준다.-->
-		if(!formData.has('fileId1'))
-			formData.append('fileId1', '0');
-		if(!formData.has('fileId1'))
-			formData.append('fileId2', '0');
-		if(!formData.has('isTransfer'))
-			formData.append('isTransfer', '0');
-		if(!formData.has('status'))
-			formData.append('status', '미졸업');
-// 		var tran = document.forms['form_university_${uvo[i].id}'].elements['isTransfer'].checked;
-// 		window.alert(tran);
-// 		console.log(tran);
-		<!-- <<<<<< formData에 누락된 값이 있을 경우 default 값을 세팅해 준다.-->
-		var xhr= new XMLHttpRequest();
-    	xhr.onload=function(){
-    		if(xhr.status==200){
-    			window.alert("수정이 성공하였습니다.")    			
-    		} else
-    			window.alert("수정에 실패하였습니다.")
-    	}
-    	xhr.open("POST", "/oive/edit", true);
-    	xhr.send(formData);    	
-    }
-    </script>
     <a href="/oive/delete?id=${uvo[i].id}&category='university'"><button class="btn btn-danger" type="button" name="button">삭제</button></a>
     <!-- GET 형식으로 삭제 구현함 -->
-    <button id="university" class="btn btn-primary" type="button" onclick="add(id);false;">추가</button>
+    <button id="university-add_${uvo[i].id}" class="btn btn-primary" type="button" onclick="add(id);false;">추가</button>
   </div>
  </c:forEach>

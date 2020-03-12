@@ -14,22 +14,26 @@
     	 from university
     	where userId = #{userId}    	
  	</select>
- 	<insert id="insertOne" parameterType="vo.UniversityVO">
- 		<selectKey resultType="int" keyProperty="id" order="BEFORE">
- 			select university_seq.nextval from dual
- 		</selectKey>
+ 	
+ 	<select id="seqid" resultType="int">
+ 	 select UNIVERSITY_SEQ.nextval from dual 	
+ 	</select>
+ 	<insert id="insert" parameterType="vo.UniversityVO"> 		
  		insert into university (
 	 		ID, USERID, UNAME, ENROLLDATE, GRADDATE, STATUS, DEGREE,
 	 		MAJORTYPE,MAJORNAME,TOTALGRADE,MAJORGRADE,MAXGRADE,
 	 		ISTRANSFER,FILEID1,FILEID2
  		)
  		values (
- 			#{ID}, #{USERID}, #{UNAME}, #{ENROLLDATE}, #{GRADDATE}, #{STATUS}, #{DEGREE},
-	 		#{MAJORTYPE},#{MAJORNAME},#{TOTALGRADE},#{MAJORGRADE},#{MAXGRADE},
-	 		#{ISTRANSFER},"", ""
+ 			#{id}, #{userId}, #{uName}, #{enrollDate}, #{gradDate}, #{status}, #{degree},
+	 		#{majorType},#{majorName},#{totalGrade},#{majorGrade},#{maxGrade},
+	 		#{isTransfer},#{fileId1}, #{fileId2}
  		)
- 		where userId = #{userID} and id = #{ID}
  	</insert>
+ 	
+ 	
+ 	
+ 	
  	
  	<update id="edit" parameterType="vo.UniversityVO">
  		update university set 			
