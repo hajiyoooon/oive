@@ -26,7 +26,7 @@ public class HomeController {
 	UserDAO dao;
 
 	@Autowired
-	SearchDAO SearchDAO;
+	SearchDAO searchDAO;
 	
 	@Autowired
 	UserService service;
@@ -111,11 +111,6 @@ public class HomeController {
 			redirectAttr.addFlashAttribute("msg", "회원정보 수정에 실패했습니다.");
 		}
 		return mav;
-	}
-
-	@RequestMapping(value = "/self_introduce/write/{self_introduce_id}", method = RequestMethod.GET)
-	public String write(UserVO vo, @PathVariable String self_introduce_id) {
-		return "write";
 	}
 
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
