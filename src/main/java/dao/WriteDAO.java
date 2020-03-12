@@ -50,6 +50,10 @@ public class WriteDAO {
 		return list;	
 	}
 	
+	public String selectSid() {
+		return sqlSession.selectOne("resource.WriteMapper.selectSid");
+	}
+	
 	public boolean insert(SelfIntroduceVO vo) {
 		System.out.println("Mybatis 를 사용 DB 연동-insert-DAO2");
 		String statement = "resource.WriteMapper.insertSelf";
@@ -62,7 +66,21 @@ public class WriteDAO {
 		}
 		return result;
 	}
-	
+	public boolean insertKeyword(int sid, List<String> keywords){
+		boolean result = true;
+		userId = ((UserVO)httpSession.getAttribute("user")).getUserId();
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("userId", userId);
+		map.put("sid", ""+sid);
+		for(String keyword : keywords) {
+			map.put("keyword", keyword);
+			if(sqlSession.insert("resource.WriteMapper.insertKey", map) < 1) {
+				result = false;
+			}
+		}
+
+		return result;
+	}
 	public List<SelfIntroduceVO> listAll(String userid){
 		System.out.println("Mybatis 를 사용 DB 연동-listAll-DAO2");
 		List<SelfIntroduceVO> list = null;

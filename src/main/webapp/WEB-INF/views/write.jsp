@@ -65,7 +65,7 @@
 							<div class="modal-body" id="one">
 								<div class="post-list">
 									<ul class="list-header2">
-										<li class="keyword">키워드</li>
+										<li class="keywords">키워드</li>
 										<li class="company">지원회사</li>
 										<li class ="applied-date">작성일자</li>
 									</ul>
@@ -98,7 +98,7 @@
 	  			</div>
 	
 				<div class="form-group col-sm-3">
-			  			<input id="textinput" name="key" type="text" placeholder="키워드" class="form-control input-md"><br><br>
+			  			<input id="textinput" name="keywords" type="text" placeholder="키워드" class="form-control input-md"><br><br>
 			  			<input id="textinput" name="appliedCompany" type="text" placeholder="지원회사" class="form-control input-md"><br><br>
 			  			<input id="textinput" name="writeDate" type="DATE" placeholder="지원일자" class="form-control input-md"><br><br>	
 						<input id="hidden" name="action" value="insert">	
