@@ -1,26 +1,14 @@
 package vo;
 
-public class PatentVO {
-    private int id;
-    private String userId;
+public class PatentVO extends ProfileVO  {
+
     private String patentName;
     private String country; 
     private String pubNumber;
     private String pubDate;
     private int fileId;
     private String patentComment;
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getUserId() {
-		return userId;
-	}
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
+
 	public String getPatentName() {
 		return patentName;
 	}

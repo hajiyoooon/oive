@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="resource.CertificationsMapper">
+   	<select id="listAll" parameterType="string" resultType="vo.CertificationsVO">
+    	select ID,USERID,CERTNAME,CERTNUMBER,GRADE,AQUIREDDATE,EXPDATE,CERTTYPE,FILEID,ORGNAME,CERTCOMMENTS	   	from Certifications
+    	where userId = #{userId}    	
+ 	</select>
+ 	
+ 	<select id="seqid" resultType="int">
+ 	select Certifications_SEQ.nextval from dual 	
+ 	</select>
+ 	<insert id="insert" parameterType="vo.CertificationsVO"> 		
+		insert into Certifications(ID,USERID,CERTNAME,CERTNUMBER,GRADE,AQUIREDDATE,EXPDATE,CERTTYPE,FILEID,ORGNAME,CERTCOMMENTS)
+		values(#{id}, #{userId}, #{certName}, #{certNumber},
+		#{aquiredDate}, #{expDate}, #{certtype}, 
+		#{fileId},#{orgName}, #{certComments})
+ 	</insert>
+
+ 	<update id="edit" parameterType="vo.CertificationsVO">
+ 		update Certifications set 			
+			CertificationsName = #{CertificationsName},
+			aquiredDate = #{aquiredDate},
+			orgName = #{orgName},
+			fileId = #{fileId},
+			CertificationsType = #{CertificationsType},
+			CertificationsComments = #{CertificationsComments},
+			type = #{type}
+		where USERID = #{userId} and id = #{id}
+ 	</update>
+</mapper>
+
+
+
+
+
+
+
+

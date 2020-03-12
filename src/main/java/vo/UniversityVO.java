@@ -1,8 +1,7 @@
 package vo;
 
-public class UniversityVO {
-	private int id;
-	private String userId;
+public class UniversityVO extends ProfileVO  {
+
 	private String uName;
 	private String enrollDate;
 	private String gradDate;
@@ -16,18 +15,7 @@ public class UniversityVO {
 	private String isTransfer;
 	private String fileId1;
 	private String fileId2;
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getUserId() {
-		return userId;
-	}
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
+
 	public String getuName() {
 		return uName;
 	}

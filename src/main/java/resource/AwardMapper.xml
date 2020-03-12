@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="resource.AwardMapper">
+   	<select id="listAll" parameterType="string" resultType="vo.AwardVO">
+    	select ID,USERID,AWARDNAME,AQUIREDDATE,ORGNAME,FILEID,AWARDTYPE,AWARDCOMMENTS
+	   	from Award
+    	where userId = #{userId}    	
+ 	</select>
+ 	
+ 	<select id="seqid" resultType="int">
+ 	select award_SEQ.nextval from dual 	
+ 	</select>
+ 	<insert id="insert" parameterType="vo.AwardVO"> 		
+		insert into award
+		values(#{id}, #{userId}, #{awardName}, #{aquiredDate},
+		#{orgName}, #{fileId}, #{awardType}, #{awardComments},#{type})
+ 	</insert>
+
+ 	<update id="edit" parameterType="vo.AwardVO">
+ 		update Award set 			
+			awardName = #{awardName},
+			aquiredDate = #{aquiredDate},
+			orgName = #{orgName},
+			fileId = #{fileId},
+			awardType = #{awardType},
+			awardComments = #{awardComments},
+			type = #{type}
+		where USERID = #{userId} and id = #{id}
+ 	</update>
+</mapper>
+
+
+
+
+
+
+
+

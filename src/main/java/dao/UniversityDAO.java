@@ -36,7 +36,5 @@ public class UniversityDAO {
 		System.out.println("edit : "+result);
 		return result;
 	}
-	public int delete(int id) {
-		//TODO 삭제기능 구현
-	}
+
 }

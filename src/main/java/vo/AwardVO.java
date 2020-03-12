@@ -1,8 +1,6 @@
 package vo;
 
-public class AwardVO {
-	private int id;
-	private String userId;
+public class AwardVO extends ProfileVO{
 	private String awardName;
 	private String aquiredDate;
 	private String orgName;
@@ -10,18 +8,7 @@ public class AwardVO {
 	private String awardType;
 	private String awardComments;
 	private String type;
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getUserId() {
-		return userId;
-	}
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
+
 	public String getAwardName() {
 		return awardName;
 	}
