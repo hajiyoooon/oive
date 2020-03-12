@@ -91,8 +91,10 @@ public class UniversityVO {
 	public int getIsTransfer() {
 		return isTransfer;
 	}
-	public void setIsTransfer(int isTransfer) {
-		this.isTransfer = isTransfer;
+	public void setIsTransfer(String isTransfer) {
+		if(isTransfer.equals("편입")) 
+			this.isTransfer = 1;
+		else this.isTransfer = 0;
 	}
 	public int getFileId1() {
 		return fileId1;
