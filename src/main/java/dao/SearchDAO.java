@@ -23,45 +23,32 @@ public class SearchDAO {
 	String userId;
 
 	
-	public List<SelfIntroduceVO> listAll(){
+	public List<SelfIntroduceVO> listAll(int startindex){
 		userId = ((UserVO)httpSession.getAttribute("user")).getUserId();
-		HashMap<String, String> map = new HashMap<String, String>();
-		return sqlSession.selectList("resource.SearchMapper.selectAll", userId);
-		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("userId", userId);
+		map.put("start", startindex);
+		map.put("end", (startindex+9));
+		return sqlSession.selectList("searchByKeyword", map);	
 	}
-	public List<SelfIntroduceVO> searchByCompany(String input){
+	public List<SelfIntroduceVO> searchBy(int startindex, String statement, String input){
 		userId = ((UserVO)httpSession.getAttribute("user")).getUserId();
-		HashMap<String, String> map = new HashMap<String, String>();
+		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("userId", userId); // key값 userId이고 value값이 userId이다.
 		map.put("input", input);
-		return sqlSession.selectList("resource.SearchMapper.searchByCompany", map);
+		map.put("start", startindex);
+		map.put("end", (startindex+9));
+		return sqlSession.selectList(statement, map);
 		
 	}
-	public List<SelfIntroduceVO> searchByKeyword(String input){
-		userId = ((UserVO)httpSession.getAttribute("user")).getUserId();
-		HashMap<String, String> map = new HashMap<String, String>();
-		
-		map.put("userId", userId);
-		map.put("input", input);
 
-		System.out.println(map.get("userId") + " : " + map.get("input"));
-		return sqlSession.selectList("resource.SearchMapper.searchByKeyword", map);
-		
-	}
-	public List<SelfIntroduceVO> searchByQuestion(String input){
+	public boolean delete(int sid) {
 		userId = ((UserVO)httpSession.getAttribute("user")).getUserId();
-		HashMap<String, String> map = new HashMap<String, String>();
-		map.put("userId", userId);
-		map.put("input", input);
-		return sqlSession.selectList("resource.SearchMapper.searchByQuestion", map);
-		
+		boolean result = false;
+		if(sqlSession.delete("resource.SearchMapper.delete", sid) == 1) {
+			result = true;
+		}
+		return result;
 	}
-	public List<SelfIntroduceVO> searchByAnswer(String input){
-		userId = ((UserVO)httpSession.getAttribute("user")).getUserId();
-		HashMap<String, String> map = new HashMap<String, String>();
-		map.put("userId", userId);
-		map.put("input", input);
-		return sqlSession.selectList("resource.SearchMapper.searchByAnswer", map);
-		
-	}
+
 }
