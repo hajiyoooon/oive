@@ -5,6 +5,7 @@
 <mapper namespace="resource.WorkExperienceMapper">
    	<select id="listAll" parameterType="string" resultType="vo.WorkExperienceVO">
     	select ID,USERID,COMPANYNAME,EMPTYPE,STARTDATE,ENDDATE,DUTY,WORKCOMMENTS,FILEID,WORKPOSITION
+    	from work_experience
     	where userId = #{userId}    	
  	</select>
  	
