@@ -13,7 +13,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Song+Myung:400" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Gamja+Flower:400" rel="stylesheet">
 	<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
-<style>*{font-family:Song Myung}</style>
+<style>*{font-family:Song Myung} h2{margin-left:-10px} </style>
 <!-- <style>form.profile{margin-bottom:30px;}</style> -->
   </head>
 	<body>
@@ -31,10 +31,26 @@
 		    	</ul>
 		    </nav>
 		    <div class="row temp profile" style="display:inline-flex;flex-direction:column">
-		    	<h2 style="margin-left:-10px">학력사항</h2> 
+		    	<h2 style="">학력사항</h2> 
 		    	<h3 id="university">대학교</h3>
 		    	<c:import url="/form/university"/>
-		    	<div id="university-add"><!-- 이곳에 추가된 form이 붙음.--></div>
+		    	<div id="university-add"></div>
+
+				<h3 id="education">교육사항</h3>
+<%-- 		    	<c:import url="/form/education"/> --%>
+		    	<div id="education-add"><!-- 이곳에 추가된 form이 붙음.--></div>
+		    	
+		    	<h2 id="certifications">자격증</h2> 
+<%-- 		    	<c:import url="/form/certification"/> --%>
+		    	<div id="certification-add"><!-- 이곳에 추가된 form이 붙음.--></div>
+		    	
+		    	<h2 id="award">수상이력</h2> 
+<%-- 		    	<c:import url="/form/award"/> --%>
+		    	<div id="award-add"><!-- 이곳에 추가된 form이 붙음.--></div>
+		    			    	
+		    	
+		    	
+		    	
 		    	    	
 			</div>
 	    	<aside><!-- 어사이드입니다. 작업이 끝나면 지워주세요. --></aside> 
@@ -51,7 +67,7 @@
 		          target.innerHTML += this.responseText;
 		        }
 		      };
-		      xhr.open("GET", "/oive/form/"+category, true);
+		      xhr.open("GET", "/oive/insert/"+category, true);
 		      xhr.send();
 		    }
 // 폼 수정하기		    
@@ -63,6 +79,15 @@
     	var formData = new FormData(formElement);
 //     	window.alert(formData.get('id'));
 //     	window.alert(formData.get('uName'));
+		<!-- >>>>>> formData에 누락된 값이 있을 경우 default 값을 세팅해 준다.-->
+// 		if(!formData.has('fileId1'))
+// 			formData.append('fileId1', '0');
+// 		if(!formData.has('fileId1'))
+// 			formData.append('fileId2', '0');
+// 		if(!formData.has('isTransfer'))
+// 			formData.append('isTransfer', '0');
+// 		if(!formData.has('status'))
+// 			formData.append('status', '미졸업');
 // 		var tran = document.forms['form_university_${uvo[i].id}'].elements['isTransfer'].checked;
 // 		window.alert(tran);
 // 		console.log(tran);
@@ -71,9 +96,9 @@
 		var xhr= new XMLHttpRequest();
     	xhr.onload=function(){
     		if(xhr.status==200){
-    			window.alert("수정이 성공하였습니다.");		
+    			window.alert("ajax 통신 성공."+ xhr.responseText);    			
     		} else
-    			window.alert("수정에 실패하였습니다.")
+    			window.alert("ajax 통신 실패."+ xhr.responseText);
     	}
     	xhr.open("POST", "/oive/edit?category=university", true);
     	xhr.send(formData);    	
@@ -81,14 +106,15 @@
     
     	function del(btId){
     		var category = btId.split("/")[1];
-    		var id = btId.split("/")[2];
-    		window.alert("formGroup_"+category+"_"+id);
+    		var id = btId.split("/")[2];	
+//     		window.alert("formGroup_"+category+"_"+id);
     		var target
     			= document.getElementById("formGroup_"+category+"_"+id);
     		var xhr = new XMLHttpRequest();
     		xhr.onload=function(){
     			if(xhr.status==200){
-    				window.alert("삭제가 성공하였습니다.");
+    				var msg = xhr.responseText==1?"삭제 성공":"삭제 실패";
+    				window.alert(msg);
     				target.innerHTML = '';
     			} 
     			else{

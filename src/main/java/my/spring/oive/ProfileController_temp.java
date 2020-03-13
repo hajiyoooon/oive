@@ -113,20 +113,23 @@ public class ProfileController_temp {
 	
 	@RequestMapping(value = "/edit", method=RequestMethod.POST)
 	@ResponseBody
-	public void edit(String category, @RequestParam HashMap<Object, Object> map) {
+	public String edit(String category, @RequestParam HashMap<Object, Object> map) {
 		//TODO : 수정 성공, 수정 실패 메시지가 사용자에게도 보여지도록 수정해야 함.
-		System.out.println("수정 시도 : "+ map.size());
+	
 		String capitlized_category = StringUtils.capitalize(category);
 		ProfileVO vo = getVO(capitlized_category, map);
 		vo.setUserId(((UserVO)session.getAttribute("user")).getUserId());
+
 		if(dao.edit(vo, capitlized_category)<1) {
 			System.out.println("university 수정이 실패함.");
+			return "edit fail!!";
 		}
 		else {
-			System.out.println("profileController: edit handler");		
-		}
+			System.out.println("profileController: edit handler");
+			return "edit success!!";
+		}		
 	}
-	
+
 
 	@RequestMapping(value = "/insert/{category}")
 	@ResponseBody
@@ -137,7 +140,7 @@ public class ProfileController_temp {
 		
 		ProfileVO vo = getVO(capitlized_category, map);
 		int id = dao.selectId(capitlized_category);
-		vo.setId(id);
+		vo.setId(""+id);
 		String userId = ((UserVO)session.getAttribute("user")).getUserId();
 		vo.setUserId(userId);
 		
@@ -153,21 +156,27 @@ public class ProfileController_temp {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("vo", list);
 		mav.setViewName("form/"+ category +"_form");
-
+	
 		return mav;
 	}
 	
 	@RequestMapping(value = "/form/{category}")
 	public ModelAndView form(@PathVariable String category, HashMap<Object, Object> map) {
 		String userId = ((UserVO)session.getAttribute("user")).getUserId();
-		List<ProfileVO> list = dao.listAll(userId, StringUtils.capitalize(category)); 
-
-		
+		List<ProfileVO> list = dao.listAll(userId, StringUtils.capitalize(category));
 		ModelAndView mav = new ModelAndView();		
 		mav.addObject("vo", list);
 		mav.setViewName("form/"+ category +"_form");
-
+	
 		return mav;
 	}
-		
+	
+	@RequestMapping(value = "/delete/{category}/{id}")
+	@ResponseBody
+	public int delete(@PathVariable String category, @PathVariable int id) {		
+		int result = dao.delete(id, StringUtils.capitalize(category));
+		return result; 
+	}
+	
+
 }
