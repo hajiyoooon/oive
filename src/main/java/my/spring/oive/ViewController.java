@@ -7,9 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
-import dao.SearchDAO;
 import dao.ViewDAO;
 import vo.SelfIntroduceVO;
 
@@ -18,9 +16,9 @@ public class ViewController {
 	@Autowired
 	ViewDAO dao;
 	
-	@RequestMapping(value = "/self_introduce/search", method = RequestMethod.GET)
+	@RequestMapping(value = "/self_introduce/search", method = RequestMethod.GET, produces="application/json; charset=utf-8")
 	@ResponseBody
-	public ModelAndView list(String input, String boundary) {
+	public List<SelfIntroduceVO> list(String input, String boundary) {
 		List<SelfIntroduceVO> list = null;
 		if(boundary != null) {
 			switch (boundary) {
@@ -45,11 +43,21 @@ public class ViewController {
 		if(list == null) {
 		}
 		
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("list");
-		mav.addObject("list", list);
-		System.out.println(mav);
+//		ModelAndView mav = new ModelAndView();
+//		mav.setViewName("list");
+//		mav.addObject("list", list);
 		
-		return mav;
+		return list;
 	}
+	
+	/*
+	 * @RequestMapping(value = "/self_introduce/search/view",
+	 * produces="application/json; charset=utf-8")
+	 * 
+	 * @ResponseBody public List<SelfIntroduceVO> change(String keyword, String
+	 * appliedcompany, String writedate){ List<SelfIntroduceVO> list = null;
+	 * HashMap<String, String> map = new HashMap<String, String>();
+	 * 
+	 * return list; }
+	 */
 }

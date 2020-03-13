@@ -137,6 +137,7 @@
 			if(xhr.readyState == XMLHttpRequest.DONE){
 				if(xhr.status == 200){
 					var str = xhr.responseText;
+					console.log('str');
 					var result = JSON.parse(str);
 					var output = "<ul>";
 					dom.innerHTML = str;
@@ -144,7 +145,7 @@
 			}
 		};
 		xhr.open('GET','/self_introduce/search',true);
-		xhr,send();
+		xhr.send();
 	}
 </script>
   </body>
