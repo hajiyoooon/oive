@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %> 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 
-<c:forEach var="i" begin="0" end="${uvo.size()-1}">
-<div id="formGroup_university_${uvo[i].id}>
+<c:forEach var="i" begin="0" end="${uvo==null?0:uvo.size()-1}">
+<div id="formGroup_university_${uvo[i].id}">
 <form id="form_university_${uvo[i].id}" class="profile" 
 	action="edit" method="POST" enctype="multipart/form-data">
 <!-- 구현이 끝난 후 type을 "hidden"으로 바꿀 것  -->

@@ -19,7 +19,7 @@
 	<body>
 		<%@ include file="header.jsp" %>
 	  	<div id="body"> 
-		    <nav>
+		    <nav style="display:none"><!-- nav 감추기 -->
 		    	<ul class="nav flex-column" style="/* position:fixed */;padding-top:40px;padding-left:30px;">
 			    	<li class="nav-item"><a href="#university" class="nav-link">학력 사항</a></li>
 			    		<ul>
@@ -84,38 +84,14 @@
     		} else
     			window.alert("수정에 실패하였습니다.")
     	}
-    	if(formData.get('id')==""){
-    		xhr.open("POST", "/oive/insert", true);
-    		formData.append('id', '0');
-    		if(!formData.has('uName'))
-    			formData.append('uName', '');
-    		if(!formData.has('enrollDate'))
-    			formData.append('enrollDate', '');
-    		if(!formData.has('gradDate'))
-    			formData.append('gradDate', '');
-    		if(!formData.has('status'))
-    			formData.append('status', '');
-    		if(!formData.has('degree'))
-    			formData.append('degree', '');
-    		if(!formData.has('majorType'))
-    			formData.append('majorType', '');
-    		if(!formData.has('majorName'))
-    			formData.append('majorName', '');
-    		if(!formData.has('totalGrade'))
-    			formData.append('totalGrade', '0');
-    		if(!formData.has('maxGrade'))
-    			formData.append('maxGrade', '0');
-    		if(!formData.has('majorGrade'))
-    			formData.append('majorGrade', '0');
-    	}
-    	else
-    		xhr.open("POST", "/oive/edit", true);
+    	xhr.open("POST", "/oive/edit", true);
     	xhr.send(formData);    	
     }
     
     	function del(btId){
     		var category = btId.split("/")[1];
     		var id = btId.split("/")[2];
+    		window.alert("formGroup_"+category+"_"+id);
     		var target
     			= document.getElementById("formGroup_"+category+"_"+id);
     		var xhr = new XMLHttpRequest();
