@@ -24,6 +24,7 @@ public class WriteDAO {
 	HttpSession httpSession;
 	
 	String userId;
+	int sid;
 	
 	public List<SelfIntroduceVO> searchByCompany(String input){
 		userId = ((UserVO)httpSession.getAttribute("user")).getUserId(); // UserService에 저장을 한 것을 가지고 저장
@@ -31,7 +32,13 @@ public class WriteDAO {
 		map.put("userId", userId); // key값 userId이고 value값이 userId이다.
 		return sqlSession.selectList("resource.SearchMapper.searchByCompany", map);
 	}
-
+	/*
+	 * public void keyInsert(String sid, String[] array){ userId =
+	 * ((UserVO)httpSession.getAttribute("user")).getUserId(); HashMap<String,
+	 * String> map = new HashMap<String, String>(); map.put("userId", userId);
+	 * map.put("sid", sid); map.put("key", array[i]); String statement =
+	 * resource.WriteMapper.; sqlSession.insert(statement, vo); }
+	 */
 
 	public List<SelfIntroduceVO> searchWrite(String window, String type) {
 		List<SelfIntroduceVO> list = new ArrayList<>();

@@ -32,7 +32,6 @@
 			transition: height 3s;
 			height: 100px;
 		}
-
     </style>
   </head>
   <body>
@@ -63,18 +62,21 @@
 								<span aria-hidden="true">&times;</span>
 								</button>
 							</div>
-							<div class="modal-body">
+							<div class="modal-body" id="one">
 								<div class="post-list">
 									<ul class="list-header2">
 										<li class="keywords">키워드</li>
 										<li class="company">지원회사</li>
 										<li class ="applied-date">작성일자</li>
 									</ul>
+									
+									<div>
 									<ul onclick="showContent(this)" data-id="1">
 										<li class="keyword">keywords</li>
 										<li class="company">지원회사</li>
 										<li class ="applied-date">2019-09-09</li>
 									</ul>
+									</div>
 									<ul class="post-content-box" data-id="1" style="display: none;">
 										<li class="post-content">게시글</li>
 									</ul>
@@ -128,8 +130,23 @@
 		}
 		
 	}
-
+	 window.onload = function(){
+		var xhr = new XMLHttpRequest();
+		var dom = document.getElementById("one");
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState == XMLHttpRequest.DONE){
+				if(xhr.status == 200){
+					var str = xhr.responseText;
+					console.log('str');
+					var result = JSON.parse(str);
+					var output = "<ul>";
+					dom.innerHTML = str;
+				}
+			}
+		};
+		xhr.open('GET','/self_introduce/search',true);
+		xhr.send();
+	}
 </script>
-
   </body>
 </html>
