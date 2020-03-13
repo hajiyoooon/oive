@@ -13,7 +13,7 @@
 	</head>
 	<body>
 	<%-- <c:if test="${ not empty vo }">
-	<c:forEach var="i" begin="0" end="${vo.size() - 1}"> --%>
+	<c:forEach var="i" begin="0" end="${vo.size()==0?0:vo.size() - 1}"> --%>
 	<!-- 나중에 이 부분 주석처리해서 사용 -->
 		<form>
 			<input type="hidden" name="category" value="patent"> 
