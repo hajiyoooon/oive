@@ -117,6 +117,9 @@ public class ProfileController_temp {
 		//TODO : 수정 성공, 수정 실패 메시지가 사용자에게도 보여지도록 수정해야 함.
 		String capitlized_category = StringUtils.capitalize(category);
 		ProfileVO vo = getVO(capitlized_category, map);
+		String userId = ((UserVO)session.getAttribute("user")).getUserId();
+		vo.setUserId(userId);
+		System.out.println(vo.getClass());
 		if(dao.edit(vo, capitlized_category)<1) {
 			System.out.println("university 수정이 실패함.");
 		}

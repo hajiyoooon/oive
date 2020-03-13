@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import vo.ProfileVO;
-import vo.UniversityVO;
+//import vo.UniversityVO;
 
 @Repository
 public class ProfileDAO {
@@ -31,6 +31,9 @@ public class ProfileDAO {
 	}
 	
 	public int edit(ProfileVO vo, String category) {
+		System.out.println("resource."+category+"Mapper.edit");
+		System.out.println(vo.getId());
+		System.out.println(vo.getUserId());
 		int result =
 				session.update("resource."+category+"Mapper.edit", vo);
 		System.out.println("edit : "+result);

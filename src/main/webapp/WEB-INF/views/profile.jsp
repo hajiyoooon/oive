@@ -13,7 +13,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Song+Myung:400" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Gamja+Flower:400" rel="stylesheet">
 	<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
-<style>*{font-family:Song Myung}</style>
+<style>*{font-family:Song Myung} h2{margin-left:-10px} </style>
 <!-- <style>form.profile{margin-bottom:30px;}</style> -->
   </head>
 	<body>
@@ -31,10 +31,26 @@
 		    	</ul>
 		    </nav>
 		    <div class="row temp profile" style="display:inline-flex;flex-direction:column">
-		    	<h2 style="margin-left:-10px">학력사항</h2> 
+		    	<h2 style="">학력사항</h2> 
 		    	<h3 id="university">대학교</h3>
 		    	<c:import url="/form/university"/>
 		    	<div id="university-add"><!-- 이곳에 추가된 form이 붙음.--></div>
+
+				<h3 id="education">교육사항</h3>
+		    	<c:import url="/form/education"/>
+		    	<div id="education-add"><!-- 이곳에 추가된 form이 붙음.--></div>
+		    	
+		    	<h2 id="certifications">자격증</h2> 
+<%-- 		    	<c:import url="/form/certification"/> --%>
+		    	<div id="certification-add"><!-- 이곳에 추가된 form이 붙음.--></div>
+		    	
+		    	<h2 id="award">수상이력</h2> 
+		    	<c:import url="/form/award"/>
+		    	<div id="award-add"><!-- 이곳에 추가된 form이 붙음.--></div>
+		    			    	
+		    	
+		    	
+		    	
 		    	    	
 			</div>
 	    	<aside><!-- 어사이드입니다. 작업이 끝나면 지워주세요. --></aside> 
@@ -56,12 +72,12 @@
 		    }
 // 폼 수정하기		    
     function edit(id){    	
-//     	window.alert("form_"+id);    	
+    	window.alert("form_"+id);    	
     	var formElement = document.getElementById("form_"+id);  
 //     	window.alert(formElement);
 //     	window.alert(formElement.action);
     	var formData = new FormData(formElement);
-//     	window.alert(formData.get('id'));
+    	window.alert(formData.get('id'));
 //     	window.alert(formData.get('uName'));
 		<!-- >>>>>> formData에 누락된 값이 있을 경우 default 값을 세팅해 준다.-->
 		if(!formData.has('fileId1'))
