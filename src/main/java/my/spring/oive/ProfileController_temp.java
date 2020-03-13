@@ -25,10 +25,10 @@ import vo.LanguagesVO;
 import vo.PatentVO;
 import vo.ProfileVO;
 import vo.PublicationsVO;
+import vo.SkillsVO;
 import vo.UniversityVO;
 import vo.UserVO;
 import vo.WorkExperienceVO;
-import vo.SkillsVO;
 
 /**
  * 
@@ -107,18 +107,17 @@ public class ProfileController_temp {
 	}
 	
 	@RequestMapping(value = "/profile")
-	public ModelAndView profile(String category) {
-		ModelAndView mav = new ModelAndView();
-		
-		mav.setViewName("profile");
-		return mav;
+	public String profile(String category) {
+		return "profile";
 	}
 	
 	@RequestMapping(value = "/edit", method=RequestMethod.POST)
 	@ResponseBody
 	public void edit(String category, HashMap<Object, Object> map) {
-		ProfileVO vo = getVO(category, map);
-		if(dao.edit(vo, category)<1) {
+		//TODO : 수정 성공, 수정 실패 메시지가 사용자에게도 보여지도록 수정해야 함.
+		String capitlized_category = StringUtils.capitalize(category);
+		ProfileVO vo = getVO(capitlized_category, map);
+		if(dao.edit(vo, capitlized_category)<1) {
 			System.out.println("university 수정이 실패함.");
 		}
 		else {
@@ -127,17 +126,33 @@ public class ProfileController_temp {
 	}
 	
 
-	@RequestMapping(value = "/insert")
+	@RequestMapping(value = "/insert/{category}")
 	@ResponseBody
-	public void insert(ProfileVO vo, String category) {
-		if(dao.insert(vo, category)<1) {
+	public ModelAndView insert(@PathVariable String category, HashMap<Object, Object> map) {
+		//TODO : 입력 성공, 입력 실패 메시지가 사용자에게도 보여지도록 수정해야 함.
+		
+		String capitlized_category = StringUtils.capitalize(category);
+		
+		ProfileVO vo = getVO(capitlized_category, map);
+		int id = dao.selectId(capitlized_category);
+		vo.setId(id);
+		String userId = ((UserVO)session.getAttribute("user")).getUserId();
+		vo.setUserId(userId);
+		
+		if(dao.insert(vo, StringUtils.capitalize(category))<1) {
 			System.out.println("university 입력이 실패함.");
 		}
 		else {
-			System.out.println("univeristy 입력이 성공함");
-			
+			System.out.println("univeristy 입력이 성공함");	
 		}
+		List<ProfileVO> list = new ArrayList<ProfileVO>();
+		list.add(vo);
 		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("vo", list);
+		mav.setViewName("form/"+ category +"_form");
+
+		return mav;
 	}
 	
 	@RequestMapping(value = "/form/{category}")
@@ -147,7 +162,7 @@ public class ProfileController_temp {
 
 		
 		ModelAndView mav = new ModelAndView();		
-		mav.addObject("uvo", list);
+		mav.addObject("vo", list);
 		mav.setViewName("form/"+ category +"_form");
 
 		return mav;
