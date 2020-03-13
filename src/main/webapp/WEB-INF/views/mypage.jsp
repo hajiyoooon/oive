@@ -11,8 +11,6 @@
 	<link rel="stylesheet" href="/oive/resources/css/bootstrap.css">
 	<link rel="stylesheet" href="/oive/resources/css/oive.css">
     <link rel="stylesheet" href="/oive/resources/css/registration.css">
-	<link href="https://fonts.googleapis.com/css?family=Song+Myung:400" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Gamja+Flower:400" rel="stylesheet">
 	<script src="/oive/resources/js/bootstrap.min.js"></script>
   </head>
   <body>
