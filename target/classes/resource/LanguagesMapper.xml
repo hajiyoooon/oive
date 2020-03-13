@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="resource.LanguagesMapper">
+   	<select id="listAll" parameterType="string" resultType="vo.LanguagesVO">
+    	select ID,USERID,LANGUAGENAME,FLUENCY,LANGUAGECOMMENTS
+    	where userId = #{userId}    	
+ 	</select>
+ 	
+ 	<select id="seqid" resultType="int">
+ 	select languages_SEQ.nextval from dual 	
+ 	</select>
+ 	<insert id="insert" parameterType="vo.LanguagesVO"> 		
+		insert into Languages(ID,USERID,LANGUAGENAME,FLUENCY,LANGUAGECOMMENTS
+		values(#{id}, #{userId}, #{languageName}, #{fluency}, #{languageComment}, #{fileId})
+ 	</insert>
+
+ 	<update id="edit" parameterType="vo.LanguagesVO">
+ 		update Languages set 			
+			languageName = #{languageName},
+			fluency = #{fluency},
+			languageComment = #{languageComment},
+			fileId = #{fileId}
+		where USERID = #{userId} and id = #{id}
+ 	</update>
+</mapper>
+
+
+
+
+
+
+
+

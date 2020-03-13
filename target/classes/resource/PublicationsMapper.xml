@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="resource.PublicationsMapper">
+   	<select id="listAll" parameterType="string" resultType="vo.PublicationsVO">
+    	select PUBDATE,AUTHORS,PUBNUMBER,FILEID,PUBLISHER,ID,USERID,PUBNAME    	
+    	where userId = #{userId}    	
+ 	</select>
+ 	
+ 	<select id="seqid" resultType="int">
+ 	select publications_SEQ.nextval from dual 	
+ 	</select>
+ 	<insert id="insert" parameterType="vo.PublicationsVO"> 		
+		insert into Publications(ID, USERID, PUBDATE,AUTHORS,PUBNUMBER,FILEID,PUBLISHER,PUBNAME
+		values(#{id}, #{userId}, #{pubDate}, #{authors}, #{pubNumber}, #{fileId},#{publisher},#{pubName})
+ 	</insert>
+
+ 	<update id="edit" parameterType="vo.PublicationsVO">
+ 		update Publications set 			
+			pubName = #{pubName},
+			pubDate = #{pubDate},
+			authors = #{authors},
+			pubNumber = #{pubNumber},
+			fileId = #{fileId},
+			publisher = #{publisher}
+		where USERID = #{userId} and id = #{id}
+ 	</update>
+</mapper>
+
+
+
+
+
+
+
+

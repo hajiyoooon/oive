@@ -1,23 +1,10 @@
 package vo;
 
-public class skillsVO {
-	private int id;
-	private int userId;
+public class SkillsVO extends ProfileVO  {
 	private String skillsName;
 	private String level;
 	private String skillsComments;
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public int getUserId() {
-		return userId;
-	}
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
+
 	public String getSkillsName() {
 		return skillsName;
 	}

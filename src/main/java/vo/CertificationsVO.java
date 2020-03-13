@@ -1,28 +1,16 @@
 package vo;
 
-public class CertificationsVO {
-    private int id;
-    private int userId;
+public class CertificationsVO extends ProfileVO {
     private String certName;
     private String certNumber;
+    private String grade;
     private String aquiredDate;
     private String expDate;
     private String certtype;
     private String fileId;
     private String orgName;
     private String certComments;
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public int getUserId() {
-		return userId;
-	}
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
+
 	public String getCertName() {
 		return certName;
 	}
@@ -34,6 +22,21 @@ public class CertificationsVO {
 	}
 	public void setCertNumber(String certNumber) {
 		this.certNumber = certNumber;
+	}
+	
+	
+	
+	public String getGrade() {
+		return grade;
+	}
+	public void setGrade(String grade) {
+		this.grade = grade;
+	}
+	public String getCertComments() {
+		return certComments;
+	}
+	public void setCertComments(String certComments) {
+		this.certComments = certComments;
 	}
 	public String getAquiredDate() {
 		return aquiredDate;

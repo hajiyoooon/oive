@@ -1,8 +1,7 @@
 package vo;
 
-public class WorkExperienceVO {
-	private int id;
-	private int userId;
+public class WorkExperienceVO extends ProfileVO  {
+
 	private String companyName;
 	private String empType;
 	private String startDate;
@@ -11,18 +10,7 @@ public class WorkExperienceVO {
 	private String workComments;
 	private int fileId;
 	private String workPosition;
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public int getUserId() {
-		return userId;
-	}
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
+
 	public String getCompanyName() {
 		return companyName;
 	}

@@ -1,8 +1,7 @@
 package vo;
 
-public class EducationVO {
-    private int id;
-    private int userId;
+public class EducationVO extends ProfileVO  {
+
     private String eduName;
     private String totalHour;
     private String eduComments;
@@ -11,18 +10,7 @@ public class EducationVO {
     private String orgName;
     private String startDate;
     private String endDate;
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public int getUserId() {
-		return userId;
-	}
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
+
 	public String getEduName() {
 		return eduName;
 	}

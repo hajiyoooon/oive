@@ -33,7 +33,7 @@
 		    <div class="row temp profile" style="display:inline-flex;flex-direction:column">
 		    	<h2 style="margin-left:-10px">학력사항</h2> 
 		    	<h3 id="university">대학교</h3>
-		    	<%@ include file="./form/university_form.jsp" %>
+		    	<c:import url="/form/university"/>
 		    	<div id="university-add"><!-- 이곳에 추가된 form이 붙음.--></div>
 		    	    	
 			</div>
