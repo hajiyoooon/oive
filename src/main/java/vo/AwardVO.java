@@ -7,7 +7,6 @@ public class AwardVO extends ProfileVO{
 	private String fileId;
 	private String awardType;
 	private String awardComments;
-	private String type;
 
 	public String getAwardName() {
 		return awardName;
@@ -44,14 +43,5 @@ public class AwardVO extends ProfileVO{
 	}
 	public void setAwardComments(String awardComments) {
 		this.awardComments = awardComments;
-	}
-	public String getType() {
-		return type;
-	}
-	public void setType(String type) {
-		this.type = type;
-	}
-
-	
-	
+	}	
 }

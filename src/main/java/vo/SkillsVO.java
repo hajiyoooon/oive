@@ -1,6 +1,6 @@
 package vo;
 
-public class skillsVO extends ProfileVO  {
+public class SkillsVO extends ProfileVO  {
 	private String skillsName;
 	private String level;
 	private String skillsComments;

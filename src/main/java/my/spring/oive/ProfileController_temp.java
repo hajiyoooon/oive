@@ -29,7 +29,7 @@ import vo.PublicationsVO;
 import vo.UniversityVO;
 import vo.UserVO;
 import vo.WorkExperienceVO;
-import vo.skillsVO;
+import vo.SkillsVO;
 
 /**
  * 
@@ -66,7 +66,7 @@ public class ProfileController_temp {
 			vo = new PublicationsVO();
 			break;
 		case "Skills":
-			vo = new skillsVO();
+			vo = new SkillsVO();
 			break;
 		case "University":
 			vo = new UniversityVO();

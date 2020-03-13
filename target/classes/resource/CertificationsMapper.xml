@@ -13,20 +13,20 @@
  	</select>
  	<insert id="insert" parameterType="vo.CertificationsVO"> 		
 		insert into Certifications(ID,USERID,CERTNAME,CERTNUMBER,GRADE,AQUIREDDATE,EXPDATE,CERTTYPE,FILEID,ORGNAME,CERTCOMMENTS)
-		values(#{id}, #{userId}, #{certName}, #{certNumber},
-		#{aquiredDate}, #{expDate}, #{certtype}, 
-		#{fileId},#{orgName}, #{certComments})
+		values(#{id}, #{userId}, #{certName}, #{certNumber},#{grade},#{aquiredDate}, #{expDate}, #{certtype}, #{fileId},#{orgName}, #{certComments})
  	</insert>
 
  	<update id="edit" parameterType="vo.CertificationsVO">
  		update Certifications set 			
-			CertificationsName = #{CertificationsName},
+			certName = #{certName},
+			certNumber = #{certNumber},
 			aquiredDate = #{aquiredDate},
-			orgName = #{orgName},
+			grade = #{grade},
+			expDate = #{expDate},
+			certtype = #{certtype},
 			fileId = #{fileId},
-			CertificationsType = #{CertificationsType},
-			CertificationsComments = #{CertificationsComments},
-			type = #{type}
+			orgName = #{orgName},
+			certComments = #{certComments}
 		where USERID = #{userId} and id = #{id}
  	</update>
 </mapper>

@@ -13,9 +13,9 @@
  	select award_SEQ.nextval from dual 	
  	</select>
  	<insert id="insert" parameterType="vo.AwardVO"> 		
-		insert into award
+		insert into award(ID,USERID,AWARDNAME,AQUIREDDATE,ORGNAME,FILEID,AWARDTYPE,AWARDCOMMENTS)
 		values(#{id}, #{userId}, #{awardName}, #{aquiredDate},
-		#{orgName}, #{fileId}, #{awardType}, #{awardComments},#{type})
+		#{orgName}, #{fileId}, #{awardType}, #{awardComments})
  	</insert>
 
  	<update id="edit" parameterType="vo.AwardVO">
@@ -25,8 +25,7 @@
 			orgName = #{orgName},
 			fileId = #{fileId},
 			awardType = #{awardType},
-			awardComments = #{awardComments},
-			type = #{type}
+			awardComments = #{awardComments}
 		where USERID = #{userId} and id = #{id}
  	</update>
 </mapper>

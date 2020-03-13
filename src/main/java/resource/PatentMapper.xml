@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="resource.PatentMapper">
+   	<select id="listAll" parameterType="string" resultType="vo.PatentVO">
+    	select ID,USERID,PATENTNAME,COUNTRY,PATNUMBER,PATDATE,FILEID,PATENTCOMMENTS    	
+    	where userId = #{userId}    	
+ 	</select>
+ 	
+ 	<select id="seqid" resultType="int">
+ 	select patent_SEQ.nextval from dual 	
+ 	</select>
+ 	<insert id="insert" parameterType="vo.PatentVO"> 		
+		insert into Patent(ID,USERID,PATENTNAME,COUNTRY,PATNUMBER,PATDATE,FILEID,PATENTCOMMENTS
+		values(#{id}, #{userId}, #{patentName}, #{country}, #{pubNumber}, #{pubDate},#{fileId},#{patentComment})
+ 	</insert>
+
+ 	<update id="edit" parameterType="vo.PatentVO">
+ 		update Patent set 			
+			patentName = #{patentName},
+			country = #{country},
+			pubNumber = #{pubNumber},
+			pubDate = #{pubDate},
+			fluency = #{fluency},
+			fileId = #{fileId},
+			patentComment = #{patentComment}
+		where USERID = #{userId} and id = #{id}
+ 	</update>
+</mapper>
+
+
+
+
+
+
+
+
