@@ -63,15 +63,6 @@
     	var formData = new FormData(formElement);
 //     	window.alert(formData.get('id'));
 //     	window.alert(formData.get('uName'));
-		<!-- >>>>>> formData에 누락된 값이 있을 경우 default 값을 세팅해 준다.-->
-		if(!formData.has('fileId1'))
-			formData.append('fileId1', '0');
-		if(!formData.has('fileId1'))
-			formData.append('fileId2', '0');
-		if(!formData.has('isTransfer'))
-			formData.append('isTransfer', '0');
-		if(!formData.has('status'))
-			formData.append('status', '미졸업');
 // 		var tran = document.forms['form_university_${uvo[i].id}'].elements['isTransfer'].checked;
 // 		window.alert(tran);
 // 		console.log(tran);
@@ -80,11 +71,11 @@
 		var xhr= new XMLHttpRequest();
     	xhr.onload=function(){
     		if(xhr.status==200){
-    			window.alert("수정이 성공하였습니다.")    			
+    			window.alert("수정이 성공하였습니다.");		
     		} else
     			window.alert("수정에 실패하였습니다.")
     	}
-    	xhr.open("POST", "/oive/edit", true);
+    	xhr.open("POST", "/oive/edit?category=university", true);
     	xhr.send(formData);    	
     }
     
