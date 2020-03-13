@@ -39,5 +39,12 @@ public class ProfileDAO {
 		System.out.println("edit : "+result);
 		return result;
 	}
+	public int delete(int id, String category){
+		// TODO Auto-generated method stub
+		int result = 
+				session.delete("resource."+category+"Mapper.delete", id);
+		
+		return result;
+	}
 
 }

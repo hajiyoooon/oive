@@ -8,7 +8,7 @@
 <!-- 구현이 끝난 후 type을 "hidden"으로 바꿀 것  -->
 	<input type="text" name="userId" value="${sessionScope.user.userId}">
 	<input type="text" name="category" value="university">
-	<input type="text" name="id" value="${vo[i].id}">
+	<input type="text" name="Id" value="${vo[i].id}">
 	
   <div class="form-row">
     <div class="col form-group">
@@ -17,15 +17,15 @@
       	required maxlength=16 placeholder="학교명을 입력하세요.">
     </div>
     <div class="col form-group">
-      <label for="majorName">학과명</label>
-      <input type="text" name="majorName" value="${vo[i].majorName}" class="form-control"
+      <label for="MajorName">학과명</label>
+      <input type="text" name="MajorName" value="${vo[i].majorName}" class="form-control"
       maxlength=33 placeholder="학과명을 입력하세요.">
     </div>
   </div>
   <div class="form-row">
     <div class="col form-group">
-      <label for="majorType">전공 유형</label>
-      <select name="majorType" class="custom-select">
+      <label for="MajorType">전공 유형</label>
+      <select name="MajorType" class="custom-select">
       	<option value="" >선택하세요.</option>
 		<option value="단일전공" 
 		${vo[i].majorType=='단일전공'?'selected':''}>단일전공</option>
@@ -38,8 +38,8 @@
 	  </select>
     </div>
     <div class="col form-group">
-      <label for="degree">학위 유형</label>
-      <select name="degree" class="custom-select">
+      <label for="Degree">학위 유형</label>
+      <select name="Degree" class="custom-select">
         <option value="">선택하세요.</option>
         <option ${vo[i].degree=='학사'?'selected':''}>학사</option>
         <option ${vo[i].degree=='전문학사'?'selected':''}>전문학사</option>
@@ -49,46 +49,46 @@
       </select>
     </div>
     <div class="col form-group">
-      <label for="isTransfer" class="">편입</label>
-      <input type="checkbox" name="isTransfer" value="1" class=""
+      <label for="IsTransfer" class="">편입</label>
+      <input type="checkbox" name="IsTransfer" value="1" class=""
       ${vo[i].isTransfer=='1'?'checked':''}>
     </div>
   </div>
   <div class="form-row">
     <div class="col form-group">
-    	<label for="enrollDate">입학일</label>
-    	<input type="date" name="enrollDate" value="${vo[i].enrollDate}" class="form-control">
+    	<label for="EnrollDate">입학일</label>
+    	<input type="date" name="EnrollDate" value="${vo[i].enrollDate}" class="form-control">
     </div>
     <div class="col form-group">
-    	<label for="gradeDate">졸업(예정)일</label>
-    	<input type="date" name="gradDate" value="${vo[i].gradDate}" class="form-control">
+    	<label for="GradeDate">졸업(예정)일</label>
+    	<input type="date" name="GradDate" value="${vo[i].gradDate}" class="form-control">
     </div>
     <div class="col form-group">
-      	<label for="status">졸업</label>
+      	<label for="Status">졸업</label>
 <!--       	<select name="status" class="custom-select"> -->
 <%--       		<option ${vo[i].status=='졸업'?'selected':''}>졸업</option> --%>
 <%--       		<option ${vo[i].status=='수료'?'selected':''}>수료</option> --%>
 <%--       		<option ${vo[i].status=='재학'?'selected':''}>재학</option> --%>
 <%--       		<option ${vo[i].status=='기타'?'selected':''}>기타</option> --%>
 <!--       	</select> -->
-      	<input type="checkbox" name="status" value="졸업" class=""
+      	<input type="checkbox" name="Status" value="졸업" class=""
       ${vo[i].status=='졸업'?'checked':''}>
       	
     </div>
   </div>
   <div class="form-row">
     <div class="col form-group">
-      <label for="totalGrade">총 학점</label>
-      <input type="number" name="totalGrade" value="${vo[i].totalGrade}" min=0.00 max=4.99 class="form-control"
+      <label for="TotalGrade">총 학점</label>
+      <input type="number" name="TotalGrade" value="${vo[i].totalGrade}" min=0.00 max=4.99 class="form-control"
       step="0.01" placeholder="평점평균 입력">
     </div>
     <div class="col form-group">
-      <label for="majorGrade">전공 학점</label>
-      <input type="text" name="majorGrade" value="${vo[i].majorGrade}" class="form-control">
+      <label for="MajorGrade">전공 학점</label>
+      <input type="text" name="MajorGrade" value="${vo[i].majorGrade}" class="form-control">
     </div>
     <div class="col form-group">
-      <label for="maxGrade" class="">최고학점</label>
-      <select name="maxGrade" class="custom-select">
+      <label for="MaxGrade" class="">최고학점</label>
+      <select name="MaxGrade" class="custom-select">
             <option value="0">선택하세요.</option>
 			<option value="4.3" ${vo[i].maxGrade=='4.3'?'selected':''}>4.3</option>
 			<option value="4.5" ${vo[i].maxGrade=='4.5'?'selected':''}>4.5</option>
@@ -101,7 +101,7 @@
   </div>
   <div class="form-row">
     <div class="col">
-      <label for="fileId1">관련파일</label>
+      <label for="FileId1">관련파일</label>
       <!-- 파일업로드와 파일명 표시 기능 2단계에서 구현함. -->
       <button class="btn-sm btn-secondary">업로드</button>
       <button class="btn-sm btn-secondary">삭제하기</button>
