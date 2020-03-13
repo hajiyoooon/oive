@@ -9,7 +9,7 @@
  	</select>
  	
  	<select id="seqid" resultType="int">
- 	select publication_SEQ.nextval from dual 	
+ 	select work_experience_SEQ.nextval from dual 	
  	</select>
  	<insert id="insert" parameterType="vo.WorkExperienceVO"> 		
 		insert into WorkExperience(ID,USERID,COMPANYNAME,EMPTYPE,STARTDATE,ENDDATE,DUTY,WORKCOMMENTS,FILEID,WORKPOSITION

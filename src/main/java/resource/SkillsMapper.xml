@@ -2,22 +2,23 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="resource.PublicationsMapper">
-   	<select id="listAll" parameterType="string" resultType="vo.PublicationsVO">
+<mapper namespace="resource.SkillsMapper">
+   	<select id="listAll" parameterType="string" resultType="vo.SkillsVO">
     	select ID,USERID,SKILLSNAME,SKILLSLEVEL,SKIILSCOMMENTS
+    	from skills
     	where userId = #{userId}    	
  	</select>
  	
  	<select id="seqid" resultType="int">
- 	select publication_SEQ.nextval from dual 	
+ 	select skills_SEQ.nextval from dual 	
  	</select>
- 	<insert id="insert" parameterType="vo.PublicationsVO"> 		
-		insert into Publications(ID,USERID,SKILLSNAME,SKILLSLEVEL,SKIILSCOMMENTS
+ 	<insert id="insert" parameterType="vo.SkillsVO"> 		
+		insert into Skills(ID,USERID,SKILLSNAME,SKILLSLEVEL,SKIILSCOMMENTS
 		values(#{id}, #{userId}, #{skillsName}, #{level}, #{skillsComments})
  	</insert>
 
- 	<update id="edit" parameterType="vo.PublicationsVO">
- 		update Publications set 			
+ 	<update id="edit" parameterType="vo.SkillsVO">
+ 		update Skills set 			
 			skillsName = #{skillsName},
 			level = #{level},
 			skillsComments = #{skillsComments}
