@@ -37,16 +37,35 @@
 		    	<div id="university-add"></div>
 
 				<h3 id="education">교육사항</h3>
-<%-- 		    	<c:import url="/form/education"/> --%>
+		    	<c:import url="/form/education"/>
 		    	<div id="education-add"><!-- 이곳에 추가된 form이 붙음.--></div>
 		    	
 		    	<h2 id="certifications">자격증</h2> 
-<%-- 		    	<c:import url="/form/certification"/> --%>
-		    	<div id="certification-add"><!-- 이곳에 추가된 form이 붙음.--></div>
+		    	<c:import url="/form/certifications"/>
+		    	<div id="certifications-add"><!-- 이곳에 추가된 form이 붙음.--></div>
+		    	
+		    	<h2 id="languages">외국어</h2> 
+		    	<c:import url="/form/languages"/>
+		    	<div id="languages-add"><!-- 이곳에 추가된 form이 붙음.--></div>
+		    	
+		    	<h2 id="skills">기술</h2> 
+		    	<c:import url="/form/skills"/>
+		    	<div id="skills-add"><!-- 이곳에 추가된 form이 붙음.--></div>
+	
 		    	
 		    	<h2 id="award">수상이력</h2> 
-<%-- 		    	<c:import url="/form/award"/> --%>
+		    	<c:import url="/form/award"/>
 		    	<div id="award-add"><!-- 이곳에 추가된 form이 붙음.--></div>
+		    	
+		    	<h2 id="patent">특허</h2> 
+		    	<c:import url="/form/patent"/>
+		    	<div id="patent-add"><!-- 이곳에 추가된 form이 붙음.--></div>
+		    	
+		    	<h2 id="publications">논문, 저서</h2> 
+		    	<c:import url="/form/publications"/>
+		    	<div id="publications-add"><!-- 이곳에 추가된 form이 붙음.--></div>
+		    	
+		    	
 		    			    	
 		    	
 		    	
