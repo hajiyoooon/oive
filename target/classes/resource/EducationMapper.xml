@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="resource.EducationMapper">
+   	<select id="listAll" parameterType="string" resultType="vo.EducationVO">
+    	select ID,USERID,EDUNAME,TOTALHOUR,EDUCOMMENTS,GRADE,CLASSIFICATION,ORGNAME,STARTDATE,ENDDATE
+    	from education
+    	where userId = #{userId}    	
+ 	</select>
+ 	
+ 	<select id="seqid" resultType="int">
+ 	select Education_SEQ.nextval from dual 	
+ 	</select>
+ 	<insert id="insert" parameterType="vo.EducationVO"> 		
+		insert into Education(ID,USERID,EDUNAME,TOTALHOUR,EDUCOMMENTS,GRADE,CLASSIFICATION,ORGNAME,STARTDATE,ENDDATE
+		values(#{id}, #{userId}, #{eduName}, #{totalHour}, #{eduComments}, #{grade},
+		#{classification}, #{orgName}, #{startDate}, #{endDate})
+ 	</insert>
+
+ 	<update id="edit" parameterType="vo.EducationVO">
+ 		update Education set 			
+			eduName = #{eduName},
+			totalHour = #{totalHour},
+			eduComments = #{eduComments},
+			grade = #{grade},
+			classification = #{classification},
+			orgName = #{orgName},
+			startDate = #{startDate},
+			endDate = #{endDate}
+		where USERID = #{userId} and id = #{id}
+ 	</update>
+</mapper>
+
+
+
+
+
+
+
+

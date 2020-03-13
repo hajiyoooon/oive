@@ -30,7 +30,7 @@
 <body><!-- bootstrap의 form-control 사용 -->
 	<div class="container">
 	<h1>학력 사항</h1>	
-	<%@ include file="./form/university_form.jsp" %>
+	<%@ include file="./form/University_form.jsp" %>
 	<%@ include file="./form/education_form.jsp" %>
 	<hr>
 	<h1>자격사항(자격증/시험성적)</h1>

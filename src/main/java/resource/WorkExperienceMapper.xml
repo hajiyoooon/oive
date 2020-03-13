@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="resource.WorkExperienceMapper">
+   	<select id="listAll" parameterType="string" resultType="vo.WorkExperienceVO">
+    	select ID,USERID,COMPANYNAME,EMPTYPE,STARTDATE,ENDDATE,DUTY,WORKCOMMENTS,FILEID,WORKPOSITION
+    	from work_experience
+    	where userId = #{userId}    	
+ 	</select>
+ 	
+ 	<select id="seqid" resultType="int">
+ 	select work_experience_SEQ.nextval from dual 	
+ 	</select>
+ 	<insert id="insert" parameterType="vo.WorkExperienceVO"> 		
+		insert into WorkExperience(ID,USERID,COMPANYNAME,EMPTYPE,STARTDATE,ENDDATE,DUTY,WORKCOMMENTS,FILEID,WORKPOSITION
+		values(#{id}, #{userId}, #{companyName}, #{empType}, #{startDate}, #{endDate}, #{duty}, #{workComments}, #{fileId},#{workPosition})
+ 	</insert>
+
+ 	<update id="edit" parameterType="vo.WorkExperienceVO">
+ 		update WorkExperience set 			
+			companyName = #{companyName},
+			empType = #{empType},
+			startDate = #{startDate},
+			endDate = #{endDate},
+			duty = #{duty},
+			workComments = #{workComments},
+			fileId = #{fileId},
+			workPosition = #{workPosition}
+		where USERID = #{userId} and id = #{id}
+ 	</update>
+</mapper>
+
+
+
+
+
+
+
+

@@ -15,17 +15,31 @@ public class UniversityDAO {
 	
 	public List<UniversityVO> listAll(String userId) {
 		List<UniversityVO> list =
-				session.selectList("resource.UniversityMapper.listAll");
+				session.selectList("resource.UniversityMapper.listAll", userId);
+//		System.out.println(list.get(0).getuName());
 		return list;
 	}
-	public int insertOne(int id) {
+	public int insert(UniversityVO universityVO) {
 		int result =
-				session.insert("resource.UniversityMapper.insertOne");
+				session.insert("resource.UniversityMapper.insert", universityVO);
 		return result;
 	}
-	public int edit() {
+	public int selectId() {
 		int result =
-				session.update("resource.UniversityMapper.edit");
+				session.selectOne("resource.UniversityMapper.seqid");
+		return result;
+	}
+	
+	public int edit(UniversityVO universityVO) {
+		int result =
+				session.update("resource.UniversityMapper.edit", universityVO);
+		System.out.println("edit : "+result);
+		return result;
+	}
+	public int delete(int id) {
+		//TODO 삭제기능 구현
+		int result
+			= session.delete("resource.UniversityMapper.delete", id);
 		return result;
 	}
 }

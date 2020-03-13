@@ -1,24 +1,12 @@
 package vo;
 
-public class LanguagesVO {
-	private int id;
-	private int userId;
+public class LanguagesVO extends ProfileVO  {
+
 	private String languageName;
 	private String fluency;
 	private String languageComment;
 	private int fileId;
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public int getUserId() {
-		return userId;
-	}
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
+
 	public String getLanguageName() {
 		return languageName;
 	}
