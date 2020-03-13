@@ -28,6 +28,9 @@
 			awardComments = #{awardComments}
 		where USERID = #{userId} and id = #{id}
  	</update>
+ 	<delete id="delete" parameterType="int">
+ 		delete from award where id = #{id} 	
+ 	</delete>
 </mapper>
 
 

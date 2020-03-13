@@ -29,6 +29,9 @@
 			workPosition = #{workPosition}
 		where USERID = #{userId} and id = #{id}
  	</update>
+ 	<delete id="delete" parameterType="int">
+ 		delete from WorkExperience where id = #{id} 	
+ 	</delete> 	
 </mapper>
 
 

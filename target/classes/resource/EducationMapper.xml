@@ -13,7 +13,7 @@
  	select Education_SEQ.nextval from dual 	
  	</select>
  	<insert id="insert" parameterType="vo.EducationVO"> 		
-		insert into Education(ID,USERID,EDUNAME,TOTALHOUR,EDUCOMMENTS,GRADE,CLASSIFICATION,ORGNAME,STARTDATE,ENDDATE
+		insert into Education(ID,USERID,EDUNAME,TOTALHOUR,EDUCOMMENTS,GRADE,CLASSIFICATION,ORGNAME,STARTDATE,ENDDATE)
 		values(#{id}, #{userId}, #{eduName}, #{totalHour}, #{eduComments}, #{grade},
 		#{classification}, #{orgName}, #{startDate}, #{endDate})
  	</insert>
@@ -30,6 +30,9 @@
 			endDate = #{endDate}
 		where USERID = #{userId} and id = #{id}
  	</update>
+ 	 	<delete id="delete" parameterType="int">
+ 		delete from education where id = #{id} 	
+ 	</delete>
 </mapper>
 
 

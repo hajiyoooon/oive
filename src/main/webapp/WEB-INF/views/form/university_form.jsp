@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %> 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
-
-<c:forEach var="i" begin="0" end="${vo==null?0:vo.size()-1}">
+<c:if test="${ not empty vo }">
+<c:forEach var="i" begin="0" end="${vo.size()==0?0:vo.size()-1}">
 <div id="formGroup_university_${vo[i].id}">
 <form id="form_university_${vo[i].id}" class="profile" 
 	action="edit" method="POST" enctype="multipart/form-data">
@@ -122,3 +122,4 @@
   </div>
 </div>  
  </c:forEach>
+ </c:if>

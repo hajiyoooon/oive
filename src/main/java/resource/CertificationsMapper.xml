@@ -29,6 +29,9 @@
 			certComments = #{certComments}
 		where USERID = #{userId} and id = #{id}
  	</update>
+ 	<delete id="delete" parameterType="int">
+ 		delete from certifications where id = #{id} 	
+ 	</delete>
 </mapper>
 
 

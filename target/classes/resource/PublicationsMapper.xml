@@ -27,6 +27,9 @@
 			publisher = #{publisher}
 		where USERID = #{userId} and id = #{id}
  	</update>
+ 	<delete id="delete" parameterType="int">
+ 		delete from Publications where id = #{id} 	
+ 	</delete> 	
 </mapper>
 
 

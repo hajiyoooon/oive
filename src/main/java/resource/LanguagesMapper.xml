@@ -25,6 +25,9 @@
 			fileId = #{fileId}
 		where USERID = #{userId} and id = #{id}
  	</update>
+ 	<delete id="delete" parameterType="int">
+ 		delete from Languages where id = #{id} 	
+ 	</delete> 	
 </mapper>
 
 

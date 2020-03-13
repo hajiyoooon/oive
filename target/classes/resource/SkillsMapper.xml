@@ -24,6 +24,9 @@
 			skillsComments = #{skillsComments}
 		where USERID = #{userId} and id = #{id}
  	</update>
+ 	<delete id="delete" parameterType="int">
+ 		delete from Skills where id = #{id} 	
+ 	</delete> 	
 </mapper>
 
 

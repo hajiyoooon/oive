@@ -28,6 +28,9 @@
 			patentComment = #{patentComment}
 		where USERID = #{userId} and id = #{id}
  	</update>
+ 	<delete id="delete" parameterType="int">
+ 		delete from Patent where id = #{id} 	
+ 	</delete>
 </mapper>
 
 
