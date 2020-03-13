@@ -14,8 +14,8 @@ public class ProfileDAO {
 	@Autowired
 	SqlSession session;
 	
-	public List<UniversityVO> listAll(String userId, String category) {
-		List<UniversityVO> list =
+	public List<ProfileVO> listAll(String userId, String category) {
+		List<ProfileVO> list =
 				session.selectList("resource."+category+"Mapper.listAll", userId);
 		return list;
 	}

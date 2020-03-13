@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -39,8 +40,11 @@ import vo.SkillsVO;
 public class ProfileController_temp {
 	@Autowired
 	ProfileDAO dao;		
+	
 	@Autowired
 	HttpSession session;	
+	
+
 	
 	public ProfileVO getVO(String category, HashMap<Object, Object> map) {
 		ProfileVO vo;
@@ -96,10 +100,8 @@ public class ProfileController_temp {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-	
 			}
 		}
-
 		
 		return vo;
 	}
@@ -107,10 +109,7 @@ public class ProfileController_temp {
 	@RequestMapping(value = "/profile")
 	public ModelAndView profile(String category) {
 		ModelAndView mav = new ModelAndView();
-		String userId 
-			= ((UserVO)session.getAttribute("user")).getUserId();
-
-		mav.addObject("vo", dao.listAll(userId, category));
+		
 		mav.setViewName("profile");
 		return mav;
 	}
@@ -142,23 +141,16 @@ public class ProfileController_temp {
 	}
 	
 	@RequestMapping(value = "/form/{category}")
-	public void form(@PathVariable String category, HashMap<Object, Object> map) {
-		ProfileVO vo = getVO(category, map);
-		int id = dao.selectId(category); // 맨 첫 글자 대문자여야 함!
-		
-		vo.setId(id);
-		vo.setUserId(((UserVO)session.getAttribute("user")).getUserId());
-//		((UniversityVO) vo).setuName("대학교");
-		dao.insert(vo, category);		
-	
-		List<ProfileVO> list = new ArrayList<ProfileVO>(); 
-		list.add(vo);
+	public ModelAndView form(@PathVariable String category, HashMap<Object, Object> map) {
+		String userId = ((UserVO)session.getAttribute("user")).getUserId();
+		List<ProfileVO> list = dao.listAll(userId, StringUtils.capitalize(category)); 
+
 		
 		ModelAndView mav = new ModelAndView();		
 		mav.addObject("uvo", list);
 		mav.setViewName("form/"+ category +"_form");
 
-		return;
+		return mav;
 	}
 		
 }

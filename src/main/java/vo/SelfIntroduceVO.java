@@ -1,7 +1,5 @@
 package vo;
 
-import java.util.List;
-
 public class SelfIntroduceVO {
     private int id;
     private String userId;
