@@ -100,7 +100,7 @@
     		} else
     			window.alert("ajax 통신 실패."+ xhr.responseText);
     	}
-    	xhr.open("POST", "/oive/edit", true);
+    	xhr.open("POST", "/oive/edit?category=university", true);
     	xhr.send(formData);    	
     }
     

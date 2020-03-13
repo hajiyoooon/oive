@@ -6,7 +6,7 @@ public class PatentVO extends ProfileVO  {
     private String country; 
     private String pubNumber;
     private String pubDate;
-    private int fileId;
+    private String fileId;
     private String patentComment;
 
 	public String getPatentName() {
@@ -33,10 +33,10 @@ public class PatentVO extends ProfileVO  {
 	public void setPubDate(String pubDate) {
 		this.pubDate = pubDate;
 	}
-	public int getFileId() {
+	public String getFileId() {
 		return fileId;
 	}
-	public void setFileId(int fileId) {
+	public void setFileId(String fileId) {
 		this.fileId = fileId;
 	}
 	public String getPatentComment() {

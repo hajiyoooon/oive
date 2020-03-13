@@ -5,6 +5,7 @@
 <mapper namespace="resource.EducationMapper">
    	<select id="listAll" parameterType="string" resultType="vo.EducationVO">
     	select ID,USERID,EDUNAME,TOTALHOUR,EDUCOMMENTS,GRADE,CLASSIFICATION,ORGNAME,STARTDATE,ENDDATE
+    	from education
     	where userId = #{userId}    	
  	</select>
  	
