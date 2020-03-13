@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 	<head>
 	<title>프로필</title>
 	<!-- 링크 넣어주기  -->
@@ -11,8 +12,11 @@
 	<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
 	</head>
 	<body>
+	<c:forEach var="i" begin="0" end="${vo==null?0:vo.size()-1}">
 		<form>
-			<input type="hidden" name="category" value="award"> <input type="hidden" name="id" value="${vo[i].id}">
+			<input type="hidden" name="category" value="award"> 
+			<input type="hidden" name="id" value="${vo[i].id}">
+			
 				<div class="form row">
 					<div class="col-sm-3 form-group">
 						<div class="col">
@@ -90,5 +94,6 @@
 						<button class="btn-primary">추가</button>
 					</div>
 			</form>
+		 </c:forEach>
     <div class="" id="award-add"><!-- 추가버튼 클릭시 여기에 폼이 붙게됨. --></div>
     </body>

@@ -5,6 +5,7 @@
 <mapper namespace="resource.LanguagesMapper">
    	<select id="listAll" parameterType="string" resultType="vo.LanguagesVO">
     	select ID,USERID,LANGUAGENAME,FLUENCY,LANGUAGECOMMENTS
+    	from languages
     	where userId = #{userId}    	
  	</select>
  	
