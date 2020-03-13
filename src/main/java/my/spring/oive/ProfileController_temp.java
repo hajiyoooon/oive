@@ -14,6 +14,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -88,8 +89,7 @@ public class ProfileController_temp {
 				Object value = map.get(method.getName().substring(3));
 				if(value == null) continue;
 				try {
-					method.invoke(value, new Object[] {value});
-					
+					method.invoke(vo, new Object[] {value});
 				} catch (IllegalAccessException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -113,13 +113,13 @@ public class ProfileController_temp {
 	
 	@RequestMapping(value = "/edit", method=RequestMethod.POST)
 	@ResponseBody
-	public void edit(String category, HashMap<Object, Object> map) {
+	public void edit(String category, @RequestParam HashMap<Object, Object> map) {
 		//TODO : 수정 성공, 수정 실패 메시지가 사용자에게도 보여지도록 수정해야 함.
+	
 		String capitlized_category = StringUtils.capitalize(category);
 		ProfileVO vo = getVO(capitlized_category, map);
-		String userId = ((UserVO)session.getAttribute("user")).getUserId();
-		vo.setUserId(userId);
-		System.out.println(vo.getClass());
+vo.setUserId(((UserVO)session.getAttribute("user")).getUserId());
+
 		if(dao.edit(vo, capitlized_category)<1) {
 			System.out.println("university 수정이 실패함.");
 		}
@@ -127,7 +127,7 @@ public class ProfileController_temp {
 			System.out.println("profileController: edit handler");		
 		}
 	}
-	
+
 
 	@RequestMapping(value = "/insert/{category}")
 	@ResponseBody
@@ -154,7 +154,7 @@ public class ProfileController_temp {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("vo", list);
 		mav.setViewName("form/"+ category +"_form");
-
+	
 		return mav;
 	}
 	
@@ -163,12 +163,13 @@ public class ProfileController_temp {
 		String userId = ((UserVO)session.getAttribute("user")).getUserId();
 		List<ProfileVO> list = dao.listAll(userId, StringUtils.capitalize(category)); 
 
-		
+
+​		
 		ModelAndView mav = new ModelAndView();		
 		mav.addObject("vo", list);
 		mav.setViewName("form/"+ category +"_form");
-
+	
 		return mav;
 	}
-		
+
 }

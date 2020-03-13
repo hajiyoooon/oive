@@ -7,8 +7,14 @@ public class ProfileVO {
 	public int getId() {
 		return id;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setId(String id) {
+		if(id == null) return;
+		else if(id=="") return;
+		try {
+			this.id = Integer.parseInt(id);
+		} catch (Exception e) {
+			return;
+		}
 	}
 	public String getUserId() {
 		return userId;
