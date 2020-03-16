@@ -1,10 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %> 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
-
-<c:forEach var="i" begin="0" end="${vo==null?0:vo.size()-1}">
+<c:if test="${ not empty vo }">
+<c:forEach var="i" begin="0" end="${vo.size()==0?0:vo.size()-1}">
 <div id="formGroup_university_${vo[i].id}">
-<form id="form_university_${vo[i].id}" class="profile" 
-	action="edit" method="POST" enctype="multipart/form-data">
+<form id="form_university_${vo[i].id}" class="profile">
 <!-- 구현이 끝난 후 type을 "hidden"으로 바꿀 것  -->
 	<input type="text" name="userId" value="${sessionScope.user.userId}">
 	<input type="text" name="category" value="university">
@@ -104,7 +103,7 @@
       <label for="FileId1">관련파일</label>
       <!-- 파일업로드와 파일명 표시 기능 2단계에서 구현함. -->
       <button class="btn-sm btn-secondary">업로드</button>
-      <button class="btn-sm btn-secondary">삭제하기</button>
+      <button class="btn-sm btn-secondary">파일삭제</button>
 <%-- 		<input type="text" name="fileId1" value="${vo[i].fileId1}"> --%>
 <!-- 		<label for="fileId2">관련파일2</label> -->
 <%-- 		<input type="text" name="fileId2" value="${vo[i].fileId2}"> --%>
@@ -122,3 +121,4 @@
   </div>
 </div>  
  </c:forEach>
+ </c:if>

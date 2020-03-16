@@ -4,7 +4,11 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="resource.EducationMapper">
    	<select id="listAll" parameterType="string" resultType="vo.EducationVO">
-    	select ID,USERID,EDUNAME,TOTALHOUR,EDUCOMMENTS,GRADE,CLASSIFICATION,ORGNAME,STARTDATE,ENDDATE
+    	select 
+	    	ID,USERID,EDUNAME,TOTALHOUR,
+	    	EDUCOMMENTS,GRADE,CLASSIFICATION,ORGNAME,
+	    	TO_CHAR(STARTDATE, 'YYYY-MM-DD') as STARTDATE,
+	    	TO_CHAR(ENDDATE, 'YYYY-MM-DD') as ENDDATE
     	from education
     	where userId = #{userId}    	
  	</select>
@@ -13,7 +17,7 @@
  	select Education_SEQ.nextval from dual 	
  	</select>
  	<insert id="insert" parameterType="vo.EducationVO"> 		
-		insert into Education(ID,USERID,EDUNAME,TOTALHOUR,EDUCOMMENTS,GRADE,CLASSIFICATION,ORGNAME,STARTDATE,ENDDATE
+		insert into Education(ID,USERID,EDUNAME,TOTALHOUR,EDUCOMMENTS,GRADE,CLASSIFICATION,ORGNAME,STARTDATE,ENDDATE)
 		values(#{id}, #{userId}, #{eduName}, #{totalHour}, #{eduComments}, #{grade},
 		#{classification}, #{orgName}, #{startDate}, #{endDate})
  	</insert>
@@ -30,6 +34,9 @@
 			endDate = #{endDate}
 		where USERID = #{userId} and id = #{id}
  	</update>
+ 	 	<delete id="delete" parameterType="int">
+ 		delete from education where id = #{id} 	
+ 	</delete>
 </mapper>
 
 

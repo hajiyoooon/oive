@@ -2,7 +2,7 @@ package vo;
 
 public class SkillsVO extends ProfileVO  {
 	private String skillsName;
-	private String level;
+	private String skillsLevel;
 	private String skillsComments;
 
 	public String getSkillsName() {
@@ -11,19 +11,17 @@ public class SkillsVO extends ProfileVO  {
 	public void setSkillsName(String skillsName) {
 		this.skillsName = skillsName;
 	}
-	public String getLevel() {
-		return level;
+	public String getSkillsLevel() {
+		return skillsLevel;
 	}
-	public void setLevel(String level) {
-		this.level = level;
+	public void setSkillsLevel(String skillsLevel) {
+		this.skillsLevel = skillsLevel;
 	}
-	public String getComments() {
+	public String getSkillsComments() {
 		return skillsComments;
 	}
-	public void setComments(String comments) {
-		this.skillsComments = comments;
-	}
-
-	
+	public void setSkillsComments(String skillsComments) {
+		this.skillsComments = skillsComments;
+	}	
 
 }
