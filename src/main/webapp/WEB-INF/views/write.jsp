@@ -40,18 +40,17 @@
 
     <div class="container">
 		<div class="row">
-			<div class="search col-sm" action="" method="GET">
+			<div class="search col-sm" action="/oive/self_introduce/search" method="GET">
 				<select class="form-control search-dropdown" id="search" name="boundary">
 					<option value="company">지원회사</option>
 					<option value="keyword">키워드</option>
 					<option value="question">질문</option>
 					<option value="answer">답변</option>					
 				</select>
-				<input class="search-input" name="input">
-				<button class="search-icon"  data-toggle="modal" data-target=".bd-example-modal-lg">
+				<input class="search-input" name="input" id="input">
+				<button onclick="myexample();" class="search-icon"  data-toggle="modal" data-target=".bd-example-modal-lg">
 					<i class="fas fa-search"></i>
 				</button>
-			
 			<!-- 검색 결과 모달 시작 -->
 				<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 				  	<div class="modal-dialog modal-lg">
@@ -62,7 +61,7 @@
 								<span aria-hidden="true">&times;</span>
 								</button>
 							</div>
-							<div class="modal-body" id="one">
+							<div class="modal-body">
 								<div class="post-list">
 									<ul class="list-header2">
 										<li class="keywords">키워드</li>
@@ -70,7 +69,7 @@
 										<li class ="applied-date">작성일자</li>
 									</ul>
 									
-									<div>
+									<div  id="one">
 									<ul onclick="showContent(this)" data-id="1">
 										<li class="keyword">keywords</li>
 										<li class="company">지원회사</li>
@@ -130,21 +129,26 @@
 		}
 		
 	}
-	 window.onload = function(){
+	
+	var myexample = function(e){
 		var xhr = new XMLHttpRequest();
-		var dom = document.getElementById("one");
-		xhr.onreadystatechange = function(){
-			if(xhr.readyState == XMLHttpRequest.DONE){
+		var sdom = document.getElementById("search");
+		var svalue = sdom.options[sdom.selectedIndex].value;
+		var ivalue = document.getElementById("input").value;
+		xhr.onload = function(e){
 				if(xhr.status == 200){
 					var str = xhr.responseText;
-					console.log('str');
-					var result = JSON.parse(str);
-					var output = "<ul>";
-					dom.innerHTML = str;
-				}
+					var result = JSON.parse(str); // str값은 JSON파싱함, //자동으로 배열로 변경
+					var output = "";
+					/* console.log(result);
+					console.log(result[0].appliedcompany); */ // 배열안에 이름과 동일해야만 찾을 수 있다.
+					for(var i in result){
+						output += "<ul><li>"+result[i].keywords+"</li><li>"+result[i].appliedCompany+"</li><li>"+result[i].applyDate+"</li></ul>";											
+					} 
+					document.getElementById("one").innerHTML = output;
 			}
 		};
-		xhr.open('GET','/self_introduce/search',true);
+		xhr.open('GET','/oive/self_introduce/search?boundary='+svalue+'&input='+ivalue,true);
 		xhr.send();
 	}
 </script>
