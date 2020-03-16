@@ -29,7 +29,7 @@ public class SearchDAO {
 		map.put("userId", userId);
 		map.put("start", startindex);
 		map.put("end", (startindex+9));
-		return sqlSession.selectList("searchByKeyword", map);	
+		return sqlSession.selectList("resource.SearchMapper.selectAll", map);	
 	}
 	public List<SelfIntroduceVO> searchBy(int startindex, String statement, String input){
 		userId = ((UserVO)httpSession.getAttribute("user")).getUserId();

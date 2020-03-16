@@ -10,18 +10,22 @@
 	<title>Home</title>
 	<!-- 링크 넣어주기  -->
 	<!-- <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/starter-template/"> -->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css" >
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/oive.css" > 
-	<link href="https://fonts.googleapis.com/css?family=Song+Myung:400" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Gamja+Flower:400" rel="stylesheet">
 	
+	<!-- tagify : https://github.com/yairEO/tagify -->
 	<script src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/jQuery.tagify.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/tagify.js"></script>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css" >
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/oive.css" >
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/tagify.css" >
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+
 	<style>
 		li.post-content {
 			/* border: black 1px solid; */
-			display: block;
-			margin: 20px;
+			/* display: block;
+			margin: 20px; */
 		}
 
 		ul.post-content-box {
@@ -32,6 +36,10 @@
 			transition: height 3s;
 			height: 100px;
 		}
+		
+		div#preview {
+		    padding: 20px;
+		}
     </style>
   </head>
   <body>
@@ -40,7 +48,7 @@
 
     <div class="container">
 		<div class="row">
-			<div class="search col-sm" action="" method="GET">
+			<div class="search col-sm">
 				<select class="form-control search-dropdown" id="search" name="boundary">
 					<option value="company">지원회사</option>
 					<option value="keyword">키워드</option>
@@ -53,7 +61,7 @@
 				</button>
 			
 			<!-- 검색 결과 모달 시작 -->
-				<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+				<div id="searchList" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 				  	<div class="modal-dialog modal-lg">
 						<div class="modal-content">
 							<div class="modal-header">
@@ -71,16 +79,19 @@
 									</ul>
 									
 									<div>
-									<ul onclick="showContent(this)" data-id="1">
-										<li class="keyword">keywords</li>
-										<li class="company">지원회사</li>
-										<li class ="applied-date">2019-09-09</li>
-									</ul>
+										<ul onclick="showContent(this)" data-id="1">
+											<li class="keyword">keywords</li>
+											<li class="company">지원회사</li>
+											<li class ="applied-date">2019-09-09</li>
+										</ul>
 									</div>
-									<ul class="post-content-box" data-id="1" style="display: none;">
-										<li class="post-content">게시글</li>
-									</ul>
-								</div>
+										<ul class="post-content-box border" data-id="1" style="display: none;">
+											<li class="post-content">게시글</li>
+											<hr>
+											<li class="btn btn-dark btn-sm" onclick="showPreview(this)">분할 화면으로 표시</li>
+										</ul>
+
+									</div>
 							</div>
 						</div>
 				  	</div>
@@ -89,35 +100,62 @@
 			<!-- 모달 끝 -->		
 			</div>
 		</div>
-    	<form>
-    		<div class="row">
-	    		<div class="form-group col-sm">
-		    		<textarea class="form-control" name="question" id="exampleFormControlTextarea1" placeholder="질문" rows="3" style="width:500px;"></textarea>
-		    		<br>
-		    		<textarea class="form-control" name="answer" id="exampleFormControlTextarea1" placeholder="답변" rows="3" style="width:500px;"></textarea>
-	  			</div>
-	
+    	<div class="form-group" id="myForm">
+			<div class="row" id="form-content">
+				<div id="preview" class="col-sm" style="display: none; padding-top:0;">
+					
+				</div>
+				<div class="form-group col-sm">
+					<input type="text" class="form-control" name="question" placeholder="질문을 입력해주세요" value="${vo.question }"></input>
+					<br>
+					<textarea class="form-control" name="answer" placeholder="" rows="10" >${vo.answer }</textarea>
+				</div>
+
 				<div class="form-group col-sm-3">
-			  			<input id="textinput" name="keywords" type="text" placeholder="키워드" class="form-control input-md"><br><br>
-			  			<input id="textinput" name="appliedCompany" type="text" placeholder="지원회사" class="form-control input-md"><br><br>
-			  			<input id="textinput" name="writeDate" type="DATE" placeholder="지원일자" class="form-control input-md"><br><br>	
-						<input id="hidden" name="action" value="insert">	
-
+					<input name="tags" placeholder="write some tags" value="${vo.keywords}">
+					<input id="textinput" name="appliedCompany" type="text" placeholder="지원회사" value="${vo.appliedCompany }"class="form-control input-md">
+					<input id="textinput" name="applyDate" type="DATE" placeholder="지원일자" value="${applyDate }" class="form-control input-md">
+					<input type="hidden" name="action" value="insert">	
+					<input type="hidden" name="id" value="${ vo.id }">	
 				</div>    		
-    		</div>
+			</div>
 
-			<div class="from-group">
+			<div class="form-group">
 				<input type="submit" value="저장" class="btn btn-dark" style="width:100px">
-				<input type="reset" value="취소" class="btn btn-dark" style="width:100px">	
+				<input type="reset" value="취소" class="btn btn-dark" style="width:100px">
+				<!-- <input type="button" class="btn btn-dark" value="항목 추가" style="width:100px">	 -->
 			</div>		
-    	</form>
+    	</div>
     </div>
 	<%@ include file="footer.jsp" %>
+	<script>
+	
+	var myInput = $('[name=tags]').tagify();
 
-</div>
+	myInput.on('add', function(e, tagName){
+	  	var xhr = new XMLHttpRequest();
+	  	xhr.onload = function(e){
+			if(this.status == 200){
+				console.log("태그 저장 성공");
+			}
+	  	};
+		xhr.open('GET', 'write/keyword?sid=${ vo.id }&keyword='+tagName.data.value);
+		xhr.send();
+	});
+	myInput.on('removeTag', function(e, tagName){
+		console.log("삭제 시도");
+	  	var xhr = new XMLHttpRequest();
+	  	xhr.onload = function(e){
+			if(this.status == 200){
+				console.log(this.responseText);
+			}
+	  	};
+		xhr.open('GET', 'delete/keyword?id=${ vo.id }&keyword='+tagName.data.value);
+		xhr.send();
+	});
 
-<script>
-	var event;
+	
+	var modal = document.querySelector("#searchList");
 	function showContent(e) {
 		var id = e.dataset.id;
 		var dom = document.querySelector('.post-content-box[data-id="'+id+'"]');
@@ -130,23 +168,55 @@
 		}
 		
 	}
-	 window.onload = function(){
-		var xhr = new XMLHttpRequest();
-		var dom = document.getElementById("one");
-		xhr.onreadystatechange = function(){
-			if(xhr.readyState == XMLHttpRequest.DONE){
-				if(xhr.status == 200){
-					var str = xhr.responseText;
-					console.log('str');
-					var result = JSON.parse(str);
-					var output = "<ul>";
-					dom.innerHTML = str;
-				}
-			}
-		};
-		xhr.open('GET','/self_introduce/search',true);
-		xhr.send();
+	
+	function showPreview(e){
+		var id = e.dataset.id;
+		var dom = document.querySelector('#preview');
+
+		dom.style.display ="block";
+		dom.innerHTML = '<div class="card">'
+						+'<h5 class="card-header"><button type="button" class="close" aria-label="Close">'
+						+'<span aria-hidden="true">&times;</span></button></h5>'					
+						+'<div class="card-body"><p class="display-6">'+'질문'+'</p><hr>'
+						+'<p>'+'답변'+'</p></div></div>';
+
+		$('#searchList').modal('hide');
+
+		dom.querySelector('button').addEventListener("click", ()=>{
+			dom.style.display ="none";
+		});
 	}
+
+	function closePreview(){
+		console.log(this);
+	}
+
+	var myForm = document.querySelector("#form-content");
+	var mySubmit = document.querySelector("input[type=submit]");
+	mySubmit.addEventListener("click", (e)=>{
+		var data = {
+			'id':myForm.querySelector("input[name=id]").value ,
+			'question' :myForm.querySelector("input[name=question]").value ,
+			'answer': myForm.querySelector("textarea[name=answer]").value,
+			'appliedCompany': myForm.querySelector("input[name=appliedCompany]").value,
+			'applyDate': myForm.querySelector("input[name=applyDate]").value
+		}
+		var jsonString = JSON.stringify(data);
+		console.log(jsonString);
+		
+		var xhr = new XMLHttpRequest();
+
+		xhr.open("POST", "save");
+		xhr.setRequestHeader("Content-Type","application/json");
+		xhr.send(jsonString);
+	})
+
+	 
 </script>
+</div>
+
+
+
+
   </body>
 </html>
