@@ -32,13 +32,6 @@ public class WriteDAO {
 		map.put("userId", userId); // key값 userId이고 value값이 userId이다.
 		return sqlSession.selectList("resource.SearchMapper.searchByCompany", map);
 	}
-	/*
-	 * public void keyInsert(String sid, String[] array){ userId =
-	 * ((UserVO)httpSession.getAttribute("user")).getUserId(); HashMap<String,
-	 * String> map = new HashMap<String, String>(); map.put("userId", userId);
-	 * map.put("sid", sid); map.put("key", array[i]); String statement =
-	 * resource.WriteMapper.; sqlSession.insert(statement, vo); }
-	 */
 
 	public List<SelfIntroduceVO> searchWrite(String window, String type) {
 		List<SelfIntroduceVO> list = new ArrayList<>();
@@ -55,37 +48,68 @@ public class WriteDAO {
 	}
 	
 	public boolean insert(SelfIntroduceVO vo) {
-		System.out.println("Mybatis 를 사용 DB 연동-insert-DAO2");
 		String statement = "resource.WriteMapper.insertSelf";
 		boolean result = false;
 		System.out.println(vo.getAppliedCompany());
 		if(sqlSession.insert(statement, vo) == 1)	// 1이면 성공한 것으로 본다.
 		{	
 			result = true;
-			System.out.println();
 		}
 		return result;
 	}
-	public boolean insertKeyword(int sid, List<String> keywords){
+	public boolean insertKeyword(int sid, String keyword){
 		boolean result = true;
 		userId = ((UserVO)httpSession.getAttribute("user")).getUserId();
+
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("userId", userId);
 		map.put("sid", ""+sid);
-		for(String keyword : keywords) {
-			map.put("keyword", keyword);
-			if(sqlSession.insert("resource.WriteMapper.insertKey", map) < 1) {
-				result = false;
-			}
+		map.put("keyword", keyword);
+		
+		if(sqlSession.insert("resource.WriteMapper.insertKeyword", map) < 1) {
+			result = false;
 		}
-
+		
 		return result;
 	}
+	
+	public boolean deleteKeyword(int sid, String keyword){
+		boolean result = true;
+		userId = ((UserVO)httpSession.getAttribute("user")).getUserId();
+
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("userId", userId);
+		map.put("id", ""+sid);
+		map.put("keyword", keyword);
+		if(sqlSession.insert("resource.WriteMapper.deleteKeyword", map) < 1) {
+			result = false;
+		}
+		
+		return result;
+	}
+	
+	public boolean update(SelfIntroduceVO vo) {
+		boolean result = false;
+		String statement = "resource.WriteMapper.updateSelf";
+		if(sqlSession.update(statement, vo) == 1)	// 1이면 성공한 것으로 본다.
+		{	
+			result = true;
+		}
+		
+		return result;
+	}
+
+	
 	public List<SelfIntroduceVO> listAll(String userid){
-		System.out.println("Mybatis 를 사용 DB 연동-listAll-DAO2");
 		List<SelfIntroduceVO> list = null;
 		String statement = "resource.WriteMapper.selectAll";
 		list=sqlSession.selectList(statement, userid);
 		return list;
+	}
+	
+	public SelfIntroduceVO selectOne(SelfIntroduceVO vo){
+		String statement = "resource.WriteMapper.selectOne";
+		vo = sqlSession.selectOne(statement, vo);
+		return vo;
 	}
 }

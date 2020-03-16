@@ -8,7 +8,7 @@ public class WorkExperienceVO extends ProfileVO  {
 	private String endDate;
 	private String duty;
 	private String workComments;
-	private int fileId;
+	private String fileId;
 	private String workPosition;
 
 	public String getCompanyName() {
@@ -47,10 +47,19 @@ public class WorkExperienceVO extends ProfileVO  {
 	public void setWorkComment(String workComment) {
 		this.workComments = workComment;
 	}
-	public int getFileId() {
+
+	
+	
+	public String getWorkComments() {
+		return workComments;
+	}
+	public void setWorkComments(String workComments) {
+		this.workComments = workComments;
+	}
+	public String getFileId() {
 		return fileId;
 	}
-	public void setFileId(int fileId) {
+	public void setFileId(String fileId) {
 		this.fileId = fileId;
 	}
 	public String getWorkPosition() {

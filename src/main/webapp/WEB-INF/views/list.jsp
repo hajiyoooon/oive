@@ -11,10 +11,12 @@
 	<title>Home</title>
 	<!-- 링크 넣어주기  -->
 	<!-- <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/starter-template/"> -->
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/tagsinput.js"></script>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css" >
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/oive.css" >
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/tagsinput.css" >
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 
   </head>
@@ -90,7 +92,7 @@
 					<li class="company">${item.appliedCompany}</li>
 					 <li class="applied-date">${item.applyDate}</li>
 					 <li class="last-modified">${item.editDate}</li>
-					 <li class="view"><a href="write/${ item.id }">조회/수정</a></li>        
+					 <li class="view"><a href="write?id=${ item.id }">조회/수정</a></li>        
 					 <li class="delete"><a href="javascript:deletepost(${item.id});">삭제</a></li>	
 				</ul>
 			</c:forEach>

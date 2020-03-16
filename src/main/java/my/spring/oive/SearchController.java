@@ -62,6 +62,9 @@ public class SearchController {
 		if(list == null) {
 			list = dao.listAll(1);	
 		}
+		
+		// TODO: SQL 결과와 마이바티스 결과가 다른 문제가 있음
+		System.out.println(list.size());
 		 
 		mav.setViewName("list");
 		mav.addObject("list", list);
