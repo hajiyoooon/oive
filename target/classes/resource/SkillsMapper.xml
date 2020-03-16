@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="resource.SkillsMapper">
    	<select id="listAll" parameterType="string" resultType="vo.SkillsVO">
-    	select ID,USERID,SKILLSNAME,SKILLSLEVEL,SKILLSCOMMENTS
+    	select ID,USERID,SKILLSNAME,SKILLSLEVEL,SKIILSCOMMENTS
     	from skills
     	where userId = #{userId}    	
  	</select>
@@ -13,20 +13,17 @@
  	select skills_SEQ.nextval from dual 	
  	</select>
  	<insert id="insert" parameterType="vo.SkillsVO"> 		
-		insert into Skills (ID,USERID,SKILLSNAME,SKILLSLEVEL,SKILLSCOMMENTS)
-		values(#{id}, #{userId}, #{skillsName}, #{skillsLevel}, #{skillsComments})
+		insert into Skills(ID,USERID,SKILLSNAME,SKILLSLEVEL,SKIILSCOMMENTS
+		values(#{id}, #{userId}, #{skillsName}, #{level}, #{skillsComments})
  	</insert>
 
  	<update id="edit" parameterType="vo.SkillsVO">
  		update Skills set 			
-			SKILLSNAME = #{skillsName},
-			SKILLSLEVEL = #{skillsLevel},
-			SKILLSCOMMENTS = #{skillsComments}
+			skillsName = #{skillsName},
+			level = #{level},
+			skillsComments = #{skillsComments}
 		where USERID = #{userId} and id = #{id}
  	</update>
- 	<delete id="delete" parameterType="int">
- 		delete from Skills where id = #{id} 	
- 	</delete> 	
 </mapper>
 
 
