@@ -13,21 +13,25 @@
 	<link href="https://fonts.googleapis.com/css?family=Song+Myung:400" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Gamja+Flower:400" rel="stylesheet">
 	<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
-<style>*{font-family:Song Myung} h2{margin-left:-10px} </style>
+<style>*{font-family:/* Song Myung */ Noto Sans} h2{margin-left:-10px} </style>
 <!-- <style>form.profile{margin-bottom:30px;}</style> -->
   </head>
 	<body>
 		<%@ include file="header.jsp" %>
 	  	<div id="body"> 
-		    <nav style="display:none"><!-- nav 감추기 -->
-		    	<ul class="nav flex-column" style="/* position:fixed */;padding-top:40px;padding-left:30px;">
+		    <nav class="sticky-top" style="/* display:none; margin-top:-50px;*/"><!-- nav 감추기 -->
+		    	<ul class="nav flex-row" style="/* position:fixed ;padding-top:40px;padding-left:30px;*/">
 			    	<li class="nav-item"><a href="#university" class="nav-link">학력 사항</a></li>
 			    		<ul>
-			    			<li><a href="university">대학교</a></li>
-			    			<li><a href="education">교육이력</a></li>
+			    			<li><a href="#university">대학교</a></li>
+			    			<li><a href="#education">교육사항</a></li>
 			    		</ul>
-			    	<li class="nav-item"><a href="#certification" class="nav-link">자격 사항</a></li>
+			    	<li class="nav-item"><a href="#certification" class="nav-link">자격증</a></li>
+			    	<li class="nav-item"><a href="#languages" class="nav-link">외국어</a></li>
+			    	<li class="nav-item"><a href="#skills" class="nav-link">기술</a></li>
 			    	<li class="nav-item"><a href="#award" class="nav-link">수상이력</a></li>
+			    	<li class="nav-item"><a href="#patent" class="nav-link">특허</a></li>
+			    	<li class="nav-item"><a href="#publications" class="nav-link">논문 &middot; 저서</a></li>
 		    	</ul>
 		    </nav>
 		    <div class="row temp profile" style="display:inline-flex;flex-direction:column">
@@ -54,15 +58,15 @@
 	
 		    	
 		    	<h2 id="award">수상이력</h2> 
-		    	<c:import url="/form/award"/>
+<%-- 		    	<c:import url="/form/award"/> --%>
 		    	<div id="award-add"><!-- 이곳에 추가된 form이 붙음.--></div>
 		    	
 		    	<h2 id="patent">특허</h2> 
-		    	<c:import url="/form/patent"/>
+<%-- 		    	<c:import url="/form/patent"/> --%>
 		    	<div id="patent-add"><!-- 이곳에 추가된 form이 붙음.--></div>
 		    	
-		    	<h2 id="publications">논문, 저서</h2> 
-		    	<c:import url="/form/publications"/>
+		    	<h2 id="publications">논문 &middot; 저서</h2> 
+<%-- 		    	<c:import url="/form/publications"/> --%>
 		    	<div id="publications-add"><!-- 이곳에 추가된 form이 붙음.--></div>
 		    	
 		    	
@@ -72,7 +76,7 @@
 		    	
 		    	    	
 			</div>
-	    	<aside><!-- 어사이드입니다. 작업이 끝나면 지워주세요. --></aside> 
+<!-- 	    	<aside>어사이드입니다. 작업이 끝나면 지워주세요.</aside>  -->
 	 	</div>
 	
 	 	<script>
@@ -119,7 +123,7 @@
     		} else
     			window.alert("ajax 통신 실패."+ xhr.responseText);
     	}
-    	xhr.open("POST", "/oive/edit?category=university", true);
+    	xhr.open("POST", "/oive/edit", true);
     	xhr.send(formData);    	
     }
     

@@ -4,7 +4,9 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="resource.PublicationsMapper">
    	<select id="listAll" parameterType="string" resultType="vo.PublicationsVO">
-    	select PUBDATE,AUTHORS,PUBNUMBER,FILEID,PUBLISHER,ID,USERID,PUBNAME  
+    	select 
+    		TO_CHAR(PUBDATE,'YYYY-MM-DD') as PUBDATE,
+    		AUTHORS,PUBNUMBER,FILEID,PUBLISHER,ID,USERID,PUBNAME  
     	from publications  	
     	where userId = #{userId}    	
  	</select>
@@ -27,6 +29,9 @@
 			publisher = #{publisher}
 		where USERID = #{userId} and id = #{id}
  	</update>
+ 	<delete id="delete" parameterType="int">
+ 		delete from Publications where id = #{id} 	
+ 	</delete> 	
 </mapper>
 
 

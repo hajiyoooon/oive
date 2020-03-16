@@ -4,7 +4,11 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="resource.WorkExperienceMapper">
    	<select id="listAll" parameterType="string" resultType="vo.WorkExperienceVO">
-    	select ID,USERID,COMPANYNAME,EMPTYPE,STARTDATE,ENDDATE,DUTY,WORKCOMMENTS,FILEID,WORKPOSITION
+    	select 
+    		ID,USERID,COMPANYNAME,EMPTYPE,
+    		TO_CHAR(STARTDATE, 'YYYY-MM-DD') as STARTDATE,
+    		TO_CHAR(ENDDATE, 'YYYY-MM-DD') as ENDDATE,
+    		DUTY,WORKCOMMENTS,FILEID,WORKPOSITION
     	from work_experience
     	where userId = #{userId}    	
  	</select>
@@ -29,6 +33,9 @@
 			workPosition = #{workPosition}
 		where USERID = #{userId} and id = #{id}
  	</update>
+ 	<delete id="delete" parameterType="int">
+ 		delete from WorkExperience where id = #{id} 	
+ 	</delete> 	
 </mapper>
 
 

@@ -13,18 +13,21 @@
  	select languages_SEQ.nextval from dual 	
  	</select>
  	<insert id="insert" parameterType="vo.LanguagesVO"> 		
-		insert into Languages(ID,USERID,LANGUAGENAME,FLUENCY,LANGUAGECOMMENTS
-		values(#{id}, #{userId}, #{languageName}, #{fluency}, #{languageComment}, #{fileId})
+		insert into Languages
+			(ID,USERID,LANGUAGENAME,FLUENCY,LANGUAGECOMMENTS)
+		values(#{id}, #{userId}, #{languageName}, #{fluency}, #{languageComments})
  	</insert>
 
  	<update id="edit" parameterType="vo.LanguagesVO">
- 		update Languages set 			
-			languageName = #{languageName},
-			fluency = #{fluency},
-			languageComment = #{languageComment},
-			fileId = #{fileId}
+ 		update LANGUAGES set 			
+			LANGUAGENAME = #{languageName},
+			FLUENCY = #{fluency},
+			LANGUAGECOMMENTS = #{languageComments}
 		where USERID = #{userId} and id = #{id}
  	</update>
+ 	<delete id="delete" parameterType="int">
+ 		delete from LANGUAGES where ID = #{id} 	
+ 	</delete> 	
 </mapper>
 
 
