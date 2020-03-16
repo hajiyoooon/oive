@@ -15,7 +15,6 @@
 	<script src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/jQuery.tagify.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/tagify.js"></script>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css" >
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/oive.css" >
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/tagify.css" >
@@ -72,7 +71,7 @@
 							<div class="modal-body">
 								<div class="post-list">
 									<ul class="list-header2">
-										<li class="keywords">키워드</li>
+										<li class="keyword">키워드</li>
 										<li class="company">지원회사</li>
 										<li class ="applied-date">작성일자</li>
 									</ul>
@@ -157,27 +156,26 @@
 	var modal = document.querySelector("#searchList");
 	function showContent(e) {
 		var id = e.dataset.id;
-		var dom = document.querySelector('.post-content-box[data-id="'+id+'"]');
-
+		var dom = document.querySelector('.post-content-box[data-id="' + id + '"]');
+		console.log(e);
 		if(dom.style.display=="block"){
 			dom.style.display="none";
 		}
 		else{
 			dom.style.display="block";
 		}
-		
 	}
 	
+	var event;
 	function showPreview(e){
-		var id = e.dataset.id;
 		var dom = document.querySelector('#preview');
 
 		dom.style.display ="block";
 		dom.innerHTML = '<div class="card">'
 						+'<h5 class="card-header"><button type="button" class="close" aria-label="Close">'
 						+'<span aria-hidden="true">&times;</span></button></h5>'					
-						+'<div class="card-body"><p class="display-6">'+'질문'+'</p><hr>'
-						+'<p>'+'답변'+'</p></div></div>';
+						+'<div class="card-body"><p class="display-6">'+e.parentNode.querySelector('span[class="question"]').textContent+'</p><hr>'
+						+'<p>'+e.parentNode.querySelector('span[class="answer"]').textContent+'</p></div></div>';
 
 		$('#searchList').modal('hide');
 
@@ -203,16 +201,14 @@
 		var jsonString = JSON.stringify(data);
 		console.log(jsonString);
 		
-	
-	var myexample = function(e){
-		var xhr = new XMLHttpRequest();
-
 		xhr.open("POST", "save");
 		xhr.setRequestHeader("Content-Type","application/json");
 		xhr.send(jsonString);
 	})
 
-	 
+	var myexample = function(e){
+		var xhr = new XMLHttpRequest();
+		
 		var sdom = document.getElementById("search");
 		var svalue = sdom.options[sdom.selectedIndex].value;
 		var ivalue = document.getElementById("input").value;
@@ -224,7 +220,16 @@
 					/* console.log(result);
 					console.log(result[0].appliedcompany); */ // 배열안에 이름과 동일해야만 찾을 수 있다.
 					for(var i in result){
-						output += "<ul><li>"+result[i].keywords+"</li><li>"+result[i].appliedCompany+"</li><li>"+result[i].applyDate+"</li></ul>";											
+						output += '<ul onclick="showContent(this)" data-id="'+result[i].id+'">'
+								+'<li class="keyword">'+result[i].keywords+'</li>'
+								+'<li class="company">'+result[i].appliedCompany+'</li>'
+								+'<li class="applied-date">'+result[i].applyDate+'</li></ul>'	
+
+								+'<ul class="post-content-box border" data-id="'+result[i].id+'" style="display: none;">'
+								
+								+'<li class="post-content"><span class="question">'+result[i].question+'</span><br><span class="answer">'+result[i].answer+'</span></li><hr>'
+								+'<li class="btn btn-dark btn-sm" onclick="showPreview(this);">분할 화면으로 표시</li></ul>';
+
 					} 
 					document.getElementById("one").innerHTML = output;
 			}
