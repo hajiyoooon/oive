@@ -28,9 +28,6 @@ public class ViewDAO {
 		map.put("userId", userId); // key값 userId이고 value값이 userId이다.
 		map.put("input", input);
 		List<SelfIntroduceVO> list = sqlSession.selectList("resource.ViewMapper.viewByCompany", map);
-		for(int i=0;i<list.size();i++) {
-			System.out.println(list.get(i).getAppliedCompany()+" ");
-		}
 		return list;
 	}
 	

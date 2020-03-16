@@ -55,11 +55,10 @@
 					<option value="question">질문</option>
 					<option value="answer">답변</option>					
 				</select>
-				<input class="search-input" name="input">
-				<button class="search-icon"  data-toggle="modal" data-target=".bd-example-modal-lg">
+				<input class="search-input" name="input" id="input">
+				<button onclick="myexample();" class="search-icon"  data-toggle="modal" data-target=".bd-example-modal-lg">
 					<i class="fas fa-search"></i>
 				</button>
-			
 			<!-- 검색 결과 모달 시작 -->
 				<div id="searchList" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 				  	<div class="modal-dialog modal-lg">
@@ -70,7 +69,7 @@
 								<span aria-hidden="true">&times;</span>
 								</button>
 							</div>
-							<div class="modal-body" id="one">
+							<div class="modal-body">
 								<div class="post-list">
 									<ul class="list-header2">
 										<li class="keywords">키워드</li>
@@ -78,12 +77,12 @@
 										<li class ="applied-date">작성일자</li>
 									</ul>
 									
-									<div>
-										<ul onclick="showContent(this)" data-id="1">
-											<li class="keyword">keywords</li>
-											<li class="company">지원회사</li>
-											<li class ="applied-date">2019-09-09</li>
-										</ul>
+									<div  id="one">
+									<ul onclick="showContent(this)" data-id="1">
+										<li class="keyword">keywords</li>
+										<li class="company">지원회사</li>
+										<li class ="applied-date">2019-09-09</li>
+									</ul>
 									</div>
 										<ul class="post-content-box border" data-id="1" style="display: none;">
 											<li class="post-content">게시글</li>
@@ -204,6 +203,8 @@
 		var jsonString = JSON.stringify(data);
 		console.log(jsonString);
 		
+	
+	var myexample = function(e){
 		var xhr = new XMLHttpRequest();
 
 		xhr.open("POST", "save");
@@ -212,6 +213,25 @@
 	})
 
 	 
+		var sdom = document.getElementById("search");
+		var svalue = sdom.options[sdom.selectedIndex].value;
+		var ivalue = document.getElementById("input").value;
+		xhr.onload = function(e){
+				if(xhr.status == 200){
+					var str = xhr.responseText;
+					var result = JSON.parse(str); // str값은 JSON파싱함, //자동으로 배열로 변경
+					var output = "";
+					/* console.log(result);
+					console.log(result[0].appliedcompany); */ // 배열안에 이름과 동일해야만 찾을 수 있다.
+					for(var i in result){
+						output += "<ul><li>"+result[i].keywords+"</li><li>"+result[i].appliedCompany+"</li><li>"+result[i].applyDate+"</li></ul>";											
+					} 
+					document.getElementById("one").innerHTML = output;
+			}
+		};
+		xhr.open('GET','/oive/self_introduce/search?boundary='+svalue+'&input='+ivalue,true);
+		xhr.send();
+	}
 </script>
 </div>
 
