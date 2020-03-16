@@ -112,7 +112,7 @@
 				<div class="form-group col-sm-3">
 					<input name="tags" placeholder="write some tags" value="${vo.keywords}">
 					<input id="textinput" name="appliedCompany" type="text" placeholder="지원회사" value="${vo.appliedCompany }"class="form-control input-md">
-					<input id="textinput" name="applyDate" type="DATE" placeholder="지원일자" value="${applyDate }" class="form-control input-md">
+					<input id="textinput" name="applyDate" type="DATE" placeholder="지원일자" value="${vo.applyDate }" class="form-control input-md">
 					<input type="hidden" name="action" value="insert">	
 					<input type="hidden" name="id" value="${ vo.id }">	
 				</div>    		
@@ -191,6 +191,8 @@
 	var myForm = document.querySelector("#form-content");
 	var mySubmit = document.querySelector("input[type=submit]");
 	mySubmit.addEventListener("click", (e)=>{
+		var xhr = new XMLHttpRequest();
+		
 		var data = {
 			'id':myForm.querySelector("input[name=id]").value ,
 			'question' :myForm.querySelector("input[name=question]").value ,

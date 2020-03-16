@@ -38,7 +38,7 @@
 		update self_introduce
 		set QUESTION = #{question},
 			ANSWER   = #{answer},
-			APPLYDATE= #{applyDate},
+			APPLYDATE= to_date(#{applyDate},'YYYY-MM-DD'),
 			APPLIEDCOMPANY = #{appliedCompany},
 			EDITDATE = #{editDate}
 		where id=#{id} and userid = #{userId}
