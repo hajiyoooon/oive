@@ -32,6 +32,7 @@
 			    	<li class="nav-item"><a href="#award" class="nav-link">수상이력</a></li>
 			    	<li class="nav-item"><a href="#patent" class="nav-link">특허</a></li>
 			    	<li class="nav-item"><a href="#publications" class="nav-link">논문 &middot; 저서</a></li>
+			    	<li class="nav-item"><a href="#workExperience" class="nav-link">경력</a></li>
 		    	</ul>
 		    </nav>
 		    <div class="row temp profile" style="display:inline-flex;flex-direction:column">
@@ -58,7 +59,7 @@
 	
 		    	
 		    	<h2 id="award">수상이력</h2> 
-<%-- 		    	<c:import url="/form/award"/> --%>
+		    	<c:import url="/form/award"/>
 		    	<div id="award-add"><!-- 이곳에 추가된 form이 붙음.--></div>
 		    	
 		    	<h2 id="patent">특허</h2> 
@@ -69,6 +70,9 @@
 <%-- 		    	<c:import url="/form/publications"/> --%>
 		    	<div id="publications-add"><!-- 이곳에 추가된 form이 붙음.--></div>
 		    	
+		    	<h2 id="workExperience">경력</h2> 
+<%-- 		    	<c:import url="/form/workExperience"/> --%>
+		    	<div id="publications-add"><!-- 이곳에 추가된 form이 붙음.--></div>
 		    	
 		    			    	
 		    	
