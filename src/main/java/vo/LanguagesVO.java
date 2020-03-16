@@ -4,7 +4,7 @@ public class LanguagesVO extends ProfileVO  {
 
 	private String languageName;
 	private String fluency;
-	private String languageComment;
+	private String languageComments;
 	private int fileId;
 
 	public String getLanguageName() {
@@ -19,11 +19,11 @@ public class LanguagesVO extends ProfileVO  {
 	public void setFluency(String fluency) {
 		this.fluency = fluency;
 	}
-	public String getLanguageComment() {
-		return languageComment;
+	public String getLanguageComments() {
+		return languageComments;
 	}
-	public void setLanguageComment(String languageComment) {
-		this.languageComment = languageComment;
+	public void setLanguageComments(String languageComments) {
+		this.languageComments = languageComments;
 	}
 	public int getFileId() {
 		return fileId;

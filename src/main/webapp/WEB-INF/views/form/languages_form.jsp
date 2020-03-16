@@ -1,71 +1,51 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
-	<head>
-	<title>프로필</title>
-	<!-- 링크 넣어주기  -->
-	<!-- <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/starter-template/"> -->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css" >
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/oive.css" >	
-	<link href="https://fonts.googleapis.com/css?family=Song+Myung:400" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Gamja+Flower:400" rel="stylesheet">
-	<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
-	</head>
-	<body>
-	<!-- <c:if test="${ not empty vo }">
-	<c:forEach var="i" begin="0" end="${vo.size() - 1}"> -->
-	<!-- 나중에 이 부분 주석처리해서 사용 -->
-		<form>
-			<input type="hidden" name="category" value="award"> 
-			<input type="hidden" name="Id" value="${vo[i].id}">
-			<div class="form row">
-				<div class="col-sm-5 form-group">
-					<div class="col">
-						<label for="languageName">언어</label>
-					</div>
-					<div class="col-sm">
-						<input type="text" name="LanguageName" class="form-control" value="${vo[i].languageName}">
-					</div>
-				</div> 
-				<div class="col-sm-3 form-group">
-					<div class="col">
-						<label for="fluency">능숙도<span class="text-muted">(필수)</span></label>
-					</div>
-					<div class="col-md">
-						<input type="text" name="Fluency" class="form-control" value="${vo[i].fluency}" required>
-					</div>
-				</div>
-			</div>
-			<div class="form row">
-				<div class="col-sm-8 form-group">
-					<div class="col">
-						<label for="languageComment">내용</label>
-					</div>
-					<div class="col-sm">
-						<textarea name="LanguageComment" class="form-control" style="margin-top: 0px; margin-bottom: 0px; height: 83px;"
-							value="${vo[i].languageComment}">수상 내용을 입력하세요.</textarea>
-					</div>
-				</div>
-			</div>
-
-					<!-- fileId         INT              NULL -->
-			<div class="form-group">
-				<div class="col-3">
-					<label for="fileId">관련 파일</label>
-				</div>
-				<div class="col-md-4">
-					<button type="button" name="button">업로드</button>
-					<button type="button" name="button">삭제하기</button>
-				</div>
-			</div>
-			<div class="form-group">
-				<button class="btn-success" type="submit">수정</button>
-				<button class="btn-danger">삭제</button>
-				<button class="btn-primary">추가</button>
-			</div>
-		</form>
-		 <!-- </c:forEach>
-	</c:if> -->
+<c:if test="${ not empty vo }">
+<c:forEach var="i" begin="0" end="${vo.size()==0?0:vo.size()-1}">
+<div id="formGroup_languages_${vo[i].id}">		
+<form id="form_languages_${vo[i].id}" class="profile">
+	<input type="" name="userId" value="${sessionScope.user.userId}">
+	<input type="" name="category" value="languages"> 
+	<input type="" name="Id" value="${vo[i].id}">
+	<div class="form-row">
+		<div class="col-6 form-group">
+			<label for="LanguageName">언어</label>
+			<input type="text" name="LanguageName" class="form-control" 
+			 maxlength="6" value="${vo[i].languageName}">
+		</div> 
+		<div class="col-6 form-group">
+			<label for="Fluency">능숙도<span class="text-muted">(필수)</span></label>
+			<select name="Fluency" class="form-control">
+				<option value="">선택하세요</option>
+				<option value="1" ${vo[i].fluency==1?'selected':''}>초급</option>
+				<option value="2" ${vo[i].fluency==2?'selected':''}>중급</option>
+				<option value="3" ${vo[i].fluency==3?'selected':''}>고급</option>
+				<option value="4" ${vo[i].fluency==4?'selected':''}>모국어</option>			</select>
+		</div>
+	</div>
+	<div class="form-row">
+		<div class="form-group col">
+			<label for="LanguageComments">내용</label>
+			<textarea name="LanguageComments" class="form-control" 
+			 maxlength="66" placeholder="">${vo[i].languageComments}</textarea>
+		</div>
+	</div>	
+			<!-- fileId         INT              NULL -->
+  <div class="form-row" style="/* display:none */">
+    <div class="col">
+      <label for="FileId1">관련파일</label>
+      <button class="btn-sm btn-secondary">업로드</button>
+      <button class="btn-sm btn-secondary">파일삭제</button>
+    </div>
+  </div>
+</form>			
+	<div class="form-group profile-btn-group">
+		<button id="languages_${vo[i].id}" class="btn btn-success" onclick="edit(id);false;">수정</button>
+		<button id="delete/languages/${vo[i].id}" class="btn btn-danger" onclick="del(id);false;">삭제</button>
+		<button id="languages-add_${vo[i].id}" class="btn btn-primary" onclick="add(id);false;">추가</button>
+	</div>
+		
+</div>		
+</c:forEach>
+</c:if>	
 	
-    <div class="" id="award-add"><!-- 추가버튼 클릭시 여기에 폼이 붙게됨. --></div>
-    </body>

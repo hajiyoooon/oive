@@ -4,7 +4,10 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="resource.PatentMapper">
    	<select id="listAll" parameterType="string" resultType="vo.PatentVO">
-    	select ID,USERID,PATENTNAME,COUNTRY,PATNUMBER,PATDATE,FILEID,PATENTCOMMENTS   
+    	select 
+    		ID,USERID,PATENTNAME,COUNTRY,PATNUMBER,
+    		TO_CHAR(PATDATE, 'YYYY-MM-DD') as PATDATE,
+    		FILEID,PATENTCOMMENTS   
     	from patent 	
     	where userId = #{userId}    	
  	</select>

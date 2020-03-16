@@ -4,7 +4,10 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="resource.AwardMapper">
    	<select id="listAll" parameterType="string" resultType="vo.AwardVO">
-    	select ID,USERID,AWARDNAME,AQUIREDDATE,ORGNAME,FILEID,AWARDTYPE,AWARDCOMMENTS
+    	select 
+    		ID,USERID,AWARDNAME,
+    		TO-CHAR(AQUIREDDATE 'YYYY-MM-DD') as AQUIREDDATE,
+    		ORGNAME,FILEID,AWARDTYPE,AWARDCOMMENTS
 	   	from Award
     	where userId = #{userId}    	
  	</select>
