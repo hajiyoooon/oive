@@ -27,20 +27,6 @@ public class UserService {
 	  
 	  return dao.insert(vo); // 회원가입 DAO
 	}
-	
-	public boolean editUserInfo(UserVO vo) {
-		String encodedPassword = encoder.encode(vo.getPassword());
-		vo.setPassword(encodedPassword);
-		
-		boolean result = false;
-		if((result = dao.update(vo))) {
-			vo = dao.selectOne(vo.getUserId());
-			session.setAttribute("user", vo);
-		}
-		
-		return result;
-	}
-	
 	public boolean login(String userId, String rawPassword) {
 		boolean possible = false;
 		UserVO vo = dao.selectOne(userId);
@@ -49,11 +35,12 @@ public class UserService {
 			if(encoder.matches(rawPassword, vo.getPassword())) {
 				possible = true;
 				if(possible && session != null) {
-					session.setAttribute("user", vo); // session에 user정보를 저장
+					session.setAttribute("user", vo);
 				}
 		
 			}
 		}
+
 		return possible;
 	}
 	
@@ -67,21 +54,5 @@ public class UserService {
 		}
 		
 		return result;
-	}
-	public boolean unregister(String rawPassword) {
-		boolean possible = false;
-		UserVO vo = (UserVO) session.getAttribute("user");
-		
-		if(vo != null) {
-			if(encoder.matches(rawPassword, vo.getPassword())) {
-				if(dao.delete(vo)) {
-					possible = true;
-					session.removeAttribute("user");
-				}
-		
-			}
-		}
-		
-		return possible;
 	}
 }

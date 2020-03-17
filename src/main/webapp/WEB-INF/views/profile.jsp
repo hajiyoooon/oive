@@ -18,11 +18,9 @@
   </head>
 	<body>
 		<%@ include file="header.jsp" %>
-
-	  	<div id="body" class="container"> 
-	  	<div class="row">
-		    <div class="col-sm-2" style="/* display:none; margin-top:-50px;*/"><!-- nav 감추기 -->
-		    	<ul class="nav" style="display:inline-block;position:fixed;">
+	  	<div id="body"> 
+		    <nav class="sticky-top" style="/* display:none; margin-top:-50px;*/"><!-- nav 감추기 -->
+		    	<ul class="nav flex-row" style="/* position:fixed ;padding-top:40px;padding-left:30px;*/">
 			    	<li class="nav-item"><a href="#university" class="nav-link">학력 사항</a></li>
 			    		<ul>
 			    			<li><a href="#university">대학교</a></li>
@@ -36,8 +34,8 @@
 			    	<li class="nav-item"><a href="#publications" class="nav-link">논문 &middot; 저서</a></li>
 			    	<li class="nav-item"><a href="#workExperience" class="nav-link">경력</a></li>
 		    	</ul>
-		    </div>
-		    <div class="col-sm profile" style="display:inline-flex;flex-direction:column">
+		    </nav>
+		    <div class="row temp profile" style="display:inline-flex;flex-direction:column">
 		    	<h2 style="">학력사항</h2> 
 		    	<h3 id="university">대학교</h3>
 		    	<c:import url="/form/university"/>
@@ -65,16 +63,16 @@
 		    	<div id="award-add"><!-- 이곳에 추가된 form이 붙음.--></div>
 		    	
 		    	<h2 id="patent">특허</h2> 
-<%-- 		    	<c:import url="/form/patent"/> --%>
+		    	<c:import url="/form/patent"/>
 		    	<div id="patent-add"><!-- 이곳에 추가된 form이 붙음.--></div>
 		    	
 		    	<h2 id="publications">논문 &middot; 저서</h2> 
-<%-- 		    	<c:import url="/form/publications"/> --%>
+		    	<c:import url="/form/publications"/>
 		    	<div id="publications-add"><!-- 이곳에 추가된 form이 붙음.--></div>
 		    	
 		    	<h2 id="workExperience">경력</h2> 
-<%-- 		    	<c:import url="/form/workExperience"/> --%>
-		    	<div id="publications-add"><!-- 이곳에 추가된 form이 붙음.--></div>
+		    	<c:import url="/form/workExperience"/>
+		    	<div id="workExperience-add"><!-- 이곳에 추가된 form이 붙음.--></div>
 		    	
 		    			    	
 		    	
@@ -82,11 +80,8 @@
 		    	
 		    	    	
 			</div>
-
 <!-- 	    	<aside>어사이드입니다. 작업이 끝나면 지워주세요.</aside>  -->
-		 </div>
-		 </div>
-
+	 	</div>
 	
 	 	<script>
 		    function add(id){
@@ -111,8 +106,20 @@
     	var formData = new FormData(formElement);
 //     	window.alert(formData.get('id'));
 //     	window.alert(formData.get('uName'));
-
-		<!--formData에 누락된 값이 있을 경우 default 값을 세팅해 준다.-->
+		<!-- >>>>>> formData에 누락된 값이 있을 경우 default 값을 세팅해 준다.-->
+// 		if(!formData.has('fileId1'))
+// 			formData.append('fileId1', '0');
+// 		if(!formData.has('fileId1'))
+// 			formData.append('fileId2', '0');
+// 		if(!formData.has('isTransfer'))
+// 			formData.append('isTransfer', '0');
+// 		if(!formData.has('status'))
+// 			formData.append('status', '미졸업');
+// 		var tran = document.forms['form_university_${uvo[i].id}'].elements['isTransfer'].checked;
+// 		window.alert(tran);
+// 		console.log(tran);
+// 		window.alert(typeof formData.get('id'));
+		<!-- <<<<<< formData에 누락된 값이 있을 경우 default 값을 세팅해 준다.-->
 		var xhr= new XMLHttpRequest();
     	xhr.onload=function(){
     		if(xhr.status==200){

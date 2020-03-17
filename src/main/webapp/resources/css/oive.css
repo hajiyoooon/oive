@@ -6,199 +6,171 @@
 	unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
 }
 
-@font-face {
-	font-family: 'Jeju Gothic';
-	font-style: normal;
-	font-weight: 400;
-	src: url(//fonts.gstatic.com/ea/jejugothic/v3/JejuGothic-Regular.eot);
-	src: url(//fonts.gstatic.com/ea/jejugothic/v3/JejuGothic-Regular.eot?#iefix) format('embedded-opentype'),
-		 url(//fonts.gstatic.com/ea/jejugothic/v3/JejuGothic-Regular.woff2) format('woff2'),
-		 url(//fonts.gstatic.com/ea/jejugothic/v3/JejuGothic-Regular.woff) format('woff'),
-		 url(//fonts.gstatic.com/ea/jejugothic/v3/JejuGothic-Regular.ttf) format('truetype');
-}
-.dropdown-own > ul {
-    display:none;
-    position:absolute;
-    border:1px rgba(0,0,0,0.2) solid;
-    background-color:white;
-    box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
-    padding: 10px;
-}
-.dropdown-own:hover > ul {
-    display:flex;
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css); .jejugothic * { font-family: 'Jeju Gothic', sans-serif; }
 
-}
-
-.dropdown-own:hover > ul > li {
-    padding:0;
-    padding: 0 5px 0 5px;
-    margin-top:0;
-
-}
-
-body{
-	font-family: "Noto Sans", "Arial", "Helvetica Neue", sans-serif;
-	font-weight: 400;
-	font-size: 14px;	
-}
-a {
-	color: #212529;
-	transition: color 0.2s;
-}
-container{
-		min-height:100vh;	
-}
-a:focus, a:hover {
-	color: #0085A1;
-}
+	a {
+		color: #212529;
+		transition: all 0.2s;
+		font-family: 'Jeju Gothic', sans-serif;
+	}
+	a:focus, a:hover {
+		color: #0085A1;
+	}
 
 footer {
-	background-color: #4fd5d2;
-	height: 60px;
-	left: 0px;
-	bottom: 0px;
-	width: 100%;
-	color: white;
-	padding: 20px;
-	text-align: center;
-	margin-top:30px;
- 	}
-
-header{
-	padding-top: 30px;
-	background-color:#ffffff;  
-	box-shadow: 0 0 2px rgba(0,0,0,0.2);
-	margin-bottom: 60px;
-	color: #333333;
-}
-.navbar-brand {
-    font-family: Noto Sans;
-    font-size: xx-large;
-    font-weight: bolder;
-}
-.header h4{
-	text-align:right;
-	padding-right: 20px;
-	font-family:Gamja Flower;
-}
-  
-.header ul{
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	overflow: hidden;
-}
-.header li {
-    display: inline-block;
+    background-color: #4fd5d2;
+    height: 60px;
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
+    width: 100%;
+    color: white;
+    padding: 20px;
     text-align: center;
-    padding: 16px 16px;
-    text-decoration: none;
-    margin-top: 10px;
-    color: #333333;
-    opacity: 0.7;
-    font-family: Jeju Gothic;
 }
+   
+   
+   div.temp{
 
-li.view  a::after {
-   	content:' | '
-}
-
-form span{
- 		color:red;
-}
-
- 	form.profile {
- 		margin-top:15px;
- 		margin-bottom:15px;
- 	}
- 	.profile-btn-group {
- 		float:right;
-  }
-  
-.search {
-	height: 60px;
-	background-color: #ffffff;
-	border-radius: 30px;
-	padding: 10px;
-	border: 1px solid #dee2e6;
-	margin-bottom: 5%;
-}
-    
-.search-dropdown{
-	width:20%;
-	border: none;
-}
-
-.search-input{
-    color: black;
-    border: 0;
-	padding: 0 10px;
-    outline: 0;
-    background: none;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+    position: relative;
     width: 70%;
-    transition: width 0.4s linear;
+	padding: 3%;
+   }
+
+	header{
+		padding-top: 30px;
+		background-color:#ffffff;  
+		box-shadow: 0 0 2px rgba(0,0,0,0.2);
+		margin-bottom: 60px;
+		color: #333333;
+	}
+	.navbar-brand {
+	    font-family: Noto Sans;
+	    font-size: xx-large;
+	    font-weight: bolder;
+	}
+	.header h4{
+   	text-align:right;
+   	padding-right: 20px;
+   	font-family:Gamja Flower;
+   }
+   
+   .header ul{
+ 		list-style-type: none;
+		margin: 0;
+		padding: 0;
+		overflow: hidden;
+ 	}
+	.header li {
+	    display: inline-block;
+	    text-align: center;
+	    padding: 16px 16px;
+	    text-decoration: none;
+	    margin-top: 10px;
+	    color: #333333;
+	    opacity: 0.7;
+	    font-family: Jeju Gothic;
+	}
+
+    #title{
+    	text-align: left;
+    	font-weight: bold;
+    	padding-top: 20px;
+    	padding-left:30px;
+    	
     }
 
-.search-icon{
-	height: 40px;
-	width: 40px;
-	float: right;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	border-radius: 50%;
-	color:white;
-}
 
-.fas fa-search:before {
-    content: "\f002";
-}
-
-ul.list-header2 {
-    font-weight: bold;
-    border-bottom: #adb5bd solid 1px;
-}
-
-.post-list li{
-     display: inline-block;
-     text-overflow: ellipsis;
-     overflow: hidden;
-     white-space: nowrap;
-}
-.post-list a{
-     display: inline-block;
-     text-overflow: ellipsis;
-     overflow: hidden;
-     white-space: nowrap;
-}
-
-.post-list .keyword{
-    width: 30%
-}
-
-.post-list .company{
-    width : 20%;
-}
-
-.post-list .applied-date{
-    width:15%;
-}
-.post-list .last-modified {
-    width: 15%;
-}
-
-ul.pagination li{
-	height: 50px;
-}
-
-span.bd-content-title {
-    font-size: 2rem;
-    font-weight: bold;
-}
-
-.input-group {
-	position: relative;
-	margin-bottom: 32px;
-	border-bottom: 1px solid #e5e5e5;
-}
+  	form span{
+    	color:red;
+  	}
+ 
+  	form.profile {	/** ������ �ۼ� �������� ���� ���� **/
+  		margin-top:15px;
+  		margin-bottom:15px;
+  	}
+  	.profile-btn-group {
+  		float:right;
+	  }
+	  
+	.search {
+		height: 60px;
+		background-color: #ffffff;
+		border-radius: 30px;
+		padding: 10px;
+		border: 1px solid #dee2e6;
+		margin-bottom: 5%;
+	}
+	    
+	.search-dropdown{
+		width:20%;
+		border: none;
+	}
 	
+	.search-input{
+	    color: black;
+	    border: 0;
+		padding: 0 10px;
+	    outline: 0;
+	    background: none;
+	    width: 70%;
+	    transition: width 0.4s linear;
+	    }
+	
+	.search-icon{
+		height: 40px;
+		width: 40px;
+		float: right;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-radius: 50%;
+		color:white;
+	}
+
+	.fas fa-search:before {
+	    content: "\f002";
+	}
+	
+	ul.list-header2 {
+	    font-weight: bold;
+	    border-bottom: #adb5bd solid 1px;
+	}
+
+	.post-list li{
+	     display: inline-block;
+	     text-overflow: ellipsis;
+	     overflow: hidden;
+	     height: 30px;
+	     white-space: nowrap;
+	}
+	
+	.post-list .keyword{
+	    width: 30%
+	}
+	
+	.post-list .company{
+	    width : 20%;
+	}
+	
+	.post-list .applied-date{
+	    width:15%;
+	}
+	.post-list .last-modified {
+	    width: 15%;
+	}
+	
+	ul.pagination li{
+		height: 50px;
+	}
+
+	span.bd-content-title {
+	    font-size: 2rem;
+	    font-weight: bold;
+	}

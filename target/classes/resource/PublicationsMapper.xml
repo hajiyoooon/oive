@@ -15,7 +15,8 @@
  	select publications_SEQ.nextval from dual 	
  	</select>
  	<insert id="insert" parameterType="vo.PublicationsVO"> 		
-		insert into Publications(ID, USERID, PUBDATE,AUTHORS,PUBNUMBER,FILEID,PUBLISHER,PUBNAME
+		insert into Publications(ID, USERID, PUBDATE,AUTHORS,
+		PUBNUMBER,FILEID,PUBLISHER,PUBNAME)
 		values(#{id}, #{userId}, #{pubDate}, #{authors}, #{pubNumber}, #{fileId},#{publisher},#{pubName})
  	</insert>
 

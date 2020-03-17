@@ -321,7 +321,7 @@ ALTER TABLE keyword_selfintroduce
 
 ALTER TABLE keyword_selfintroduce
     ADD CONSTRAINT FK_keyword_selfintroduce_sId_ FOREIGN KEY (sId)
-        REFERENCES self_introduce (id) on delete cascade;
+        REFERENCES self_introduce (id);
 
 
 
