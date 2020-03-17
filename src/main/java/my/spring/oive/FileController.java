@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
-import java.util.List;
+import java.nio.charset.Charset;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +14,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ContentDisposition;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +26,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import dao.UploadDAO;
-import dao.WriteDAO;
 import vo.FileVO;
 import vo.UserVO;
 
@@ -44,8 +48,6 @@ public class FileController {
 	@RequestMapping(value="upload", method = RequestMethod.GET)
 	public void upload(Model model) {
 		model.addAttribute("filelist",uploadDAO.selectFileList());
-		File file = new File(uploadDAO.selectFileList().get(0).getFileName());
-		
 	}
 	
 	@RequestMapping(value="upload", method = RequestMethod.POST,
@@ -93,8 +95,11 @@ public class FileController {
 
 	@RequestMapping(value="/download")
 	@ResponseBody
-	public void download(FileVO vo, HttpServletRequest request, HttpServletResponse response) {
+	public ResponseEntity<String> download(FileVO vo, HttpServletRequest request, HttpServletResponse response) {
 		//https://private.tistory.com/60 참고해 작성하였음
+		
+		HttpHeaders headers = new HttpHeaders();
+		
 		vo.setUserId(((UserVO)httpSession.getAttribute("user")).getUserId());
 		String filepath = createFilePath(vo.getUserId());
 		String filename = vo.getFileName();
@@ -102,33 +107,30 @@ public class FileController {
 		File file = new File(filepath + "/" + filename);
 		
 		
-		boolean possible = true;;
+		boolean possible = true;
+		boolean result = true;
         if(!file.exists()) possible = false;
 		String client = request.getHeader("User-Agent");
                 
         if(possible) {
             //파일 다운로드 헤더 지정 
-
-            response.reset();
-            response.setContentType("application/octet-stream");
-            response.setHeader("Content-Description", filename);
+            headers.setContentType(new MediaType("application","octet-stream"));
+            headers.setContentDisposition(ContentDisposition.builder("attachment").filename(filename, Charset.forName("UTF-8")).build());
+            
         	try(OutputStream os = response.getOutputStream();
         		InputStream in = new FileInputStream(file);) {
         		
 	            if (client.indexOf("MSIE") != -1) {
-	                response.setHeader("Content-Disposition", "attachment; filename=\""
-	                        + java.net.URLEncoder.encode(filename, "UTF-8").replaceAll("\\+", "\\ ") + "\"");
-	                // IE 11 이상.
+	            	headers.setContentDisposition(ContentDisposition.builder("attachment").filename(filename, Charset.forName("UTF-8")).build());
+	            	// IE 11 이상.
 	            } else if (client.indexOf("Trident") != -1) {
-	                response.setHeader("Content-Disposition", "attachment; filename=\""
-	                        + java.net.URLEncoder.encode(filename, "UTF-8").replaceAll("\\+", "\\ ") + "\"");
+	            	headers.setContentDisposition(ContentDisposition.builder("attachment").filename(filename, Charset.forName("UTF-8")).build());
 	            } else {
 	                // 한글 파일명 처리
-	                response.setHeader("Content-Disposition",
-	                        "attachment; filename=\"" + new String(filename.getBytes("UTF-8"), "ISO8859_1") + "\"");
-	                response.setHeader("Content-Type", "application/octet-stream; charset=utf-8");
+	            	headers.setContentDisposition(ContentDisposition.builder("attachment").filename(filename, Charset.forName("ISO-8859-1")).build());
+	                headers.setContentType(new MediaType("application","octet-stream",Charset.forName("UTF-8")));
 	            }
-	            response.setHeader("Content-Length", "" + file.length());
+	            headers.setContentLength(file.length());
 	            
 	            byte b[] = new byte[(int) file.length()];
 	            int leng = 0;
@@ -137,16 +139,22 @@ public class FileController {
 	            }
         	}catch(UnsupportedEncodingException e) {
         		e.printStackTrace();
-        		response.setContentType("application/json;charset=UTF-8");
+        		headers.setContentType(new MediaType("application","json",Charset.forName("UTF-8")));
+        		result = false;
         	}catch (IOException e) {
         		e.printStackTrace();
-        		response.setContentType("application/json;charset=UTF-8");
+        		headers.setContentType(new MediaType("application","json",Charset.forName("UTF-8")));
+        		result = false;
         		// TODO : 파일 다운로드에 실패할 경우 어떤 응답을 출력할 지 결정
   			}
         }
         else {
-        	response.setContentType("application/json;charset=UTF-8");
+        	headers.setContentType(new MediaType("application","json",Charset.forName("UTF-8")));
+        	result = false;
         }
+        
+        String body = String.format("{\"result\":\"%s\"}", ""+result);
+        return new ResponseEntity<String>(body, headers, HttpStatus.OK);
 	}
 	@RequestMapping(value="delete")
 	@ResponseBody
