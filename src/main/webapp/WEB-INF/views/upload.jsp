@@ -20,13 +20,13 @@
   
   	<div id="body">
     <nav><h3>자기소개서 관련 파일</h3></nav>
-    <div class="row temp">
+    <div class="container">
 <%
    if( request.getAttribute("msg") == null ) {
 %>
-   <form action="/oive/self_introduce/upload2" 
+   <form action="/oive/upload" 
                   enctype="multipart/form-data" method="post">
-       <input type="file" name="mfile" multiple/> <!--multiple로 처리-->
+       <input type="file" name="uploadFile" multiple/> <!--multiple로 처리-->
        <input type="submit" value="파일올리기"/>
    </form>
 <%
