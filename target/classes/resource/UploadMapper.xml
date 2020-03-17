@@ -10,7 +10,7 @@
 	
 	<insert id="upload">
 		insert into files(FILEID,UPLOADDATE,USERID,FILENAME)
-		values (file_seq.nextval, sysdate, #{userId}, #{fileName})
+		values (files_seq.nextval, sysdate, #{userId}, #{fileName})
 	</insert>
 	<update id="update">
 		update files
