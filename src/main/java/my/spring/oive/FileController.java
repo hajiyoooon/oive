@@ -90,12 +90,13 @@ public class FileController {
 	}
 
 	@RequestMapping(value="/download")
+	@ResponseBody
 	public void download(FileVO vo, HttpServletRequest request, HttpServletResponse response) {
 		//https://private.tistory.com/60 참고해 작성하였음
 		vo.setUserId(((UserVO)httpSession.getAttribute("user")).getUserId());
 		String filepath = createFilePath(vo.getUserId());
 		String filename = vo.getFileName();
-
+		System.out.println(filename);
 		File file = new File(filepath + "/" + filename);
 		
 		
@@ -108,9 +109,9 @@ public class FileController {
 
             response.reset();
             response.setContentType("application/octet-stream");
-            response.setHeader("Content-Description", "JSP Generated Data");
+            response.setHeader("Content-Description", filename);
         	try(OutputStream os = response.getOutputStream();
-        			InputStream in = new FileInputStream(file);) {
+        		InputStream in = new FileInputStream(file);) {
         		
 	            if (client.indexOf("MSIE") != -1) {
 	                response.setHeader("Content-Disposition", "attachment; filename=\""
@@ -140,6 +141,9 @@ public class FileController {
         		response.setContentType("application/json;charset=UTF-8");
         		// TODO : 파일 다운로드에 실패할 경우 어떤 응답을 출력할 지 결정
   			}
+        }
+        else {
+        	response.setContentType("application/json;charset=UTF-8");
         }
 	}
 }

@@ -39,7 +39,8 @@
                   <p class="card-text">${ item.fileName }</p>
                   <div class="d-flex justify-content-between align-items-center">
 
-                      <button type="button" class="btn btn-warning">삭제</button>
+                      <button type="button" class="btn btn-warning"
+                      	onclick="downloadFile(this, '${item.fileName}');">다운로드</button>
 
                   </div>
                 </div>
@@ -55,6 +56,26 @@
  	<script>
  		function uploadFile(){
  		}
+
+		function downloadFile(e, fileName){
+			
+			//지금은 파일 다운로드가 성공하는 경우만 가정한다
+			var xhr = new XMLHttpRequest();
+
+			xhr.onload = function(){
+				if(xhr.status == 200){
+					var link = document.createElement('a');
+					
+					link.href = window.URL.createObjectURL(new Blob([xhr.response],  {type : xhr.getResponseHeader("content-type")}));
+					link.download = fileName;  //&nbsp; 파일 이름을 설정
+					link.click();
+					link.remove();
+				}
+			}
+			xhr.responseType = 'blob'; // 이걸해주면된다..?
+			xhr.open('GET', 'download?fileName=' + fileName, true);
+			xhr.send();
+		}
  	</script>
   </body>
   
