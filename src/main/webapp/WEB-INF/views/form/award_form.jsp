@@ -8,20 +8,18 @@
 	<input type="" name="category" value="award"> 
 	<input type="" name="Id" value="${vo[i].id}">
 	<div class="form-row">
-		<div class="col-6 form-group">
+		<div class="col-3 form-group">
 	  		<label for="OrgName">수여기관</label>
 			<input type="text" name="OrgName" 
 			class="form-control"
 			maxlength="6" value="${vo[i].orgName}">
 		</div> 
-		<div class="col-6 form-group">
+		<div class="col-3 form-group">
 			<label for="AwardName">수상명</label>
 			<input type="text" name="AwardName" class="form-control" value="${vo[i].awardName}"
 			maxlength="6" required>
-		</div>
-	</div>
-	<div class="form-row">
-		<div class="col-6 form-group">
+		</div>	
+		<div class="col-3 form-group">
 			<label for="AwardType">유형</label>
 			<select name="AwardType" class="form-control">
 				<option value="">선택하세요</option>
@@ -31,7 +29,7 @@
 				<option value="9" ${vo[i].awardType==3?'selected':''}>기타</option>
 			</select>
 		</div>
-		<div class="col-6 form-group">
+		<div class="col-3 form-group">
 			<label for="AquiredDate">취득일</label>
 			<input type="date" name="AquiredDate" class="form-control"
 			 value="${vo[i].aquiredDate}">
@@ -41,6 +39,7 @@
 		<div class="form-group col">				
 			<label for="AwardComments">수상내용</label>
 			<textarea name="AwardComments"
+			 class="form-control" 
 			maxlength="66" placeholder="">${vo[i].awardComments}</textarea>
 		</div>
 	</div>
@@ -53,12 +52,11 @@
     </div>
   </div>
 </form>
-</div>
 	<div class="form-group profile-btn-group">
 		<button id="award_${vo[i].id}" class="btn btn-success" onclick="edit(id);false;">수정</button>
 		<button id="delete/award/${vo[i].id}" class="btn btn-danger" onclick="del(id);false;">삭제</button>
 		<button id="award-add_${vo[i].id}" class="btn btn-primary" onclick="add(id);false;">추가</button>
 	</div>
-
+</div>
 </c:forEach>
 </c:if>

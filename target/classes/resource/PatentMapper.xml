@@ -16,19 +16,18 @@
  	select patent_SEQ.nextval from dual 	
  	</select>
  	<insert id="insert" parameterType="vo.PatentVO"> 		
-		insert into Patent(ID,USERID,PATENTNAME,COUNTRY,PATNUMBER,PATDATE,FILEID,PATENTCOMMENTS
-		values(#{id}, #{userId}, #{patentName}, #{country}, #{pubNumber}, #{pubDate},#{fileId},#{patentComment})
+		insert into Patent(ID,USERID,PATENTNAME,COUNTRY,PATNUMBER,PATDATE,FILEID,PATENTCOMMENTS)
+		values(#{id}, #{userId}, #{patentName}, #{country}, #{patNumber}, #{patDate},#{fileId},#{patentComments})
  	</insert>
 
  	<update id="edit" parameterType="vo.PatentVO">
- 		update Patent set 			
-			patentName = #{patentName},
-			country = #{country},
-			pubNumber = #{pubNumber},
-			pubDate = #{pubDate},
-			fluency = #{fluency},
-			fileId = #{fileId},
-			patentComment = #{patentComment}
+ 		update PATENT set 			
+			PATENTNAME = #{patentName},
+			COUNTRY = #{country},
+			PATNUMBER = #{patNumber},
+			PATDATE = #{patDate},			
+			FILEID = #{fileId},
+			PATENTCOMMENTS = #{patentComments}
 		where USERID = #{userId} and id = #{id}
  	</update>
  	<delete id="delete" parameterType="int">
