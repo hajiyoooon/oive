@@ -41,6 +41,9 @@
 
                       <button type="button" class="btn btn-warning"
                       	onclick="downloadFile(this, '${item.fileName}');">다운로드</button>
+                      
+                      <button type="button" class="btn btn-warning"
+                      	onclick="deleteFile(this, '${item.fileId}', '${item.fileName }');">삭제</button>
 
                   </div>
                 </div>
@@ -74,6 +77,25 @@
 			}
 			xhr.responseType = 'blob'; // 이걸해주면된다..?
 			xhr.open('GET', 'download?fileName=' + fileName, true);
+			xhr.send();
+		}
+		
+		function deleteFile(e, fileId, fileName){
+			var xhr = new XMLHttpRequest();
+			xhr.onload = function(){
+				if(xhr.status == 200){
+					console.log(xhr.response);
+					var jsonObject = JSON.parse(xhr.response);
+					window.alert(jsonObject['result']);
+					
+					if(jsonObject['result'] == 'true'){
+						location.reload();
+					}
+					
+				}
+			}
+
+			xhr.open('GET', 'delete?fileId=' + fileId +'&fileName=' + fileName, true);
 			xhr.send();
 		}
  	</script>

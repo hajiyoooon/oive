@@ -44,6 +44,8 @@ public class FileController {
 	@RequestMapping(value="upload", method = RequestMethod.GET)
 	public void upload(Model model) {
 		model.addAttribute("filelist",uploadDAO.selectFileList());
+		File file = new File(uploadDAO.selectFileList().get(0).getFileName());
+		
 	}
 	
 	@RequestMapping(value="upload", method = RequestMethod.POST,
@@ -145,5 +147,30 @@ public class FileController {
         else {
         	response.setContentType("application/json;charset=UTF-8");
         }
+	}
+	@RequestMapping(value="delete")
+	@ResponseBody
+	public String deleteFile(FileVO vo) {
+		vo.setUserId(((UserVO)httpSession.getAttribute("user")).getUserId());
+		String filepath = createFilePath(vo.getUserId());
+		String filename = vo.getFileName();
+		System.out.println(filename);
+		File file = new File(filepath + "/" + filename);
+				
+		boolean isfileExist = true;;
+        if(!file.exists()) isfileExist = false;
+        
+        boolean isDeleteSucceed = uploadDAO.deleteFile(vo);
+        
+        boolean result = false;
+        if(isfileExist && isDeleteSucceed) {
+        	result = file.delete();
+        }
+        
+        System.out.println("파일 존재 여부 : " + isfileExist);
+        System.out.println("DAO 성공 여부 : " + isDeleteSucceed);
+        System.out.println("파일시스템에서 삭제 : "+ result);
+        
+        return String.format("{\"result\" : \"%s\"}", ""+result);
 	}
 }
