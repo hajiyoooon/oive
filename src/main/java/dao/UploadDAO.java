@@ -34,7 +34,7 @@ public class UploadDAO {
 	public boolean uploadFile(FileVO vo) {
 		String statement = "resource.UploadMapper.upload";
 		boolean result = false;
-		if(sqlSession.insert(statement) == 1) {
+		if(sqlSession.insert(statement, vo) == 1) {
 			result = true;
 		}
 		return result;
@@ -42,7 +42,7 @@ public class UploadDAO {
 	public boolean updateFilename(FileVO vo) {
 		String statement = "resource.UploadMapper.update";
 		boolean result = false;
-		if(sqlSession.insert(statement) == 1) {
+		if(sqlSession.insert(statement, vo) == 1) {
 			result = true;
 		}
 		return result;
@@ -50,7 +50,7 @@ public class UploadDAO {
 	public boolean deleteFile(FileVO vo) {
 		String statement = "resource.UploadMapper.delete";
 		boolean result = false;
-		if(sqlSession.insert(statement) == 1) {
+		if(sqlSession.insert(statement, vo) == 1) {
 			result = true;
 		}
 		return result;

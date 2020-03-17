@@ -8,7 +8,7 @@
 		where userid = #{userId}
 	</select>
 	
-	<insert id="upload" parameterType="int">
+	<insert id="upload">
 		insert into files(FILEID,UPLOADDATE,USERID,FILENAME)
 		values (file_seq.nextval, sysdate, #{userId}, #{fileName})
 	</insert>

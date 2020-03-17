@@ -53,6 +53,8 @@ public class FileController {
 		vo.setUserId(((UserVO)httpSession.getAttribute("user")).getUserId());
 		vo.setFileName(vo.getUploadFile().getOriginalFilename());
 		
+		System.out.println(vo.getUserId());
+		
 		String filepath = createFilePath(vo.getUserId());
 		System.out.println("파일 디렉토리 : " + filepath);
 		
