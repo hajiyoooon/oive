@@ -6,7 +6,7 @@ public class PublicationsVO extends ProfileVO  {
 	private String pubDate;
 	private String authors;
 	private String pubNumber;
-	private String fileId;
+	private int fileId;
 	private String publisher;
 
 	public String getPubName() {
@@ -33,10 +33,10 @@ public class PublicationsVO extends ProfileVO  {
 	public void setPubNumber(String pubNumber) {
 		this.pubNumber = pubNumber;
 	}
-	public String getFileId() {
+	public int getFileId() {
 		return fileId;
 	}
-	public void setFileId(String fileId) {
+	public void setFileId(int fileId) {
 		this.fileId = fileId;
 	}
 	public String getPublisher() {

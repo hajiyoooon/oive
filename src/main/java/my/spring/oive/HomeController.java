@@ -26,7 +26,7 @@ public class HomeController {
 	UserDAO dao;
 
 	@Autowired
-	SearchDAO SearchDAO;
+	SearchDAO searchDAO;
 	
 	@Autowired
 	UserService service;
@@ -83,10 +83,34 @@ public class HomeController {
 		}
 		return mav;
 	}
+	@RequestMapping(value = "/unregister", method = RequestMethod.POST)
+	public ModelAndView unregister(String password, RedirectAttributes redirectAttr) {
+		ModelAndView mav = new ModelAndView();
 
-	@RequestMapping(value = "/self_introduce/write/{self_introduce_id}", method = RequestMethod.GET)
-	public String write(UserVO vo, @PathVariable String self_introduce_id) {
-		return "write";
+		if(service.unregister(password)) {
+			redirectAttr.addFlashAttribute("msg", "회원 정보가 안전하게 삭제되었습니다.");
+			mav.setViewName("redirect:/");
+		}
+		else {
+			mav.setViewName("mypage");
+			mav.addObject("msg", "회원 정보를 삭제할 수 없습니다.");
+		}
+		return mav;
+	}
+	
+	
+	@RequestMapping(value = "/editUserInfo", method = RequestMethod.POST)
+	public ModelAndView editUserInfo(UserVO vo, RedirectAttributes redirectAttr) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("redirect:/mypage");
+		
+		if(service.editUserInfo(vo)) {
+			redirectAttr.addFlashAttribute("msg", "회원정보 수정에 성공했습니다.");
+		}
+		else {
+			redirectAttr.addFlashAttribute("msg", "회원정보 수정에 실패했습니다.");
+		}
+		return mav;
 	}
 
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)

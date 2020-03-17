@@ -17,18 +17,12 @@
  	select work_experience_SEQ.nextval from dual 	
  	</select>
  	<insert id="insert" parameterType="vo.WorkExperienceVO"> 		
-		insert into Work_Experience
-		(ID,USERID,COMPANYNAME,EMPTYPE,
-		STARTDATE,ENDDATE,DUTY,
-		WORKCOMMENTS,FILEID,WORKPOSITION)
-		values
-		(#{id}, #{userId}, #{companyName}, #{empType}, 
-		#{startDate}, #{endDate}, #{duty}, 
-		#{workComments}, #{fileId},#{workPosition})
+		insert into WorkExperience(ID,USERID,COMPANYNAME,EMPTYPE,STARTDATE,ENDDATE,DUTY,WORKCOMMENTS,FILEID,WORKPOSITION
+		values(#{id}, #{userId}, #{companyName}, #{empType}, #{startDate}, #{endDate}, #{duty}, #{workComments}, #{fileId},#{workPosition})
  	</insert>
 
  	<update id="edit" parameterType="vo.WorkExperienceVO">
- 		update Work_Experience set 			
+ 		update WorkExperience set 			
 			companyName = #{companyName},
 			empType = #{empType},
 			startDate = #{startDate},
@@ -40,7 +34,7 @@
 		where USERID = #{userId} and id = #{id}
  	</update>
  	<delete id="delete" parameterType="int">
- 		delete from Work_Experience where id = #{id} 	
+ 		delete from WorkExperience where id = #{id} 	
  	</delete> 	
 </mapper>
 

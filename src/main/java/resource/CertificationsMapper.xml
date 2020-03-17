@@ -8,8 +8,7 @@
     		ID,USERID,CERTNAME,CERTNUMBER,GRADE,
     		TO_CHAR(AQUIREDDATE, 'YYYY-MM-DD') as AQUIREDDATE,
     		TO_CHAR(EXPDATE, 'YYYY-MM-DD') as EXPDATE,
-    		CERTTYPE,FILEID,ORGNAME,CERTCOMMENTS	   	
-    	from Certifications
+    		CERTTYPE,FILEID,ORGNAME,CERTCOMMENTS	   	from Certifications
     	where userId = #{userId}    	
  	</select>
  	

@@ -6,7 +6,7 @@
    	<select id="listAll" parameterType="string" resultType="vo.AwardVO">
     	select 
     		ID,USERID,AWARDNAME,
-    		TO_CHAR(AQUIREDDATE, 'YYYY-MM-DD') as AQUIREDDATE,
+    		TO-CHAR(AQUIREDDATE 'YYYY-MM-DD') as AQUIREDDATE,
     		ORGNAME,FILEID,AWARDTYPE,AWARDCOMMENTS
 	   	from Award
     	where userId = #{userId}    	
@@ -16,8 +16,7 @@
  	select award_SEQ.nextval from dual 	
  	</select>
  	<insert id="insert" parameterType="vo.AwardVO"> 		
-		insert into award
-		(ID,USERID,AWARDNAME,AQUIREDDATE,ORGNAME,FILEID,AWARDTYPE,AWARDCOMMENTS)
+		insert into award(ID,USERID,AWARDNAME,AQUIREDDATE,ORGNAME,FILEID,AWARDTYPE,AWARDCOMMENTS)
 		values(#{id}, #{userId}, #{awardName}, #{aquiredDate},
 		#{orgName}, #{fileId}, #{awardType}, #{awardComments})
  	</insert>
