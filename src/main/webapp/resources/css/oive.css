@@ -117,7 +117,6 @@ form span{
   
 .search {
 	height: 60px;
-	background-color: #ffffff;
 	border-radius: 30px;
 	padding: 10px;
 	border: 1px solid #dee2e6;
@@ -127,17 +126,19 @@ form span{
 .search-dropdown{
 	width:20%;
 	border: none;
+	background-color:inherit;
+	color: inherit;
 }
 
 .search-input{
-    color: black;
+    color: inherit;
     border: 0;
 	padding: 0 10px;
     outline: 0;
     background: none;
     width: 70%;
     transition: width 0.4s linear;
-    }
+}
 
 .search-icon{
 	height: 40px;

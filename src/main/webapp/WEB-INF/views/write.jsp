@@ -5,7 +5,7 @@
     pageEncoding="UTF-8" %>
 <%@ page import="vo.SelfIntroduceVO, java.util.List" %>
 <!DOCTYPE html>
-<html>
+<html class="darkmode">
 <head>
 	<title>Home</title>
 	<!-- 링크 넣어주기  -->
@@ -16,6 +16,7 @@
 	<script src="${pageContext.request.contextPath}/resources/js/jQuery.tagify.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css" >
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap_darkmode.css" >
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/oive.css" >
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/tagify.css" >
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
@@ -48,7 +49,7 @@
     <div class="container">
 		<div class="row">
 			<div class="search col-sm">
-				<select class="form-control search-dropdown" id="search" name="boundary">
+				<select class="form-control-sm search-dropdown" id="search" name="boundary">
 					<option value="company">지원회사</option>
 					<option value="keyword">키워드</option>
 					<option value="question">질문</option>
@@ -96,6 +97,12 @@
 				</div>	
 				
 			<!-- 모달 끝 -->		
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm">
+				<a href="javascript:toggleDarkmode();">자소서로 혹사한 눈을 편안하게</a>
+			
 			</div>
 		</div>
     	<div class="form-group" id="myForm">
@@ -238,6 +245,17 @@
 		};
 		xhr.open('GET','/oive/self_introduce/search?boundary='+svalue+'&input='+ivalue,true);
 		xhr.send();
+	}
+	
+	
+	function toggleDarkmode(){
+		var html = document.querySelector("html");
+		if(html.className=="darkmode"){
+			html.removeAttribute("class");
+		}
+		else{
+			html.setAttribute('class', 'darkmode');
+		}
 	}
 </script>
 </div>

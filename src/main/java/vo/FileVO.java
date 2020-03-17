@@ -1,24 +1,27 @@
 package vo;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class FileVO {
-    private Integer fileId;
-    private byte[] fileContents;
+    private int fileId;
     private String uploadDate;
     private String profileCategory;
-    private Integer id;
+    private int id;
     private String userId;
     private String fileName;
-	public Integer getFileId() {
+    private MultipartFile uploadFile;
+   
+	public MultipartFile getUploadFile() {
+		return uploadFile;
+	}
+	public void setUploadFile(MultipartFile uploadFile) {
+		this.uploadFile = uploadFile;
+	}
+	public int getFileId() {
 		return fileId;
 	}
-	public void setFileId(Integer fileId) {
+	public void setFileId(int fileId) {
 		this.fileId = fileId;
-	}
-	public byte[] getFileContents() {
-		return fileContents;
-	}
-	public void setFileContents(byte[] fileContents) {
-		this.fileContents = fileContents;
 	}
 	public String getUploadDate() {
 		return uploadDate;
@@ -32,10 +35,10 @@ public class FileVO {
 	public void setProfileCategory(String profileCategory) {
 		this.profileCategory = profileCategory;
 	}
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getUserId() {
