@@ -19,7 +19,7 @@
 	<body>
 		<%@ include file="header.jsp" %>
 	  	<div id="body"> 
-		    <nav class="sticky-top" style="/* display:none; margin-top:-50px;*/"><!-- nav 감추기 -->
+		    <nav class="sticky-top" style="/* display:none;*/ margin-top:-50px;"><!-- nav 감추기 -->
 		    	<ul class="nav flex-row" style="/* position:fixed ;padding-top:40px;padding-left:30px;*/">
 			    	<li class="nav-item"><a href="#university" class="nav-link">학력 사항</a></li>
 			    		<ul>
@@ -53,7 +53,7 @@
 		    	<div id="languages-add"><!-- 이곳에 추가된 form이 붙음.--></div>
 		    	
 		    	<h2 id="skills">기술</h2> 
-		    	<c:import url="/form/skills"/>
+<%-- 		    	<c:import url="/form/skills"/> --%>
 		    	<div id="skills-add"><!-- 이곳에 추가된 form이 붙음.--></div>
 	
 		    	
