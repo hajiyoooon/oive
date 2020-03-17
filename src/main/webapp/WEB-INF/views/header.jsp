@@ -6,7 +6,12 @@
       <a class="navbar-brand" href="/oive/">spec overflow :</a>
         <ul>
           <li><a href="/oive/profile">프로필</a></li>
-          <li><a href="/oive/self_introduce/list">자기소개서</a></li>
+          <li class="dropdown-own">자기소개서
+          		<ul>
+          			<li><a href="/oive/self_introduce/list">조회</a></li>
+          			<li><a href="/oive/self_introduce/write">작성</a></li>
+          		</ul>
+          </li>
           <li>이력서만들기</li>
           <li>파일업로드</li>
           <li><a href="/oive/mypage">내정보</a></li>
