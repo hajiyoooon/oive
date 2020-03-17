@@ -13,7 +13,7 @@
           		</ul>
           </li>
           <li>이력서만들기</li>
-          <li>파일업로드</li>
+          <li><a href="/oive/upload">파일함</a></li>
           <li><a href="/oive/mypage">내정보</a></li>
       	<li><a href="/oive/logout">로그아웃</a></li>
       </ul>
