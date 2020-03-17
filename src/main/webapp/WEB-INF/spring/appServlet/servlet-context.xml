@@ -23,8 +23,7 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 
-	<beans:bean id="multipartResolver"
-		class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
 	
 	<context:component-scan base-package="my.spring.oive" />
 	<context:component-scan base-package="dao" />
@@ -33,7 +32,7 @@
 	<beans:bean id="dataSource" 
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 	<beans:property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
-			<beans:property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" />
+			<beans:property name="url" value="jdbc:oracle:thin:@70.12.115.166:1521:xe" />
 			<beans:property name="username" value="oive" />
 			<beans:property name="password" value="oive" />		
 	</beans:bean>

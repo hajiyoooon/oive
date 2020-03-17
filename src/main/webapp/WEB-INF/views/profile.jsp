@@ -56,7 +56,7 @@
 		    	<div id="languages-add"><!-- 이곳에 추가된 form이 붙음.--></div>
 		    	
 		    	<h2 id="skills">기술</h2> 
-		    	<c:import url="/form/skills"/>
+<%-- 		    	<c:import url="/form/skills"/> --%>
 		    	<div id="skills-add"><!-- 이곳에 추가된 form이 붙음.--></div>
 	
 		    	
