@@ -12,17 +12,6 @@
     	insert into users(userId, password, birthday, email)
     	values(#{userId},#{password},to_date(#{birthday} ,'yyyy-mm-dd' ), #{email})
  	</insert>
- 	<update id="updateUser" parameterType="vo.UserVO">
-		update users
-		set password = #{password}, email=#{email}, birthday = #{birthday}
-		where userid = #{userId}
-	
- 	</update>
- 	<delete id="deleteUser" parameterType="vo.UserVO">
-		delete from users
-		where userid=#{userId}
-	
- 	</delete>
 
 </mapper>
 

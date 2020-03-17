@@ -4,54 +4,21 @@
 <mapper namespace="resource.WriteMapper">
 	<select id="selectAll" parameterType="String" resultType="vo.SelfIntroduceVO">
 		select * from Self_Introduce 
-		where userid = #{userId}
-	</select>
-	<select id="selectOne" resultType="vo.SelfIntroduceVO">
-		select *
-		from Self_Introduce s left outer join (select s.id, listagg(k.keyword,',') within group(order by sid) as keywords
-		                from keyword_selfintroduce k, self_introduce s
-		                where k.sid = s.id and s.userid = #{userId}
-		                group by s.id) k
-                        on s.id = k.id
-        where s.id = #{ id }
-	</select>
-	<select id="searchSelf" parameterType="HashMap" resultType="vo.SelfIntroduceVO">
-		select id, userId, question, answer, to_char(applyDate,'yyyy"년"mm"월"dd"일"')applyDate, appliedCompany, to_char(writeDate,'yyyy"년"mm"월"dd"일"') writeDate, , to_char(editDate,'yyyy"년"mm"월"dd"일"') editDate  
-		from Self_Introduce where ${type} like '%'||#{window}||'%'
+		where userid = #{userid}
 	</select>
 	
-	<select id="selectSid" resultType="string">
-		select SELF_INTRODUCE_SEQ.nextval from dual
+	<select id="searchSelf" parameterType="java.util.HashMap" resultType="vo.SelfIntroduceVO">
+		select id, userId, question, answer, to_char(applyDate,'yyyy"년"mm"월"dd"일"') applyDate, appliedCompany, to_char(writeDate,'yyyy"년"mm"월"dd"일"') writeDate, , to_char(editDate,'yyyy"년"mm"월"dd"일"') editDate  
+		from SelfIntroduce where ${type} like '%'||#{window}||'%'
 	</select>
+	
 	<insert id="insertSelf" parameterType="vo.SelfIntroduceVO">
-		insert into Self_Introduce (id, userId, writeDate) 
-		values (#{id}, #{userId}, sysdate)
-	</insert>
-	<insert id="insertKeyword" parameterType="hashmap">
 		<selectKey resultType="int" keyProperty="id" order="BEFORE">
-			select keyword_selfintroduce_seq.nextval from dual
+		select SELF_INTRODUCE_SEQ.nextval from dual
 		</selectKey>
-		insert into keyword_selfintroduce (id, userid, keyword, sid) 
-		values(#{id}, #{userId}, #{keyword}, #{sid})
+		insert into Self_Introduce (id, userId, question, answer, applyDate, appliedCompany, writeDate, editDate) 
+		values (#{id}, 'test', #{question}, #{answer}, sysdate, #{appliedCompany},#{writeDate}, sysdate)
 	</insert>
-	<update id="updateSelf">
-		update self_introduce
-		set QUESTION = #{question},
-			ANSWER   = #{answer},
-			APPLYDATE= to_date(#{applyDate},'YYYY-MM-DD'),
-			APPLIEDCOMPANY = #{appliedCompany},
-			EDITDATE = #{editDate}
-		where id=#{id} and userid = #{userId}
-	</update>
-	<update id="updateKeyword">
-		update KEYWORD_SELFINTRODUCE
-		set KEYWORD = #{keyword}
-		where sid = #{sid} and id = #{id}
-	</update>
-	<delete id="deleteKeyword">
-		DELETE FROM KEYWORD_SELFINTRODUCE
-     	WHERE sid = #{id} and keyword = #{keyword}
-	</delete>
 </mapper>
 
 
