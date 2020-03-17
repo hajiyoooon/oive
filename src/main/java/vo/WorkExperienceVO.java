@@ -41,15 +41,6 @@ public class WorkExperienceVO extends ProfileVO  {
 	public void setDuty(String duty) {
 		this.duty = duty;
 	}
-	public String getWorkComment() {
-		return workComments;
-	}
-	public void setWorkComment(String workComment) {
-		this.workComments = workComment;
-	}
-
-	
-	
 	public String getWorkComments() {
 		return workComments;
 	}
@@ -67,8 +58,6 @@ public class WorkExperienceVO extends ProfileVO  {
 	}
 	public void setWorkPosition(String workPosition) {
 		this.workPosition = workPosition;
-	}
-	
-	
+	}	
 	
 }

@@ -28,7 +28,7 @@
 			    			<li><a href="#university">대학교</a></li>
 			    			<li><a href="#education">교육사항</a></li>
 			    		</ul>
-			    	<li class="nav-item"><a href="#certification" class="nav-link">자격증</a></li>
+			    	<li class="nav-item"><a href="#certifications" class="nav-link">자격증</a></li>
 			    	<li class="nav-item"><a href="#languages" class="nav-link">외국어</a></li>
 			    	<li class="nav-item"><a href="#skills" class="nav-link">기술</a></li>
 			    	<li class="nav-item"><a href="#award" class="nav-link">수상이력</a></li>
@@ -65,22 +65,17 @@
 		    	<div id="award-add"><!-- 이곳에 추가된 form이 붙음.--></div>
 		    	
 		    	<h2 id="patent">특허</h2> 
-<%-- 		    	<c:import url="/form/patent"/> --%>
+		    	<c:import url="/form/patent"/>
 		    	<div id="patent-add"><!-- 이곳에 추가된 form이 붙음.--></div>
 		    	
 		    	<h2 id="publications">논문 &middot; 저서</h2> 
-<%-- 		    	<c:import url="/form/publications"/> --%>
+		    	<c:import url="/form/publications"/>
 		    	<div id="publications-add"><!-- 이곳에 추가된 form이 붙음.--></div>
 		    	
 		    	<h2 id="workExperience">경력</h2> 
-<%-- 		    	<c:import url="/form/workExperience"/> --%>
-		    	<div id="publications-add"><!-- 이곳에 추가된 form이 붙음.--></div>
+		    	<c:import url="/form/workExperience"/>
+		    	<div id="workExperience-add"><!-- 이곳에 추가된 form이 붙음.--></div>
 		    	
-		    			    	
-		    	
-		    	
-		    	
-		    	    	
 			</div>
 
 <!-- 	    	<aside>어사이드입니다. 작업이 끝나면 지워주세요.</aside>  -->
@@ -112,7 +107,6 @@
 //     	window.alert(formData.get('id'));
 //     	window.alert(formData.get('uName'));
 
-		<!--formData에 누락된 값이 있을 경우 default 값을 세팅해 준다.-->
 		var xhr= new XMLHttpRequest();
     	xhr.onload=function(){
     		if(xhr.status==200){

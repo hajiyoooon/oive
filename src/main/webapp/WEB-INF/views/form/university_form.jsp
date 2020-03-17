@@ -93,7 +93,7 @@
 			<option value="4.5" ${vo[i].maxGrade=='4.5'?'selected':''}>4.5</option>
 			<option value="4.7" ${vo[i].maxGrade=='4.7'?'selected':''}>4.7</option>
 			<option value="5.0" ${vo[i].maxGrade=='5'?'selected':''}>5</option>
-			<option value="-1" ${vo[i].maxGrade=='0'?'selected':''}>직접입력</option>
+			<option value="-1" ${vo[i].maxGrade=='0'?'selected':''}>기타</option>
 			<!-- 직접입력할 수 있는 방법 확인하기. -->
       </select>
     </div>
@@ -122,3 +122,8 @@
 </div>  
  </c:forEach>
  </c:if>
+<c:if test="${ empty vo }">
+<div>
+	    <button id="university-add_}" class="btn btn-primary" type="button" onclick="add(id);false;">추가</button>
+</div>
+</c:if>
