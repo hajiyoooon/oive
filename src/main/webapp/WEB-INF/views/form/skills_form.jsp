@@ -10,8 +10,10 @@
 	<div class="form-row">
 		<div class="col-6 form-group">
 			<label for="SkillsName">기술명</label>
-			<input type="text" name="SkillsName" class="form-control" 
-			 maxlength="6" value="${vo[i].skillsName}" required>
+			<input type="text" name="SkillsName" 
+			class="form-control" 
+			 maxlength="6" value="${vo[i].skillsName}" 
+			 required>
 		</div> 
 		<div class="col-6 form-group">
 			<label for="SkillsLevel">수준</label>

@@ -65,16 +65,16 @@
 		    	<div id="award-add"><!-- 이곳에 추가된 form이 붙음.--></div>
 		    	
 		    	<h2 id="patent">특허</h2> 
-<%-- 		    	<c:import url="/form/patent"/> --%>
+		    	<c:import url="/form/patent"/>
 		    	<div id="patent-add"><!-- 이곳에 추가된 form이 붙음.--></div>
 		    	
 		    	<h2 id="publications">논문 &middot; 저서</h2> 
-<%-- 		    	<c:import url="/form/publications"/> --%>
+		    	<c:import url="/form/publications"/>
 		    	<div id="publications-add"><!-- 이곳에 추가된 form이 붙음.--></div>
 		    	
 		    	<h2 id="workExperience">경력</h2> 
-<%-- 		    	<c:import url="/form/workExperience"/> --%>
-		    	<div id="publications-add"><!-- 이곳에 추가된 form이 붙음.--></div>
+		    	<c:import url="/form/workExperience"/>
+		    	<div id="workExperience-add"><!-- 이곳에 추가된 form이 붙음.--></div>
 		    	
 		    			    	
 		    	
