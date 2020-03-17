@@ -95,7 +95,7 @@
    		<input class="btn btn-primary" type="submit" name="" value="로그인" style="width:200px;"><br>
 	</form>
 	<button class="btn btn-primary" style="width:200px;" onclick="location.href='join'">회원가입</button><br>
-
+	<button class="btn btn-primary" style="width:200px;" onclick="location.href='join'">비밀번호찾기</button><br>
 
   </div>
  </div>
