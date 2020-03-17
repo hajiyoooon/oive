@@ -47,6 +47,7 @@ public class WorkExperienceVO extends ProfileVO  {
 	public void setWorkComments(String workComments) {
 		this.workComments = workComments;
 	}
+
 	public String getFileId() {
 		return fileId;
 	}
