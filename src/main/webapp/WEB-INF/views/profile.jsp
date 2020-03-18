@@ -13,7 +13,15 @@
 	<link href="https://fonts.googleapis.com/css?family=Song+Myung:400" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Gamja+Flower:400" rel="stylesheet">
 	<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
-<style>*{font-family:/* Song Myung */ Noto Sans} h2{margin-left:-10px} </style>
+<style>*{font-family:/* Song Myung */ Noto Sans} 
+ h2{
+ margin-left:-10px;
+ font-size:1.3em;
+ }
+ h3{
+ font-size:1.1em;
+ }
+  </style>
 <!-- <style>form.profile{margin-bottom:30px;}</style> -->
   </head>
 	<body>
@@ -24,9 +32,9 @@
 		    <div class="col-sm-2" style="/* display:none; margin-top:-50px;*/"><!-- nav 감추기 -->
 		    	<ul class="nav" style="display:inline-block;position:fixed;">
 			    	<li class="nav-item"><a href="#university" class="nav-link">학력 사항</a></li>
-			    		<ul>
-			    			<li><a href="#university">대학교</a></li>
-			    			<li><a href="#education">교육사항</a></li>
+			    		<ul class="nav" style="display:inline-block;">
+			    			<li class="nav-item" style="margin-left:40px; font-size:"><a href="#university">대학교</a></li>
+			    			<li class="nav-item" style="margin-left:40px"><a href="#education">교육사항</a></li>
 			    		</ul>
 			    	<li class="nav-item"><a href="#certifications" class="nav-link">자격증</a></li>
 			    	<li class="nav-item"><a href="#languages" class="nav-link">외국어</a></li>
@@ -81,6 +89,7 @@
 <!-- 	    	<aside>어사이드입니다. 작업이 끝나면 지워주세요.</aside>  -->
 		 </div>
 		 </div>
+	<%@ include file="footer.jsp" %>
 
 	
 	 	<script>
@@ -110,9 +119,9 @@
 		var xhr= new XMLHttpRequest();
     	xhr.onload=function(){
     		if(xhr.status==200){
-    			window.alert("ajax 통신 성공."+ xhr.responseText);    			
+    			window.alert("성공하였습니다: "+ xhr.responseText);    			
     		} else
-    			window.alert("ajax 통신 실패."+ xhr.responseText);
+    			window.alert("실패하였습니다: "+ xhr.responseText);
     	}
     	xhr.open("POST", "/oive/edit", true);
     	xhr.send(formData);    	
@@ -137,6 +146,12 @@
     		}
     		xhr.open("GET", btId, true);
     		xhr.send();    		
+    	}
+    	
+	    function hide(id){
+    		var target = document.getElementById(id);
+    		console.log(target);
+			target.style.display ='none';
     	}
     	
     </script>

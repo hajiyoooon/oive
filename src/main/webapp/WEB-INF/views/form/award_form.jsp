@@ -4,9 +4,9 @@
 <c:forEach var="i" begin="0" end="${vo.size()==0?0:vo.size()-1}">
 <div id="formGroup_award_${vo[i].id}">
 <form id="form_award_${vo[i].id}" class="profile">
-	<input type="" name="userId" value="${sessionScope.user.userId}">
-	<input type="" name="category" value="award"> 
-	<input type="" name="Id" value="${vo[i].id}">
+	<input type="hidden" name="userId" value="${sessionScope.user.userId}">
+	<input type="hidden" name="category" value="award"> 
+	<input type="hidden" name="Id" value="${vo[i].id}">
 	<div class="form-row">
 		<div class="col-3 form-group">
 	  		<label for="OrgName">수여기관</label>
@@ -59,4 +59,11 @@
 	</div>
 </div>
 </c:forEach>
+</c:if>
+ 
+<c:if test="${ empty vo }">
+  <div class="d-flex justify-content-end mb-3" id="award-add_fornull">
+    <button id="award-add_" onclick="hide(id);add(id);false;"
+    class="p-1 btn btn-outline"><img src="/oive/resources/images/plus.svg" alt="" width="32" height="32" title="추가하기"></button>
+  </div>
 </c:if>
