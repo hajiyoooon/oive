@@ -21,7 +21,7 @@ import vo.UserVO;
  * Handles requests for the application home page.
  */
 @Controller
-public class HomeController {
+public class UserController {
 	@Autowired
 	UserDAO dao;
 
@@ -38,7 +38,6 @@ public class HomeController {
 	public ModelAndView home() {
 		ModelAndView mav = new ModelAndView();
 
-		//TODO : 인터셉터 내에서 처리할 수는 없을까?
 		if(session.getAttribute("user") != null) 
 			mav.setViewName("redirect:/self_introduce/list");
 		else mav.setViewName("example");

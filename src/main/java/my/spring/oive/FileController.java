@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import dao.UploadDAO;
+import dao.FileDAO;
 import vo.FileVO;
 import vo.UserVO;
 
@@ -35,7 +35,7 @@ public class FileController {
 	ServletContext context; 
 	
 	@Autowired
-	UploadDAO uploadDAO;
+	FileDAO uploadDAO;
 	
 	@Autowired
 	HttpSession httpSession;

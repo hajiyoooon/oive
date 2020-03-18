@@ -1,21 +1,18 @@
 package dao;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.context.annotation.SessionScope;
 
 import vo.FileVO;
 import vo.UserVO;
 
 @Repository
-public class UploadDAO {
+public class FileDAO {
 	
 	@Autowired
 	HttpSession httpSession;
@@ -24,7 +21,7 @@ public class UploadDAO {
 	SqlSession sqlSession;
 	
 	public List<FileVO> selectFileList(){
-		String statement = "resource.UploadMapper.listAll";
+		String statement = "resource.FileMapper.listAll";
 		
 		String userId = ((UserVO) httpSession.getAttribute("user")).getUserId();
 		List<FileVO> list = sqlSession.selectList(statement, userId);
@@ -32,7 +29,7 @@ public class UploadDAO {
 	}
 	
 	public boolean uploadFile(FileVO vo) {
-		String statement = "resource.UploadMapper.upload";
+		String statement = "resource.FileMapper.upload";
 		boolean result = false;
 		if(sqlSession.insert(statement, vo) == 1) {
 			result = true;
@@ -40,7 +37,7 @@ public class UploadDAO {
 		return result;
 	}
 	public boolean updateFilename(FileVO vo) {
-		String statement = "resource.UploadMapper.update";
+		String statement = "resource.FileMapper.update";
 		boolean result = false;
 		if(sqlSession.insert(statement, vo) == 1) {
 			result = true;
@@ -48,7 +45,7 @@ public class UploadDAO {
 		return result;
 	}
 	public boolean deleteFile(FileVO vo) {
-		String statement = "resource.UploadMapper.delete";
+		String statement = "resource.FileMapper.delete";
 		boolean result = false;
 		if(sqlSession.insert(statement, vo) == 1) {
 			result = true;
