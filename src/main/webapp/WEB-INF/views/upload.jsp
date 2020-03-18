@@ -21,13 +21,13 @@
   	<div id="body">
     <div class="container">
 		<div class="row">
-	   <form action="/oive/upload" enctype="multipart/form-data" method="post">
+	   <form id="f" enctype="multipart/form-data" method="POST" >
 		  <div class="custom-file">
-		    <input type="file" class="custom-file-input" name="uploadFile" required>
+		    <input id="input" type="file" class="custom-file-input" name="uploadFile" required>
 		    <label class="custom-file-label" for="validatedCustomFile">업로드할 파일을 선택하세요</label>
 		    <div class="invalid-feedback">Example invalid custom file feedback</div>
 		  </div>
-		  <input type="submit" value="파일 업로드">
+		  <input type="button" value="파일 업로드" onclick="xxx();return false;">
 	   </form>
 	   </div>
 	   <div class="row">
@@ -47,15 +47,24 @@
             </div>
        </c:forEach>
 	   </div>
-   
-   
-
     </div>
  	</div>
  	<script>
- 		function uploadFile(){
- 		}
+ 		 function xxx(){
+ 			var xhr = new XMLHttpRequest();
+ 			var data = new FormData(document.getElementById("f"));
+ 			xhr.onload=function(e){
+ 				var str = xhr.responseText;
+ 	 			var result = JSON.parse(str);
+ 	 			alert(result['msg']);
+ 	 		}
+ 			xhr.onerror=function(e){alert(e);};
+ 			xhr.open('POST','/oive/upload',true);
+ 			xhr.send(data);
+ 		};
+/*  		
+ 		document.querySelector("input[type=button]")
+ 				.addEventListener("click", uploadFile); */
  	</script>
   </body>
-  
 </html>
