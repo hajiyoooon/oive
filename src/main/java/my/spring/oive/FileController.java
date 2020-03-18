@@ -95,10 +95,10 @@ public class FileController {
 
 	@RequestMapping(value="/download")
 	@ResponseBody
-	public ResponseEntity<String> download(FileVO vo, HttpServletRequest request, HttpServletResponse response) {
-		//https://private.tistory.com/60 참고해 작성하였음
-		
+	public ResponseEntity<Object> download(FileVO vo, HttpServletRequest request, HttpServletResponse response) {
 		HttpHeaders headers = new HttpHeaders();
+		HttpStatus status = null;
+		Object body = null;
 		
 		vo.setUserId(((UserVO)httpSession.getAttribute("user")).getUserId());
 		String filepath = createFilePath(vo.getUserId());
@@ -113,13 +113,13 @@ public class FileController {
 		String client = request.getHeader("User-Agent");
                 
         if(possible) {
+        	
             //파일 다운로드 헤더 지정 
-            headers.setContentType(new MediaType("application","octet-stream"));
+            headers.setContentType(MediaType.parseMediaType("application/octet-stream"));
             headers.setContentDisposition(ContentDisposition.builder("attachment").filename(filename, Charset.forName("UTF-8")).build());
             
-        	try(OutputStream os = response.getOutputStream();
-        		InputStream in = new FileInputStream(file);) {
-        		
+        	try(InputStream in = new FileInputStream(file);) {
+//        		throw new IOException();
 	            if (client.indexOf("MSIE") != -1) {
 	            	headers.setContentDisposition(ContentDisposition.builder("attachment").filename(filename, Charset.forName("UTF-8")).build());
 	            	// IE 11 이상.
@@ -133,28 +133,34 @@ public class FileController {
 	            headers.setContentLength(file.length());
 	            
 	            byte b[] = new byte[(int) file.length()];
-	            int leng = 0;
-	            while ((leng = in.read(b)) > 0) {
-	                os.write(b, 0, leng);
+	            while ((in.read(b)) > 0) {
 	            }
+	            
+        		body = b;
+	            status = HttpStatus.OK;
         	}catch(UnsupportedEncodingException e) {
         		e.printStackTrace();
         		headers.setContentType(new MediaType("application","json",Charset.forName("UTF-8")));
         		result = false;
+        		status = HttpStatus.BAD_REQUEST;
+        		body = "{\"msg\":\"잘못된 인코딩 방식을 적용하여 파일을 다운로드할 수 없습니다.\"}";
         	}catch (IOException e) {
         		e.printStackTrace();
         		headers.setContentType(new MediaType("application","json",Charset.forName("UTF-8")));
         		result = false;
-        		// TODO : 파일 다운로드에 실패할 경우 어떤 응답을 출력할 지 결정
+        		status = HttpStatus.INTERNAL_SERVER_ERROR;
+        		body = "{\"msg\":\"파일을 읽는 중 오류가 발생했습니다. 다시 한 번 시도해주세요.\"}";
   			}
         }
         else {
         	headers.setContentType(new MediaType("application","json",Charset.forName("UTF-8")));
         	result = false;
+        	status = HttpStatus.NOT_FOUND;
+        	body = "{\"msg\":\"파일을 찾을 수 없습니다\"}";
         }
-        
-        String body = String.format("{\"result\":\"%s\"}", ""+result);
-        return new ResponseEntity<String>(body, headers, HttpStatus.OK);
+        ResponseEntity<Object> entity = new ResponseEntity<Object>(body, headers, status);
+
+        return entity;
 	}
 	@RequestMapping(value="delete")
 	@ResponseBody

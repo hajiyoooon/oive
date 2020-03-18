@@ -38,25 +38,26 @@ public class WriteController {
 	@RequestMapping(value = "/self_introduce/write")
 	public String write(SelfIntroduceVO vo, Model model) {
 		vo.setUserId(((UserVO)httpSession.getAttribute("user")).getUserId());
-
+		String uri = "write";
+		
 		boolean result = false;
 		if(vo.getId() == 0) {
 			String sid = writeDao.selectSid(); // 1. 자기소개서의 다음 아이디값을 받아온다
 			if(sid!=null) {
 				vo.setId(Integer.parseInt(sid)); // 2. 받아온 id를 지정해준 후 인서트
 				result = writeDao.insert(vo);
+				uri = "redirect:write?id=" + vo.getId();
 			}
 		}
 		else {
 			vo = writeDao.selectOne(vo);
 			if(vo != null) result = true;
-			System.out.println(vo.getId());
 		}
 		
 		model.addAttribute("vo",vo);
 		model.addAttribute("result", result);
 		
-		return "write";
+		return uri;
 	}
 	
 	@RequestMapping(value = "/self_introduce/save", method = RequestMethod.POST,
