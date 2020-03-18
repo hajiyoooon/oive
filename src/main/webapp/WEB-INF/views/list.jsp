@@ -10,13 +10,10 @@
 <head>
 	<title>Home</title>
 	<!-- 링크 넣어주기  -->
-	<!-- <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/starter-template/"> -->
 	<script src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/tagsinput.js"></script>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css" >
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/oive.css" >
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/tagsinput.css" >
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 
   </head>

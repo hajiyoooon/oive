@@ -7,22 +7,20 @@
 <head>
 	<title>프로필</title>
 	<!-- 링크 넣어주기  -->
-	<!-- <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/starter-template/"> -->
+	<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css" >
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/oive.css" >	
-	<link href="https://fonts.googleapis.com/css?family=Song+Myung:400" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Gamja+Flower:400" rel="stylesheet">
-	<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
-<style>*{font-family:/* Song Myung */ Noto Sans} 
- h2{
- margin-left:-10px;
- font-size:1.3em;
- }
- h3{
- font-size:1.1em;
- }
+	<style>
+		 h2{
+		 margin-left:-10px;
+		 font-size:1.3em;
+		 font-familty : Jeju Gothic;
+		 }
+		 h3{
+		 font-size:1.1em;
+		 font-familty : Jeju Gothic;
+		 }
   </style>
-<!-- <style>form.profile{margin-bottom:30px;}</style> -->
   </head>
 	<body>
 		<%@ include file="header.jsp" %>
@@ -51,7 +49,7 @@
 		    	<c:import url="/form/university"/>
 		    	<div id="university-add"></div>
 
-				<h3 id="education">교육사항</h3>
+				<h2 id="education">교육사항</h2>
 		    	<c:import url="/form/education"/>
 		    	<div id="education-add"><!-- 이곳에 추가된 form이 붙음.--></div>
 		    	
