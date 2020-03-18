@@ -40,7 +40,7 @@ public class UserController {
 
 		if(session.getAttribute("user") != null) 
 			mav.setViewName("redirect:/self_introduce/list");
-		else mav.setViewName("example");
+		else mav.setViewName("home");
 
 		return mav;
 	}
