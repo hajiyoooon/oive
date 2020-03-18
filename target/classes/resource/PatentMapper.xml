@@ -18,7 +18,7 @@
  	<insert id="insert" parameterType="vo.PatentVO"> 		
 		insert into Patent(ID,USERID,PATENTNAME,COUNTRY,PATNUMBER,PATDATE,FILEID,PATENTCOMMENTS)
 		values(#{id}, #{userId}, #{patentName}, #{country}, #{patNumber}, #{patDate},#{fileId},#{patentComments})
- 	</insert>
+	</insert>
 
  	<update id="edit" parameterType="vo.PatentVO">
  		update PATENT set 			

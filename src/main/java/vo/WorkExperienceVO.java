@@ -58,8 +58,6 @@ public class WorkExperienceVO extends ProfileVO  {
 	}
 	public void setWorkPosition(String workPosition) {
 		this.workPosition = workPosition;
-	}
-	
-	
+	}	
 	
 }

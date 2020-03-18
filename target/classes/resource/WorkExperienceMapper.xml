@@ -25,7 +25,7 @@
 		(#{id}, #{userId}, #{companyName}, #{empType}, 
 		#{startDate}, #{endDate}, #{duty}, 
 		#{workComments}, #{fileId},#{workPosition})
- 	</insert>
+	</insert>
 
  	<update id="edit" parameterType="vo.WorkExperienceVO">
  		update Work_Experience set 			
@@ -43,11 +43,3 @@
  		delete from Work_Experience where id = #{id} 	
  	</delete> 	
 </mapper>
-
-
-
-
-
-
-
-

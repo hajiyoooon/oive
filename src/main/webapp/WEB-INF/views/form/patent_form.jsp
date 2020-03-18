@@ -4,9 +4,9 @@
 <c:forEach var="i" begin="0" end="${vo.size()==0?0:vo.size()-1}">
 <div id="formGroup_patent_${vo[i].id}">
 <form id="form_patent_${vo[i].id}" class="profile">
-	<input type="" name="userId" value="${sessionScope.user.userId}">
-	<input type="" name="category" value="patent"> 
-	<input type="" name="Id" value="${vo[i].id}">
+	<input type="hidden" name="userId" value="${sessionScope.user.userId}">
+	<input type="hidden" name="category" value="patent"> 
+	<input type="hidden" name="Id" value="${vo[i].id}">
 	<div class="form-row">
 		<div class="col-3 form-group">
 			<label for="PatentName">특허명</label>
@@ -37,8 +37,7 @@
 			placeholder="내용을 입력하세요.">${vo[i].patentComments}</textarea>
 		</div>
 	</div>
-
-			<!-- fileId         INT              NULL -->
+				<!-- fileId         INT              NULL -->
   <div class="form-row" style="/* display:none */">
     <div class="col">
       <label for="FileId">관련파일</label>
@@ -54,4 +53,11 @@
 	</div>
 </div>
 </c:forEach>
+</c:if>
+
+<c:if test="${ empty vo }">
+  <div class="d-flex justify-content-end mb-3" id="patent-add_fornull">
+    <button id="patent-add_" onclick="hide(id);add(id);false;"
+    class="p-1 btn btn-outline"><img src="/oive/resources/images/plus.svg" alt="" width="32" height="32" title="추가하기"></button>
+  </div>
 </c:if>

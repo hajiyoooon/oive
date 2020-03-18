@@ -5,9 +5,9 @@
 <div id="formGroup_university_${vo[i].id}">
 <form id="form_university_${vo[i].id}" class="profile">
 <!-- 구현이 끝난 후 type을 "hidden"으로 바꿀 것  -->
-	<input type="text" name="userId" value="${sessionScope.user.userId}">
-	<input type="text" name="category" value="university">
-	<input type="text" name="Id" value="${vo[i].id}">
+	<input type="hidden" name="userId" value="${sessionScope.user.userId}">
+	<input type="hidden" name="category" value="university">
+	<input type="hidden" name="Id" value="${vo[i].id}">
 	
   <div class="form-row">
     <div class="col form-group">
@@ -93,7 +93,7 @@
 			<option value="4.5" ${vo[i].maxGrade=='4.5'?'selected':''}>4.5</option>
 			<option value="4.7" ${vo[i].maxGrade=='4.7'?'selected':''}>4.7</option>
 			<option value="5.0" ${vo[i].maxGrade=='5'?'selected':''}>5</option>
-			<option value="-1" ${vo[i].maxGrade=='0'?'selected':''}>직접입력</option>
+			<option value="-1" ${vo[i].maxGrade=='0'?'selected':''}>기타</option>
 			<!-- 직접입력할 수 있는 방법 확인하기. -->
       </select>
     </div>
@@ -112,13 +112,16 @@
   </form>
   <div class="form-group profile-btn-group">
     <button id="university_${vo[i].id}" class="btn btn-success" onclick="edit(id);false;">수정</button>
-<%-- 	<a href="/oive/delete/university/${vo[i].id}"> --%>
-<!-- 	<button class="btn btn-danger" type="button" name="button">삭제</button></a> -->
-    <!-- GET 형식으로 삭제 구현함 -->
-    <!-- ajax 로 삭제 구현 -->
     <button id="delete/university/${vo[i].id}" class="btn btn-danger" type="button" name="button" onclick="del(id);false;">삭제</button>
     <button id="university-add_${vo[i].id}" class="btn btn-primary" type="button" onclick="add(id);false;">추가</button>
   </div>
 </div>  
  </c:forEach>
  </c:if>
+ 
+<c:if test="${ empty vo }">
+  <div class="d-flex justify-content-end mb-3" id="university-add_fornull">
+    <button id="university-add_" onclick="hide(id);add(id);false;"
+    class="p-1 btn btn-outline"><img src="/oive/resources/images/plus.svg" alt="" width="32" height="32" title="추가하기"></button>
+  </div>
+</c:if>
