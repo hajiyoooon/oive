@@ -5,7 +5,7 @@
     pageEncoding="UTF-8" %>
 <%@ page import="vo.SelfIntroduceVO, java.util.List" %>
 <!DOCTYPE html>
-<html class="darkmode">
+<html>
 <head>
 	<title>Home</title>
 	<!-- 링크 넣어주기  -->
@@ -15,7 +15,7 @@
 	<script src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/jQuery.tagify.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css" >
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/minty.css" >
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap_darkmode.css" >
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/oive.css" >
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/tagify.css" >
@@ -101,7 +101,7 @@
 		</div>
 		<div class="row">
 			<div class="col-sm">
-				<a href="javascript:toggleDarkmode();">자소서로 혹사한 눈을 편안하게</a>
+				<a href="javascript:toggleDarkmode();">자소서로 혹사한 👀을 편안하게(Beta)</a>
 			
 			</div>
 		</div>

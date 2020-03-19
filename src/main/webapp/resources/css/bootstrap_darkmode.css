@@ -11,6 +11,10 @@ html.darkmode {
   	color: white;
 }
 
+.darkmode a:focus, .darkmode a:hover {
+    color:#bbbbbb;
+}
+
 .darkmode .form-control  {
   display: inline-block;
   width: 100%;
@@ -26,17 +30,83 @@ html.darkmode {
   background-color:black;
   border: 1px solid #292929;
 }
+.darkmode .form-control:hover  {
 
+  border-color: #ccc;;
+  color:white;
+
+}
 .darkmode .form-control:focus  {
 
-  border-color: #292929;
+  border-color: #ccc;;
   outline: 0;
-  box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.25);
+  box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.25);
   color:white;
-  background-color:#272727;
 
 }
 
 .darkmode textarea.form-control{
 	height:auto;
+}
+
+.darkmode .tagify{
+	--tags-border-color: #292929	;
+	border-radius: 0.25rem;
+}
+
+.darkmode .tagify.tagify--focus{
+	border-color: #ccc;
+}
+
+
+.darkmode span.tagify__input{
+	--placeholder-color: white;
+}
+
+.darkmode header.header.navbar.sticky-top {
+    background-color: #313030;
+    color: white;
+}
+
+.darkmode a.navbar-brand {
+    color: white;
+}
+
+.darkmode .header li {
+    color:white;
+}
+
+.darkmode a{
+    color: white;
+    transition: color 0.2s;
+}
+
+.darkmode .search {
+	border: 1px solid #292929;
+}
+    
+.darkmode .search-dropdown{
+	background-color:inherit;
+	color: inherit;
+}
+
+.darkmode .search-input{
+    color: inherit;
+    border: 0;
+	padding: 0 10px;
+    outline: 0;
+    background: none;
+    width: 70%;
+    transition: width 0.4s linear;
+}
+
+.darkmode .dropdown-own{
+	color : white;
+}
+
+.darkmode .dropdown-own > ul {
+
+    border:1px rgba(0,0,0,0.2) solid;
+    background-color: #313030;
+    box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
 }
