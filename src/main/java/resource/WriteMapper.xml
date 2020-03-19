@@ -2,10 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="resource.WriteMapper">
-	<select id="selectAll" parameterType="String" resultType="vo.SelfIntroduceVO">
-		select * from Self_Introduce 
-		where userid = #{userId}
-	</select>
 	<select id="selectOne" resultType="vo.SelfIntroduceVO">
 		select *
 		from Self_Introduce s left outer join (select s.id, listagg(k.keyword,',') within group(order by sid) as keywords
@@ -15,11 +11,6 @@
                         on s.id = k.id
         where s.id = #{ id }
 	</select>
-	<select id="searchSelf" parameterType="HashMap" resultType="vo.SelfIntroduceVO">
-		select id, userId, question, answer, to_char(applyDate,'yyyy"년"mm"월"dd"일"')applyDate, appliedCompany, to_char(writeDate,'yyyy"년"mm"월"dd"일"') writeDate, , to_char(editDate,'yyyy"년"mm"월"dd"일"') editDate  
-		from Self_Introduce where ${type} like '%'||#{window}||'%'
-	</select>
-	
 	<select id="selectSid" resultType="string">
 		select SELF_INTRODUCE_SEQ.nextval from dual
 	</select>
@@ -40,7 +31,7 @@
 			ANSWER   = #{answer},
 			APPLYDATE= to_date(#{applyDate},'YYYY-MM-DD'),
 			APPLIEDCOMPANY = #{appliedCompany},
-			EDITDATE = #{editDate}
+			EDITDATE = sysdate
 		where id=#{id} and userid = #{userId}
 	</update>
 	<update id="updateKeyword">
