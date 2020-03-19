@@ -8,7 +8,7 @@
 	<title>프로필</title>
 	<!-- 링크 넣어주기  -->
 	<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/minty.css" >
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css" >
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/oive.css" >	
 	<style>
 		 h2{

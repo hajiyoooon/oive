@@ -15,7 +15,7 @@
 	<script src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/jQuery.tagify.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/minty.css" >
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css" >
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap_darkmode.css" >
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/oive.css" >
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/tagify.css" >
@@ -99,6 +99,9 @@
 			<!-- 모달 끝 -->		
 			</div>
 		</div>
+		<div id="savealert">
+		</div>
+
 		<div class="row">
 			<div class="col-sm">
 				<a href="javascript:toggleDarkmode();">자소서로 혹사한 👀을 편안하게(Beta)</a>
@@ -111,9 +114,11 @@
 					
 				</div>
 				<div class="form-group col-sm">
-					<input type="text" class="form-control" name="question" placeholder="질문을 입력해주세요" value="${vo.question }"></input>
+					<input type="text" class="form-control" name="question" placeholder="질문을 입력해주세요" maxlength="60" value="${vo.question }"></input>
 					<br>
-					<textarea class="form-control" name="answer" placeholder="" rows="10" >${vo.answer }</textarea>
+					<textarea class="form-control" name="answer" placeholder="" rows="10"
+					onkeyup="resizeTextarea(this);" onkeydown="resizeTextarea(this);"
+					>${vo.answer }</textarea>
 				</div>
 
 				<div class="form-group col-sm-3">
@@ -129,12 +134,20 @@
 				<input type="submit" value="저장" class="btn btn-dark" style="width:100px">
 				<input type="reset" value="취소" class="btn btn-dark" style="width:100px">
 				<!-- <input type="button" class="btn btn-dark" value="항목 추가" style="width:100px">	 -->
-			</div>		
+			</div>	
+
     	</div>
     </div>
 	<%@ include file="footer.jsp" %>
 	<script>
+		function resizeTextarea(e){
+			e.style.height = (e.scrollHeight) + "px";
+		}
+		var textarea = document.querySelector("#form-content > div.form-group.col-sm > textarea");
+		resizeTextarea(textarea);
 	
+		
+ 	
 	var myInput = $('[name=tags]').tagify();
 
 	myInput.on('add', function(e, tagName){
@@ -209,6 +222,12 @@
 		}
 		var jsonString = JSON.stringify(data);
 		console.log(jsonString);
+		xhr.onload = function(e){
+			document.getElementById("savealert").innerHTML = '<div id="savealert" class="alert alert-dismissible alert-success">'
+				  +'<button type="button" class="close" data-dismiss="alert">&times;</button>'
+				  +'<strong>저장되었습니다!</strong><a href="#" class="alert-link"></a>'
+				+'</div>	';
+		}
 		
 		xhr.open("POST", "save");
 		xhr.setRequestHeader("Content-Type","application/json");

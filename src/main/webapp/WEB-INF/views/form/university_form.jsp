@@ -79,7 +79,7 @@
     <div class="col form-group">
       <label for="TotalGrade">총 학점</label>
       <input type="number" name="TotalGrade" value="${vo[i].totalGrade}" min=0.00 max=4.99 class="form-control"
-      step="0.01" placeholder="평점평균 입력">
+      step="0.01" placeholder="수강한 총학점을 입력하세요">
     </div>
     <div class="col form-group">
       <label for="MajorGrade">전공 학점</label>

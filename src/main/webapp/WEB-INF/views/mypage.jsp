@@ -44,9 +44,9 @@
 					</div>
 							
 					<div class="input-group">
-					  <label class="col-md-4 control-label" for="passwordinput">비밀번호</label>
+					  <label class="col-md-4 control-label" for="passwordinput" >비밀번호</label>
 					  <div class="col-md">
-						<input id="passwordinput" name="password" type="password" placeholder="placeholder" class="input--style-2 ">
+						<input required id="passwordinput" name="password" type="password" placeholder="placeholder" class="input--style-2 ">
 					  </div>
 					</div>
 					
@@ -55,7 +55,7 @@
 					  <label class="col-md-4 control-label" for="passwordinput">비밀번호 확인</label>
 					  <div class="col-md">
 					  <!-- TODO : 이 부분은 js로 비교하는게 좋을 것 같음 -->
-						<input id="passwordinput" type="password" placeholder="placeholder" class="input--style-2 ">
+						<input required id="passwordinput" type="password" placeholder="placeholder" class="input--style-2 ">
 					  </div>
 					</div>
 						
