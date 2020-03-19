@@ -14,6 +14,7 @@
 		                where sid = s.id and s.userid = #{userId}
 		                group by s.id) k
 		            on s.id = k.id
+		            where s.userid = #{userId}
 		        order by s.id desc) t)
 		where rnum between #{start} and #{end}
  	</select>
@@ -28,7 +29,7 @@
 				    where sid = s.id and s.userid = #{userId} 
 				    group by s.id) k
 				   on s.id = k.id
-				where s.appliedcompany like '%'||#{input}||'%'
+				where s.appliedcompany like '%'||#{input}||'%' and s.userid = #{userId}
 		        order by s.id desc) t)
 		where rnum between #{start} and #{end}
  	</select>
@@ -44,7 +45,7 @@
 				    where sid = s.id and s.userid = #{userId}
 				    group by s.id) k
 				    on s.id = k.id
-				where k.keywords like '%'||#{input}||'%'
+				where k.keywords like '%'||#{input}||'%' and s.userid = #{userId}
 		        order by s.id desc) t)
 		where rnum between #{start} and #{end}
 		
@@ -63,7 +64,7 @@
 				    where sid = s.id and s.userid = #{userId}
 				    group by s.id) k
 				    on s.id = k.id
-				where s.question like '%'||#{input}||'%'
+				where s.question like '%'||#{input}||'%' and s.userid = #{userId}
 		        order by s.id desc) t)
 		where rnum between #{start} and #{end}
  	</select>
@@ -78,7 +79,7 @@
 				    where sid = s.id and s.userid = #{userId}
 				    group by s.id) k
 				    on s.id = k.id
-				where s.answer like '%'||#{input}||'%'
+				where s.answer like '%'||#{input}||'%' and s.userid = #{userId}
 		        order by s.id desc) t)
 		where rnum between #{start} and #{end}
  	</select>

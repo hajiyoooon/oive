@@ -75,8 +75,9 @@ public class SearchController {
 	
 	@RequestMapping(value = "/self_introduce/list/getpost", method = RequestMethod.GET)
 	@ResponseBody
-	public List<SelfIntroduceVO> loadPostsAsJson(String input, String boundary, int startindex) {
+	public ModelAndView loadPostsAsJson(String input, String boundary, int startindex) {
 		List<SelfIntroduceVO> list = null;
+		
 		
 		String statement = "resource.SearchMapper.";
 		if(boundary != null) {
@@ -106,7 +107,11 @@ public class SearchController {
 			list = searchDAO.listAll(startindex);	
 		}
 		
-		return list;
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("list2");
+		mav.addObject("list", list);
+		
+		return mav;
 	}
 	
 	@RequestMapping(value="self_introduce/delete/{sid}", method=RequestMethod.POST,

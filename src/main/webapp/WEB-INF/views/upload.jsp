@@ -52,9 +52,6 @@
     </div>
  	</div>
  	<script>
- 		function uploadFile(){
- 		}
-
  		var test;
 		function downloadFile(e, fileName){
 			
@@ -116,6 +113,7 @@
  				var str = xhr.responseText;
  	 			var result = JSON.parse(str);
  	 			alert(result['msg']);
+ 	 			location.reload();
  	 		}
  			xhr.onerror=function(e){alert(e);};
  			xhr.open('POST','/oive/upload',true);

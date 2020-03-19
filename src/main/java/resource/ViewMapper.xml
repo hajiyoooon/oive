@@ -16,7 +16,7 @@
 	where sid = s.id and s.userid = #{userId}
 	group by s.id) k
 	on s.id = k.id
-    where s.appliedcompany LIKE '%'||#{input}||'%'
+    where s.appliedcompany LIKE '%'||#{input}||'%' and s.userid = #{userId}
 	order by s.id desc
 	<!-- ) t)
 	where rnum between 1 and 10 -->
@@ -29,7 +29,7 @@
 	where sid = s.id and s.userid = #{userId}
 	group by s.id) k
 	on s.id = k.id
-    where s.question like '%'||#{input}||'%'
+    where s.question like '%'||#{input}||'%' and s.userid = #{userId}
 	order by s.id desc
 </select>
 <select id="viewByAnswer" parameterType="hashmap" resultType="vo.SelfIntroduceVO">
@@ -39,7 +39,7 @@
 	where sid = s.id and s.userid = #{userId}
 	group by s.id) k
 	on s.id = k.id
-    where s.answer like '%'||#{input}||'%'
+    where s.answer like '%'||#{input}||'%' and s.userid = #{userId}
 	order by s.id desc
 </select>
 <select id="viewByKeyword" parameterType="hashmap" resultType="vo.SelfIntroduceVO">
@@ -49,7 +49,7 @@
 	where sid = s.id and s.userid = #{userId}
 	group by s.id) k
 	on s.id = k.id
-	where k.keywords like '%'||#{input}||'%'
+	where k.keywords like '%'||#{input}||'%' and s.userid = #{userId}
 	order by s.id desc
 </select>		
 </mapper>

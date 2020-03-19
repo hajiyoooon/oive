@@ -73,7 +73,7 @@ public class UserController {
 
 		if(service.join(vo)) {
 			mav.addObject("msg", "회원가입에 성공했습니다. 로그인 후 서비스를 이용해 주세요.");
-			mav.setViewName("example");
+			mav.setViewName("home");
 		}
 		else {
 			mav.setViewName("join");
