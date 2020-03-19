@@ -50,7 +50,8 @@ public class FileController {
 		model.addAttribute("filelist",uploadDAO.selectFileList());
 	}
 	
-	@RequestMapping(value="upload", method = RequestMethod.POST, produces="application/json; charset=utf-8")
+	@RequestMapping(value="upload", method = RequestMethod.POST,
+			produces="application/json; charset=utf-8")
 	@ResponseBody
 	public String uploadFile(FileVO vo, Model model) {	
 		vo.setUserId(((UserVO)httpSession.getAttribute("user")).getUserId());
@@ -89,7 +90,7 @@ public class FileController {
 		}
 
 
-	    return String.format("{\"msg\":\"%s\"}", msg); // 문자 합치기
+	    return String.format("{'msg':'%s'}", msg);
 	}
 
 	@RequestMapping(value="/download")
