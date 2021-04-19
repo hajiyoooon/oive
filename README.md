@@ -9,6 +9,8 @@
   - 김소연 : 표준 산출물 작성, 회의록 작성
 - 팀규칙 : 규칙 1. 문제는 적극적으로 공격하고, 사람은 공격하지 않는다. (계속 추가 가능해요.)
 
-# About spec overflow
+# About "spec overflow"
 - 삼성 멀티캠퍼스에서 주관한 'Open API 를 이용한 빅데이터 전처리/시각화' 과정에서 진행한 미니 프로젝트로, 구직자를 위한 이력 관리 웹 페이지를 제공하는 것이 목표입니다.
-- 발표 자료 : 
+- 발표 자료 : https://github.com/hajiyoooon/oive/blob/master/oive%20%EA%B2%B0%EA%B3%BC%EB%B3%B4%EA%B3%A0%EC%84%9C.pdf
+
+# Previews
